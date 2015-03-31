@@ -1,4 +1,4 @@
-package edu.nju.bossfeng.nba.bean;
+﻿package edu.nju.bossfeng.nba.bean;
 
 import java.util.Date;
 
@@ -19,6 +19,8 @@ public class Player {
 	private String team;
 	//位置
 	private String position;
+        //
+        private String id;
 	
 	
 	
