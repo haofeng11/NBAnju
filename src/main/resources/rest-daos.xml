@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<bean id="customerDao" class="com.nju.fraborna.o2oprint.dao.impl.CustomerDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+
+	<bean id="merchantDao" class="com.nju.fraborna.o2oprint.dao.impl.MerchantDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+
+	<bean id="printingOrderDao" class="com.nju.fraborna.o2oprint.dao.impl.PrintingOrderDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+
+	<bean id="customerAddressDao"
+		class="com.nju.fraborna.o2oprint.dao.impl.CustomerAddressDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+
+	<bean id="basicPriceListDao"
+		class="com.nju.fraborna.o2oprint.dao.impl.BasicPriceListDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+
+	<bean id="tariffDao" class="com.nju.fraborna.o2oprint.dao.impl.TariffDaoImpl">
+		<property name="sqlSession" ref="sqlSession"></property>
+	</bean>
+
+</beans>
