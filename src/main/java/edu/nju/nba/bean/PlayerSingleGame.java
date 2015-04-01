@@ -1,5 +1,12 @@
 package edu.nju.nba.bean;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @className PlayerSingleGame
  * @description 球员单场数据
@@ -7,7 +14,14 @@ package edu.nju.nba.bean;
  * @date 创建时间：2015年3月31日 下午3:29:17
  */
 
-public class PlayerSingleGame {
+@Entity
+@Table
+public class PlayerSingleGame implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	// 球员ID
 	private Integer playerID;
@@ -16,21 +30,21 @@ public class PlayerSingleGame {
 	// 球队
 	private String team;
 	// 得分
-	private double Score;
+	private String score;
 	// 助攻
-	private double Assistance;
+	private String assistance;
 	// 篮板
-	private double Rebound;
+	private String rebound;
 	// 出手
-	private int numOfShoot;
+	private String numOfShoot;
 	// 命中
-	private int numOfHit;
+	private String numOfHit;
 	// 命中率
 	private String shootPercentage;
 	// 三分出手
-	private int numOfThreeShoot;
+	private String numOfThreeShoot;
 	// 三分命中
-	private int numOfThreeHit;
+	private String numOfThreeHit;
 	// 三分命中率
 	private String threeShootPercentage;
 	// 真实命中率
@@ -38,70 +52,55 @@ public class PlayerSingleGame {
 	// 罚球命中率
 	private String freeThrowPercentage;
 	// 盖帽
-	private double block;
+	private String block;
 	// 抢断
-	private double steal;
+	private String steal;
 	// 失误次数
-	private int mistake;
+	private String mistake;
 	// 犯规次数
-	private int foul;
+	private String foul;
 
-	public int getNumOfShoot() {
-		return numOfShoot;
+	public PlayerSingleGame() {
+		super();
 	}
 
-	public void setNumOfShoot(int numOfShoot) {
+	public PlayerSingleGame(Integer playerID, Integer seasonID, String team,
+			String score, String assistance, String rebound, String numOfShoot,
+			String numOfHit, String shootPercentage, String numOfThreeShoot,
+			String numOfThreeHit, String threeShootPercentage,
+			String trueShootingPercentage, String freeThrowPercentage,
+			String block, String steal, String mistake, String foul) {
+		super();
+		this.playerID = playerID;
+		this.seasonID = seasonID;
+		this.team = team;
+		this.score = score;
+		this.assistance = assistance;
+		this.rebound = rebound;
 		this.numOfShoot = numOfShoot;
-	}
-
-	public int getNumOfHit() {
-		return numOfHit;
-	}
-
-	public void setNumOfHit(int numOfHit) {
 		this.numOfHit = numOfHit;
-	}
-
-	public int getNumOfThreeShoot() {
-		return numOfThreeShoot;
-	}
-
-	public void setNumOfThreeShoot(int numOfThreeShoot) {
+		this.shootPercentage = shootPercentage;
 		this.numOfThreeShoot = numOfThreeShoot;
-	}
-
-	public int getNumOfThreeHit() {
-		return numOfThreeHit;
-	}
-
-	public void setNumOfThreeHit(int numOfThreeHit) {
 		this.numOfThreeHit = numOfThreeHit;
-	}
-
-	public int getMistake() {
-		return mistake;
-	}
-
-	public void setMistake(int mistake) {
+		this.threeShootPercentage = threeShootPercentage;
+		this.trueShootingPercentage = trueShootingPercentage;
+		this.freeThrowPercentage = freeThrowPercentage;
+		this.block = block;
+		this.steal = steal;
 		this.mistake = mistake;
-	}
-
-	public int getFoul() {
-		return foul;
-	}
-
-	public void setFoul(int foul) {
 		this.foul = foul;
 	}
 
 	public Integer getPlayerID() {
 		return playerID;
 	}
-
+   
 	public void setPlayerID(Integer playerID) {
 		this.playerID = playerID;
 	}
-
+	
+	@Id
+	@GeneratedValue
 	public Integer getSeasonID() {
 		return seasonID;
 	}
@@ -118,28 +117,44 @@ public class PlayerSingleGame {
 		this.team = team;
 	}
 
-	public double getScore() {
-		return Score;
+	public String getScore() {
+		return score;
 	}
 
-	public void setScore(double score) {
-		Score = score;
+	public void setScore(String score) {
+		this.score = score;
 	}
 
-	public double getAssistance() {
-		return Assistance;
+	public String getAssistance() {
+		return assistance;
 	}
 
-	public void setAssistance(double assistance) {
-		Assistance = assistance;
+	public void setAssistance(String assistance) {
+		this.assistance = assistance;
 	}
 
-	public double getRebound() {
-		return Rebound;
+	public String getRebound() {
+		return rebound;
 	}
 
-	public void setRebound(double rebound) {
-		Rebound = rebound;
+	public void setRebound(String rebound) {
+		this.rebound = rebound;
+	}
+
+	public String getNumOfShoot() {
+		return numOfShoot;
+	}
+
+	public void setNumOfShoot(String numOfShoot) {
+		this.numOfShoot = numOfShoot;
+	}
+
+	public String getNumOfHit() {
+		return numOfHit;
+	}
+
+	public void setNumOfHit(String numOfHit) {
+		this.numOfHit = numOfHit;
 	}
 
 	public String getShootPercentage() {
@@ -148,6 +163,22 @@ public class PlayerSingleGame {
 
 	public void setShootPercentage(String shootPercentage) {
 		this.shootPercentage = shootPercentage;
+	}
+
+	public String getNumOfThreeShoot() {
+		return numOfThreeShoot;
+	}
+
+	public void setNumOfThreeShoot(String numOfThreeShoot) {
+		this.numOfThreeShoot = numOfThreeShoot;
+	}
+
+	public String getNumOfThreeHit() {
+		return numOfThreeHit;
+	}
+
+	public void setNumOfThreeHit(String numOfThreeHit) {
+		this.numOfThreeHit = numOfThreeHit;
 	}
 
 	public String getThreeShootPercentage() {
@@ -174,20 +205,36 @@ public class PlayerSingleGame {
 		this.freeThrowPercentage = freeThrowPercentage;
 	}
 
-	public double getBlock() {
+	public String getBlock() {
 		return block;
 	}
 
-	public void setBlock(double block) {
+	public void setBlock(String block) {
 		this.block = block;
 	}
 
-	public double getSteal() {
+	public String getSteal() {
 		return steal;
 	}
 
-	public void setSteal(double steal) {
+	public void setSteal(String steal) {
 		this.steal = steal;
+	}
+
+	public String getMistake() {
+		return mistake;
+	}
+
+	public void setMistake(String mistake) {
+		this.mistake = mistake;
+	}
+
+	public String getFoul() {
+		return foul;
+	}
+
+	public void setFoul(String foul) {
+		this.foul = foul;
 	}
 
 }

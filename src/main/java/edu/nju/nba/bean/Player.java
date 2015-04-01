@@ -1,6 +1,14 @@
 ﻿package edu.nju.nba.bean;
 
-import java.util.Date;
+import java.io.Serializable;
+
+
+
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @className Player
@@ -9,13 +17,21 @@ import java.util.Date;
  * @date 创建时间：2015年3月31日 上午9:56:37
  */
 
-public class Player {
+@Entity  
+@Table 
+public class Player implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	//球员基本信息
 	private Integer id;
-	private String Playername;
+	private String playername;
 	private String birthday;
-	private double height;
-	private double weight;
+	private String height;
+	private String weight;
 	// 球队
 	private String team;
 	// 选秀
@@ -24,9 +40,43 @@ public class Player {
 	private String birthplace;
 	// 位置
 	private String position;
+    //本赛季薪水
+	private String salary;
+	//合同
+	private String contract;
+	//主要奖项
+	private String prize;
 
-	// //单赛季平均数据
-	// private PlayerSeasonData playerSeasonData;
+	
+	public Player() {
+		super();
+	}
+	
+	
+
+	public Player(Integer id, String playername, String birthday,
+			String height, String weight, String team, String draft,
+			String birthplace, String position, String salary, String contract,
+			String prize) {
+		super();
+		this.id = id;
+		this.playername = playername;
+		this.birthday = birthday;
+		this.height = height;
+		this.weight = weight;
+		this.team = team;
+		this.draft = draft;
+		this.birthplace = birthplace;
+		this.position = position;
+		this.salary = salary;
+		this.contract = contract;
+		this.prize = prize;
+	}
+
+
+
+	@Id
+	@GeneratedValue
 	public Integer getId() {
 		return id;
 	}
@@ -36,11 +86,11 @@ public class Player {
 	}
 
 	public String getPlayername() {
-		return Playername;
+		return playername;
 	}
 
 	public void setPlayername(String playername) {
-		Playername = playername;
+		this.playername = playername;
 	}
 
 	public String getBirthday() {
@@ -51,19 +101,19 @@ public class Player {
 		this.birthday = birthday;
 	}
 
-	public double getHeight() {
+	public String getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(String height) {
 		this.height = height;
 	}
 
-	public double getWeight() {
+	public String getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
 	}
 
@@ -98,5 +148,36 @@ public class Player {
 	public void setPosition(String position) {
 		this.position = position;
 	}
+
+	public String getSalary() {
+		return salary;
+	}
+
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+	public String getContract() {
+		return contract;
+	}
+
+	public void setContract(String contract) {
+		this.contract = contract;
+	}
+
+	public String getPrize() {
+		return prize;
+	}
+
+	public void setPrize(String prize) {
+		this.prize = prize;
+	}
+	
+	
+	public String toString() {
+		return playername+" : "+position+" : "+team+" : "+prize;
+	}
+
+    
 
 }
