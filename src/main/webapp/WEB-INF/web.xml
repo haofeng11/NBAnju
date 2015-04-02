@@ -23,12 +23,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			classpath:rest-content.xml
-		</param-value>
-	</context-param>
+
 
     <!-- Spring配置。（必须配，要不会找不到bean） -->  
 	<listener>
@@ -39,12 +34,12 @@
 		<servlet-name>nbaanalysis</servlet-name>
 		<!-- <servlet-class>com.nju.fraborna.o2oprint.dispatcher.O2OPrintServerDispatcher</servlet-class> -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!--  
+		 
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:rest-servlet.xml</param-value>
+			<param-value>/WEB-INF/nbaanalysis.xml</param-value>
 		</init-param>
-		-->
+		
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 

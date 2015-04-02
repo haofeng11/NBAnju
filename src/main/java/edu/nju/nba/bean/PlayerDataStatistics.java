@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class PlayerSingleGame implements Serializable {
+public class PlayerDataStatistics implements Serializable {
 
 	/**
 	 * 
@@ -60,11 +60,11 @@ public class PlayerSingleGame implements Serializable {
 	// 犯规次数
 	private String foul;
 
-	public PlayerSingleGame() {
+	public PlayerDataStatistics() {
 		super();
 	}
 
-	public PlayerSingleGame(Integer playerID, Integer seasonID, String team,
+	public PlayerDataStatistics(Integer playerID, Integer seasonID, String team,
 			String score, String assistance, String rebound, String numOfShoot,
 			String numOfHit, String shootPercentage, String numOfThreeShoot,
 			String numOfThreeHit, String threeShootPercentage,

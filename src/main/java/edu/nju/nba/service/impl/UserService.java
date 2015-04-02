@@ -30,5 +30,14 @@ public class UserService implements IUserService {
 		generalDao.save(user);
 		return false;
 	}
+	
+	/*
+	 * 添加
+	 */
+	@Transactional(readOnly=false)
+	public boolean add(User user){
+		generalDao.saveOrUpdate(user);
+		return true;
+	}
 
 }

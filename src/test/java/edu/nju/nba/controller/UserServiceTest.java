@@ -11,7 +11,8 @@ public class UserServiceTest {
 		ApplicationContext ctx = new FileSystemXmlApplicationContext(
 				"src/main/webapp/WEB-INF/applicationContext.xml");
 		UserController controller = ctx.getBean(UserController.class);
-		controller.registe();
+		//controller.registe();
+		controller.add();
 	}
 
 }

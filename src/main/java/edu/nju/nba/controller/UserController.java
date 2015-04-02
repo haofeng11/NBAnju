@@ -26,5 +26,12 @@ public class UserController {
 		userService.registe(user);
 		return "index";
 	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.GET)
+	public String add() {
+		User user = new User(0, "马云", "939");
+		userService.add(user);
+		return "";
+	}
 
 }

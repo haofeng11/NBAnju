@@ -14,7 +14,11 @@ public class PlayerControllerTest {
 				"src/main/webapp/WEB-INF/applicationContext.xml");
 		PlayerController controller = ctx.getBean(PlayerController.class);
 		Model model = null;
-		controller.show("科比", model);
+		//controller.add();
+		controller.list(model);
+		//controller.show("科比", model);
 	}
+	
+	
 
 }
