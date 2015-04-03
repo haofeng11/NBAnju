@@ -1,5 +1,12 @@
 package edu.nju.nba.bean;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @className TeamSingleGame
  * @description 球队单场数据类
@@ -7,7 +14,11 @@ package edu.nju.nba.bean;
  * @date 创建时间：2015年3月31日 下午4:36:26
  */
 
-public class TeamSingleGame {
+@Entity
+@Table
+public class TeamDataStatistics implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	// 球队ID
 	private Integer teamID;
@@ -42,6 +53,35 @@ public class TeamSingleGame {
 	// 犯规次数
 	private int foul;
 
+	public TeamDataStatistics() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public TeamDataStatistics(Integer teamID, Integer seasonID, double score,
+			double assistance, double rebound, int numOfShoot, int numOfHit,
+			String shootPercentage, int numOfThreeShoot, int numOfThreeHit,
+			String threeShootPercentage, String freeThrowPercentage,
+			double block, double steal, int mistake, int foul) {
+		super();
+		this.teamID = teamID;
+		this.seasonID = seasonID;
+		Score = score;
+		Assistance = assistance;
+		Rebound = rebound;
+		this.numOfShoot = numOfShoot;
+		this.numOfHit = numOfHit;
+		this.shootPercentage = shootPercentage;
+		this.numOfThreeShoot = numOfThreeShoot;
+		this.numOfThreeHit = numOfThreeHit;
+		this.threeShootPercentage = threeShootPercentage;
+		this.freeThrowPercentage = freeThrowPercentage;
+		this.block = block;
+		this.steal = steal;
+		this.mistake = mistake;
+		this.foul = foul;
+	}
+
 	public Integer getTeamID() {
 		return teamID;
 	}
@@ -50,6 +90,8 @@ public class TeamSingleGame {
 		this.teamID = teamID;
 	}
 
+	@Id
+	@GeneratedValue
 	public Integer getSeasonID() {
 		return seasonID;
 	}

@@ -11,6 +11,6 @@
         <c:forEach items="${players }" var="player">
         ${player.playername }---------
         ${player.team }<br/>
-        </c:forEach>
+        </c:forEach> 
 </body>
 </html>

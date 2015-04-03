@@ -1,6 +1,12 @@
 package edu.nju.nba.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @className Team
@@ -9,11 +15,15 @@ import java.util.ArrayList;
  * @date 创建时间：2015年3月31日 上午9:56:23
  */
 
-public class Team {
+@Entity
+@Table
+public class Team implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	private Integer teamID;
 	// 球队名称
-	private String name;
+	private String teamName;
 	// 区域
 	private String teamDistrict;
 	// 成立时间
@@ -38,7 +48,42 @@ public class Team {
 	private int topWinningStreak;
 	// 最好战绩
 	private String bestRecord;
+	
+	
 
+	public Team() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Team(Integer teamID, String teamName, String teamDistrict,
+			String foundedTime, String teamLocation, String mainStadium,
+			String boss, String coach, ArrayList<Player> teamStar,
+			int numOfPlayoff, int divisionCrown, int champion,
+			int topWinningStreak, String bestRecord) {
+		super();
+		this.teamID = teamID;
+		this.teamName = teamName;
+		this.teamDistrict = teamDistrict;
+		this.foundedTime = foundedTime;
+		this.teamLocation = teamLocation;
+		this.mainStadium = mainStadium;
+		this.boss = boss;
+		this.coach = coach;
+		this.teamStar = teamStar;
+		this.numOfPlayoff = numOfPlayoff;
+		this.divisionCrown = divisionCrown;
+		this.champion = champion;
+		this.topWinningStreak = topWinningStreak;
+		this.bestRecord = bestRecord;
+	}
+
+
+
+	@Id
+	@GeneratedValue
 	public Integer getTeamID() {
 		return teamID;
 	}
@@ -47,12 +92,12 @@ public class Team {
 		this.teamID = teamID;
 	}
 
-	public String getName() {
-		return name;
+	public String getTeamName() {
+		return teamName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTeamName(String name) {
+		this.teamName = name;
 	}
 
 	public String getTeamDistrict() {
@@ -149,6 +194,10 @@ public class Team {
 
 	public void setBestRecord(String bestRecord) {
 		this.bestRecord = bestRecord;
+	}
+	
+	public String toString() {
+		return teamName + " : " + teamDistrict + " : " + teamLocation ;
 	}
 
 }
