@@ -37,7 +37,7 @@ public class Team implements Serializable{
 	// 现任教练
 	private String coach;
 	// 历任球星
-	private ArrayList<Player> teamStar;
+	private String teamStar;
 	// 季后赛次数
 	private int numOfPlayoff;
 	// 分区冠军次数
@@ -60,7 +60,7 @@ public class Team implements Serializable{
 
 	public Team(Integer teamID, String teamName, String teamDistrict,
 			String foundedTime, String teamLocation, String mainStadium,
-			String boss, String coach, ArrayList<Player> teamStar,
+			String boss, String coach, String teamStar,
 			int numOfPlayoff, int divisionCrown, int champion,
 			int topWinningStreak, String bestRecord) {
 		super();
@@ -148,11 +148,11 @@ public class Team implements Serializable{
 		this.coach = coach;
 	}
 
-	public ArrayList<Player> getTeamStar() {
+	public String getTeamStar() {
 		return teamStar;
 	}
 
-	public void setTeamStar(ArrayList<Player> teamStar) {
+	public void setTeamStar(String teamStar) {
 		this.teamStar = teamStar;
 	}
 
