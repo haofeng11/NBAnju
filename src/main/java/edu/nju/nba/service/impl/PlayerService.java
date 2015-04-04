@@ -4,11 +4,14 @@ package edu.nju.nba.service.impl;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.nju.nba.bean.Player;
+import edu.nju.nba.bean.PlayerDataAnalysis;
+import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.dao.IGeneralDao;
 import edu.nju.nba.service.IPlayerService;
 
@@ -31,9 +34,23 @@ public class PlayerService implements IPlayerService {
 
 	// 添加一名球员
 	@Transactional(readOnly = false)
-	public boolean add(Player player) {
+	public boolean addPlayer(Player player) {
 		generalDao.save(player);
 		return true;
+	}
+
+	@Override
+	public PlayerDataStatistics getDataStatistics(String seasonID,
+			Player player, String tag) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PlayerDataAnalysis getDataAnalysis(String seasonID, Player player,
+			String tag) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
