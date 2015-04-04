@@ -2,9 +2,6 @@
 
 import java.io.Serializable;
 
-
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,16 +14,16 @@ import javax.persistence.Table;
  * @date 创建时间：2015年3月31日 上午9:56:37
  */
 
-@Entity  
-@Table 
-public class Player implements Serializable{
+@Entity
+@Table
+public class Player implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	//球员基本信息
+
+	// 球员基本信息
 	private Integer id;
 	private String playername;
 	private String birthday;
@@ -40,19 +37,16 @@ public class Player implements Serializable{
 	private String birthplace;
 	// 位置
 	private String position;
-    //本赛季薪水
+	// 本赛季薪水
 	private String salary;
-	//合同
+	// 合同
 	private String contract;
-	//主要奖项
+	// 主要奖项
 	private String prize;
 
-	
 	public Player() {
 		super();
 	}
-	
-	
 
 	public Player(Integer id, String playername, String birthday,
 			String height, String weight, String team, String draft,
@@ -72,8 +66,6 @@ public class Player implements Serializable{
 		this.contract = contract;
 		this.prize = prize;
 	}
-
-
 
 	@Id
 	@GeneratedValue
@@ -172,12 +164,9 @@ public class Player implements Serializable{
 	public void setPrize(String prize) {
 		this.prize = prize;
 	}
-	
-	
-	public String toString() {
-		return playername+" : "+position+" : "+team+" : "+prize;
-	}
 
-    
+	public String toString() {
+		return playername + " : " + position + " : " + team + " : " + prize;
+	}
 
 }

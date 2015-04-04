@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>players</title>
+<title>teams</title>
 </head>
 <body>
-        <c:forEach items="${players }" var="player">
-        ${player.playername }---------
-        ${player.team }<br/>
+        <c:forEach items="${teams }" var="team">
+        ${team.teamName }---------
+        ${team.teamDistrict }<br/>
         </c:forEach> 
 </body>
 </html>
