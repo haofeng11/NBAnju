@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  * @className TeamSingleGame
- * @description 球队单场数据类
+ * @description 球队单赛季数据类
  * @author 作者 :fenghao
  * @date 创建时间：2015年3月31日 下午4:36:26
  */
