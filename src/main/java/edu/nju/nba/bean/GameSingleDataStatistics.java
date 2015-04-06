@@ -6,14 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @className GameDataStatistics
+ * @className GameSingleDataStatistics
  * @description 球队单场比赛数据
  * @author 作者 : haofeng
  */
 
 @Entity
 @Table
-public class GameDataStatistics {
+public class GameSingleDataStatistics {
 
 	// 球队比赛id
 	private Integer teamgameid;
@@ -59,12 +59,12 @@ public class GameDataStatistics {
 	private int fault;
 
 	// 总得分
-	public GameDataStatistics() {
+	public GameSingleDataStatistics() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public GameDataStatistics(Integer teamgameid, String gameDate,
+	public GameSingleDataStatistics(Integer teamgameid, String gameDate,
 			String gameinfo, String hostOrGuest, String percentage, int hitNum,
 			int shootingNum, String threePercentage, int threeHitNum,
 			int threeShootingNum, String freePercentage, int freeHitNum,

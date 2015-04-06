@@ -52,6 +52,9 @@ public class TeamDataStatistics implements Serializable {
 	private int mistake;
 	// 犯规次数
 	private int foul;
+	// 用来标记是常规赛数据还是季后赛数据
+	// tag=1表示常规赛；tag=2表示季后赛
+	private String tag;
 
 	public TeamDataStatistics() {
 		super();
@@ -62,7 +65,7 @@ public class TeamDataStatistics implements Serializable {
 			double assistance, double rebound, int numOfShoot, int numOfHit,
 			String shootPercentage, int numOfThreeShoot, int numOfThreeHit,
 			String threeShootPercentage, String freeThrowPercentage,
-			double block, double steal, int mistake, int foul) {
+			double block, double steal, int mistake, int foul, String tag) {
 		super();
 		this.teamID = teamID;
 		this.seasonID = seasonID;
@@ -80,6 +83,7 @@ public class TeamDataStatistics implements Serializable {
 		this.steal = steal;
 		this.mistake = mistake;
 		this.foul = foul;
+		this.tag = tag;
 	}
 
 	public Integer getTeamID() {
@@ -211,4 +215,13 @@ public class TeamDataStatistics implements Serializable {
 	public void setFoul(int foul) {
 		this.foul = foul;
 	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
 }
