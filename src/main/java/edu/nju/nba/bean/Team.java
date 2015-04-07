@@ -17,13 +17,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Team implements Serializable{
+public class Team implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private Integer teamID;
-	// 球队名称
-	private String teamName;
+
+	private String teamID;
+	// 球队中文名称
+	private String cName;
+	// 英文名
+	private String eName;
 	// 区域
 	private String teamDistrict;
 	// 成立时间
@@ -39,33 +41,32 @@ public class Team implements Serializable{
 	// 历任球星
 	private String teamStar;
 	// 季后赛次数
-	private int numOfPlayoff;
-	// 分区冠军次数
-	private int divisionCrown;
+	private String numOfPlayoff;
 	// 总冠军次数
-	private int champion;
+	private String champion;
 	// 最高连胜纪录
-	private int topWinningStreak;
+	private String topWinningStreak;
+	// 分区冠军次数
+	private String divisionCrown;
 	// 最好战绩
 	private String bestRecord;
-	
-	
+	// 球队图片地址
+	private String picture;
 
 	public Team() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
-	public Team(Integer teamID, String teamName, String teamDistrict,
+	public Team(String teamID, String cName, String eName, String teamDistrict,
 			String foundedTime, String teamLocation, String mainStadium,
-			String boss, String coach, String teamStar,
-			int numOfPlayoff, int divisionCrown, int champion,
-			int topWinningStreak, String bestRecord) {
+			String boss, String coach, String teamStar, String numOfPlayoff,
+			String champion, String topWinningStreak, String divisionCrown,
+			String bestRecord, String picture) {
 		super();
 		this.teamID = teamID;
-		this.teamName = teamName;
+		this.cName = cName;
+		this.eName = eName;
 		this.teamDistrict = teamDistrict;
 		this.foundedTime = foundedTime;
 		this.teamLocation = teamLocation;
@@ -74,30 +75,37 @@ public class Team implements Serializable{
 		this.coach = coach;
 		this.teamStar = teamStar;
 		this.numOfPlayoff = numOfPlayoff;
-		this.divisionCrown = divisionCrown;
 		this.champion = champion;
 		this.topWinningStreak = topWinningStreak;
+		this.divisionCrown = divisionCrown;
 		this.bestRecord = bestRecord;
+		this.picture = picture;
 	}
-
-
 
 	@Id
 	@GeneratedValue
-	public Integer getTeamID() {
+	public String getTeamID() {
 		return teamID;
 	}
 
-	public void setTeamID(Integer teamID) {
+	public void setTeamID(String teamID) {
 		this.teamID = teamID;
 	}
 
-	public String getTeamName() {
-		return teamName;
+	public String getcName() {
+		return cName;
 	}
 
-	public void setTeamName(String name) {
-		this.teamName = name;
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+
+	public String geteName() {
+		return eName;
+	}
+
+	public void seteName(String eName) {
+		this.eName = eName;
 	}
 
 	public String getTeamDistrict() {
@@ -156,35 +164,35 @@ public class Team implements Serializable{
 		this.teamStar = teamStar;
 	}
 
-	public int getNumOfPlayoff() {
+	public String getNumOfPlayoff() {
 		return numOfPlayoff;
 	}
 
-	public void setNumOfPlayoff(int numOfPlayoff) {
+	public void setNumOfPlayoff(String numOfPlayoff) {
 		this.numOfPlayoff = numOfPlayoff;
 	}
 
-	public int getDivisionCrown() {
+	public String getDivisionCrown() {
 		return divisionCrown;
 	}
 
-	public void setDivisionCrown(int divisionCrown) {
+	public void setDivisionCrown(String divisionCrown) {
 		this.divisionCrown = divisionCrown;
 	}
 
-	public int getChampion() {
+	public String getChampion() {
 		return champion;
 	}
 
-	public void setChampion(int champion) {
+	public void setChampion(String champion) {
 		this.champion = champion;
 	}
 
-	public int getTopWinningStreak() {
+	public String getTopWinningStreak() {
 		return topWinningStreak;
 	}
 
-	public void setTopWinningStreak(int topWinningStreak) {
+	public void setTopWinningStreak(String topWinningStreak) {
 		this.topWinningStreak = topWinningStreak;
 	}
 
@@ -195,9 +203,21 @@ public class Team implements Serializable{
 	public void setBestRecord(String bestRecord) {
 		this.bestRecord = bestRecord;
 	}
-	
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String toString() {
-		return teamName + " : " + teamDistrict + " : " + teamLocation ;
+		return cName + " : " + teamDistrict + " : " + teamLocation;
 	}
 
 }
