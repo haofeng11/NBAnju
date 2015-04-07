@@ -2,6 +2,7 @@
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table(name = "player_base_info")
 public class Player implements Serializable {
 
 	/**
@@ -24,73 +25,79 @@ public class Player implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// 球员基本信息
-	private Integer id;
-	private String playername;
-	private String birthday;
+	private String playerID;
+	private String cName;
+	private String eName;
 	private String height;
 	private String weight;
+	// 出生日期
+	private String birthday;
 	// 球队
 	private String team;
 	// 选秀
-	private String draft;
+	private String draftInfo;
 	// 出生地
 	private String birthplace;
 	// 位置
 	private String position;
+	// 球衣号码
+	private String playerNumber;
 	// 本赛季薪水
 	private String salary;
-	// 合同
-	private String contract;
-	// 主要奖项
-	private String prize;
+	// 奖项
+	private String price;
+	// 图片地址
+	private String picture;
 
 	public Player() {
 		super();
 	}
 
-	public Player(Integer id, String playername, String birthday,
-			String height, String weight, String team, String draft,
-			String birthplace, String position, String salary, String contract,
-			String prize) {
+	public Player(String playerID, String cName, String eName, String height,
+			String weight, String birthday, String team, String draftInfo,
+			String birthplace, String position, String playerNumber,
+			String salary, String price, String picture) {
 		super();
-		this.id = id;
-		this.playername = playername;
-		this.birthday = birthday;
+		this.playerID = playerID;
+		this.cName = cName;
+		this.eName = eName;
 		this.height = height;
 		this.weight = weight;
+		this.birthday = birthday;
 		this.team = team;
-		this.draft = draft;
+		this.draftInfo = draftInfo;
 		this.birthplace = birthplace;
 		this.position = position;
+		this.playerNumber = playerNumber;
 		this.salary = salary;
-		this.contract = contract;
-		this.prize = prize;
+		this.price = price;
+		this.picture = picture;
 	}
 
 	@Id
 	@GeneratedValue
-	public Integer getId() {
-		return id;
+	public String getPlayerID() {
+		return playerID;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setPlayerID(String playerID) {
+		this.playerID = playerID;
 	}
 
-	public String getPlayername() {
-		return playername;
+	public String getcName() {
+		return cName;
 	}
 
-	public void setPlayername(String playername) {
-		this.playername = playername;
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 
-	public String getBirthday() {
-		return birthday;
+	public String geteName() {
+		return eName;
 	}
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+	public void seteName(String eName) {
+		this.eName = eName;
 	}
 
 	public String getHeight() {
@@ -109,6 +116,14 @@ public class Player implements Serializable {
 		this.weight = weight;
 	}
 
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
 	public String getTeam() {
 		return team;
 	}
@@ -117,12 +132,12 @@ public class Player implements Serializable {
 		this.team = team;
 	}
 
-	public String getDraft() {
-		return draft;
+	public String getDraftInfo() {
+		return draftInfo;
 	}
 
-	public void setDraft(String draft) {
-		this.draft = draft;
+	public void setDraftInfo(String draftInfo) {
+		this.draftInfo = draftInfo;
 	}
 
 	public String getBirthplace() {
@@ -141,6 +156,14 @@ public class Player implements Serializable {
 		this.position = position;
 	}
 
+	public String getPlayerNumber() {
+		return playerNumber;
+	}
+
+	public void setPlayerNumber(String playerNumber) {
+		this.playerNumber = playerNumber;
+	}
+
 	public String getSalary() {
 		return salary;
 	}
@@ -149,24 +172,24 @@ public class Player implements Serializable {
 		this.salary = salary;
 	}
 
-	public String getContract() {
-		return contract;
+	public String getPrice() {
+		return price;
 	}
 
-	public void setContract(String contract) {
-		this.contract = contract;
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
-	public String getPrize() {
-		return prize;
+	public String getPicture() {
+		return picture;
 	}
 
-	public void setPrize(String prize) {
-		this.prize = prize;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public String toString() {
-		return playername + " : " + position + " : " + team + " : " + prize;
+		return cName + " : " + position + " : " + team + " : " + playerNumber;
 	}
 
 }
