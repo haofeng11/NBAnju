@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.nju.nba.bean.Player;
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.dao.IGeneralDao;
+import edu.nju.nba.dao.impl.TeamDao;
 import edu.nju.nba.service.ITeamService;
 
 
@@ -17,18 +18,21 @@ public class TeamService implements ITeamService{
 
 	@Autowired
 	private IGeneralDao generalDao;
+	
+	@Autowired
+	private TeamDao teamDao;
 
 
-	@Override
-	@Transactional(readOnly = false)
-	public boolean add(Team team) {
-		generalDao.save(team);
-		return true;
-	}
+//	@Override
+//	@Transactional(readOnly = false)
+//	public boolean add(Team team) {
+//		generalDao.save(team);
+//		return true;
+//	}
 
-	@Override
-	public Team show(Team team) {
-		return generalDao.findById(Team.class, team.getTeamID());
+	
+	public Team show(String teamName) {
+		return teamDao.findByName("from edu.nju.nba.bean.Team t where t.eName=?", teamName);
 	}
 
 	@Override
