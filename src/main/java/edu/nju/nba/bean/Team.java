@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table (name="team_base_info")
 public class Team implements Serializable {
 
 	private static final long serialVersionUID = 1L;

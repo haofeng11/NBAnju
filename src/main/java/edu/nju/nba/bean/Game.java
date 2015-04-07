@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table (name="game_base_info")
 public class Game implements Serializable{
 
 	/**

@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table (name="team_season_average")
 public class TeamSeasonAverage implements Serializable {
 
 	private static final long serialVersionUID = 1L;

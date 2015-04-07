@@ -13,9 +13,10 @@ import javax.persistence.Table;
  * @author fenghao
  * 
  */
+//赛程类不要？
 
-@Entity
-@Table
+/*@Entity
+@Table*/
 public class GameSchedule implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

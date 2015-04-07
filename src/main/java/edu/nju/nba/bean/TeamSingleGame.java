@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table (name="team_single_game")
 public class TeamSingleGame implements Serializable {
 
 	private static final long serialVersionUID = 1L;
