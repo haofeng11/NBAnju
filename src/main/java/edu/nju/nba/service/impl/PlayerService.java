@@ -24,7 +24,7 @@ public class PlayerService implements IPlayerService {
 
 	// 根据球员ID查找球员，返回球员信息
 	public Player show(Player player) {		
-		return generalDao.findById(Player.class, player.getId());
+		return generalDao.findById(Player.class, player.getPlayerID());
 	}
 
 	// 查找所有球员基本信息
