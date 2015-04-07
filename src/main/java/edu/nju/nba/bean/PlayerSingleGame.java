@@ -2,8 +2,10 @@ package edu.nju.nba.bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @className GameSingleDataStatistics
@@ -11,6 +13,8 @@ import javax.persistence.Id;
  * @author 作者 : haofeng
  */
 
+@Entity
+@Table(name = "player_single_game")
 public class PlayerSingleGame implements Serializable {
 
 	private static final long serialVersionUID = 1L;

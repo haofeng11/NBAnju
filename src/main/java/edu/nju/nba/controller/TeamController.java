@@ -1,5 +1,6 @@
 package edu.nju.nba.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,8 @@ public class TeamController {
 	@Autowired
 	private ITeamService teamService;
 
-	private Map<String, Team> teams = new HashMap<String, Team>();
+	//private Map<String, Team> teams = new HashMap<String, Team>();
+	private List<Team> teams=new ArrayList<Team>();
 
 	public TeamController() {
 

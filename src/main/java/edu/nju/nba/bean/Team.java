@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table (name="team_base_info")
+@Table(name = "team_base_info")
 public class Team implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,16 +41,10 @@ public class Team implements Serializable {
 	private String coach;
 	// 历任球星
 	private String teamStar;
-	// 季后赛次数
-	private String numOfPlayoff;
 	// 总冠军次数
 	private String champion;
 	// 最高连胜纪录
 	private String topWinningStreak;
-	// 分区冠军次数
-	private String divisionCrown;
-	// 最好战绩
-	private String bestRecord;
 	// 球队图片地址
 	private String picture;
 
@@ -61,9 +55,8 @@ public class Team implements Serializable {
 
 	public Team(String teamID, String cName, String eName, String teamDistrict,
 			String foundedTime, String teamLocation, String mainStadium,
-			String boss, String coach, String teamStar, String numOfPlayoff,
-			String champion, String topWinningStreak, String divisionCrown,
-			String bestRecord, String picture) {
+			String boss, String coach, String teamStar, String champion,
+			String topWinningStreak, String picture) {
 		super();
 		this.teamID = teamID;
 		this.cName = cName;
@@ -75,11 +68,8 @@ public class Team implements Serializable {
 		this.boss = boss;
 		this.coach = coach;
 		this.teamStar = teamStar;
-		this.numOfPlayoff = numOfPlayoff;
 		this.champion = champion;
 		this.topWinningStreak = topWinningStreak;
-		this.divisionCrown = divisionCrown;
-		this.bestRecord = bestRecord;
 		this.picture = picture;
 	}
 
@@ -165,22 +155,6 @@ public class Team implements Serializable {
 		this.teamStar = teamStar;
 	}
 
-	public String getNumOfPlayoff() {
-		return numOfPlayoff;
-	}
-
-	public void setNumOfPlayoff(String numOfPlayoff) {
-		this.numOfPlayoff = numOfPlayoff;
-	}
-
-	public String getDivisionCrown() {
-		return divisionCrown;
-	}
-
-	public void setDivisionCrown(String divisionCrown) {
-		this.divisionCrown = divisionCrown;
-	}
-
 	public String getChampion() {
 		return champion;
 	}
@@ -195,14 +169,6 @@ public class Team implements Serializable {
 
 	public void setTopWinningStreak(String topWinningStreak) {
 		this.topWinningStreak = topWinningStreak;
-	}
-
-	public String getBestRecord() {
-		return bestRecord;
-	}
-
-	public void setBestRecord(String bestRecord) {
-		this.bestRecord = bestRecord;
 	}
 
 	public String getPicture() {
