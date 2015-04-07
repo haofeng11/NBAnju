@@ -49,21 +49,19 @@ public class TeamController {
 	 */
 	@RequestMapping(value="/{teamName}",method=RequestMethod.GET)
 	public String show(@PathVariable String teamName,Model model){
+		
+        Team team=teamService.show(teamName);
         
-	
-		//实际调用playerService方法
-		//Team team=playerService.show(teamName);
-		//System.out.println(team.toString());
-		//model.addAttribute(team);
+	    System.out.println(team.toString());       
 		return "";
 	}
 	
-	//添加一支球队
-	public String add(){
-//		Team team =new Team(1, "金州勇士", "太平洋区", "1946", "加利福尼亚州奥克兰市", "甲骨文球馆（Oracle Arena ）", "乔-拉科布、皮特-古伯", "史蒂夫·科尔", "威尔特-张伯伦、里克-巴里、克里斯-穆林、斯蒂芬-库里", 20, 5, 3, 18, "70/13");
-//		teamService.add(team);
-		return "";
-	}
+//	//添加一支球队
+//	public String add(){
+////		Team team =new Team(1, "金州勇士", "太平洋区", "1946", "加利福尼亚州奥克兰市", "甲骨文球馆（Oracle Arena ）", "乔-拉科布、皮特-古伯", "史蒂夫·科尔", "威尔特-张伯伦、里克-巴里、克里斯-穆林、斯蒂芬-库里", 20, 5, 3, 18, "70/13");
+////		teamService.add(team);
+//		return "";
+//	}
 
 	
 	

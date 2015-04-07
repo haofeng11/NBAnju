@@ -1,6 +1,7 @@
 package edu.nju.nba.dao;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 public interface IGeneralDao {
