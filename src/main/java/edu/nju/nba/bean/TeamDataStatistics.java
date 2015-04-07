@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class TeamDataStatistics implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+    
 	// 球队ID
 	private Integer teamID;
 	// 赛季ID

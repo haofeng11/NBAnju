@@ -2,8 +2,6 @@ package edu.nju.nba.bean;
 
 import java.io.Serializable;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,141 +15,131 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table
+@Table(name = "player_season_average")
 public class PlayerDataStatistics implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-    private Integer ID;
-	// 球员ID
-	private Integer playerID;
+
+	private String id;
+	// 球员姓名
+	private String player;
 	// 赛季ID
 	private String seasonID;
-	//所在球队
-	private String teamName;
-	//出场次数
-	private String appearances;
-	//首发次数
-	private String numOfStarting;
-	//时间
-	private String time;
+	// 所在球队
+	private String team;
+	// 出场次数
+	private String appearCnt;
+	// 首发次数
+	private String firstCnt;
+	// 时间
+	private String playTime;
 	// 得分
 	private String score;
 	// 助攻
 	private String assistance;
 	// 篮板
 	private String rebound;
-	//进攻篮板
+	// 进攻篮板
 	private String offensiveRebound;
-	//防守篮板
+	// 防守篮板
 	private String defensiveRebound;
 	// 出手
-	private String numOfShoot;
+	private String shootTotal;
 	// 命中
-	private String numOfHit;
+	private String shootHit;
 	// 命中率
 	private String shootPercentage;
 	// 三分出手
-	private String numOfThreeShoot;
+	private String threeTotal;
 	// 三分命中
-	private String numOfThreeHit;
+	private String threeHit;
 	// 三分命中率
-	private String threeShootPercentage;
+	private String threePercentage;
 	// 真实命中率
 	private String trueShootingPercentage;
 	// 罚球命中率
 	private String freeThrowPercentage;
-	//罚球出手
-	private String numOfFreThrow;
-	//罚球命中
-	private String numOfFreeThrowHit;
+	// 罚球出手
+	private String freeThrowTotal;
+	// 罚球命中
+	private String freeThrowHit;
 	// 盖帽
 	private String block;
 	// 抢断
-	private String steal;
+	private String grab;
 	// 失误次数
 	private String mistake;
 	// 犯规次数
 	private String foul;
-	//胜场
-	private String numOfWin;
-	//负场
-	private String numOfLoss;
-	//用来标记是常规赛数据还是季后赛数据
-	//tag=1表示常规赛；tag=2表示季后赛
-	private String tag;
+	// 胜场
+	private String winCnt;
+	// 负场
+	private String loseCnt;
 
 	public PlayerDataStatistics() {
 		super();
 	}
 
-	
-   
-    public PlayerDataStatistics(Integer iD, Integer playerID, String seasonID,
-			String teamName, String appearances, String numOfStarting,
-			String time, String score, String assistance, String rebound,
+	public PlayerDataStatistics(String id, String player, String seasonID,
+			String team, String appearCnt, String firstCnt, String playTime,
+			String score, String assistance, String rebound,
 			String offensiveRebound, String defensiveRebound,
-			String numOfShoot, String numOfHit, String shootPercentage,
-			String numOfThreeShoot, String numOfThreeHit,
-			String threeShootPercentage, String trueShootingPercentage,
-			String freeThrowPercentage, String numOfFreThrow,
-			String numOfFreeThrowHit, String block, String steal,
-			String mistake, String foul, String numOfWin, String numOfLoss,
-			String tag) {
+			String shootTotal, String shootHit, String shootPercentage,
+			String threeTotal, String threeHit, String threePercentage,
+			String trueShootingPercentage, String freeThrowPercentage,
+			String freeThrowTotal, String freeThrowHit, String block,
+			String grab, String mistake, String foul, String winCnt,
+			String loseCnt) {
 		super();
-		ID = iD;
-		this.playerID = playerID;
+		this.id = id;
+		this.player = player;
 		this.seasonID = seasonID;
-		this.teamName = teamName;
-		this.appearances = appearances;
-		this.numOfStarting = numOfStarting;
-		this.time = time;
+		this.team = team;
+		this.appearCnt = appearCnt;
+		this.firstCnt = firstCnt;
+		this.playTime = playTime;
 		this.score = score;
 		this.assistance = assistance;
 		this.rebound = rebound;
 		this.offensiveRebound = offensiveRebound;
 		this.defensiveRebound = defensiveRebound;
-		this.numOfShoot = numOfShoot;
-		this.numOfHit = numOfHit;
+		this.shootTotal = shootTotal;
+		this.shootHit = shootHit;
 		this.shootPercentage = shootPercentage;
-		this.numOfThreeShoot = numOfThreeShoot;
-		this.numOfThreeHit = numOfThreeHit;
-		this.threeShootPercentage = threeShootPercentage;
+		this.threeTotal = threeTotal;
+		this.threeHit = threeHit;
+		this.threePercentage = threePercentage;
 		this.trueShootingPercentage = trueShootingPercentage;
 		this.freeThrowPercentage = freeThrowPercentage;
-		this.numOfFreThrow = numOfFreThrow;
-		this.numOfFreeThrowHit = numOfFreeThrowHit;
+		this.freeThrowTotal = freeThrowTotal;
+		this.freeThrowHit = freeThrowHit;
 		this.block = block;
-		this.steal = steal;
+		this.grab = grab;
 		this.mistake = mistake;
 		this.foul = foul;
-		this.numOfWin = numOfWin;
-		this.numOfLoss = numOfLoss;
-		this.tag = tag;
+		this.winCnt = winCnt;
+		this.loseCnt = loseCnt;
 	}
-
-
 
 	@Id
-    @GeneratedValue
-	public Integer getID() {
-		return ID;
+	@GeneratedValue
+	public String getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public Integer getPlayerID() {
-		return playerID;
+	public String getPlayer() {
+		return player;
 	}
 
-	public void setPlayerID(Integer playerID) {
-		this.playerID = playerID;
+	public void setPlayer(String player) {
+		this.player = player;
 	}
 
 	public String getSeasonID() {
@@ -160,6 +148,38 @@ public class PlayerDataStatistics implements Serializable {
 
 	public void setSeasonID(String seasonID) {
 		this.seasonID = seasonID;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
+	public String getAppearCnt() {
+		return appearCnt;
+	}
+
+	public void setAppearCnt(String appearCnt) {
+		this.appearCnt = appearCnt;
+	}
+
+	public String getFirstCnt() {
+		return firstCnt;
+	}
+
+	public void setFirstCnt(String firstCnt) {
+		this.firstCnt = firstCnt;
+	}
+
+	public String getPlayTime() {
+		return playTime;
+	}
+
+	public void setPlayTime(String playTime) {
+		this.playTime = playTime;
 	}
 
 	public String getScore() {
@@ -186,20 +206,36 @@ public class PlayerDataStatistics implements Serializable {
 		this.rebound = rebound;
 	}
 
-	public String getNumOfShoot() {
-		return numOfShoot;
+	public String getOffensiveRebound() {
+		return offensiveRebound;
 	}
 
-	public void setNumOfShoot(String numOfShoot) {
-		this.numOfShoot = numOfShoot;
+	public void setOffensiveRebound(String offensiveRebound) {
+		this.offensiveRebound = offensiveRebound;
 	}
 
-	public String getNumOfHit() {
-		return numOfHit;
+	public String getDefensiveRebound() {
+		return defensiveRebound;
 	}
 
-	public void setNumOfHit(String numOfHit) {
-		this.numOfHit = numOfHit;
+	public void setDefensiveRebound(String defensiveRebound) {
+		this.defensiveRebound = defensiveRebound;
+	}
+
+	public String getShootTotal() {
+		return shootTotal;
+	}
+
+	public void setShootTotal(String shootTotal) {
+		this.shootTotal = shootTotal;
+	}
+
+	public String getShootHit() {
+		return shootHit;
+	}
+
+	public void setShootHit(String shootHit) {
+		this.shootHit = shootHit;
 	}
 
 	public String getShootPercentage() {
@@ -210,28 +246,28 @@ public class PlayerDataStatistics implements Serializable {
 		this.shootPercentage = shootPercentage;
 	}
 
-	public String getNumOfThreeShoot() {
-		return numOfThreeShoot;
+	public String getThreeTotal() {
+		return threeTotal;
 	}
 
-	public void setNumOfThreeShoot(String numOfThreeShoot) {
-		this.numOfThreeShoot = numOfThreeShoot;
+	public void setThreeTotal(String threeTotal) {
+		this.threeTotal = threeTotal;
 	}
 
-	public String getNumOfThreeHit() {
-		return numOfThreeHit;
+	public String getThreeHit() {
+		return threeHit;
 	}
 
-	public void setNumOfThreeHit(String numOfThreeHit) {
-		this.numOfThreeHit = numOfThreeHit;
+	public void setThreeHit(String threeHit) {
+		this.threeHit = threeHit;
 	}
 
-	public String getThreeShootPercentage() {
-		return threeShootPercentage;
+	public String getThreePercentage() {
+		return threePercentage;
 	}
 
-	public void setThreeShootPercentage(String threeShootPercentage) {
-		this.threeShootPercentage = threeShootPercentage;
+	public void setThreePercentage(String threePercentage) {
+		this.threePercentage = threePercentage;
 	}
 
 	public String getTrueShootingPercentage() {
@@ -250,6 +286,22 @@ public class PlayerDataStatistics implements Serializable {
 		this.freeThrowPercentage = freeThrowPercentage;
 	}
 
+	public String getFreeThrowTotal() {
+		return freeThrowTotal;
+	}
+
+	public void setFreeThrowTotal(String freeThrowTotal) {
+		this.freeThrowTotal = freeThrowTotal;
+	}
+
+	public String getFreeThrowHit() {
+		return freeThrowHit;
+	}
+
+	public void setFreeThrowHit(String freeThrowHit) {
+		this.freeThrowHit = freeThrowHit;
+	}
+
 	public String getBlock() {
 		return block;
 	}
@@ -258,12 +310,12 @@ public class PlayerDataStatistics implements Serializable {
 		this.block = block;
 	}
 
-	public String getSteal() {
-		return steal;
+	public String getGrab() {
+		return grab;
 	}
 
-	public void setSteal(String steal) {
-		this.steal = steal;
+	public void setGrab(String grab) {
+		this.grab = grab;
 	}
 
 	public String getMistake() {
@@ -282,99 +334,24 @@ public class PlayerDataStatistics implements Serializable {
 		this.foul = foul;
 	}
 
-	public String getTag() {
-		return tag;
+	public String getWinCnt() {
+		return winCnt;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	
-	
-	
-	public String getTeamName() {
-		return teamName;
+	public void setWinCnt(String winCnt) {
+		this.winCnt = winCnt;
 	}
 
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
+	public String getLoseCnt() {
+		return loseCnt;
 	}
 
-	public String getAppearances() {
-		return appearances;
+	public void setLoseCnt(String loseCnt) {
+		this.loseCnt = loseCnt;
 	}
 
-	public void setAppearances(String appearances) {
-		this.appearances = appearances;
+	public String toString() {
+		return "赛季ID：" + seasonID + " 球员： " + player + " 得分：" + score;
 	}
 
-	public String getNumOfStarting() {
-		return numOfStarting;
-	}
-
-	public void setNumOfStarting(String numOfStarting) {
-		this.numOfStarting = numOfStarting;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
-	public String getOffensiveRebound() {
-		return offensiveRebound;
-	}
-
-	public void setOffensiveRebound(String offensiveRebound) {
-		this.offensiveRebound = offensiveRebound;
-	}
-
-	public String getDefensiveRebound() {
-		return defensiveRebound;
-	}
-
-	public void setDefensiveRebound(String defensiveRebound) {
-		this.defensiveRebound = defensiveRebound;
-	}
-
-	public String getNumOfFreThrow() {
-		return numOfFreThrow;
-	}
-
-	public void setNumOfFreThrow(String numOfFreThrow) {
-		this.numOfFreThrow = numOfFreThrow;
-	}
-
-	public String getNumOfFreeThrowHit() {
-		return numOfFreeThrowHit;
-	}
-
-	public void setNumOfFreeThrowHit(String numOfFreeThrowHit) {
-		this.numOfFreeThrowHit = numOfFreeThrowHit;
-	}
-
-	public String getNumOfWin() {
-		return numOfWin;
-	}
-
-	public void setNumOfWin(String numOfWin) {
-		this.numOfWin = numOfWin;
-	}
-
-	public String getNumOfLoss() {
-		return numOfLoss;
-	}
-
-	public void setNumOfLoss(String numOfLoss) {
-		this.numOfLoss = numOfLoss;
-	}
-
-	public String toString(){
-		return "赛季ID："+seasonID+" 球员ID： "+playerID+" 得分："+score;
-	}
-
-	
 }

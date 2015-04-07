@@ -70,8 +70,6 @@ public class PlayerController {
 	
 	//添加一名球员
 	public String add(){
-		Player p=new Player(1, "科比", "1978-08-23", "1.98米 / 6尺6", "96公斤 / 212磅", "洛杉矶湖人", "1996年第一轮第 13 顺位", "美国", "G/F ( 24号 )", " 2350万美元", " 2年4860万, 2013/11/25续签, 2014夏生效,2016年到期★合同包括15%交易保证金★拥有不可交易条款", " NBA最有价值球员、两届NBA总决赛最有价值球员、四届NBA全明星赛最有价值球员、五届NBA总冠军");
-		playerService.addPlayer(p);
 		return "";
 	}
 	
