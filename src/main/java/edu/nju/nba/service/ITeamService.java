@@ -3,6 +3,7 @@ package edu.nju.nba.service;
 import java.util.List;
 
 import edu.nju.nba.bean.Team;
+import edu.nju.nba.bean.TeamSeasonAverage;
 
 public interface ITeamService {
 
@@ -14,4 +15,7 @@ public interface ITeamService {
 
 	// 查找所有球队基本信息
 	public List<Team> list();
+	
+	//根据球队名称和赛季ID查询某个球队某个赛季的平均数据
+	public TeamSeasonAverage getSeasonAverage(String teamName,String seasonID);
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.nju.nba.bean.Player;
 import edu.nju.nba.bean.Team;
+import edu.nju.nba.bean.TeamSeasonAverage;
 import edu.nju.nba.service.ITeamService;
 
 @Controller
@@ -63,11 +64,18 @@ public class TeamController {
 	
 	@RequestMapping(value="/{teamName}",method=RequestMethod.GET)
     public String show(@PathVariable String teamName,Model model){
-		System.out.println(teamName);
 		Team team=teamService.show(teamName);
 		model.addAttribute(team);
+		model.addAttribute(getSeasonAverage(teamName,"14-15"));
     	return "TeamInfo";
     }
+	
+	public TeamSeasonAverage getSeasonAverage(String teamName,String seasonID){
+		TeamSeasonAverage seasonAverage=teamService.getSeasonAverage(teamName, seasonID);
+		System.out.println(seasonAverage.toString());
+		return seasonAverage;
+		
+	}
 
 	
 	

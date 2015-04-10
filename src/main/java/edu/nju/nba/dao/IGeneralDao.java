@@ -1,7 +1,6 @@
 package edu.nju.nba.dao;
 
 import java.io.Serializable;
-
 import java.util.List;
 
 public interface IGeneralDao {
@@ -23,5 +22,9 @@ public interface IGeneralDao {
     public void refresh(Object... entities);  
   
     public void flush();
+    
+    public Object find(String queryString, Object value);
+    
+    public Object find2(String queryString, String value1,String value2);
 
 }

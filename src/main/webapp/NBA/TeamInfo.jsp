@@ -67,7 +67,7 @@
 	<!-- 基本信息 -->
 	<div class="bs-docs-header" id="content">
 		<div class="container">
-			<h1>洛杉矶·湖人队 [ L.A. Lakers ]</h1>
+			<h1>${team.cName }[${team.eName }]</h1>
 			<div class="row">
 				<div class="col-md-3">
 					<div class="rounded" style="text-align: center;">
