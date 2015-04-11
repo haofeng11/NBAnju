@@ -9,7 +9,7 @@ import edu.nju.nba.bean.TeamSingleGame;
 public interface IGameService {
 
 	//查询某场比赛基本信息（game类中字段）
-	public Game show(String SeasonID,String gameDate,String homeTeam,String guestTeam);
+	public Game show(String seasonId,String gameDate,String homeTeam,String guestTeam);
 	
 	////查询某场比赛球队数据
 	public TeamSingleGame showTeamSingleGame(String seasonId,String gameDate,String team);
