@@ -71,6 +71,8 @@ public class TeamSeasonAverage implements Serializable {
 	private String foul;
 	// 总得分
 	private String score;
+	
+	
 
 	public TeamSeasonAverage() {
 		super();
@@ -310,6 +312,10 @@ public class TeamSeasonAverage implements Serializable {
 		return serialVersionUID;
 	}
 	
+	
+	
+	
+
 	public String toString(){
 		return "team: "+team+" seasonID： "+seasonID+" score: "+score;
 		

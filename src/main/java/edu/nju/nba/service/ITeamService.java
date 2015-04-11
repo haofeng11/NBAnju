@@ -18,4 +18,7 @@ public interface ITeamService {
 	
 	//根据球队名称和赛季ID查询某个球队某个赛季的平均数据
 	public TeamSeasonAverage getSeasonAverage(String teamName,String seasonID);
+	
+	//根据赛季ID得到该赛季所有球队
+	public List<TeamSeasonAverage> getSeasonAverageList(String seasonID);
 }

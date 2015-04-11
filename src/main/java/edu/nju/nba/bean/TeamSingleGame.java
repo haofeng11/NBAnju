@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 /**
  * @className GameSingleDataStatistics
  * @description 球队单场比赛数据
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="team_single_game")
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class TeamSingleGame implements Serializable {
 
 	private static final long serialVersionUID = 1L;

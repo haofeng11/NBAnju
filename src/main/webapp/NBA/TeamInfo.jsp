@@ -42,9 +42,9 @@
 			</div>
 			<div class="navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
-					<li><a href="main.html">球员</a></li>
-					<li class="active"><a href="team.html">球队</a>
-					<li><a href="game.html">比赛</a></li>
+					<li><a href="../NBA/main.html">球员</a></li>
+					<li class="active"><a href="../NBA/team.html">球队</a>
+					<li><a href="../game/games">比赛</a></li>
 					<li><a href="comparison.html">球员对比</a></li>
 					<li><a href="comparison_area.html">分区对比</a></li>
 				</ul>
@@ -72,7 +72,7 @@
 				<div class="col-md-3">
 					<div class="rounded" style="text-align: center;">
 						<!-- 球队头像大小选择180*120 -->
-						<img src="../NBA/TeamsBigAvatar/Lakers.png" alt="湖人">
+						<img src="${team.picture }" alt="湖人">
 					</div>
 					<table class="table table-hover statistics">
 						<tr>
@@ -83,46 +83,49 @@
 						<tr>
 							<td>场均得分</td>
 							<th>${teamSA.score }</th>
-							<th>17</th>
+							<th>${scoreRanking }</th>
 						</tr>
 						<tr>
 							<td>场均助攻</td>
 							<th>${teamSA.assistance }</th>
-							<th>24</th>
+							<th>${assistanceRanking }</th>
 						</tr>
 						<tr>
 							<td>场均篮板</td>
 							<th>${teamSA.rebound }</th>
-							<th>15</th>
+							<th>${reboundRanking }</th>
 						</tr>
 						<tr>
-							<td>失分</td>
-							<th>${teamSA.score }</th>
-							<th>29</th>
+							<td>场均抢断</td>
+							<th>${teamSA.grab }</th>
+							<th>${grabRanking }</th>
 						</tr>
 						<tr>
-							<td>失误</td>
+							<td>场均盖帽</td>
+							<th>${teamSA.block }</th>
+							<th>${blockRanking }</th>
+						</tr>
+						<tr>
+							<td>场均失误</td>
 							<th>${teamSA.mistake }</th>
-							<th>6</th>
+							<th>${mistakeRanking }</th>
 						</tr>
 					</table>
 				</div>
 				<div class="col-md-5">
-					<p>区域: 西部</p>
-					<p>成立时间: 1948年</p>
-					<p>所在地: 加利福尼亚州洛杉矶市</p>
-					<p>主场馆: 斯台普斯球馆(STAPLES Center)</p>
-					<p>球队老板: 吉姆·巴斯(Jim Buss)</p>
-					<p>现任教练: 拜伦·斯科特</p>
+					<p>区域: ${team.teamDistrict }</p>
+					<p>成立时间: ${team.foundedTime }</p>
+					<p>所在地: ${team.teamLocation }</p>
+					<p>主场馆: ${team.mainStadium }</p>
+					<p>球队老板: ${team.boss }</p>
+					<p>现任教练: ${team.coach }</p>
 					<p>
-						历任球星: <a href="">麦肯</a> <a href="">韦斯特</a> <a href="">张伯伦</a> <a
-							href="">约翰逊</a> <a href="">奥尼尔</a> <a href="">科比</a>
+						历任球星: <c:forEach items="${teamStars }" var="star" >
+						           <a href="">${star }</a>
+						        </c:forEach>	
 					</p>
-					<p>季后赛次数: 56次</p>
-					<p>西部冠军次数: 31次</p>
-					<p>总冠军次数: 16次</p>
-					<p>最高连胜记录: 33场</p>
-					<p>最好战绩: 69胜13负(71-72赛季)</p>
+					<p>总冠军次数: ${team.champion }</p>
+					<p>最高连胜记录: ${team.topWinningStreak }</p>
 				</div>
 				<!-- 技术统计 -->
 				<div class="col-md-4">
@@ -240,7 +243,7 @@
 								},
 								xAxis : {
 									categories : [ '场均得分', '场均助攻', '场均篮板',
-											'场均失分', '场均失误' ],
+											'场均抢断','场均盖帽', '场均失误' ],
 									tickmarkPlacement : 'on',
 									lineWidth : 0
 								},
@@ -260,7 +263,7 @@
 
 								series : [ {
 									name : '科比',
-									data : [ 19, 24, 15, 29, 6 ],
+									data : [ 19, 24, 15, 15, 29, 6 ],
 									pointPlacement : 'on'
 								} ]
 							});

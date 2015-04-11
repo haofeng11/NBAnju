@@ -3,8 +3,13 @@ package edu.nju.nba.service.impl;
 import java.util.List;
 
 
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamSeasonAverage;
 import edu.nju.nba.dao.IGeneralDao;
@@ -28,6 +33,7 @@ public class TeamService implements ITeamService{
 //	}
 
 	
+	
 	public Team show(String teamName) {
 		return (Team)generalDao.find("from edu.nju.nba.bean.Team t where t.cName=?", teamName);
 	}
@@ -38,8 +44,15 @@ public class TeamService implements ITeamService{
 	}
 
 
+	
 	public TeamSeasonAverage getSeasonAverage(String teamName, String seasonID) {
 		return (TeamSeasonAverage)generalDao.find2("from edu.nju.nba.bean.TeamSeasonAverage t where t.team=? and t.seasonID=?", teamName,seasonID);
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<TeamSeasonAverage> getSeasonAverageList(String seasonID) {
+		return (List<TeamSeasonAverage>)generalDao.findList("from edu.nju.nba.bean.TeamSeasonAverage t where t.seasonID=?", seasonID);
 	}
 	
 }

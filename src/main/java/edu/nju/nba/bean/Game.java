@@ -25,8 +25,8 @@ public class Game implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String gameId;
-	private String seasonId;
+	private String gameID;
+	private String seasonID;
 	// 比赛日期
 	private String gameDate;
 	// 主队名
@@ -62,8 +62,8 @@ public class Game implements Serializable{
 			String thirdHomeScore, String thirdGuestScore,
 			String forthHomeScore, String forthGuestScore) {
 		super();
-		this.gameId = gameId;
-		this.seasonId = seasonId;
+		this.gameID = gameId;
+		this.seasonID = seasonId;
 		this.gameDate = gameDate;
 		this.homeTeam = homeTeam;
 		this.guestTeam = guestTeam;
@@ -81,20 +81,20 @@ public class Game implements Serializable{
 
 	@Id
 	@GeneratedValue
-	public String getGameId() {
-		return gameId;
+	public String getGameID() {
+		return gameID;
 	}
 
-	public void setGameId(String gameId) {
-		this.gameId = gameId;
+	public void setGameID(String gameId) {
+		this.gameID = gameId;
 	}
 
-	public String getSeasonId() {
-		return seasonId;
+	public String getSeasonID() {
+		return seasonID;
 	}
 
-	public void setSeasonId(String seasonId) {
-		this.seasonId = seasonId;
+	public void setSeasonID(String seasonId) {
+		this.seasonID = seasonId;
 	}
 
 	public String getGameDate() {
