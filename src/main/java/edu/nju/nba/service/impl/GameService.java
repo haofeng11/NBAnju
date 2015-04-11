@@ -24,11 +24,9 @@ public class GameService implements IGameService{
 	@Override
 	public Game show(String seasonId, String gameDate, String homeTeam,
 			String guestTeam) {
-<<<<<<< HEAD
-		return (Game)generalDao.find4("from edu.nju.nba.bean.Game g where g.seasonID=? and g.gameDate=? and g.homeTeam=? and g.guestTeam=?", SeasonID,gameDate,homeTeam,guestTeam);
-=======
+
 		return (Game)generalDao.find4("from edu.nju.nba.bean.Game g where g.seasonId=? and g.gameDate=? and g.homeTeam=? and g.gueatTeam=?", seasonId,gameDate,homeTeam,guestTeam);
->>>>>>> 9a687692ebc016e3e3173a4d158e1664c5fe971e
+
 	}
 
 	@Override
