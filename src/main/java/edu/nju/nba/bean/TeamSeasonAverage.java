@@ -305,5 +305,10 @@ public class TeamSeasonAverage implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public String toString(){
+		return "team: "+team+" seasonID： "+seasonID+" score: "+score;
+		
+	}
 
 }

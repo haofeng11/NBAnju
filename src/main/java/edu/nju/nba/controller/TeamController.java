@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.nju.nba.bean.Player;
 import edu.nju.nba.bean.Team;
+import edu.nju.nba.bean.TeamSeasonAverage;
 import edu.nju.nba.service.ITeamService;
 
 @Controller
@@ -49,21 +51,31 @@ public class TeamController {
 	 * return 球队信息
 	 * PS：球队姓名唯一
 	 */
-	@RequestMapping(value="/{teamName}",method=RequestMethod.GET)
-	public String show(@PathVariable String teamName,Model model){
-		
+	@RequestMapping(value="/find",method=RequestMethod.GET,params="tt")
+	@ResponseBody
+	public Team show(@PathVariable String teamName){
+		System.out.println("ttt");
+		System.out.println(teamName);
         Team team=teamService.show(teamName);
         
 	    System.out.println(team.toString());       
-		return "";
+		return team;
 	}
 	
-//	//添加一支球队
-//	public String add(){
-////		Team team =new Team(1, "金州勇士", "太平洋区", "1946", "加利福尼亚州奥克兰市", "甲骨文球馆（Oracle Arena ）", "乔-拉科布、皮特-古伯", "史蒂夫·科尔", "威尔特-张伯伦、里克-巴里、克里斯-穆林、斯蒂芬-库里", 20, 5, 3, 18, "70/13");
-////		teamService.add(team);
-//		return "";
-//	}
+	@RequestMapping(value="/{teamName}",method=RequestMethod.GET)
+    public String show(@PathVariable String teamName,Model model){
+		Team team=teamService.show(teamName);
+		model.addAttribute(team);
+		model.addAttribute(getSeasonAverage(teamName,"14-15"));
+    	return "TeamInfo";
+    }
+	
+	public TeamSeasonAverage getSeasonAverage(String teamName,String seasonID){
+		TeamSeasonAverage seasonAverage=teamService.getSeasonAverage(teamName, seasonID);
+		System.out.println(seasonAverage.toString());
+		return seasonAverage;
+		
+	}
 
 	
 	

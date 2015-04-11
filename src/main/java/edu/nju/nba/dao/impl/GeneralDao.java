@@ -1,7 +1,6 @@
 package edu.nju.nba.dao.impl;
 
 import java.io.Serializable;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +72,32 @@ public class GeneralDao implements IGeneralDao {
 	public void flush() {
 		hibernateTemplate.flush();
 	}
+
+	
+	public Object find(String queryString, Object value) {
+		return hibernateTemplate.find(queryString, value).get(0);
+	}
+
+	
+	public Object find2(String queryString, String value1, String value2) {
+		Object[] values=new String[]{value1,value2};
+		return hibernateTemplate.find(queryString, values).get(0);
+	}
+
+	@Override
+	public Object find3(String queryString, String value1, String value2,
+			String value3) {
+		Object[] values=new String[]{value1,value2,value3};
+		return hibernateTemplate.find(queryString, values).get(0);
+	}
+
+	@Override
+	public Object find4(String queryString, String value1, String value2,
+			String value3, String value4) {
+		Object[] values=new String[]{value1,value2,value3,value4};
+		return hibernateTemplate.find(queryString, values).get(0);
+	}
+	
+	
 
 }

@@ -3,10 +3,13 @@
 import java.io.Serializable;
 
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * @className Player
@@ -17,6 +20,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "player_base_info")
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Player implements Serializable {
 
 	/**

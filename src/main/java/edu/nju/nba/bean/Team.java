@@ -1,13 +1,14 @@
 package edu.nju.nba.bean;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * @className Team
@@ -18,11 +19,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "team_base_info")
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Team implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String teamID;
+	
 	// 球队中文名称
 	private String cName;
 	// 英文名
@@ -53,12 +55,11 @@ public class Team implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Team(String teamID, String cName, String eName, String teamDistrict,
+	public Team(String cName, String eName, String teamDistrict,
 			String foundedTime, String teamLocation, String mainStadium,
 			String boss, String coach, String teamStar, String champion,
 			String topWinningStreak, String picture) {
 		super();
-		this.teamID = teamID;
 		this.cName = cName;
 		this.eName = eName;
 		this.teamDistrict = teamDistrict;
@@ -75,14 +76,6 @@ public class Team implements Serializable {
 
 	@Id
 	@GeneratedValue
-	public String getTeamID() {
-		return teamID;
-	}
-
-	public void setTeamID(String teamID) {
-		this.teamID = teamID;
-	}
-
 	public String getcName() {
 		return cName;
 	}
