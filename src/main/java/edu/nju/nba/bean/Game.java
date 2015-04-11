@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 /**
  * @className Game
  * @description 单场比赛类（比赛基础信息）
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="game_base_info")
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Game implements Serializable{
 
 	/**

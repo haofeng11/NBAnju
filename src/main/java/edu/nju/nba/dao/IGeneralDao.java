@@ -26,5 +26,9 @@ public interface IGeneralDao {
     public Object find(String queryString, Object value);
     
     public Object find2(String queryString, String value1,String value2);
+    
+    public Object find3(String queryString, String value1,String value2,String value3);
+    
+    public Object find4(String queryString, String value1,String value2,String value3,String value4);
 
 }

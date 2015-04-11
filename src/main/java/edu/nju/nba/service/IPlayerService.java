@@ -14,7 +14,7 @@ import edu.nju.nba.bean.PlayerDataStatistics;
 public interface IPlayerService {
 	
 	//添加某一名球员基本信息
-	public boolean addPlayer(Player player);
+	//public boolean addPlayer(Player player);
 	
 	//添加某一名球员某个赛季的常规赛场均基本数据
 	//添加某一名球员某个赛季的常规赛场均分析数据
