@@ -1,9 +1,10 @@
 package edu.nju.nba.controller;
 
+
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import edu.nju.nba.bean.Player;
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamSeasonAverage;
 import edu.nju.nba.service.ITeamService;
@@ -64,15 +64,22 @@ public class TeamController {
 	
 	@RequestMapping(value="/{teamName}",method=RequestMethod.GET)
     public String show(@PathVariable String teamName,Model model){
+		
+		//得到球队最新赛季的平均数据
+		TeamSeasonAverage teamSA=getSeasonAverage(teamName,"14-15");
+		System.out.println(teamSA.toString());
+	    
+		model.addAttribute("teamSA",teamSA);
+		//得到球队基本信息
 		Team team=teamService.show(teamName);
 		model.addAttribute(team);
-		model.addAttribute(getSeasonAverage(teamName,"14-15"));
+
     	return "TeamInfo";
     }
 	
+	//得到球队赛季平均数据
 	public TeamSeasonAverage getSeasonAverage(String teamName,String seasonID){
 		TeamSeasonAverage seasonAverage=teamService.getSeasonAverage(teamName, seasonID);
-		System.out.println(seasonAverage.toString());
 		return seasonAverage;
 		
 	}

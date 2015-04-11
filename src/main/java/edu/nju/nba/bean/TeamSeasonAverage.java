@@ -2,10 +2,13 @@ package edu.nju.nba.bean;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 /**
  * @className TeamSingleGame
@@ -15,6 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="team_season_average")
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class TeamSeasonAverage implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -70,7 +74,7 @@ public class TeamSeasonAverage implements Serializable {
 
 	public TeamSeasonAverage() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public TeamSeasonAverage(Integer id, String team, String seasonID,

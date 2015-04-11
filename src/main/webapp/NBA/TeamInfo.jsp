@@ -82,27 +82,27 @@
 						</tr>
 						<tr>
 							<td>场均得分</td>
-							<th>99.6</th>
-							<th>19</th>
+							<th>${teamSA.score }</th>
+							<th>17</th>
 						</tr>
 						<tr>
 							<td>场均助攻</td>
-							<th>20.5</th>
+							<th>${teamSA.assistance }</th>
 							<th>24</th>
 						</tr>
 						<tr>
 							<td>场均篮板</td>
-							<th>42.9</th>
+							<th>${teamSA.rebound }</th>
 							<th>15</th>
 						</tr>
 						<tr>
 							<td>失分</td>
-							<th>106.3</th>
+							<th>${teamSA.score }</th>
 							<th>29</th>
 						</tr>
 						<tr>
 							<td>失误</td>
-							<th>13</th>
+							<th>${teamSA.mistake }</th>
 							<th>6</th>
 						</tr>
 					</table>
@@ -280,7 +280,7 @@
 	<script type="text/javascript">
 		require.config({
 			paths : {
-				echarts : './js/dist'
+				echarts : '../NBA/js/dist'
 			}
 		});
 		// 获取lineup-container对象的高和宽
