@@ -102,6 +102,11 @@ public class GeneralDao implements IGeneralDao {
 	public Object findList(String queryString, Object value) {
 		return hibernateTemplate.find(queryString, value);
 	}
+
+	public Object findList2(String queryString, String value1, String value2) {
+		Object[] values=new String[]{value1,value2};
+		return hibernateTemplate.find(queryString, values);
+	}
 	
 	
 

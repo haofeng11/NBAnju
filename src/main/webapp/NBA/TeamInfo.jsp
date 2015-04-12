@@ -263,7 +263,7 @@
 
 								series : [ {
 									name : '科比',
-									data : [ 19, 24, 15, 15, 29, 6 ],
+									data : [ ${scoreRanking }, ${assistanceRanking }, ${reboundRanking }, ${grabRanking }, ${blockRanking }, ${mistakeRanking } ],
 									pointPlacement : 'on'
 								} ]
 							});
