@@ -1,15 +1,20 @@
 package edu.nju.nba.controller;
 
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.nju.nba.bean.Game;
+import edu.nju.nba.bean.PlayerSingleGame;
+import edu.nju.nba.bean.TeamSingleGame;
 import edu.nju.nba.service.IGameService;
+import edu.nju.nba.service.IPlayerService;
 import edu.nju.nba.service.ITeamService;
 
 @Controller
@@ -20,6 +25,8 @@ public class GameController {
 	private IGameService gameService;
 	@Autowired
 	private ITeamService teamService;
+	@Autowired
+	private IPlayerService playerService;
 	
 	//跳转到比赛界面
 	@RequestMapping(value="/games",method=RequestMethod.GET)
@@ -38,6 +45,16 @@ public class GameController {
 		model.addAttribute("homeTeamPicture", homeTeamPicture);
 		model.addAttribute("guestTeamPicture", guestTeamPicture);
 		
+		//赛后球队平均数据
+		TeamSingleGame homeTeamData=teamService.getTeamSingleGame(homeTeam, seasonID,gameDate);
+		TeamSingleGame guestTeamData=teamService.getTeamSingleGame(guestTeam, seasonID,gameDate);
+		model.addAttribute("homeTeamData", homeTeamData);
+		model.addAttribute("guestTeamData", guestTeamData);
+		//赛后球员平均数据
+		List<PlayerSingleGame> homePlayerList=playerService.getPlayerSingleGames(homeTeam, seasonID, gameDate);
+		List<PlayerSingleGame> guestPlayerList=playerService.getPlayerSingleGames(guestTeam, seasonID, gameDate);
+		model.addAttribute("homePlayerList", homePlayerList);
+		model.addAttribute("guestPlayerList", guestPlayerList);
 		return "matchstat";
 	}
 	

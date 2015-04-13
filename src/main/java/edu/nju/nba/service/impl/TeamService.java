@@ -3,6 +3,8 @@ package edu.nju.nba.service.impl;
 import java.util.List;
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,10 +55,18 @@ public class TeamService implements ITeamService{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public List<TeamSingleGame> getTeamSingleGames(String teamName,
 			String seasonID) {
 		
-		return (List<TeamSingleGame>)generalDao.findList2("", teamName, seasonID);
+		return (List<TeamSingleGame>)generalDao.findList2("from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=?", teamName, seasonID);
+	}
+
+
+	public TeamSingleGame getTeamSingleGame(String teamName, String seasonID,
+			String gameDate) {
+		
+		return (TeamSingleGame)generalDao.find3("from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=? and t.gameDate=?", teamName, seasonID, gameDate);
 	}
 	
 }

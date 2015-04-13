@@ -23,8 +23,8 @@ public class PlayerSingleGame implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private String gameId;
-	private String seasonId;
+	private String gameID;
+	private String seasonID;
 	private String gameDate;
 	private String team;
 	private String player;
@@ -87,8 +87,8 @@ public class PlayerSingleGame implements Serializable {
 			String foul, String score) {
 		super();
 		this.id = id;
-		this.gameId = gameId;
-		this.seasonId = seasonId;
+		this.gameID = gameId;
+		this.seasonID = seasonId;
 		this.gameDate = gameDate;
 		this.team = team;
 		this.player = player;
@@ -125,20 +125,20 @@ public class PlayerSingleGame implements Serializable {
 		this.id = id;
 	}
 
-	public String getGameId() {
-		return gameId;
+	public String getGameID() {
+		return gameID;
 	}
 
-	public void setGameId(String gameId) {
-		this.gameId = gameId;
+	public void setGameID(String gameId) {
+		this.gameID = gameId;
 	}
 
-	public String getSeasonId() {
-		return seasonId;
+	public String getSeasonID() {
+		return seasonID;
 	}
 
-	public void setSeasonId(String seasonId) {
-		this.seasonId = seasonId;
+	public void setSeasonID(String seasonId) {
+		this.seasonID = seasonId;
 	}
 
 	public String getGameDate() {

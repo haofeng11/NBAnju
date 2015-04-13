@@ -2,9 +2,7 @@ package edu.nju.nba.controller;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.nju.nba.bean.Player;
+import edu.nju.nba.bean.PlayerDataAnalysis;
+import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.service.IPlayerService;
 
 @Controller
@@ -58,14 +57,24 @@ public class PlayerController {
 	 * PS：球员姓名唯一
 	 */
 	@RequestMapping(value="/{playername}",method=RequestMethod.GET)
-	public String show(@PathVariable String playername,Model model){
+	public String show(@PathVariable String playerName,Model model){
         
 	
-		//实际调用playerService方法
-		//Player player=playerService.show(playername);
-		//System.out.println(player.toString());
-		//model.addAttribute(player);
-		return "";
+		//球员基本信息
+		//根据球员的中文名字
+		Player player=playerService.show(playerName);
+		model.addAttribute("player",player);
+		
+		//球员场均基本数据
+		PlayerDataStatistics playerDataStatistics=playerService.getDataStatistics("14-15", playerName);
+		List<PlayerDataStatistics> playerDataStatisticsList=playerService.getAllDataStatistics("14-15");
+		
+		model.addAttribute("playerDataStatistics",playerDataStatistics);
+		//球员场均分析数据
+		PlayerDataAnalysis playerDataAnalysis=playerService.getDataAnalysis("14-15", playerName);
+		model.addAttribute("playerDataAnalysis",playerDataAnalysis);
+		
+		return "PlayerInfo";
 	}
 	
 	//添加一名球员
