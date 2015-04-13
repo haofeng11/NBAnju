@@ -34,5 +34,7 @@ public interface IGeneralDao {
     public Object findList(String queryString, Object value);
     
     public Object findList2(String queryString, String value1,String value2);
+    
+    public Object findList3(String queryString, String value1,String value2,String value3);
 
 }

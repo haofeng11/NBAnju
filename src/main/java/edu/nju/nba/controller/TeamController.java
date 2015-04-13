@@ -3,15 +3,14 @@ package edu.nju.nba.controller;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,11 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonArray;
-
-
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamSeasonAverage;
+import edu.nju.nba.bean.TeamSingleGame;
 import edu.nju.nba.service.ITeamService;
 
 @Controller
@@ -120,7 +117,60 @@ public class TeamController {
 		model.addAttribute("teamStars", teamStars);
 		
 		//球队本赛季数据
-
+		List<TeamSingleGame> teamSingleGames=teamService.getTeamSingleGames(teamName.split("队")[0], "14-15");
+//		for (TeamSingleGame t:teamSingleGames) {
+//			System.out.println(t.getGameDate());
+//		}
+        model.addAttribute("teamSingleGames", teamSingleGames);
+  
+        double scoreSum=0;//总得分
+        double shootSum=0;//总出手数
+        double shootPercentageSum=0;//总命中率
+        double threeScoreSum=0;//总三分得分
+        double threeSum=0;//总三分出手
+        double threePercentageSum=0;//总三分命中率
+		for (TeamSingleGame t:teamSingleGames) {
+			scoreSum+=Double.parseDouble(t.getScore());
+			shootSum+=Double.parseDouble(t.getShootTotal());			
+			shootPercentageSum+=(Double.parseDouble(t.getShootPercentage().replace("%",""))*0.01);
+			threeScoreSum+=(Double.parseDouble(t.getThreeHit())*3);
+			threeSum+=Double.parseDouble(t.getThreeTotal());
+			threePercentageSum+=(Double.parseDouble(t.getThreePercentage().replace("%",""))*0.01);
+	    }
+		 DecimalFormat df = new DecimalFormat("#.00");
+	    //平均得分
+		String scoreAverage=df.format(scoreSum/teamSingleGames.size());
+		model.addAttribute("scoreAverage", scoreAverage);
+        //平均出手数
+		String shootAverage=df.format(shootSum/teamSingleGames.size());
+		model.addAttribute("shootAverage", shootAverage);
+        //平均命中率
+		NumberFormat fmt = NumberFormat.getPercentInstance();  
+		fmt.setMaximumFractionDigits(2);//最多两位百分小数，如25.23%  
+		String shootPercentageAverage=fmt.format(shootPercentageSum/teamSingleGames.size());
+		model.addAttribute("shootPercentageAverage", shootPercentageAverage);
+        //平均三分得分
+		String threeScoreAverage=df.format(threeScoreSum/teamSingleGames.size());
+		model.addAttribute("threeScoreAverage", threeScoreAverage);
+        //平均三分出手
+		String threeAverage=df.format(threeSum/teamSingleGames.size());
+		model.addAttribute("threeAverage", threeAverage);
+        //平均三分命中率
+		String threePercentageAverage=fmt.format(threePercentageSum/teamSingleGames.size());
+		model.addAttribute("threePercentageAverage", threePercentageAverage);
+		
+//		System.out.println(scoreSum);
+//		System.out.println(shootSum);
+//		System.out.println(shootPercentageSum);
+//		System.out.println(threeScoreSum);
+//		System.out.println(threeSum);
+//		System.out.println(threePercentageSum);
+//		System.out.println(scoreAverage);
+//		System.out.println(shootAverage);
+//		System.out.println(shootPercentageAverage);
+//		System.out.println(threeScoreAverage);
+//		System.out.println(threeAverage);
+//		System.out.println(threePercentageAverage);
 		return "TeamInfo";
 	}
 

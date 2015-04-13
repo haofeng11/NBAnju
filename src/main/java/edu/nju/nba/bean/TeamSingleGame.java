@@ -24,7 +24,7 @@ public class TeamSingleGame implements Serializable {
 
 	private Integer id;
 	// 赛季ID
-	private String seasonId;
+	private String seasonID;
 	// 比赛日期
 	private String gameDate;
 	// 球队名
@@ -85,7 +85,7 @@ public class TeamSingleGame implements Serializable {
 			String foul, String score) {
 		super();
 		this.id = id;
-		this.seasonId = seasonId;
+		this.seasonID = seasonId;
 		this.gameDate = gameDate;
 		this.team = team;
 		this.appearPlayerCnt = appearPlayerCnt;
@@ -128,12 +128,12 @@ public class TeamSingleGame implements Serializable {
 		this.team = team;
 	}
 
-	public String getSeasonId() {
-		return seasonId;
+	public String getSeasonID() {
+		return seasonID;
 	}
 
-	public void setSeasonId(String seasonId) {
-		this.seasonId = seasonId;
+	public void setSeasonID(String seasonId) {
+		this.seasonID= seasonId;
 	}
 
 	public String getGameDate() {

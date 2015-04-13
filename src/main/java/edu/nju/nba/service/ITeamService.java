@@ -25,4 +25,7 @@ public interface ITeamService {
 	
 	//根据球队名称，赛季ID得到某个赛季，某个球队所有比赛场次
 	public List<TeamSingleGame> getTeamSingleGames(String teamName,String seasonID);
+	
+	//根据球队名称，赛季ID,比赛日期得到某场比赛数据
+	public TeamSingleGame getTeamSingleGame(String teamName,String seasonID,String gameDate);
 }
