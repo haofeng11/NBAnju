@@ -3,6 +3,8 @@ package edu.nju.nba.bean;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -13,7 +15,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "TeamGameRecord")
+@Table
 public class TeamGameRecord implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -48,6 +50,8 @@ public class TeamGameRecord implements Serializable {
 		this.winGap = winGap;
 	}
 
+	@Id
+	@GeneratedValue
 	public String getTeam() {
 		return team;
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamSeasonAverage;
+import edu.nju.nba.bean.TeamSingleGame;
 
 public interface ITeamService {
 
@@ -21,4 +22,7 @@ public interface ITeamService {
 	
 	//根据赛季ID得到该赛季所有球队
 	public List<TeamSeasonAverage> getSeasonAverageList(String seasonID);
+	
+	//根据球队名称，赛季ID得到某个赛季，某个球队所有比赛场次
+	public List<TeamSingleGame> getTeamSingleGames(String teamName,String seasonID);
 }

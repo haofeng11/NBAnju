@@ -25,20 +25,20 @@ public class GameService implements IGameService{
 	public Game show(String seasonId, String gameDate, String homeTeam,
 			String guestTeam) {
 
-		return (Game)generalDao.find4("from edu.nju.nba.bean.Game g where g.seasonId=? and g.gameDate=? and g.homeTeam=? and g.gueatTeam=?", seasonId,gameDate,homeTeam,guestTeam);
+		return (Game)generalDao.find4("from edu.nju.nba.bean.Game g where g.seasonID=? and g.gameDate=? and g.homeTeam=? and g.guestTeam=?", seasonId,gameDate,homeTeam,guestTeam);
 
 	}
 
 	@Override
 	public TeamSingleGame showTeamSingleGame(String seasonId, String gameDate,
 			String team) {
-		return (TeamSingleGame)generalDao.find3("From edu.nju.nba.bean.TeamSingleGame tg where tg.seasonId=? and tg.gameDate=? and tg.team=?", seasonId, gameDate, team);
+		return (TeamSingleGame)generalDao.find3("From edu.nju.nba.bean.TeamSingleGame tg where tg.seasonID=? and tg.gameDate=? and tg.team=?", seasonId, gameDate, team);
 	}
 
 	@Override
 	public PlayerSingleGame showPlayerSingleGame(String seasonId,
 			String gameDate, String player) {
-		return (PlayerSingleGame)generalDao.find3("From edu.nju.nba.bean.PlayerSingleGame pg where pg.seasonId=? and pg.gameDate=? and pg.player=?", seasonId, gameDate, player);
+		return (PlayerSingleGame)generalDao.find3("From edu.nju.nba.bean.PlayerSingleGame pg where pg.seasonID=? and pg.gameDate=? and pg.player=?", seasonId, gameDate, player);
 
 	}
 
@@ -55,10 +55,8 @@ public class GameService implements IGameService{
 		return null;
 	}
 
-	@Override
 	public List<TeamSingleGame> listSeasonTeamSingleGames(String seasonId,
 			String team) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
