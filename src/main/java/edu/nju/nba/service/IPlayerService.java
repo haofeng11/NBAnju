@@ -41,11 +41,30 @@ public interface IPlayerService {
     //根据赛季ID，比赛日期，所在球队得到某一场比赛该球队所有球员的数据
     public List<PlayerSingleGame> getPlayerSingleGames(String teamName,String seasonID,String gameDate);
 	
-	/*
+	/**
 	 * 球员对比
 	 * 根据球员所在球队找出比赛场次
 	 * 根据比赛场次计算交手数据
 	 */
 	
+    
+    /**计算球员单项数据榜单
+     * 
+     * @param seasonId
+     * @return List<PlayerDataStatistics>
+     */
+    //球员得分榜
+    public List<PlayerDataStatistics> getPlayerScoreRankingList(String seasonId);
+    //球员篮板榜
+    public List<PlayerDataStatistics> getPlayerReboundRankingList(String seasonId);
+    //助攻榜
+    public List<PlayerDataStatistics> getPlayerAssistanceRankingList(String seasonId);
+    //抢断榜 
+    public List<PlayerDataStatistics> getPlayerGrabRankingList(String seasonId);
+    //三分榜
+    public List<PlayerDataStatistics> getPlayerThreehitRankingList(String seasonId);
+    //盖帽榜
+    public List<PlayerDataStatistics> getPlayerBlockRankingList(String seasonId);
+
 
 }

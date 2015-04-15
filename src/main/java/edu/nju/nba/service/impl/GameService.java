@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.nba.bean.Game;
+import edu.nju.nba.bean.GameSchedule;
 import edu.nju.nba.bean.PlayerSingleGame;
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamSingleGame;
@@ -16,7 +17,7 @@ import edu.nju.nba.dao.IGeneralDao;
 import edu.nju.nba.service.IGameService;
 
 @Service
-public class GameService implements IGameService{
+public class GameService implements IGameService {
 
 	@Autowired
 	private IGeneralDao generalDao;
@@ -42,22 +43,24 @@ public class GameService implements IGameService{
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PlayerSingleGame> showAllPlayerSingleGame(String seasonId,
 			String gameDate, String team) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<PlayerSingleGame>)generalDao.findList3("From edu.nju.nba.bean.PlayerSingleGame pg where pg.seasonID=? and pg.gameDate=? and pg.team=?", seasonId, gameDate, team);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Game> listSeasonGame(String seasonId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public List<TeamSingleGame> listSeasonTeamSingleGames(String seasonId,
 			String team) {
-		return null;
+		return (List<TeamSingleGame>)generalDao.findList2("From edu.nju.nba.bean.TeamSingleGame tsg where tsg.seasonID=? and gs.team=?", seasonId, team);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<GameSchedule> listGameByDay(String seasonId, String gameDate) {
+		return (List<GameSchedule>)generalDao.findList2("From edu.nju.nba.bean.GameSchedule gs where gs.seasonId=? and gs.gameDate=?", seasonId, gameDate);
 	}
 
 }
