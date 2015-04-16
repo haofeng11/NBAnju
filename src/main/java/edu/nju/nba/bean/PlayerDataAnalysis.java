@@ -59,6 +59,8 @@ public class PlayerDataAnalysis implements Serializable {
 	private String distantProportion;
 	private String truePercentage;
 	private String shootEfficiency;
+	// 标识，0代表常规赛，1代表季后赛
+	private String tag;
 
 	public PlayerDataAnalysis() {
 		super();
@@ -79,7 +81,7 @@ public class PlayerDataAnalysis implements Serializable {
 			String middleShootTotal, String middleProportion,
 			String distantShootPercent, String distantShootHit,
 			String distantShootTotal, String distantProportion,
-			String truePercentage, String shootEfficiency) {
+			String truePercentage, String shootEfficiency, String tag) {
 		super();
 		this.id = id;
 		this.player = player;
@@ -121,8 +123,9 @@ public class PlayerDataAnalysis implements Serializable {
 		this.distantProportion = distantProportion;
 		this.truePercentage = truePercentage;
 		this.shootEfficiency = shootEfficiency;
+		this.tag = tag;
 	}
-    
+
 	@GeneratedValue
 	@Id
 	public String getId() {
@@ -443,6 +446,14 @@ public class PlayerDataAnalysis implements Serializable {
 
 	public void setShootEfficiency(String shootEfficiency) {
 		this.shootEfficiency = shootEfficiency;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String toString() {

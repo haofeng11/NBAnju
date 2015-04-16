@@ -70,10 +70,11 @@ public class PlayerSingleGame implements Serializable {
 	private String foul;
 	// 总得分
 	private String score;
+	//标识，0代表常规赛，1代表季后赛
+	private String tag;
 
 	public PlayerSingleGame() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public PlayerSingleGame(Integer id, String gameId, String seasonId,
@@ -332,5 +333,15 @@ public class PlayerSingleGame implements Serializable {
 	public void setScore(String score) {
 		this.score = score;
 	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+	
+	
 
 }

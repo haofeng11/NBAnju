@@ -2,7 +2,6 @@ package edu.nju.nba.bean;
 
 import java.io.Serializable;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +16,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  */
 
 @Entity
-@Table (name="team_season_average")
+@Table(name = "team_season_average")
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class TeamSeasonAverage implements Serializable {
 
@@ -71,13 +70,13 @@ public class TeamSeasonAverage implements Serializable {
 	private String foul;
 	// 总得分
 	private String score;
-	
-	
+	// 标记，1代表季后赛，0代表常规赛
+	private String tag;
 
 	public TeamSeasonAverage() {
 		super();
-		
-	}
+
+	}	
 
 	public TeamSeasonAverage(Integer id, String team, String seasonID,
 			String gameCnt, String winCnt, String loseCnt,
@@ -86,7 +85,7 @@ public class TeamSeasonAverage implements Serializable {
 			String freeThrowPercentage, String freeThrowHit,
 			String freeThrowTotal, String rebound, String offensiveRebound,
 			String defensiveRebound, String assistance, String grab,
-			String block, String mistake, String foul, String score) {
+			String block, String mistake, String foul, String score, String tag) {
 		super();
 		this.id = id;
 		this.team = team;
@@ -112,7 +111,10 @@ public class TeamSeasonAverage implements Serializable {
 		this.mistake = mistake;
 		this.foul = foul;
 		this.score = score;
+		this.tag = tag;
 	}
+
+
 
 	@Id
 	@GeneratedValue
@@ -124,20 +126,20 @@ public class TeamSeasonAverage implements Serializable {
 		this.id = id;
 	}
 
-	public String getSeasonID() {
-		return seasonID;
-	}
-
-	public void setSeasonID(String seasonID) {
-		this.seasonID = seasonID;
-	}
-
 	public String getTeam() {
 		return team;
 	}
 
 	public void setTeam(String team) {
 		this.team = team;
+	}
+
+	public String getSeasonID() {
+		return seasonID;
+	}
+
+	public void setSeasonID(String seasonID) {
+		this.seasonID = seasonID;
 	}
 
 	public String getGameCnt() {
@@ -308,17 +310,17 @@ public class TeamSeasonAverage implements Serializable {
 		this.score = score;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getTag() {
+		return tag;
 	}
-	
-	
-	
-	
 
-	public String toString(){
-		return "team: "+team+" seasonID： "+seasonID+" score: "+score;
-		
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	public String toString() {
+		return "team: " + team + " seasonID： " + seasonID + " score: " + score;
+
 	}
 
 }

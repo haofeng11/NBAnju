@@ -2,6 +2,7 @@ package edu.nju.nba.controller;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class PlayerController {
 	@Autowired
 	private IPlayerService playerService;
 
-	//private Map<String, Player> players=new HashMap<String, Player>();
 	private List<Player> players=new ArrayList<Player>();
 	
 	public PlayerController() {
@@ -58,14 +58,19 @@ public class PlayerController {
 		Player player=playerService.show(playerName);
 		model.addAttribute("player",player);
 		
-		//球员场均基本数据
-		PlayerDataStatistics playerDataStatistics=playerService.getDataStatistics("14-15", playerName);
-		List<PlayerDataStatistics> playerDataStatisticsList=playerService.getAllDataStatistics("14-15");
+		//球员赛季场均基本数据
+		//PlayerDataStatistics playerDataStatistics=playerService.getDataStatistics("14-15", playerName);
+		//List<PlayerDataStatistics> playerDataStatisticsList=playerService.getAllDataStatistics("14-15");
 		
-		model.addAttribute("playerDataStatistics",playerDataStatistics);
-		//球员场均分析数据
-		PlayerDataAnalysis playerDataAnalysis=playerService.getDataAnalysis("14-15", playerName);
-		model.addAttribute("playerDataAnalysis",playerDataAnalysis);
+		//model.addAttribute("playerDataStatistics",playerDataStatistics);
+		//球员赛季场均分析数据
+		//PlayerDataAnalysis playerDataAnalysis=playerService.getDataAnalysis("14-15", playerName);
+		//model.addAttribute("playerDataAnalysis",playerDataAnalysis);
+		
+		// 进攻能力分析：真实命中率，投篮效率，进攻篮板率，使用率，进攻效率、失误率
+		// 防守能力分析：防守篮板率、抢断率、盖帽率、防守效率
+		// 策应能力分析：助攻率、助攻失误比
+		// 综合能力分析：WS，PER，进攻能力、防守能力、策应能力
 		
 		return "PlayerInfo";
 	}

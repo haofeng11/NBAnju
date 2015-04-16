@@ -2,9 +2,6 @@ package edu.nju.nba.service.impl;
 
 import java.util.List;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,18 +18,6 @@ public class TeamService implements ITeamService{
 	@Autowired
 	private IGeneralDao generalDao;
 	
-
-
-
-//	@Override
-//	@Transactional(readOnly = false)
-//	public boolean add(Team team) {
-//		generalDao.save(team);
-//		return true;
-//	}
-
-	
-	
 	public Team show(String teamName) {
 		return (Team)generalDao.find("from edu.nju.nba.bean.Team t where t.cName=?", teamName);
 	}
@@ -44,29 +29,29 @@ public class TeamService implements ITeamService{
 
 
 	
-	public TeamSeasonAverage getSeasonAverage(String teamName, String seasonID) {
-		return (TeamSeasonAverage)generalDao.find2("from edu.nju.nba.bean.TeamSeasonAverage t where t.team=? and t.seasonID=?", teamName,seasonID);
+	public TeamSeasonAverage getSeasonAverage(String teamName, String seasonID,String tag) {
+		return (TeamSeasonAverage)generalDao.find3("from edu.nju.nba.bean.TeamSeasonAverage t where t.team=? and t.seasonID=? and tag=?", teamName,seasonID,tag);
 	}
 
 
 	@SuppressWarnings("unchecked")
-	public List<TeamSeasonAverage> getSeasonAverageList(String seasonID) {
-		return (List<TeamSeasonAverage>)generalDao.findList("from edu.nju.nba.bean.TeamSeasonAverage t where t.seasonID=?", seasonID);
+	public List<TeamSeasonAverage> getSeasonAverageList(String seasonID,String tag) {
+		return (List<TeamSeasonAverage>)generalDao.findList2("from edu.nju.nba.bean.TeamSeasonAverage t where t.seasonID=? and tag=?", seasonID,tag);
 	}
 
 
 	@SuppressWarnings("unchecked")
 	public List<TeamSingleGame> getTeamSingleGames(String teamName,
-			String seasonID) {
+			String seasonID,String tag) {
 		
-		return (List<TeamSingleGame>)generalDao.findList2("from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=?", teamName, seasonID);
+		return (List<TeamSingleGame>)generalDao.findList3("from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=? and tag=?", teamName, seasonID,tag);
 	}
 
 
 	public TeamSingleGame getTeamSingleGame(String teamName, String seasonID,
-			String gameDate) {
+			String gameDate,String tag) {
 		
-		return (TeamSingleGame)generalDao.find3("from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=? and t.gameDate=?", teamName, seasonID, gameDate);
+		return (TeamSingleGame)generalDao.find4("from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=? and t.gameDate=? and tag=?", teamName, seasonID, gameDate,tag);
 	}
 	
 }

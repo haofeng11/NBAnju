@@ -45,9 +45,11 @@ public class GameController {
 		model.addAttribute("homeTeamPicture", homeTeamPicture);
 		model.addAttribute("guestTeamPicture", guestTeamPicture);
 		
-		//赛后球队总数据
-		TeamSingleGame homeTeamData=teamService.getTeamSingleGame(homeTeam, seasonID,gameDate);
-		TeamSingleGame guestTeamData=teamService.getTeamSingleGame(guestTeam, seasonID,gameDate);
+
+		//赛后球队平均数据
+		TeamSingleGame homeTeamData=teamService.getTeamSingleGame(homeTeam, seasonID,gameDate,"0");
+		TeamSingleGame guestTeamData=teamService.getTeamSingleGame(guestTeam, seasonID,gameDate,"0");
+
 		model.addAttribute("homeTeamData", homeTeamData);
 		model.addAttribute("guestTeamData", guestTeamData);
 		//赛后球员个人数据
