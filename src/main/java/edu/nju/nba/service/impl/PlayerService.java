@@ -3,17 +3,8 @@ package edu.nju.nba.service.impl;
 
 import java.util.List;
 
-
-
-
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import edu.nju.nba.bean.Player;
 import edu.nju.nba.bean.PlayerDataAnalysis;
@@ -39,13 +30,6 @@ public class PlayerService implements IPlayerService {
 		return generalDao.findAll(Player.class);
 	}
 
-	// 添加一名球员
-	@Transactional(readOnly = false)
-	public boolean addPlayer(Player player) {
-		generalDao.save(player);
-		return true;
-	}
-
 	public PlayerSingleGame getPlayerSingleGame(String playerName,
 			String seasonID, String gameDate) {
 		
@@ -59,24 +43,22 @@ public class PlayerService implements IPlayerService {
 	}
 
 	public PlayerDataStatistics getDataStatistics(String seasonID,
-			String playerName) {
-		// TODO Auto-generated method stub
-		return null;
+			String playerName,String tag) {
+		return (PlayerDataStatistics)generalDao.find3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.player=? and p.tag=?", seasonID, playerName, tag);
 	}
 
-	public PlayerDataAnalysis getDataAnalysis(String seasonID, String playerName) {
-		// TODO Auto-generated method stub
-		return null;
+	public PlayerDataAnalysis getDataAnalysis(String seasonID, String playerName,String tag) {
+		return (PlayerDataAnalysis)generalDao.find3("from edu.nju.nba.bean.getDataAnalysis p where p.seasonID=? and p.player=? and p.tag=?", seasonID, playerName, tag);
 	}
 
-	public List<PlayerDataStatistics> getAllDataStatistics(String seasonID) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<PlayerDataStatistics> getAllDataStatistics(String seasonID,String tag) {
+		return (List<PlayerDataStatistics>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.tag=?", seasonID, tag);
 	}
 
-	public List<PlayerDataAnalysis> getAllDataAnalysis(String seasonID) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<PlayerDataAnalysis> getAllDataAnalysis(String seasonID,String tag) {
+		return (List<PlayerDataAnalysis>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataAnalysis p where p.seasonID=? and p.tag=?", seasonID, tag);
 	}
 
 }

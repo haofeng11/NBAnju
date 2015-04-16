@@ -78,6 +78,8 @@ public class PlayerDataStatistics implements Serializable {
 	private String winCnt;
 	// 负场
 	private String loseCnt;
+	// 标识，0代表常规赛，1代表季后赛
+	private String tag;
 
 	public PlayerDataStatistics() {
 		super();
@@ -348,6 +350,14 @@ public class PlayerDataStatistics implements Serializable {
 
 	public void setLoseCnt(String loseCnt) {
 		this.loseCnt = loseCnt;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String toString() {

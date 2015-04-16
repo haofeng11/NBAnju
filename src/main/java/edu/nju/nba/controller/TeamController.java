@@ -1,7 +1,5 @@
 package edu.nju.nba.controller;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -46,7 +44,6 @@ public class TeamController {
 	// 场均失误联盟排名
 	int mistakeRanking ;
 
-	// private Map<String, Team> teams = new HashMap<String, Team>();
 	private List<Team> teams = new ArrayList<Team>();
 
 	public TeamController() {
@@ -85,30 +82,61 @@ public class TeamController {
 	@RequestMapping(value = "/{teamName}", method = RequestMethod.GET)
 	public String show(@PathVariable String teamName, Model model) {
 
-		// 得到球队最新赛季的平均数据
-		TeamSeasonAverage teamSA = getSeasonAverage(teamName, "14-15");
-		model.addAttribute("teamSA", teamSA);
-		List<TeamSeasonAverage> teamSAs = teamService
-				.getSeasonAverageList("14-15");
+		//得到球队各个赛季的常规赛平均数据
+		TeamSeasonAverage teamSA14 = teamService.getSeasonAverage(teamName, "14-15","0");
+		TeamSeasonAverage teamSA13 = teamService.getSeasonAverage(teamName, "13-14","0");
+		TeamSeasonAverage teamSA12 = teamService.getSeasonAverage(teamName, "12-13","0");
+		TeamSeasonAverage teamSA11 = teamService.getSeasonAverage(teamName, "11-12","0");
+		TeamSeasonAverage teamSA10 = teamService.getSeasonAverage(teamName, "10-11","0");
+		TeamSeasonAverage teamSA09 = teamService.getSeasonAverage(teamName, "09-10","0");
+		TeamSeasonAverage teamSA08 = teamService.getSeasonAverage(teamName, "08-09","0");
+		TeamSeasonAverage teamSA07 = teamService.getSeasonAverage(teamName, "07-08","0");
+		TeamSeasonAverage teamSA06 = teamService.getSeasonAverage(teamName, "06-07","0");
+		TeamSeasonAverage teamSA05 = teamService.getSeasonAverage(teamName, "05-06","0");
+		TeamSeasonAverage teamSA04 = teamService.getSeasonAverage(teamName, "04-05","0");
+		TeamSeasonAverage teamSA03 = teamService.getSeasonAverage(teamName, "03-04","0");
+		TeamSeasonAverage teamSA02 = teamService.getSeasonAverage(teamName, "02-03","0");
+		model.addAttribute("teamSA14", teamSA14);
+		model.addAttribute("teamSA13", teamSA13);
+		model.addAttribute("teamSA12", teamSA12);
+		model.addAttribute("teamSA11", teamSA11);
+		model.addAttribute("teamSA10", teamSA10);
+		model.addAttribute("teamSA09", teamSA09);
+		model.addAttribute("teamSA08", teamSA08);
+		model.addAttribute("teamSA07", teamSA07);
+		model.addAttribute("teamSA06", teamSA06);
+		model.addAttribute("teamSA05", teamSA05);
+		model.addAttribute("teamSA04", teamSA04);
+		model.addAttribute("teamSA03", teamSA03);
+		model.addAttribute("teamSA02", teamSA02);
 
-		// 场均得分联盟排名
-		scoreRanking = getScoreRanking(teamSA, teamSAs);
-		model.addAttribute("scoreRanking", scoreRanking);
-		// 场均助攻联盟排名
-		assistanceRanking = getAssistance(teamSA, teamSAs);
-		model.addAttribute("assistanceRanking", assistanceRanking);
-		// 场均篮板联盟排名
-		reboundRanking = getRebound(teamSA, teamSAs);
-		model.addAttribute("reboundRanking", reboundRanking);
-		// 场均抢断联盟排名
-		grabRanking = getGrab(teamSA, teamSAs);
-		model.addAttribute("grabRanking", grabRanking);
-		// 场均盖帽联盟排名
-		blockRanking = getBlock(teamSA, teamSAs);
-		model.addAttribute("blockRanking", blockRanking);
-		// 场均失误联盟排名
-		mistakeRanking = getMistake(teamSA, teamSAs);
-		model.addAttribute("mistakeRanking", mistakeRanking);
+		//得到球队各个赛季的季后赛平均数据
+		TeamSeasonAverage teamSA14PO= teamService.getSeasonAverage(teamName, "14-15","1");
+		TeamSeasonAverage teamSA13PO= teamService.getSeasonAverage(teamName, "13-14","1");
+		TeamSeasonAverage teamSA12PO= teamService.getSeasonAverage(teamName, "12-13","1");
+		TeamSeasonAverage teamSA11PO= teamService.getSeasonAverage(teamName, "11-12","1");
+		TeamSeasonAverage teamSA10PO= teamService.getSeasonAverage(teamName, "10-11","1");
+		TeamSeasonAverage teamSA09PO= teamService.getSeasonAverage(teamName, "09-10","1");
+		TeamSeasonAverage teamSA08PO= teamService.getSeasonAverage(teamName, "08-09","1");
+		TeamSeasonAverage teamSA07PO= teamService.getSeasonAverage(teamName, "07-08","1");
+		TeamSeasonAverage teamSA06PO= teamService.getSeasonAverage(teamName, "06-07","1");
+		TeamSeasonAverage teamSA05PO= teamService.getSeasonAverage(teamName, "05-06","1");
+		TeamSeasonAverage teamSA04PO= teamService.getSeasonAverage(teamName, "04-05","1");
+		TeamSeasonAverage teamSA03PO= teamService.getSeasonAverage(teamName, "03-04","1");
+		TeamSeasonAverage teamSA02PO= teamService.getSeasonAverage(teamName, "02-03","1");
+		model.addAttribute("teamSA14PO", teamSA14PO);
+		model.addAttribute("teamSA13PO", teamSA13PO);
+		model.addAttribute("teamSA12PO", teamSA12PO);
+		model.addAttribute("teamSA11PO", teamSA11PO);
+		model.addAttribute("teamSA10PO", teamSA10PO);
+		model.addAttribute("teamSA09PO", teamSA09PO);
+		model.addAttribute("teamSA08PO", teamSA08PO);
+		model.addAttribute("teamSA07PO", teamSA07PO);
+		model.addAttribute("teamSA06PO", teamSA06PO);
+		model.addAttribute("teamSA05PO", teamSA05PO);
+		model.addAttribute("teamSA04PO", teamSA04PO);
+		model.addAttribute("teamSA03PO", teamSA03PO);
+		model.addAttribute("teamSA02PO", teamSA02PO);
 
 		// 得到球队基本信息
 		Team team = teamService.show(teamName);
@@ -118,72 +146,90 @@ public class TeamController {
 		String[] teamStars = team.getTeamStar().split(":");
 		model.addAttribute("teamStars", teamStars);
 		
-		//球队本赛季数据
-		List<TeamSingleGame> teamSingleGames=teamService.getTeamSingleGames(teamName.split("队")[0], "14-15");
-//		for (TeamSingleGame t:teamSingleGames) {
-//			System.out.println(t.getGameDate());
-//		}
-        model.addAttribute("teamSingleGames", teamSingleGames);
-  
-        double scoreSum=0;//总得分
-        double shootSum=0;//总出手数
-        double shootPercentageSum=0;//总命中率
-        double threeScoreSum=0;//总三分得分
-        double threeSum=0;//总三分出手
-        double threePercentageSum=0;//总三分命中率
-		for (TeamSingleGame t:teamSingleGames) {
-			scoreSum+=Double.parseDouble(t.getScore());
-			shootSum+=Double.parseDouble(t.getShootTotal());			
-			shootPercentageSum+=(Double.parseDouble(t.getShootPercentage().replace("%",""))*0.01);
-			threeScoreSum+=(Double.parseDouble(t.getThreeHit())*3);
-			threeSum+=Double.parseDouble(t.getThreeTotal());
-			threePercentageSum+=(Double.parseDouble(t.getThreePercentage().replace("%",""))*0.01);
-	    }
-		 DecimalFormat df = new DecimalFormat("#.00");
-	    //平均得分
-		String scoreAverage=df.format(scoreSum/teamSingleGames.size());
-		model.addAttribute("scoreAverage", scoreAverage);
-        //平均出手数
-		String shootAverage=df.format(shootSum/teamSingleGames.size());
-		model.addAttribute("shootAverage", shootAverage);
-        //平均命中率
-		NumberFormat fmt = NumberFormat.getPercentInstance();  
-		fmt.setMaximumFractionDigits(2);//最多两位百分小数，如25.23%  
-		String shootPercentageAverage=fmt.format(shootPercentageSum/teamSingleGames.size());
-		model.addAttribute("shootPercentageAverage", shootPercentageAverage);
-        //平均三分得分
-		String threeScoreAverage=df.format(threeScoreSum/teamSingleGames.size());
-		model.addAttribute("threeScoreAverage", threeScoreAverage);
-        //平均三分出手
-		String threeAverage=df.format(threeSum/teamSingleGames.size());
-		model.addAttribute("threeAverage", threeAverage);
-        //平均三分命中率
-		String threePercentageAverage=fmt.format(threePercentageSum/teamSingleGames.size());
-		model.addAttribute("threePercentageAverage", threePercentageAverage);
+		List<TeamSeasonAverage> teamSAs = teamService.getSeasonAverageList("14-15","0");
+
+		// 场均得分联盟排名
+		scoreRanking = getScoreRanking(teamSA14, teamSAs);
+		model.addAttribute("scoreRanking", scoreRanking);
+		// 场均助攻联盟排名
+		assistanceRanking = getAssistance(teamSA14, teamSAs);
+		model.addAttribute("assistanceRanking", assistanceRanking);
+		// 场均篮板联盟排名
+		reboundRanking = getRebound(teamSA14, teamSAs);
+		model.addAttribute("reboundRanking", reboundRanking);
+		// 场均抢断联盟排名
+		grabRanking = getGrab(teamSA14, teamSAs);
+		model.addAttribute("grabRanking", grabRanking);
+		// 场均盖帽联盟排名
+		blockRanking = getBlock(teamSA14, teamSAs);
+		model.addAttribute("blockRanking", blockRanking);
+		// 场均失误联盟排名
+		mistakeRanking = getMistake(teamSA14, teamSAs);
+		model.addAttribute("mistakeRanking", mistakeRanking);
 		
-//		System.out.println(scoreSum);
-//		System.out.println(shootSum);
-//		System.out.println(shootPercentageSum);
-//		System.out.println(threeScoreSum);
-//		System.out.println(threeSum);
-//		System.out.println(threePercentageSum);
-//		System.out.println(scoreAverage);
-//		System.out.println(shootAverage);
-//		System.out.println(shootPercentageAverage);
-//		System.out.println(threeScoreAverage);
-//		System.out.println(threeAverage);
-//		System.out.println(threePercentageAverage);
+		//球队各个赛季常规赛单场比赛数据
+		List<TeamSingleGame> teamSingleGames14=teamService.getTeamSingleGames(teamName.split("队")[0], "14-15","0");
+        List<TeamSingleGame> teamSingleGames02=teamService.getTeamSingleGames(teamName.split("队")[0], "02-03","0");
+        List<TeamSingleGame> teamSingleGames03=teamService.getTeamSingleGames(teamName.split("队")[0], "03-04","0");
+        List<TeamSingleGame> teamSingleGames04=teamService.getTeamSingleGames(teamName.split("队")[0], "04-05","0");
+        List<TeamSingleGame> teamSingleGames05=teamService.getTeamSingleGames(teamName.split("队")[0], "05-06","0");
+        List<TeamSingleGame> teamSingleGames06=teamService.getTeamSingleGames(teamName.split("队")[0], "06-07","0");
+        List<TeamSingleGame> teamSingleGames07=teamService.getTeamSingleGames(teamName.split("队")[0], "07-08","0");
+        List<TeamSingleGame> teamSingleGames08=teamService.getTeamSingleGames(teamName.split("队")[0], "08-09","0");
+        List<TeamSingleGame> teamSingleGames09=teamService.getTeamSingleGames(teamName.split("队")[0], "09-10","0");
+        List<TeamSingleGame> teamSingleGames10=teamService.getTeamSingleGames(teamName.split("队")[0], "10-11","0");
+        List<TeamSingleGame> teamSingleGames11=teamService.getTeamSingleGames(teamName.split("队")[0], "11-12","0");
+        List<TeamSingleGame> teamSingleGames12=teamService.getTeamSingleGames(teamName.split("队")[0], "12-13","0");
+        List<TeamSingleGame> teamSingleGames13=teamService.getTeamSingleGames(teamName.split("队")[0], "13-14","0");
+        model.addAttribute("teamSingleGames14", teamSingleGames14);
+        model.addAttribute("teamSingleGames02", teamSingleGames02);
+        model.addAttribute("teamSingleGames03", teamSingleGames03);
+        model.addAttribute("teamSingleGames04", teamSingleGames04);
+        model.addAttribute("teamSingleGames05", teamSingleGames05);
+        model.addAttribute("teamSingleGames06", teamSingleGames06);
+        model.addAttribute("teamSingleGames07", teamSingleGames07);
+        model.addAttribute("teamSingleGames08", teamSingleGames08);
+        model.addAttribute("teamSingleGames09", teamSingleGames09);
+        model.addAttribute("teamSingleGames10", teamSingleGames10);
+        model.addAttribute("teamSingleGames11", teamSingleGames11);
+        model.addAttribute("teamSingleGames12", teamSingleGames12);
+        model.addAttribute("teamSingleGames13", teamSingleGames13);
+        
+        //球队各个赛季季后赛单场比赛数据
+		List<TeamSingleGame> teamSingleGames14PO=teamService.getTeamSingleGames(teamName.split("队")[0], "14-15","1");
+        List<TeamSingleGame> teamSingleGames02PO=teamService.getTeamSingleGames(teamName.split("队")[0], "02-03","1");
+        List<TeamSingleGame> teamSingleGames03PO=teamService.getTeamSingleGames(teamName.split("队")[0], "03-04","1");
+        List<TeamSingleGame> teamSingleGames04PO=teamService.getTeamSingleGames(teamName.split("队")[0], "04-05","1");
+        List<TeamSingleGame> teamSingleGames05PO=teamService.getTeamSingleGames(teamName.split("队")[0], "05-06","1");
+        List<TeamSingleGame> teamSingleGames06PO=teamService.getTeamSingleGames(teamName.split("队")[0], "06-07","1");
+        List<TeamSingleGame> teamSingleGames07PO=teamService.getTeamSingleGames(teamName.split("队")[0], "07-08","1");
+        List<TeamSingleGame> teamSingleGames08PO=teamService.getTeamSingleGames(teamName.split("队")[0], "08-09","1");
+        List<TeamSingleGame> teamSingleGames09PO=teamService.getTeamSingleGames(teamName.split("队")[0], "09-10","1");
+        List<TeamSingleGame> teamSingleGames10PO=teamService.getTeamSingleGames(teamName.split("队")[0], "10-11","1");
+        List<TeamSingleGame> teamSingleGames11PO=teamService.getTeamSingleGames(teamName.split("队")[0], "11-12","1");
+        List<TeamSingleGame> teamSingleGames12PO=teamService.getTeamSingleGames(teamName.split("队")[0], "12-13","1");
+        List<TeamSingleGame> teamSingleGames13PO=teamService.getTeamSingleGames(teamName.split("队")[0], "13-14","1");
+        model.addAttribute("teamSingleGames14PO", teamSingleGames14PO);
+        model.addAttribute("teamSingleGames02PO", teamSingleGames02PO);
+        model.addAttribute("teamSingleGames03PO", teamSingleGames03PO);
+        model.addAttribute("teamSingleGames04PO", teamSingleGames04PO);
+        model.addAttribute("teamSingleGames05PO", teamSingleGames05PO);
+        model.addAttribute("teamSingleGames06PO", teamSingleGames06PO);
+        model.addAttribute("teamSingleGames07PO", teamSingleGames07PO);
+        model.addAttribute("teamSingleGames08PO", teamSingleGames08PO);
+        model.addAttribute("teamSingleGames09PO", teamSingleGames09PO);
+        model.addAttribute("teamSingleGames10PO", teamSingleGames10PO);
+        model.addAttribute("teamSingleGames11PO", teamSingleGames11PO);
+        model.addAttribute("teamSingleGames12PO", teamSingleGames12PO);
+        model.addAttribute("teamSingleGames13PO", teamSingleGames13PO);
+        
+//		for (TeamSingleGame t:teamSingleGames) {
+//		System.out.println(t.getGameDate());
+//	}
+  
+
 		return "TeamInfo";
 	}
-
-	// 得到球队赛季平均数据
-	public TeamSeasonAverage getSeasonAverage(String teamName, String seasonID) {
-		TeamSeasonAverage seasonAverage = teamService.getSeasonAverage(
-				teamName, seasonID);
-		return seasonAverage;
-
-	}
-
 
 	// 场均得分联盟排名
 	@SuppressWarnings("unchecked")

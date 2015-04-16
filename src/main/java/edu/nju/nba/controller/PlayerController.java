@@ -2,6 +2,7 @@ package edu.nju.nba.controller;
 
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +24,10 @@ public class PlayerController {
 	@Autowired
 	private IPlayerService playerService;
 
-	//private Map<String, Player> players=new HashMap<String, Player>();
 	private List<Player> players=new ArrayList<Player>();
 	
 	public PlayerController() {
-		//测试，手动添加数据
-		System.out.println("初始化......");
-		//players.put("科比", new Player(1, "科比", "1978-08-23", "1.98米 / 6尺6", "96公斤 / 212磅", "洛杉矶湖人", "1996年第一轮第 13 顺位", "美国", "G/F ( 24号 )", " 2350万美元", " 2年4860万, 2013/11/25续签, 2014夏生效,2016年到期★合同包括15%交易保证金★拥有不可交易条款", " NBA最有价值球员、两届NBA总决赛最有价值球员、四届NBA全明星赛最有价值球员、五届NBA总冠军"));
-		//players.put("麦迪", new Player(1, "麦迪", "1978-08-23", "1.98米 / 6尺6", "96公斤 / 212磅", "洛杉矶湖人", "1996年第一轮第 13 顺位", "美国", "G/F ( 24号 )", " 2350万美元", " 2年4860万, 2013/11/25续签, 2014夏生效,2016年到期★合同包括15%交易保证金★拥有不可交易条款", " NBA最有价值球员、两届NBA总决赛最有价值球员、四届NBA全明星赛最有价值球员、五届NBA总冠军"));
-		//players.put("乔丹", new Player(1, "乔丹", "1978-08-23", "1.98米 / 6尺6", "96公斤 / 212磅", "洛杉矶湖人", "1996年第一轮第 13 顺位", "美国", "G/F ( 24号 )", " 2350万美元", " 2年4860万, 2013/11/25续签, 2014夏生效,2016年到期★合同包括15%交易保证金★拥有不可交易条款", " NBA最有价值球员、两届NBA总决赛最有价值球员、四届NBA全明星赛最有价值球员、五届NBA总冠军"));
-		//players.put("邓肯", new Player(1, "邓肯", "1978-08-23", "1.98米 / 6尺6", "96公斤 / 212磅", "洛杉矶湖人", "1996年第一轮第 13 顺位", "美国", "G/F ( 24号 )", " 2350万美元", " 2年4860万, 2013/11/25续签, 2014夏生效,2016年到期★合同包括15%交易保证金★拥有不可交易条款", " NBA最有价值球员、两届NBA总决赛最有价值球员、四届NBA全明星赛最有价值球员、五届NBA总冠军"));
-
-		//加载数据库数据到players中
+		
 	}
 	
 	/*
@@ -65,22 +58,24 @@ public class PlayerController {
 		Player player=playerService.show(playerName);
 		model.addAttribute("player",player);
 		
-		//球员场均基本数据
-		PlayerDataStatistics playerDataStatistics=playerService.getDataStatistics("14-15", playerName);
-		List<PlayerDataStatistics> playerDataStatisticsList=playerService.getAllDataStatistics("14-15");
+		//球员赛季场均基本数据
+		//PlayerDataStatistics playerDataStatistics=playerService.getDataStatistics("14-15", playerName);
+		//List<PlayerDataStatistics> playerDataStatisticsList=playerService.getAllDataStatistics("14-15");
 		
-		model.addAttribute("playerDataStatistics",playerDataStatistics);
-		//球员场均分析数据
-		PlayerDataAnalysis playerDataAnalysis=playerService.getDataAnalysis("14-15", playerName);
-		model.addAttribute("playerDataAnalysis",playerDataAnalysis);
+		//model.addAttribute("playerDataStatistics",playerDataStatistics);
+		//球员赛季场均分析数据
+		//PlayerDataAnalysis playerDataAnalysis=playerService.getDataAnalysis("14-15", playerName);
+		//model.addAttribute("playerDataAnalysis",playerDataAnalysis);
+		
+		// 进攻能力分析：真实命中率，投篮效率，进攻篮板率，使用率，进攻效率、失误率
+		// 防守能力分析：防守篮板率、抢断率、盖帽率、防守效率
+		// 策应能力分析：助攻率、助攻失误比
+		// 综合能力分析：WS，PER，进攻能力、防守能力、策应能力
 		
 		return "PlayerInfo";
 	}
 	
-	//添加一名球员
-	public String add(){
-		return "";
-	}
+
 	
 	
 

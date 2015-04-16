@@ -69,23 +69,24 @@ public class TeamSingleGame implements Serializable {
 	private String foul;
 	// 总得分
 	private String score;
+	//标记，1代表季后赛，0代表常规赛
+	private String tag;
 
 	public TeamSingleGame() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public TeamSingleGame(Integer id, String seasonId, String gameDate,
+	public TeamSingleGame(Integer id, String seasonID, String gameDate,
 			String team, String appearPlayerCnt, String shootPercentage,
 			String shootHit, String shootTotal, String threePercentage,
 			String threeHit, String threeTotal, String freeThrowPercentage,
 			String freeThrowHit, String freeThrowTotal, String truePercentage,
 			String rebound, String offensiveRebound, String defensiveRebound,
 			String assistance, String grab, String block, String mistake,
-			String foul, String score) {
+			String foul, String score, String tag) {
 		super();
 		this.id = id;
-		this.seasonID = seasonId;
+		this.seasonID = seasonID;
 		this.gameDate = gameDate;
 		this.team = team;
 		this.appearPlayerCnt = appearPlayerCnt;
@@ -108,6 +109,7 @@ public class TeamSingleGame implements Serializable {
 		this.mistake = mistake;
 		this.foul = foul;
 		this.score = score;
+		this.tag = tag;
 	}
 
 	@Id
@@ -120,20 +122,12 @@ public class TeamSingleGame implements Serializable {
 		this.id = id;
 	}
 
-	public String getTeam() {
-		return team;
-	}
-
-	public void setTeam(String team) {
-		this.team = team;
-	}
-
 	public String getSeasonID() {
 		return seasonID;
 	}
 
-	public void setSeasonID(String seasonId) {
-		this.seasonID= seasonId;
+	public void setSeasonID(String seasonID) {
+		this.seasonID = seasonID;
 	}
 
 	public String getGameDate() {
@@ -142,6 +136,14 @@ public class TeamSingleGame implements Serializable {
 
 	public void setGameDate(String gameDate) {
 		this.gameDate = gameDate;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
 	}
 
 	public String getAppearPlayerCnt() {
@@ -303,5 +305,15 @@ public class TeamSingleGame implements Serializable {
 	public void setScore(String score) {
 		this.score = score;
 	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	
 
 }

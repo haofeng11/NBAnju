@@ -70,7 +70,7 @@
     				</div>
     				<!-- 选择场次 -->
     				<div class="col-md-6">
-						<form class="form-inline" style="margin-top:10px;">
+						<form class="form-inline" style="margin-top:10px;" action="./NBADataAnalysis/">
 						  <div class="form-group">
 						    <select class="form-control" style="">
 						  	  <option>请选择赛季</option>
