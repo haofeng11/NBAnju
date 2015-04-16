@@ -13,12 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-
-
-
-
-
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamSeasonAverage;
 import edu.nju.nba.bean.TeamSingleGame;
@@ -81,6 +75,7 @@ public class TeamController {
 	// 球队信息介绍
 	@RequestMapping(value = "/{teamName}", method = RequestMethod.GET)
 	public String show(@PathVariable String teamName, Model model) {
+
 
 		//得到球队各个赛季的常规赛平均数据
 		TeamSeasonAverage teamSA14 = teamService.getSeasonAverage(teamName, "14-15","0");
@@ -147,6 +142,7 @@ public class TeamController {
 		model.addAttribute("teamStars", teamStars);
 		
 		List<TeamSeasonAverage> teamSAs = teamService.getSeasonAverageList("14-15","0");
+
 
 		// 场均得分联盟排名
 		scoreRanking = getScoreRanking(teamSA14, teamSAs);
