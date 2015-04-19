@@ -17,8 +17,17 @@ public interface IPlayerService {
 	//根据球员姓名查找球员，返回球员基本信息
 	public Player show(String playerName);
 	
+	//根据球队名称，赛季ID查找属于一个球队的所有球员姓名
+	public List<PlayerDataStatistics> findTeam(String teamName,String seasonID,String tag);
+	
+	
 	//查找所有球员基本信息
 	public List<Player> list();
+	
+	//得到某一名球员所有赛季场均基本数据
+	public List<PlayerDataStatistics> getDataStatisticsByName(String playerName,String tag);
+	//得到某一名球员所有赛季场均分析数据
+	public List<PlayerDataAnalysis> getDataAnalysisByName(String playerName,String tag);
 	
 	//得到某一名球员某个赛季的常规赛场均基本数据
 	//得到某一名球员某个赛季的季后赛场均基本数据

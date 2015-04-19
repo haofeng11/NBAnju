@@ -1,10 +1,14 @@
 package edu.nju.nba.service.impl;
 
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+
+
+
+
 
 
 
@@ -17,7 +21,6 @@ import edu.nju.nba.bean.Player;
 import edu.nju.nba.bean.PlayerDataAnalysis;
 import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.bean.PlayerSingleGame;
-import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.dao.IGeneralDao;
 import edu.nju.nba.service.IPlayerService;
 
@@ -68,6 +71,24 @@ public class PlayerService implements IPlayerService {
 	public List<PlayerDataAnalysis> getAllDataAnalysis(String seasonID,String tag) {
 		return (List<PlayerDataAnalysis>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataAnalysis p where p.seasonID=? and p.tag=?", seasonID, tag);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<PlayerDataStatistics> getDataStatisticsByName(
+			String playerName, String tag) {	
+		return (List<PlayerDataStatistics>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataStatistics p where p.player=? and p.tag=?", playerName, tag);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<PlayerDataAnalysis> getDataAnalysisByName(String playerName,
+			String tag) {
+		return (List<PlayerDataAnalysis>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataAnalysis p where p.player=? and p.tag=?", playerName, tag);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<PlayerDataStatistics> findTeam(String teamName, String seasonID, String tag) {
+		return (List<PlayerDataStatistics>)generalDao.find3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.team=? and p.tag=?", seasonID, teamName, tag);
+	}
+
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -119,6 +140,7 @@ public class PlayerService implements IPlayerService {
 		Collections.sort(blockList,new sortByBlock());
 		return blockList;
 	}
+
 
 	@SuppressWarnings("rawtypes")
 	class sortByScore implements Comparator{
@@ -233,4 +255,7 @@ public class PlayerService implements IPlayerService {
 		}
 		
 	}
+
+
+
 }
