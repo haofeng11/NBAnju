@@ -142,52 +142,71 @@
 
 
 	<div class="container bs-docs-container">
-		<div class="row">
-			<div class="col-md-10" role="main">
-				<div class="bs-docs-section">
-					<h2 id="lineup" class="page-header solutionForFixBar">球队阵容</h2>
-					<!-- echart图表 -->
-					<div id="lineup-container"
-						style="min-width: 310px; height: 400px; margin: 0 auto;"></div>
-				</div>
+      <div class="row">
+        <div class="col-md-10" role="main">
+          <div class="bs-docs-section">
+            <h2 id="lineup" class="page-header solutionForFixBar">球队阵容</h2>
+            <!-- echart图表 -->
+            <div id="lineup-container" style="min-width: 310px; height: 400px; margin: 0 auto;">
+            </div>
+          </div>
 
-				<div class="bs-docs-section">
-					<h2 id="data" class="page-header solutionForFixBar" style="">球队本赛季数据</h2>
-					<!-- Highchart图表 -->
-					<div class="data-select">
-						<a class="on" href="javascript:void(0);"
-							arr="<c:forEach items="${teamSingleGames}" var="t">
-									    ${t.score},
-								 </c:forEach>"
-							tit="本赛季得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均得分：99.3分"
-							pointStart='${teamSingleGames.get(0).gameDate }' measure="分">得分</a> <a
-							href="javascript:void(0);"
-							arr="79,86,82,88,88,82,87,84,75,99,87,91,85,89,81,89,96,81,85,92,90,96,96,81,88,85,87,89,92,99,81,76,81,71,88,85,90,81,92,76,65,75,77,83,79"
-							tit="本赛季出手数变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均出手数：85.1次"
-							pointStart='2014-9-29' measure="次">出手数</a> <a
-							href="javascript:void(0);" name="湖人"
-							arr="35.4,43,51.2,46.6,39.8,51.2,47.1,41.7,37.3,39.4,54,40.7,51.8,37.1,40.7,53.9,49,48.1,38.8,41.3,40,39.6,45.8,42,33,48.2,37.9,51.7,39.1,36.4,51.9,52.6,53.1,38,42,43.5,40,44.4,31.5,51.3,47.7,45.3,36.4,39.8,43"
-							tit="本赛季命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均命中率：43.5%"
-							pointStart='2014-9-29' measure="%">命中率</a> <a
-							href="javascript:void(0);" name="湖人"
-							arr="9,12,21,12,18,18,21,21,6,9,18,15,15,9,24,24,30,30,36,18,15,15,36,15,30,30,30,36,15,33,36,42,18,18,12,15,21,21,12,24,9,24,18,15,3"
-							tit="本赛季3分得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分得分：20.2分"
-							pointStart='2014-9-29' measure="分">三分得分</a> <a
-							href="javascript:void(0);" name="湖人"
-							arr="10,13,20,14,16,17,22,21,12,16,17,20,13,24,19,21,24,17,29,16,19,25,24,17,26,25,26,26,16,29,20,25,19,18,14,20,21,22,23,24,7,17,20,13,13"
-							tit="本赛季3分出手变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分出手：19.3次"
-							pointStart='2014-9-29' measure="次">三分出手</a> <a
-							href="javascript:void(0);"
-							arr="30,30.8,35,28.6,37.5,35.3,31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8,41.4,37.5,26.3,20,50,29.4,38.5,40,38.5,46.2,31.3,37.9,60,56,31.6,33.3,28.6,25,33.3,31.8,17.4,33.3,42.9,47.1,30,38.5,7.7"
-							tit="本赛季3分命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分命中率：34.8%"
-							pointStart='2014-9-29' measure="%">三分命中率</a>
-					</div>
-					<div id="data-container"
-						style="min-width: 310px; height: 400px; margin: 0 auto;"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+          <div class="bs-docs-section">
+            <h2 id="data" class="page-header solutionForFixBar">球队
+              <div class="btn-group">
+                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="margin-right:10px;margin-top:-6px;font-size:20px;" id="season">
+                  14 - 15 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="javascript:void(0);">14 - 15</a></li>
+                  <li><a href="javascript:void(0);">13 - 14</a></li>
+                  <li><a href="javascript:void(0);">12 - 13</a></li>
+                  <li><a href="javascript:void(0);">11 - 12</a></li>
+                  <li><a href="javascript:void(0);">10 - 11</a></li>
+                  <li><a href="javascript:void(0);">09 - 10</a></li>
+                  <li><a href="javascript:void(0);">08 - 09</a></li>
+                  <li><a href="javascript:void(0);">07 - 08</a></li>
+                  <li><a href="javascript:void(0);">06 - 07</a></li>
+                  <li><a href="javascript:void(0);">05 - 06</a></li>
+                  <li><a href="javascript:void(0);">04 - 05</a></li>
+                  <li><a href="javascript:void(0);">03 - 04</a></li>
+                  <li><a href="javascript:void(0);">02 - 03</a></li>
+                </ul>
+              </div>赛季数据
+            </h2>
+            <!-- Highchart图表 -->
+            <div class="data-select" id="season_data" season="${teamSingleGames.get(0).seasonID }" regular-date="<c:forEach items="${teamSingleGames}" var="t"> ${t.gameDate},</c:forEach>" playoff-date="2015-04-20,2015-04-21,2015-04-23,2015-04-25, 2015-04-26,2015-04-27,2015-04-28,2015-04-29,2015-04-30,2015-05-01,2015-05-05,2015-05-08">
+              <a class="on" href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.score},</c:forEach>" tit="赛季得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均得分：" playoff="85,111,121,134,106,107,102,102,80,115,114,98" measure = "分" >得分</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.shootTotal},</c:forEach>" tit="赛季出手数变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均出手数：" playoff="87,84,75,99,87,91,85,89,81,89,99,81" measure = "次" >出手数</a>
+              <a href="javascript:void(0);"  name="湖人" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.shootPercentage},</c:forEach>" tit="赛季命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均命中率：" playoff="46.6,39.8,51.2,47.1,41.7,37.3,39.4,54,40.7,51.8,37.1,40.7" measure = "%">命中率</a>
+              <a href="javascript:void(0);"  name="湖人" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.threeHit*3},</c:forEach>" tit="赛季3分得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分得分：" playoff="18,21,21,6,9,18,15,15,9,24,24,30" measure = "分">三分得分</a>
+              <a href="javascript:void(0);"  name="湖人" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.threeTotal},</c:forEach>" tit="赛季3分出手变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分出手：" playoff="22,21,12,16,17,20,13,24,19,21,24,17" measure = "次">三分出手</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.threePercentage},</c:forEach>" tit="赛季3分命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分命中率：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">三分命中率</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.assistance},</c:forEach>" tit="赛季助攻变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均助攻数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">助攻</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.rebound},</c:forEach>" tit="赛季篮板变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均篮板数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">篮板</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.block},</c:forEach>" tit="赛季盖帽变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均盖帽数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">盖帽</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.grab},</c:forEach>" tit="赛季抢断变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均抢断数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">抢断</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.foul},</c:forEach>" tit="赛季犯规变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均犯规数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">犯规</a>
+              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.mistake},</c:forEach>" tit="赛季失误变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均失误数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">失误</a>
+            </div>
+            <div class="row">
+              <div id="data-container" class="col-md-11" style="min-width: 310px; height: 400px; margin: 0 auto;">
+              </div>
+              <div class="col-md-1" style="padding-left:0px;margin-top:10px;">
+                <div class="btn-group-vertical" data-toggle="buttons">
+                  <label class="btn btn-sm btn-success active" id="regular">
+                    <input type="radio" name="options"  autocomplete="off" checked> 常规赛
+                  </label>
+                  <label class="btn btn-sm btn-danger" id="playoff">
+                    <input type="radio" name="options" autocomplete="off"> 季后赛
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 	<!-- Footer
 ================================================== -->
@@ -532,101 +551,235 @@
 		});
 	</script>
 	<!-- 球队数据 -->
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							//首次配置
-							var options = {
-								chart : {
-									type : 'spline',
-									renderTo : 'data-container'
-								},
-								title : {
-									text : '本赛季得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均得分：99.3分',
-									useHTML : true,
-									x : -20
-								//center
-								},
-								xAxis : {
-									gridLineWidth : 0,
-									categories : [ <c:forEach items="${teamSingleGames}" var="t">
-									                  '${t.gameDate}',
-									               </c:forEach>
-									             ],
-									labels : {
-										style : {
-											color : '#000',
-											fontWeight : 'bold'
-										}
-									},
-									tickInterval : 10,
-									startOnTick : false,
-								},
-								yAxis : {
-									title : {
-										text : ''
-									},
-									labels : {
-										format : '{value}分'
-									}
-								},
-								// 去掉额外元素
-								legend : {
-									enabled : false
-								},
-								exporting : {
-									enabled : false
-								},
-								credits : {
-									enabled : false
-								},
-								tooltip : {
-									pointFormat : '{series.name}: <b>{point.y}</b><br/>',
-									valueSuffix : ' 分',
-								},
-								series : [ {
-									name : '湖人',
-									color : 'red',
-									data : [ <c:forEach items="${teamSingleGames}" var="t">
-									                  ${t.score},
-									          </c:forEach>
-										   ]
-								} ]
-							};
-							var chart = new Highcharts.Chart(options);
+    <script type="text/javascript">
+      $(document).ready(function() {
+      //首次配置
+      var options = {
+          chart: {
+            type:'spline',
+            renderTo:'data-container'
+          },
+          title: {
+            text: '2014-2015常规赛季得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均得分：99.3分',
+            useHTML:true,
+            x: -20 //center
+          },
+          xAxis: {
+            gridLineWidth: 0,
+            categories: [<c:forEach items="${teamSingleGames}" var="t">
+								'${t.gameDate}',
+						 </c:forEach>
+				        ],
+            labels: {
+              style: {
+                color: '#000',
+                fontWeight: 'bold'
+              }
+            },
+            tickInterval:10,
+            startOnTick: false,
+          },
+          yAxis: {
+            title: {
+                text: ''
+            },
+            labels:{
+                format:'{value}分'
+            }
+          },
+          // 去掉额外元素
+          legend: {
+            enabled: false
+          },
+          exporting: {
+            enabled: false
+          },
+          credits: {
+            enabled: false
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+            valueSuffix: ' 分',
+          },
+          series: [{
+              name: '湖人',
+              color: 'red',
+              data: [<c:forEach items="${teamSingleGames}" var="t">
+							${t.score},
+					 </c:forEach>
+			        ]
+          }]
+        };
+      var chart = new Highcharts.Chart(options);
 
-							// var chart = $('#data-container').highcharts();
-							$("a").click(
-									function() {
-										//为当前元素添加class:on
-										$(this).addClass("on");
-										// 遍历所有元素移除on
-										$(this).siblings().removeClass("on");
-										// 修改y轴单位
-										var measure = $(this).attr('measure');
-										options.yAxis.labels.format = '{value}'
-												+ measure;
-										// 修改提示单位
-										options.tooltip.valueSuffix = measure;
-										// 修改标题
-										var title = $(this).attr('tit');
-										options.title.text = title;
-										// 修改数据
-										var arr = $(this).attr('arr');
-										var array = arr.split(",");
-										var nums = [];
-										for (var i = 0; i < array.length-1; i++) {
-											nums.push(parseInt(array[i]));
-										}
-										// chart.series[0].setData(nums);
-										options.series[0].data = nums;
-										// 重画
-										chart = new Highcharts.Chart(options);
-										// chart.series[0].update(null,true);
-									});
-						});
-	</script>
+      // var chart = $('#data-container').highcharts();
+        $(".data-select a").click(function(){
+          //为当前元素添加class:on
+          $(this).addClass("on");
+          // 遍历所有元素移除on
+          $(this).siblings().removeClass("on");
+          // 修改y轴单位
+          var measure = $(this).attr('measure');
+          options.yAxis.labels.format = '{value}'+measure;
+          // 修改提示单位
+          options.tooltip.valueSuffix = measure;
+          // 修改标题
+          var active = $("label.active");
+          var title = $(".data-select").attr('season');
+          if(active.attr('id') == "regular"){
+            var average = 0;
+            var data_array = $(this).attr('regular').split(',');
+            for (var i = 0; i < data_array.length-1; i++) {
+              average += parseInt(data_array[i]);
+            };
+            average = (average / (data_array.length-1)).toFixed(1);
+            title += "常规" + $(this).attr('tit') + average + measure;
+          }
+          else if((active.attr('id') == "playoff")){
+            var average = 0;
+            var data_array = $(this).attr('playoff').split(',');
+            for (var i = 0; i < data_array.length-1; i++) {
+              average += parseInt(data_array[i]);
+            };
+            average = (average / (data_array.length-1)).toFixed(1);
+            title += "季后" + $(this).attr('tit') + average + measure;
+          }
+          options.title.text = title;
+          // 修改数据
+          var data;
+          if(active.attr('id') == "regular"){
+            data = $(this).attr('regular');
+          }
+          else if((active.attr('id') == "playoff"))
+            data = $(this).attr('playoff');
+          var array = data.split(",");
+          var nums = [ ];
+          for (var i=0 ; i< array.length-1; i++)
+          {
+              nums.push(parseInt(array[i]));
+          }
+          // chart.series[0].setData(nums);
+          options.series[0].data = nums;
+          //修改横坐标
+          if(active.attr('id') == "regular"){
+            var regular_date = $("#season_data").attr('regular-date');
+            var date_array = regular_date.split(",");
+            var dates = [ ];
+            for (var i=0 ; i< date_array.length-1; i++)
+            {
+                dates.push(date_array[i]);
+            }
+            options.xAxis.categories = date_array;
+          }
+          else if((active.attr('id') == "playoff")){
+            var playoff_date = $("#season_data").attr('playoff-date');
+            var date_array = playoff_date.split(",");
+            var dates = [ ];
+            for (var i=0 ; i< date_array.length-1; i++)
+            {
+                dates.push(date_array[i]);
+            }
+            options.xAxis.categories = date_array;
+          }
+          // 重画
+          chart = new Highcharts.Chart(options);
+          // chart.series[0].update(null,true);
+        });
+        $("label#regular").click(function(){
+          // 修改标题
+          var title = $(".data-select").attr('season');
+          var measure = $("a.on").attr('measure');
+          var average = 0;
+          var data_array = $("a.on").attr('regular').split(',');
+          for (var i = 0; i < data_array.length; i++) {
+            average += parseInt(data_array[i]);
+          };
+          average = (average / data_array.length).toFixed(1);
+          title += "常规" +  $("a.on").attr('tit') + average + measure;
+          options.title.text = title;
+          // 修改数据
+          var arr = $("a.on").attr('regular');
+          var array = arr.split(",");
+          var nums = [ ];
+          for (var i=0 ; i< array.length ; i++)
+          {
+              nums.push(parseInt(array[i]));
+          }
+          options.series[0].data = nums;
+          //修改横坐标
+          var regular_date = $("#season_data").attr('regular-date');
+          var date_array = regular_date.split(",");
+          var dates = [ ];
+          for (var i=0 ; i< date_array.length ; i++)
+          {
+              dates.push(date_array[i]);
+          }
+          options.xAxis.categories = date_array;
+          // 重画
+          chart = new Highcharts.Chart(options);
+        });
+        $("label#playoff").click(function(){
+          // 修改标题
+          var title = $(".data-select").attr('season');
+          var measure = $("a.on").attr('measure');
+          var average = 0;
+          var data_array = $("a.on").attr('playoff').split(',');
+          for (var i = 0; i < data_array.length; i++) {
+            average += parseInt(data_array[i]);
+          };
+          average = (average / data_array.length).toFixed(1);
+          title += "季后" +  $("a.on").attr('tit') + average + measure;
+          options.title.text = title;
+          // 修改数据
+          var playoff = $("a.on").attr('playoff');
+          var array = playoff.split(",");
+          var nums = [ ];
+          for (var i=0 ; i< array.length ; i++)
+          {
+              nums.push(parseInt(array[i]));
+          }
+          // chart.series[0].setData(nums);
+          options.series[0].data = nums;
+          //修改横坐标
+          var playoff_date = $("#season_data").attr('playoff-date');
+          var date_array = playoff_date.split(",");
+          var dates = [ ];
+          for (var i=0 ; i< date_array.length ; i++)
+          {
+              dates.push(date_array[i]);
+          }
+          options.xAxis.categories = date_array;
+          // 重画
+          chart = new Highcharts.Chart(options);
+        });
+        $(".dropdown-menu a").click(function(){
+          $("#season")[0].childNodes[0].nodeValue = $(this).text()+" ";
+          var select_season = $(this).text().replace(/\s+/g,"");
+          var url = "http://localhost:8080/NBADataAnalysis/team/${teamSingleGames.get(0).team}/"+select_season;
+          $.ajax
+            ({  type: "get",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: url,  //这里是网址
+                success: function (result) {
+                  $(".data-select").attr("season",result.season);
+                  $(".data-select").attr("regular-date",result.regular_date);
+                  $(".data-select").attr("playoff-date",result.playoff_date);
+                  $(".data-select a").each(function(i,item){
+                    $(this).attr("regular",result.data[i].regular);
+                    $(this).attr("playoff",result.data[i].playoff);
+                  });
+                  $(".data-select a.on").click();
+                },
+                timeout: 1000,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  alert("服务器请求失败");
+                    // $("#welcome").html(XMLHttpRequest+textStatus+errorThrown.message);
+                }
+            });
+        });
+    });
+    </script>
 
 
 </body>
