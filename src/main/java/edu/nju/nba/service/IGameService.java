@@ -5,6 +5,7 @@ import java.util.List;
 import edu.nju.nba.bean.Game;
 import edu.nju.nba.bean.GameSchedule;
 import edu.nju.nba.bean.PlayerSingleGame;
+import edu.nju.nba.bean.TeamGameRecord;
 import edu.nju.nba.bean.TeamSingleGame;
 
 public interface IGameService {
@@ -32,4 +33,6 @@ public interface IGameService {
 	// 根据赛季、日期查询某一天的比赛列表
 	public List<GameSchedule> listGameByDay(String seasonId, String gameDate);
 
+	//查询某赛季联盟排名
+	public List<TeamGameRecord> listFederalBoard(String seasonId);
 }
