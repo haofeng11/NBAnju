@@ -49,7 +49,7 @@ public class Player implements Serializable {
 	// 本赛季薪水
 	private String salary;
 	// 奖项
-	private String price;
+	private String prize;
 	// 图片地址
 	private String picture;
 
@@ -60,7 +60,7 @@ public class Player implements Serializable {
 	public Player(String playerID, String cName, String eName, String height,
 			String weight, String birthday, String team, String draftInfo,
 			String birthplace, String position, String playerNumber,
-			String salary, String price, String picture) {
+			String salary, String prize, String picture) {
 		super();
 		this.playerID = playerID;
 		this.cName = cName;
@@ -74,7 +74,7 @@ public class Player implements Serializable {
 		this.position = position;
 		this.playerNumber = playerNumber;
 		this.salary = salary;
-		this.price = price;
+		this.prize = prize;
 		this.picture = picture;
 	}
 
@@ -176,12 +176,12 @@ public class Player implements Serializable {
 		this.salary = salary;
 	}
 
-	public String getPrice() {
-		return price;
+	public String getprize() {
+		return prize;
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
+	public void setprize(String prize) {
+		this.prize = prize;
 	}
 
 	public String getPicture() {

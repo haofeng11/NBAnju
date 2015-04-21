@@ -48,6 +48,9 @@ public interface IPlayerService {
     
     //根据赛季ID，比赛日期，所在球队得到某一场比赛该球队所有球员的数据
     public List<PlayerSingleGame> getPlayerSingleGames(String teamName,String seasonID,String gameDate);
+    
+    //根据gameID查找PlayerSingleGame
+    public List<PlayerSingleGame> getPlayerSingleGameByID(String gameID);
 	
 	/**
 	 * 球员对比

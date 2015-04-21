@@ -3,6 +3,7 @@ package edu.nju.nba.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.nju.nba.bean.Game;
 import edu.nju.nba.bean.Player;
 import edu.nju.nba.bean.PlayerDataAnalysis;
 import edu.nju.nba.bean.PlayerDataStatistics;
+import edu.nju.nba.bean.PlayerSingleGame;
+import edu.nju.nba.service.IGameService;
 import edu.nju.nba.service.IPlayerService;
 
 @Controller
@@ -24,6 +28,8 @@ public class PlayerController {
 
 	@Autowired
 	private IPlayerService playerService;
+	@Autowired
+	private IGameService gameService;
 
 	// 场均得分联盟排名
 	int scoreRanking;
@@ -67,7 +73,7 @@ public class PlayerController {
 	/*
 	 * 根据球员姓名查找球员 return 球员信息 PS：球员姓名唯一
 	 */
-	@RequestMapping(value = "/{playername}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{playerName}", method = RequestMethod.GET)
 	public String show(@PathVariable String playerName, Model model) {
 
 		// 球员基本信息
@@ -109,6 +115,18 @@ public class PlayerController {
 		// 场均罚球命中率联盟排名
 		freeThrowPercentageRanking=getThreePercentageRanking(playerDataStatistics14, playerDataStatisticsList);
 		model.addAttribute("freeThrowPercentageRanking", freeThrowPercentageRanking);
+		
+		System.out.println(playerDataStatistics14.toString());
+		System.out.println(playerDataStatisticsList.size());
+		System.out.println(scoreRanking);
+		System.out.println(assistanceRanking);
+		System.out.println(reboundRanking);
+		System.out.println(grabRanking);
+		System.out.println(blockRanking);
+		System.out.println(mistakeRanking);
+		System.out.println(shootPercentageRanking);
+		System.out.println(threePercentageRanking);
+		System.out.println(freeThrowPercentageRanking);
 
 		// model.addAttribute("playerDataStatistics",playerDataStatistics);
 		// 球员赛季场均分析数据
@@ -134,7 +152,17 @@ public class PlayerController {
 		//球员二所有常规赛场均数据
 		List<PlayerDataStatistics> dataStatisticsP2=playerService.getDataStatisticsByName(secondName, "0");
 		List<PlayerDataAnalysis> dataAnalysisP2=playerService.getDataAnalysisByName(secondName, "0");
-
+		
+		//球员交手数据
+		//根据球员所在球队找到game数据，再根据game找到PlayerSingleGame
+		Player p1=playerService.show(firstName);
+		Player p2=playerService.show(secondName);
+		List<Game> games=gameService.getGames(p1.getTeam(), p2.getTeam());
+		List<PlayerSingleGame> playerSingleGames=new ArrayList<PlayerSingleGame>();
+        for (Game g : games) {
+        	playerSingleGames.add(playerService.getPlayerSingleGameByID(g.getGameID()).get(0));
+        	playerSingleGames.add(playerService.getPlayerSingleGameByID(g.getGameID()).get(1));
+		}
 		return "comparison";
 	}
 	

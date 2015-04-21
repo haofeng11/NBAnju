@@ -14,6 +14,8 @@ import java.util.List;
 
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +35,7 @@ public class PlayerService implements IPlayerService {
 
 	// 根据球员姓名查找球员，返回球员信息
 	public Player show(String playerName) {		
-		return (Player)generalDao.find("from edu.nju.nba.bean.Player where p.cName=?", playerName);
+		return (Player)generalDao.find("from edu.nju.nba.bean.Player p where p.cName=?", playerName);
 	}
 
 	// 查找所有球员基本信息
@@ -87,6 +89,11 @@ public class PlayerService implements IPlayerService {
 	@SuppressWarnings("unchecked")
 	public List<PlayerDataStatistics> findTeam(String teamName, String seasonID, String tag) {
 		return (List<PlayerDataStatistics>)generalDao.find3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.team=? and p.tag=?", seasonID, teamName, tag);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<PlayerSingleGame> getPlayerSingleGameByID(String gameID) {
+		return (List<PlayerSingleGame>)generalDao.findList("from edu.nju.nba.bean.PlayerSingleGame p where p.gameID=?", gameID);
 	}
 
 
@@ -255,6 +262,8 @@ public class PlayerService implements IPlayerService {
 		}
 		
 	}
+
+
 
 
 

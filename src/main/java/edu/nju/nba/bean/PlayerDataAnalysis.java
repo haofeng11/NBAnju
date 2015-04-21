@@ -16,48 +16,67 @@ public class PlayerDataAnalysis implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private Integer id;
 	// 球员name
 	private String player;
 	// 赛季ID
 	private String seasonID;
 	// 所在球队
 	private String team;
+	//篮板率
 	private String reboundPercent;
+	//进攻篮板率
 	private String offenReboundPercent;
+	//防守篮板率
 	private String defenReboundPercent;
+	//助攻率
 	private String assistancePercent;
+	//抢断率
 	private String grabPercent;
+	//盖帽率
 	private String blockPercent;
+	//失误率
 	private String mistakePercent;
+	//使用率
 	private String usePercent;
+	//进攻效率
 	private String offensiveEfficiency;
+	//防守效率
 	private String defensiveEfficiency;
 	private String WS;
 	private String offensiveWS;
 	private String defensiveWS;
 	private String PER;
+	//扣篮数
 	private String dunk;
 	private String andOne;
+	//被冒数
 	private String blocked;
+	//出手距离
 	private String shootDistance;
+	//篮下
 	private String keyShootPercent;
 	private String keyShootHit;
 	private String keyShootTotal;
 	private String keyProportion;
+	//近距离两分
 	private String closeShootPercent;
 	private String closeShootHit;
 	private String closeShootTotal;
 	private String closeProportion;
+	//中距离两分
 	private String middleShootPercent;
 	private String middleShootHit;
 	private String middleShootTotal;
 	private String middleProportion;
+	//远距离两分
 	private String distantShootPercent;
 	private String distantShootHit;
 	private String distantShootTotal;
 	private String distantProportion;
+	//真实命中率
 	private String truePercentage;
+	//投篮效率
 	private String shootEfficiency;
 	// 标识，0代表常规赛，1代表季后赛
 	private String tag;
@@ -66,7 +85,7 @@ public class PlayerDataAnalysis implements Serializable {
 		super();
 	}
 
-	public PlayerDataAnalysis(String id, String player, String seasonID,
+	public PlayerDataAnalysis(Integer id, String player, String seasonID,
 			String team, String reboundPercent, String offenReboundPercent,
 			String defenReboundPercent, String assistancePercent,
 			String grabPercent, String blockPercent, String mistakePercent,
@@ -128,11 +147,11 @@ public class PlayerDataAnalysis implements Serializable {
 
 	@GeneratedValue
 	@Id
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

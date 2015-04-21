@@ -23,7 +23,7 @@ public class PlayerDataStatistics implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String id;
+	private Integer ID;
 	// 球员姓名
 	private String player;
 	// 赛季ID
@@ -58,8 +58,6 @@ public class PlayerDataStatistics implements Serializable {
 	private String threeHit;
 	// 三分命中率
 	private String threePercentage;
-	// 真实命中率
-	private String trueShootingPercentage;
 	// 罚球命中率
 	private String freeThrowPercentage;
 	// 罚球出手
@@ -85,18 +83,17 @@ public class PlayerDataStatistics implements Serializable {
 		super();
 	}
 
-	public PlayerDataStatistics(String id, String player, String seasonID,
+	public PlayerDataStatistics(Integer iD, String player, String seasonID,
 			String team, String appearCnt, String firstCnt, String playTime,
 			String score, String assistance, String rebound,
 			String offensiveRebound, String defensiveRebound,
 			String shootTotal, String shootHit, String shootPercentage,
 			String threeTotal, String threeHit, String threePercentage,
-			String trueShootingPercentage, String freeThrowPercentage,
-			String freeThrowTotal, String freeThrowHit, String block,
-			String grab, String mistake, String foul, String winCnt,
-			String loseCnt) {
+			String freeThrowPercentage, String freeThrowTotal,
+			String freeThrowHit, String block, String grab, String mistake,
+			String foul, String winCnt, String loseCnt, String tag) {
 		super();
-		this.id = id;
+		ID = iD;
 		this.player = player;
 		this.seasonID = seasonID;
 		this.team = team;
@@ -114,7 +111,6 @@ public class PlayerDataStatistics implements Serializable {
 		this.threeTotal = threeTotal;
 		this.threeHit = threeHit;
 		this.threePercentage = threePercentage;
-		this.trueShootingPercentage = trueShootingPercentage;
 		this.freeThrowPercentage = freeThrowPercentage;
 		this.freeThrowTotal = freeThrowTotal;
 		this.freeThrowHit = freeThrowHit;
@@ -124,16 +120,21 @@ public class PlayerDataStatistics implements Serializable {
 		this.foul = foul;
 		this.winCnt = winCnt;
 		this.loseCnt = loseCnt;
+		this.tag = tag;
 	}
+
+
+
 
 	@Id
 	@GeneratedValue
-	public String getId() {
-		return id;
+	public Integer getID() {
+		return ID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+
+	public void setID(Integer iD) {
+		ID = iD;
 	}
 
 	public String getPlayer() {
@@ -270,14 +271,6 @@ public class PlayerDataStatistics implements Serializable {
 
 	public void setThreePercentage(String threePercentage) {
 		this.threePercentage = threePercentage;
-	}
-
-	public String getTrueShootingPercentage() {
-		return trueShootingPercentage;
-	}
-
-	public void setTrueShootingPercentage(String trueShootingPercentage) {
-		this.trueShootingPercentage = trueShootingPercentage;
 	}
 
 	public String getFreeThrowPercentage() {
