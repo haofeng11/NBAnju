@@ -60,9 +60,9 @@
 .gamecenter_content_r .region_box{border:1px #efeff0 solid;padding:0px;}
 .gamecenter_content_r .region_box .tiltle .tiltle_a,.gamecenter_content_r .region_box .tiltle .tiltle_b,.gamecenter_content_r .region_box .tiltle .tiltle_c,.gamecenter_content_r .region_box .tiltle .tiltle_d{display:inline-block;height:32px;text-align:center;padding-top:8px;font:12px/1.5 \9ED1\4F53,Arial,sans-serif;font-size:16px; cursor: pointer;}
 .gamecenter_content_r .region_box .tiltle .tiltle_a{width:123px;background-color:#fbfbfb;border-right:1px #ececec solid}
-.gamecenter_content_r .region_box .tiltle .tiltle_b{width:125px;background-color:#f2f2f2;border-left:1px #fff solid; color: #999999}
-.gamecenter_content_r .region_box .tiltle .tiltle_c{font-size:12px;width:40px;background-color:#f2f2f2;border-right:1px #fff solid; color: #999999}
-.gamecenter_content_r .region_box .tiltle .tiltle_d{font-size:12px;width:40px;background-color:#f2f2f2; color: #999999}
+.gamecenter_content_r .region_box .tiltle .tiltle_b{width:125px;background-color:#e2dede;border-left:1px #fff solid; color: #999999}
+.gamecenter_content_r .region_box .tiltle .tiltle_c{font-size:12px;width:40px;background-color:#e2dede;border-right:1px #fff solid; color: #999999}
+.gamecenter_content_r .region_box .tiltle .tiltle_d{font-size:12px;width:40px;background-color:#e2dede; color: #999999}
 .gamecenter_content_r .region_box .itinerary_table{border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;width:100%;text-align:center}
 .gamecenter_content_r .region_box .itinerary_table tr {background-color:#fff}
 .gamecenter_content_r .region_box .itinerary_table tr.bg_a{background-color:#fbfbfb}

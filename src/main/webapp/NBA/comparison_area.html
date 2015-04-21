@@ -61,9 +61,10 @@
       		<div class="col-md-1" role="main"></div>
         	<div class="col-md-10 area" role="main">
         		<div class="data-select">
-        			<a class="on" href="#">得分</a>
-        			<a href="#">失分</a>
-        			<a href="#">篮板</a>
+        			<a class="on" href="#" eastdata="83.6, 86.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 96.6, 86.3,88.2]
+" westdata="88.9, 90.5, 106.4, 129.2, 124.0, 136.0, 135.6, 128.5, 126.4, 114.1, 95.6, 94.4,96.2" measure="分">得分</a>
+        			<a href="#" eastdata="92.6, 87.8, 88.5, 95.4, 101.0, 82.5, 95.0, 106.3, 94.2, 88.5, 92.6, 84.3,99" westdata="83.9, 99.5, 104.4, 119.2, 120.0, 132.0, 120.6, 118.5, 126.4, 114.1, 95.6, 91.4,92" measure="分">失分</a>
+        			<a href="#" eastdata="33, 36, 39, 43, 37, 36, 32, 31, 30, 32, 33, 34,36" westdata="33, 36, 39, 43, 37, 36, 32, 31, 30, 32, 33, 34,39" measure="个">篮板</a>
         			<a href="#">助攻</a>
         			<a href="#">抢断</a>
         			<a href="#">盖帽</a>
@@ -83,72 +84,64 @@
       var options = {
           chart: {
           	backgroundColor: '#FCFFC5',
-            type:'line',
+            type:'column',
             renderTo:'data-container'
           },
           title: {
-            text: '六大分区实力对比',
-            useHTML:true,
-            x: -20 //center
-          },
-          xAxis: {
-            gridLineWidth: 0,
-            categories: ['2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014'],
-            labels: {
-            	enabled:false,
-              style: {
-                color: '#000',
-                fontWeight: 'bold'
-              }
-            },
-            tickInterval:10,
-            startOnTick: false,
-          },
-          yAxis: {
-          	lineWidth:1,
-          	// 设置Y轴最小间隔
-          	minTickInterval:40,
+            text: '东-西部分区2002-2014赛季'
+        },
+        subtitle: {
+            text: '场均得分对比'
+        },
+        xAxis: {
+            categories: [
+                '2002年',
+                '2003年',
+                '2004年',
+                '2005年',
+                '2006年',
+                '2007年',
+                '2008年',
+                '2009年',
+                '2010年',
+                '2011年',
+                '2012年',
+                '2013年',
+                '2014年'
+            ],
+            crosshair: true
+        },
+        yAxis: {
             title: {
                 text: ''
             },
             labels:{
-            	enabled:false,
-                // format:'{value}分'
+                format:'{value}分'
             }
-          },
-          // 去掉额外元素
-          legend: {
-            enabled: true,
-          },
-          exporting: {
-            enabled: false
-          },
-          credits: {
-            enabled: false
-          },
-          tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b><br/>',
-            valueSuffix: ' 分',
-          },
-          series: [{
-              name: '东南分区',
-              data: [30,33,36,38,45,41,33,35,37,33,31,27,]
-          },{
-              name: '中央分区',
-              data: [40,41,45,42,41,47,44,49,47,55,43,41,]
-          },{
-              name: '大西洋分区',
-              data: [50,52,55,55,58,49,48,53,58,59,55,57,]
-          },{
-              name: '太平洋分区',
-              data: [60,61,62,62,62,58,64,65,68,79,78,80,]
-          },{
-              name: '西南分区',
-              data: [70,71,75,77,78,79,73,75,71,68,66,67]
-          },{
-              name: '西北分区',
-              data: [80,81,82,83,82,82,82,79,77,85,87,88]
-          }]
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: '东部',
+            data: [83.6, 86.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 96.6, 86.3,88.2]
+
+        },{
+            name: '西部',
+            data: [88.9, 90.5, 106.4, 129.2, 124.0, 136.0, 135.6, 128.5, 126.4, 114.1, 95.6, 94.4,96.2]
+
+        }]
         };
       var chart = new Highcharts.Chart(options);
 
@@ -164,18 +157,26 @@
           // 修改提示单位
           options.tooltip.valueSuffix = measure;
           // 修改标题
-          var title = $(this).attr('tit');
-          options.title.text = title;
-          // 修改数据
-          var arr = $(this).attr('arr');
-          var array = arr.split(",");
+          var title = "场均"+$(this).text()+"对比";
+          options.subtitle.text = title;
+          // 修改东部数据
+          var eastdata = $(this).attr('eastdata');
+          var array = eastdata.split(",");
           var nums = [ ];
           for (var i=0 ; i< array.length ; i++)
           {
               nums.push(parseInt(array[i]));
           }
-          // chart.series[0].setData(nums);
           options.series[0].data = nums;
+          // 修改西部数据
+          var westdata = $(this).attr('westdata');
+          var array = westdata.split(",");
+          var nums = [ ];
+          for (var i=0 ; i< array.length ; i++)
+          {
+              nums.push(parseInt(array[i]));
+          }
+          options.series[1].data = nums;
           // 重画
           chart = new Highcharts.Chart(options);
           // chart.series[0].update(null,true);

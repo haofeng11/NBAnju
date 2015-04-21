@@ -13,6 +13,9 @@ public interface IGameService {
 	// 查询某场比赛基本信息（game类中字段）
 	public Game show(String seasonId, String gameDate, String homeTeam,
 			String guestTeam);
+	
+	//根据主队名和客队名找到两只球队的交手记录
+	public List<Game> getGames(String homeTeam,String guestTeam);
 
 	// //查询某场比赛球队数据
 	public TeamSingleGame showTeamSingleGame(String seasonId, String gameDate,

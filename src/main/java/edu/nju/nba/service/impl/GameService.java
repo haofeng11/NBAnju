@@ -2,17 +2,19 @@ package edu.nju.nba.service.impl;
 
 import java.util.List;
 
-import javax.persistence.criteria.From;
 
-import org.aspectj.weaver.ast.And;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.nba.bean.Game;
 import edu.nju.nba.bean.GameSchedule;
 import edu.nju.nba.bean.PlayerSingleGame;
-import edu.nju.nba.bean.Team;
+
 import edu.nju.nba.bean.TeamGameRecord;
+
 import edu.nju.nba.bean.TeamSingleGame;
 import edu.nju.nba.dao.IGeneralDao;
 import edu.nju.nba.service.IGameService;
@@ -64,9 +66,17 @@ public class GameService implements IGameService {
 		return (List<GameSchedule>)generalDao.findList2("From edu.nju.nba.bean.GameSchedule gs where gs.seasonId=? and gs.gameDate=?", seasonId, gameDate);
 	}
 
-	@Override
+
+	@SuppressWarnings("unchecked")
+	public List<Game> getGames(String homeTeam, String guestTeam) {
+		return (List<Game>)generalDao.findList2("From edu.nju.nba.bean.Game g where g.homeTeam=? and gs.guestTeam=?", homeTeam, guestTeam);
+
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<TeamGameRecord> listFederalBoard(String seasonId) {
 		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.seasonId=?", seasonId);
+
 	}
 
 }
