@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @author fenghao
  * 
  */
-//赛程类不要？
+
 
 @Entity
 @Table(name="game_schedule")
@@ -37,7 +37,7 @@ public class GameSchedule implements Serializable{
 
 	public GameSchedule() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public GameSchedule(String gameId, String seasonId, String gameDate,
