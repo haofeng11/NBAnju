@@ -78,5 +78,9 @@ public class GameService implements IGameService {
 		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.seasonID=?", seasonId);
 
 	}
+	
+	public List<Game> listGameSchedule(String seasonId,String gameDate){
+		return (List<Game>)generalDao.findList2("From edu.nju.nba.bean.Game g where g.seasonID=? and gameDate=?", seasonId,gameDate);
+	}
 
 }

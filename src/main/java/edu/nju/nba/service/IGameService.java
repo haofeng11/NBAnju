@@ -38,4 +38,7 @@ public interface IGameService {
 
 	//查询某赛季联盟排名
 	public List<TeamGameRecord> listFederalBoard(String seasonId);
+	
+	//查询某日比赛列表
+	public List<Game> listGameSchedule(String seasonId,String gameDate);
 }

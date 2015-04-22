@@ -1,11 +1,10 @@
 package edu.nju.nba.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-
-
-
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,53 +35,102 @@ public class GameController {
 	private ITeamService teamService;
 	@Autowired
 	private IPlayerService playerService;
-	
-	//跳转到比赛界面
-	@RequestMapping(value="/games",method=RequestMethod.GET)
+	@Autowired
+	private PlayerController playerController;
+
+	// 跳转到比赛界面
+	@RequestMapping(value = "/games", method = RequestMethod.GET)
 	public String games(Model model) {
 		return "game";
-		
-	}
-	
-	//跳转到赛后数据界面
-	@RequestMapping(value="/{seasonID}/{gameDate}/{homeTeam}/{guestTeam}",method=RequestMethod.GET)
-	public String matchstat(@PathVariable String seasonID,@PathVariable String gameDate,@PathVariable String homeTeam,@PathVariable String guestTeam,Model model){
-		Game game=gameService.show(seasonID, gameDate, homeTeam, guestTeam);
-		String homeTeamPicture=teamService.show(game.getHomeTeam()+"队").getPicture();
-		String guestTeamPicture=teamService.show(game.getGuestTeam()+"队").getPicture();
-		model.addAttribute("game", game);
-		model.addAttribute("homeTeamPicture", homeTeamPicture);
-		model.addAttribute("guestTeamPicture", guestTeamPicture);
-		
 
-		//赛后球队平均数据
-		TeamSingleGame homeTeamData=teamService.getTeamSingleGame(homeTeam, seasonID,gameDate,"0");
-		TeamSingleGame guestTeamData=teamService.getTeamSingleGame(guestTeam, seasonID,gameDate,"0");
-
-		model.addAttribute("homeTeamData", homeTeamData);
-		model.addAttribute("guestTeamData", guestTeamData);
-		//赛后球员个人数据
-		List<PlayerSingleGame> homePlayerList=playerService.getPlayerSingleGames(homeTeam, seasonID, gameDate);
-		List<PlayerSingleGame> guestPlayerList=playerService.getPlayerSingleGames(guestTeam, seasonID, gameDate);
-		model.addAttribute("homePlayerList", homePlayerList);
-		model.addAttribute("guestPlayerList", guestPlayerList);
-		return "matchstat";
 	}
-	@RequestMapping(value="/game",method=RequestMethod.GET)
-	public ModelAndView showGame(HttpServletRequest request,HttpServletResponse response){
-		//init view
+
+	//比赛默认获取本日信息
+	@RequestMapping(value = "/game", method = RequestMethod.GET)
+	public ModelAndView showGame(HttpServletRequest request,
+			HttpServletResponse response) {
+		// init view
 		ModelAndView view = new ModelAndView();
-		//get game data
+		// get game data
 		List<TeamGameRecord> records = gameService.listFederalBoard("14-15");
+		
+		Calendar calendar = Calendar.getInstance();
+//		calendar.add(Calendar.MONTH, -1);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(calendar.getTime());
+		List<Game> gameSchedule = gameService.listGameSchedule("14-15", today);
 		System.out.println(records.size());
-		//add into view
+		// add into view
 		view.addObject("records", records);
-		//set view name
+		//添加比赛列表
+		view.addObject("gameSchedule", gameSchedule);
+		// set view name
 		view.setViewName("game");
-		//return view
+
+		// return view
+		return view;
+	}
+
+	//选择日期后刷新页面
+	@RequestMapping(value = "/gameSchedule", method = RequestMethod.GET)
+	public ModelAndView showGameSchedule(HttpServletRequest request,
+			HttpServletResponse response) throws ParseException {
+		// init view
+		ModelAndView view = new ModelAndView();
+		//得到赛季seasonId和日期gameDate
+		String season = request.getParameter("seasonId");
+		String date = request.getParameter("date");
+		String[] seasonArr=season.split(" ");
+		String seasonId=seasonArr[0];
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		Date temp = sdf.parse(date);
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+		String gameDate = sdf2.format(temp);
+
+		// get game data
+		List<TeamGameRecord> records = gameService.listFederalBoard(seasonId);
+		List<Game> gameSchedule = gameService.listGameSchedule(seasonId, gameDate);
+		// add into view
+		//添加联盟排名
+		view.addObject("records", records);
+		//添加比赛列表
+		view.addObject("gameSchedule", gameSchedule);
+		
+		view.setViewName("game");
+
 		return view;
 	}
 	
-	
-	
+	// 跳转到赛后数据界面
+	@RequestMapping(value = "/match", method = RequestMethod.POST)
+	public ModelAndView matchStatus(String seasonID,String gameDate,String homeTeam,String guestTeam, HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView view = new ModelAndView();
+		Game game = gameService.show(seasonID, gameDate, homeTeam, guestTeam);
+		String homeTeamPicture = teamService.show(game.getHomeTeam() + "队")
+				.getPicture();
+		String guestTeamPicture = teamService.show(game.getGuestTeam() + "队")
+				.getPicture();
+		view.addObject("game", game);
+		view.addObject("homeTeamPicture", homeTeamPicture);
+		view.addObject("guestTeamPicture", guestTeamPicture);
+
+		// 赛后球队总数据
+		TeamSingleGame homeTeamData = teamService.getTeamSingleGame(homeTeam,
+				seasonID, gameDate, "0");
+		TeamSingleGame guestTeamData = teamService.getTeamSingleGame(guestTeam,
+				seasonID, gameDate, "0");
+
+		view.addObject("homeTeamData", homeTeamData);
+		view.addObject("guestTeamData", guestTeamData);
+		// 赛后球员个人数据
+		List<PlayerSingleGame> homePlayerList = playerService
+				.getPlayerSingleGames(homeTeam, seasonID, gameDate);
+		List<PlayerSingleGame> guestPlayerList = playerService
+				.getPlayerSingleGames(guestTeam, seasonID, gameDate);
+		view.addObject("homePlayerList", homePlayerList);
+		view.addObject("guestPlayerList", guestPlayerList);
+		view.setViewName("matchstat");
+		return view;
+	}
+
 }

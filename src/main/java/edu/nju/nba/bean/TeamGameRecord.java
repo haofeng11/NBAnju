@@ -15,22 +15,14 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="team_game_record")
+@Table(name = "team_game_record")
 public class TeamGameRecord implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	// 根据公式计算排名：胜场/（胜场+负场）*100%
-	private String teamRanking;
+	private String rank;
 	private String seasonID;
-	public String getSeasonID() {
-		return seasonID;
-	}
-
-	public void setSeasonID(String seasonID) {
-		this.seasonID = seasonID;
-	}
-
 	// 球队
 	private String team;
 	// 胜场
@@ -41,25 +33,12 @@ public class TeamGameRecord implements Serializable {
 	private String victory;
 	// 胜场差
 	private String winGap;
+	// 东西部
+	private String district;
 
 	public TeamGameRecord() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-
-
-	public TeamGameRecord(String teamRankingString, String seasonID,
-			String team, String winGame, String loseGame, String victory,
-			String winGap) {
-		super();
-		this.teamRanking = teamRankingString;
-		this.seasonID = seasonID;
-		this.team = team;
-		this.winGame = winGame;
-		this.loseGame = loseGame;
-		this.victory = victory;
-		this.winGap = winGap;
 	}
 
 	@Id
@@ -70,15 +49,6 @@ public class TeamGameRecord implements Serializable {
 
 	public void setTeam(String team) {
 		this.team = team;
-	}
-
-
-	public String getTeamRankingString() {
-		return teamRanking;
-	}
-
-	public void setTeamRankingString(String teamRankingString) {
-		this.teamRanking = teamRankingString;
 	}
 
 	public String getWinGame() {
@@ -111,6 +81,44 @@ public class TeamGameRecord implements Serializable {
 
 	public void setWinGap(String winGap) {
 		this.winGap = winGap;
+	}
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
+	public String getSeasonID() {
+		return seasonID;
+	}
+
+	public void setSeasonID(String seasonID) {
+		this.seasonID = seasonID;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
+	public TeamGameRecord(String rank, String seasonID, String team,
+			String winGame, String loseGame, String victory, String winGap,
+			String district) {
+		super();
+		this.rank = rank;
+		this.seasonID = seasonID;
+		this.team = team;
+		this.winGame = winGame;
+		this.loseGame = loseGame;
+		this.victory = victory;
+		this.winGap = winGap;
+		this.district = district;
 	}
 
 }
