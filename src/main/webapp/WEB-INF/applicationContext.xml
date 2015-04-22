@@ -15,7 +15,6 @@
 	<!-- 自动扫面注解包 -->
 	<context:annotation-config />
 	<context:component-scan base-package="edu.nju.*" />
-	
 
 	<!-- 数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -24,7 +23,7 @@
 		<!-- 数据库名称和用户名密码 -->
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/nba" />
 		<property name="username" value="root" />
-		<property name="password" value="wxd19931125" />
+		<property name="password" value="111111" />
 	</bean>
 
 	<!-- 配置sessionFactory -->

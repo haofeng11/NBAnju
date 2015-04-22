@@ -21,10 +21,18 @@ public class TeamGameRecord implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// 根据公式计算排名：胜场/（胜场+负场）*100%
+	private String teamRanking;
+	private String seasonID;
+	public String getSeasonID() {
+		return seasonID;
+	}
+
+	public void setSeasonID(String seasonID) {
+		this.seasonID = seasonID;
+	}
+
 	// 球队
 	private String team;
-	// 东西部
-	private String partion;
 	// 胜场
 	private String winGame;
 	// 负场
@@ -39,11 +47,15 @@ public class TeamGameRecord implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TeamGameRecord(String team, String partion, String winGame,
-			String loseGame, String victory, String winGap) {
+
+
+	public TeamGameRecord(String teamRankingString, String seasonID,
+			String team, String winGame, String loseGame, String victory,
+			String winGap) {
 		super();
+		this.teamRanking = teamRankingString;
+		this.seasonID = seasonID;
 		this.team = team;
-		this.partion = partion;
 		this.winGame = winGame;
 		this.loseGame = loseGame;
 		this.victory = victory;
@@ -60,12 +72,13 @@ public class TeamGameRecord implements Serializable {
 		this.team = team;
 	}
 
-	public String getPartion() {
-		return partion;
+
+	public String getTeamRankingString() {
+		return teamRanking;
 	}
 
-	public void setPartion(String partion) {
-		this.partion = partion;
+	public void setTeamRankingString(String teamRankingString) {
+		this.teamRanking = teamRankingString;
 	}
 
 	public String getWinGame() {
