@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.nju.nba.bean.Game;
+import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.bean.PlayerSingleGame;
 import edu.nju.nba.bean.TeamGameRecord;
 import edu.nju.nba.bean.TeamSingleGame;
@@ -35,8 +36,6 @@ public class GameController {
 	private ITeamService teamService;
 	@Autowired
 	private IPlayerService playerService;
-	@Autowired
-	private PlayerController playerController;
 
 	// 跳转到比赛界面
 	@RequestMapping(value = "/games", method = RequestMethod.GET)
@@ -55,7 +54,7 @@ public class GameController {
 		List<TeamGameRecord> records = gameService.listFederalBoard("14-15");
 		
 		Calendar calendar = Calendar.getInstance();
-//		calendar.add(Calendar.MONTH, -1);
+		calendar.add(Calendar.DATE, -1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(calendar.getTime());
 		List<Game> gameSchedule = gameService.listGameSchedule("14-15", today);
@@ -87,14 +86,54 @@ public class GameController {
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 		String gameDate = sdf2.format(temp);
 
-		// get game data
+		// get data
 		List<TeamGameRecord> records = gameService.listFederalBoard(seasonId);
+		//球队排名
+		List<TeamGameRecord> regularEastRankGameRecords =gameService.getRegularEastRank(seasonId);
+		List<TeamGameRecord> regularWestRankGameRecords =gameService.getRegularWestRank(seasonId);
+		List<TeamGameRecord> playoffEastRankGameRecords =gameService.getPlayoffEastRank(seasonId);
+		List<TeamGameRecord> playoffWestRankGameRecords =gameService.getPlayoffWestRank(seasonId);
+
 		List<Game> gameSchedule = gameService.listGameSchedule(seasonId, gameDate);
+		//球员常规赛数据榜
+		List<PlayerDataStatistics> playerScoreRank= playerService.getPlayerScoreRankingList(seasonId);
+		List<PlayerDataStatistics> playerReboundRank= playerService.getPlayerReboundRankingList(seasonId);
+		List<PlayerDataStatistics> playerAssistanceRank= playerService.getPlayerAssistanceRankingList(seasonId);
+		List<PlayerDataStatistics> playerGrabRank= playerService.getPlayerGrabRankingList(seasonId);
+		List<PlayerDataStatistics> playerThreehitRank= playerService.getPlayerThreehitRankingList(seasonId);
+		List<PlayerDataStatistics> playerBlockRank= playerService.getPlayerBlockRankingList(seasonId);
+		//球员季后赛数据榜
+		List<PlayerDataStatistics> playerOffScoreRank= playerService.getPlayerScoreRankingOffList(seasonId);
+		List<PlayerDataStatistics> playerOffReboundRank= playerService.getPlayerReboundRankingOffList(seasonId);
+		List<PlayerDataStatistics> playerOffAssistanceRank= playerService.getPlayerAssistanceRankingOffList(seasonId);
+		List<PlayerDataStatistics> playerOffGrabRank= playerService.getPlayerGrabRankingOffList(seasonId);
+		List<PlayerDataStatistics> playerOffThreehitRank= playerService.getPlayerThreehitRankingOffList(seasonId);
+		List<PlayerDataStatistics> playerOffBlockRank= playerService.getPlayerBlockRankingOffList(seasonId);
+		
 		// add into view
 		//添加联盟排名
 		view.addObject("records", records);
+		view.addObject("regularEastRankGameRecords", regularEastRankGameRecords);
+		view.addObject("regularWestRankGameRecords", regularWestRankGameRecords);
+		view.addObject("playoffEastRankGameRecords", playoffEastRankGameRecords);
+		view.addObject("playoffWestRankGameRecords", playoffWestRankGameRecords);
+
 		//添加比赛列表
 		view.addObject("gameSchedule", gameSchedule);
+		//添加常规赛球员赛季数据榜
+		view.addObject("playerScoreRank", playerScoreRank);
+		view.addObject("playerReboundRank", playerReboundRank);
+		view.addObject("playerAssistanceRank", playerAssistanceRank);
+		view.addObject("playerGrabRank", playerGrabRank);
+		view.addObject("playerThreehitRank", playerThreehitRank);
+		view.addObject("playerBlockRank", playerBlockRank);
+		//添加季后赛球员赛季数据榜
+		view.addObject("playerOffScoreRank", playerOffScoreRank);
+		view.addObject("playerOffReboundRank", playerOffReboundRank);
+		view.addObject("playerOffAssistanceRank", playerOffAssistanceRank);
+		view.addObject("playerOffGrabRank", playerOffGrabRank);
+		view.addObject("playerOffThreehitRank", playerOffThreehitRank);
+		view.addObject("playerOffBlockRank", playerOffBlockRank);
 		
 		view.setViewName("game");
 

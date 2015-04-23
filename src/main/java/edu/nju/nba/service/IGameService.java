@@ -38,6 +38,11 @@ public interface IGameService {
 
 	//查询某赛季联盟排名
 	public List<TeamGameRecord> listFederalBoard(String seasonId);
+	public List<TeamGameRecord> getRegularEastRank(String seasonId);
+	public List<TeamGameRecord> getRegularWestRank(String seasonId);
+	public List<TeamGameRecord> getPlayoffEastRank(String seasonId);
+	public List<TeamGameRecord> getPlayoffWestRank(String seasonId);
+
 	
 	//查询某日比赛列表
 	public List<Game> listGameSchedule(String seasonId,String gameDate);

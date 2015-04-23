@@ -12,14 +12,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>比赛</title>
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="js/jquery-ui/jquery-ui.css">
-<link href="css/new.css" rel="stylesheet">
+<link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
+<link href="../NBA/css/new.css" rel="stylesheet">
 <!-- Highchart图表JS库 -->
-<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="js/highcharts/highcharts.js"></script>
-<script type="text/javascript" src="js/highcharts/highcharts-more.js"></script>
-<script type="text/javascript" src="js/highcharts/modules/exporting.js"></script>
+<script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
+<script type="text/javascript"
+	src="../NBA/js/highcharts/highcharts-more.js"></script>
+<script type="text/javascript"
+	src="../NBA/js/highcharts/themes/custom.js"></script>
+<script type="text/javascript"
+	src="../NBA/js/highcharts/modules/exporting.js"></script>
+
 <script>
 	$(function() {
 		$("#datepicker").datepicker({
@@ -110,8 +115,8 @@
 						<div class="region_box">
 							<h4>球队${season}战绩</h4>
 							<div class="tiltle" conference="W">
-								<span class="tiltle_a" id="east">东部</span><span
-									class="tiltle_b" id="west">西部</span>
+								<span class="tiltle_a" id="east">东部</span><span class="tiltle_b"
+									id="west">西部</span>
 							</div>
 							<div class="tiltle" conference="W">
 								<span class="tiltle_a" style="width: 248px;"><div
@@ -142,18 +147,18 @@
 								</tbody>
 							</table>
 							<div class="border_red"></div>
-							<table class="itinerary_table itinerary_table_show" id="westdata">
+	                    	<table class="itinerary_table itinerary_table_show" id="eastdata_regular">
 								<tbody>
-									<c:forEach items="${records}" var="record">
+									<c:forEach items="${regularEastRankGameRecords}" var="regularEast">
 										<tr class=" bg_color">
-											<td width="25" height="35">${record.rank}</td>
+											<td width="25" height="35">${regularEast.rank}</td>
 											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
-											<c:set var="temp2" value="${temp.concat(record.team)}"></c:set>
-											<td width="55"><a target="_blank" href="${temp2}">${record.team}</a></td>
-											<td width="20">${record.winGame}</td>
-											<td width="25">${record.loseGame}</td>
-											<td width="25">${record.winGap}</td>
-											<td>${record.victory}</td>
+											<c:set var="temp2" value="${temp.concat(regularEast.team)}"></c:set>
+											<td width="55"><a target="_blank" href="${temp2}">${regularEast.team}</a></td>
+											<td width="20">${regularEast.winGame}</td>
+											<td width="25">${regularEast.loseGame}</td>
+											<td width="25">${regularEast.winGap}</td>
+											<td>${regularEast.victory}</td>
 										</tr>
 									</c:forEach>
 
@@ -161,21 +166,63 @@
 							</table>
 
 
-							<table class="itinerary_table itinerary_table_show" id="eastdata"
-								style="display: none">
+							<table class="itinerary_table itinerary_table_show" id="eastdata_playoff" style="display:none">
 								<tbody>
-									<tr class=" bg_color">
-										<td width="25" height="35">1</td>
-										<td width="55"><a target="_blank" title="勇士"
-											href="/nba/teams/warriors">勇士</a></td>
-										<td width="20">36</td>
-										<td width="25">7</td>
-										<td width="25">0</td>
-										<td>83.7%</td>
+									<c:forEach items="${playoffEastRankGameRecords}" var="playoffEast">
+										<tr class=" bg_color">
+											<td width="25" height="35">${playoffEast.rank}</td>
+											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+											<c:set var="temp2" value="${temp.concat(playoffEast.team)}"></c:set>
+											<td width="55"><a target="_blank" href="${temp2}">${playoffEast.team}</a></td>
+											<td width="20">${playoffEast.winGame}</td>
+											<td width="25">${playoffEast.loseGame}</td>
+											<td width="25">${playoffEast.winGap}</td>
+											<td>${playoffEast.victory}</td>
+										</tr>
+									</c:forEach>
 									</tr>
 
 								</tbody>
 							</table>
+							
+							<table class="itinerary_table itinerary_table_show" id="westdata_regular" style="display:none">
+								<tbody>
+									<c:forEach items="${regularWestRankGameRecords}" var="regularWest">
+										<tr class=" bg_color">
+											<td width="25" height="35">${regularWest.rank}</td>
+											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+											<c:set var="temp2" value="${temp.concat(regularWest.team)}"></c:set>
+											<td width="55"><a target="_blank" href="${temp2}">${regularWest.team}</a></td>
+											<td width="20">${regularWest.winGame}</td>
+											<td width="25">${regularWest.loseGame}</td>
+											<td width="25">${regularWest.winGap}</td>
+											<td>${regularWest.victory}</td>
+										</tr>
+									</c:forEach>
+									</tr>
+
+								</tbody>
+							</table>
+							
+							<table class="itinerary_table itinerary_table_show" id="westdata_playoff" style="display:none">								<tbody>
+									<tr class=" bg_color">
+										<c:forEach items="${playoffWestRankGameRecords}" var="playoffWest">
+										<tr class=" bg_color">
+											<td width="25" height="35">${playoffWest.rank}</td>
+											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+											<c:set var="temp2" value="${temp.concat(playoffWest.team)}"></c:set>
+											<td width="55"><a target="_blank" href="${temp2}">${playoffWest.team}</a></td>
+											<td width="20">${playoffWest.winGame}</td>
+											<td width="25">${playoffWest.loseGame}</td>
+											<td width="25">${playoffWest.winGap}</td>
+											<td>${playoffWest.victory}</td>
+										</tr>
+									</c:forEach>
+									</tr>
+
+								</tbody>
+							</table>
+							
 						</div>
 					</div>
 				</div>
@@ -309,554 +356,137 @@
 						<table class="itinerary_table itinerary_table_show">
 							<tbody id="regular_changjun_defen">
 								<tr class=" bg_color">
-									<td width="40" height="35">詹姆斯·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">27.3分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">勒布朗·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">26.4分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">安东尼·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">24.5分</td>
+								<c:forEach items="${playerScoreRank}" var="ScoreTopten">
+									<td width="40" height="35">${ScoreTopten.player}</td>
+									<td width="35"><a target="_blank" title="${ScoreTopten.team}"
+										href="/nba/teams/hawks">${ScoreTopten.team}</a></td>
+									<td width="35">${ScoreTopten.score}分</td>
+								</c:forEach>
 								</tr>
 							</tbody>
-
-							<tbody id="playoff_changjun_defen" style="display: none;">
+							<tbody id="playoff_changjun_defen" style="display:none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">27.3分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">26.4分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">24.5分</td>
+								<c:forEach items="${playerOffScoreRank}" var="PlayoffScoreTopten">
+									<td width="40" height="35">${PlayoffScoreTopten.player}</td>
+									<td width="35"><a target="_blank" title="${PlayoffScoreTopten.team}"
+										href="/nba/teams/hawks">${PlayoffScoreTopten.team}</a></td>
+									<td width="35">${PlayoffScoreTopten.score}分</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_lanban" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">詹姆斯·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">15个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">勒布朗·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">12个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">安东尼·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">11个</td>
+								<c:forEach items="${playerReboundRank}" var="ReboundTopten">
+									<td width="40" height="35">${ReboundTopten.player}</td>
+									<td width="35"><a target="_blank" title="${ReboundTopten.team}"
+										href="/nba/teams/hawks">${ReboundTopten.team}</a></td>
+									<td width="35">${ReboundTopten.rebound}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_lanban" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">15个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">12个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">11个</td>
+								<c:forEach items="${playeroffReboundRank}" var="PlayoffReboundTopten">
+									<td width="40" height="35">${PlayoffReboundTopten.player}</td>
+									<td width="35"><a target="_blank" title="${PlayoffReboundTopten.team}"
+										href="/nba/teams/hawks">${PlayoffReboundTopten.team}</a></td>
+									<td width="35">${PlayoffReboundTopten.rebound}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_zhugong" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">詹姆斯·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">11.2个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">勒布朗·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">10.8个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">安东尼·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">10.7个</td>
+								<c:forEach items="${playerAssistanceRank}" var="AssistanceTopten">
+									<td width="40" height="35">${AssistanceTopten.player}</td>
+									<td width="35"><a target="_blank" title="${AssistanceTopten.team}"
+										href="/nba/teams/hawks">${AssistanceTopten.team}</a></td>
+									<td width="35">${AssistanceTopten.assistance}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_zhugong" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">11.2个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">10.8个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">10.7个</td>
+								<c:forEach items="${playerOffAssistanceRank}" var="PlayoffAssistanceTopten">
+									<td width="40" height="35">${PlayoffAssistanceTopten.player}</td>
+									<td width="35"><a target="_blank" title="${PlayoffAssistanceTopten.team}"
+										href="/nba/teams/hawks">${PlayoffAssistanceTopten.team}</a></td>
+									<td width="35">${PlayoffAssistanceTopten.assistance}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_qiangduan" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">詹姆斯·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">3.4个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">勒布朗·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">2.8个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">安东尼·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">2.5个</td>
+								<c:forEach items="${playerGrabRank}" var="GrabTopten">
+									<td width="40" height="35">${GrabTopten.player}</td>
+									<td width="35"><a target="_blank" title="${GrabTopten.team}"
+										href="/nba/teams/hawks">${GrabTopten.team}</a></td>
+									<td width="35">${GrabTopten.grab}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_qiangduan" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">3.4个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">2.8个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">2.5个</td>
+								<c:forEach items="${playerOffGrabRank}" var="PlayoffGrabTopten">
+									<td width="40" height="35">${PlayoffGrabTopten.player}</td>
+									<td width="35"><a target="_blank" title="${PlayoffGrabTopten.team}"
+										href="/nba/teams/hawks">${PlayoffGrabTopten.team}</a></td>
+									<td width="35">${PlayoffGrabTopten.grab}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_sanfen" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">詹姆斯·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">15分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">勒布朗·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">13分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">安东尼·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">11分</td>
+								<c:forEach items="${playerThreehitRank}" var="ThreehitTopten">
+									<td width="40" height="35">${ThreehitTopten.player}</td>
+									<td width="35"><a target="_blank" title="${ThreehitTopten.team}"
+										href="/nba/teams/hawks">${ThreehitTopten.team}</a></td>
+									<td width="35">${ThreehitTopten.threeHit}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_sanfen" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">15分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">13分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">11分</td>
+								<c:forEach items="${playerOffThreehitRank}" var="PlayoffThreehitTopten">
+									<td width="40" height="35">${PlayoffThreehitTopten.player}</td>
+									<td width="35"><a target="_blank" title="${PlayoffThreehitTopten.team}"
+										href="/nba/teams/hawks">${PlayoffThreehitTopten.team}</a></td>
+									<td width="35">${PlayoffThreehitTopten.threeHit}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_gaimao" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">詹姆斯·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">4个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">勒布朗·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">3.9个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">安东尼·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">3.2个</td>
+								<c:forEach items="${playerBlockRank}" var="BlockTopten">
+									<td width="40" height="35">${BlockTopten.player}</td>
+									<td width="35"><a target="_blank" title="${BlockTopten.team}"
+										href="/nba/teams/hawks">${BlockTopten.team}</a></td>
+									<td width="35">${BlockTopten.block}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_gaimao" style="display: none;">
 								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·哈登</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">火箭</a></td>
-									<td width="35">4个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·詹姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">3.9个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·戴维斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">鹈鹕</a></td>
-									<td width="35">3.2个</td>
+								<c:forEach items="${playerOffBlockRank}" var="PlayoffBlockTopten">
+									<td width="40" height="35">${PlayoffBlockTopten.player}</td>
+									<td width="35"><a target="_blank" title="${PlayoffBlockTopten.team}"
+										href="/nba/teams/hawks">${BlockTopten.team}</a></td>
+									<td width="35">${PlayoffBlockTopten.block}</td>
+								</c:forEach>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
-
-				<div class="gamecenter_content_r" id="danchang">
-					<div class="region_box">
-						<h4>球员赛季单场</h4>
-						<div class="tiltle" conference="W">
-							<span class="tiltle_c on" id="danchang_defen"
-								style="background: #fbfbfb;">得分</span><span class="tiltle_c"
-								id="danchang_lanban">篮板</span><span class="tiltle_c"
-								id="danchang_zhugong">助攻</span><span class="tiltle_c"
-								id="danchang_qiangduan">抢断</span><span class="tiltle_c"
-								id="danchang_sanfen">三分</span><span class="tiltle_d"
-								id="danchang_gaimao">盖帽</span>
-						</div>
-						<div class="tiltle" conference="W">
-							<span class="tiltle_a" style="width: 240px;"><div
-									class="btn-group">
-									<button type="button"
-										class="btn btn-link btn-xs dropdown-toggle"
-										data-toggle="dropdown" aria-expanded="false"
-										style="margin-top: -8px; font-size: 14px; color: #000000;"
-										id="danchang_season_type">
-										常规赛 <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="javascript:void(0);">常规赛</a></li>
-										<li><a href="javascript:void(0);">季后赛</a></li>
-									</ul>
-								</div></span>
-						</div>
-						<table class="itinerary_table">
-							<tbody>
-								<tr>
-									<td width="40" height="35">姓名</td>
-									<td width="35">球队</td>
-									<td width="35">单场数据</td>
-								</tr>
-							</tbody>
-						</table>
-						<div class="border_red"></div>
-						<table class="itinerary_table itinerary_table_show">
-							<tbody id="regular_danchang_defen">
-								<tr class=" bg_color">
-									<td width="40" height="35">凯里·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">55分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">克莱·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">52分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">莫·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">52分</td>
-								</tr>
-							</tbody>
-
-							<tbody id="playoff_danchang_defen" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">45分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">43分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">41分</td>
-								</tr>
-							</tbody>
-
-							<tbody id="regular_danchang_lanban" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">凯里·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">17个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">克莱·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">15个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">莫·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">14个</td>
-								</tr>
-							</tbody>
-
-							<tbody id="playoff_danchang_lanban" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">17个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">15个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">14个</td>
-								</tr>
-							</tbody>
-
-							<tbody id="regular_danchang_zhugong" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">凯里·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">15个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">克莱·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">14个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">莫·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">13个</td>
-								</tr>
-							</tbody>
-
-							<tbody id="playoff_danchang_zhugong" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">15个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">14个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">13个</td>
-								</tr>
-							</tbody>
-
-							<tbody id="regular_danchang_qiangduan" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">凯里·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">4个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">克莱·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">3个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">莫·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">2个</td>
-								</tr>
-							</tbody>
-
-							<tbody id="playoff_danchang_qiangduan" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">4个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">3个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">2个</td>
-								</tr>
-							</tbody>
-
-							<tbody id="regular_danchang_sanfen" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">凯里·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">15分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">克莱·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">12分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">莫·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">9分</td>
-								</tr>
-							</tbody>
-
-							<tbody id="playoff_danchang_sanfen" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">15分</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">12分</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">9分</td>
-								</tr>
-							</tbody>
-
-							<tbody id="regular_danchang_gaimao" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">凯里·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">6个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">克莱·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">4个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">莫·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">3个</td>
-								</tr>
-							</tbody>
-
-							<tbody id="playoff_danchang_gaimao" style="display: none;">
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·欧文</td>
-									<td width="35"><a target="_blank" title="骑士"
-										href="/nba/teams/hawks">骑士</a></td>
-									<td width="35">6个</td>
-								</tr>
-								<tr class="">
-									<td width="40" height="35">季后赛·汤普森</td>
-									<td width="35"><a target="_blank" title="勇士"
-										href="/nba/teams/hawks">勇士</a></td>
-									<td width="35">4个</td>
-								</tr>
-								<tr class=" bg_color">
-									<td width="40" height="35">季后赛·威廉姆斯</td>
-									<td width="35"><a target="_blank" title="老鹰"
-										href="/nba/teams/hawks">森林狼</a></td>
-									<td width="35">3个</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-
-
 
 			</div>
 		</div>
@@ -1536,10 +1166,10 @@
 						});
 	</script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/docs.min.js"></script>
+	<script src="../NBA/js/bootstrap.min.js"></script>
+	<script src="../NBA/js/docs.min.js"></script>
 	<!-- 导航栏搜索匹配 -->
-	<script src="js/jquery-ui/jquery-ui.js"></script>
-	<script src="js/search-autocomplete.js"></script>
+	<script src="../NBA/js/jquery-ui/jquery-ui.js"></script>
+	<script src="../NBA/js/search-autocomplete.js"></script>
 </body>
 </html>
