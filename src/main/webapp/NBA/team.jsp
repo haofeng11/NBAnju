@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+	    <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,8 +45,8 @@
         </div>
         <div class="navbar-collapse collapse" role="navigation">
           <ul class="nav navbar-nav">
-            <li><a href="main.html">球员</a></li>
-            <li class="active"><a href="team.html">球队</a></li>
+            <li><a href="${path.concat('/NBA/main.jsp')}">球员</a></li>
+            <li class="active"><a href="${path.concat('/NBA/team.jsp')}">球队</a></li>
             <li><a href="${path.concat('/game/game')}">比赛</a></li>
             <li><a href="comparison.html">球员对比</a></li>
             <li><a href="comparison_area.html">分区对比</a></li>
@@ -113,7 +117,7 @@
 	                		formatter: function () {
 	                			if(this.point.code == 'CA'){
 	                				var clippers = '<a href="TeamInfo.html"><img data-toggle="tooltip" data-placement="top" title="洛杉矶-快船队" src="TeamsAvatar/clippers.png"  width="90px" height="58px" style="position:absolute; left:-10px; top:20px;"></a>';
-	                				var lakers = '<a href="http://localhost:8080/NBADataAnalysis/team/洛杉矶湖人队"><img data-toggle="tooltip" data-placement="top" title="洛杉矶-湖人队" src="TeamsAvatar/lakers.png" width="90px" height="58px" style="position:absolute; left:-40px; top:-40px;"></a>';
+	                				var lakers = '<a href="${path.concat('/team/洛杉矶湖人队')}"><img data-toggle="tooltip" data-placement="top" title="洛杉矶-湖人队" src="TeamsAvatar/lakers.png" width="90px" height="58px" style="position:absolute; left:-40px; top:-40px;"></a>';
 	                				var warriors = '<a href="TeamInfo.html"><img data-toggle="tooltip" data-placement="top" title="金州-勇士队" src="TeamsAvatar/warriors.png" width="67px" height="82px" style="position:absolute; left:-80px; top:-120px;"></a>';
 	                				var kings = '<a href="TeamInfo.html"><img data-toggle="tooltip" data-placement="top" title="萨克拉门托-国王队" src="TeamsAvatar/kings.png" width="67px" height="82px" style="position:absolute; left:-80px; top:-210px;"></a>';
 	                        		return lakers+clippers+warriors+kings;

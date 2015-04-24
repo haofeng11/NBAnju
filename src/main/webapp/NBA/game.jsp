@@ -50,9 +50,9 @@
 			</div>
 			<div class="navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
-					<li><a href="../NBA/main.html">球员</a></li>
-					<li><a href="../NBA/team.html">球队</a></li>
-					<li class="active"><a href="game.html">比赛</a></li>
+					<li><a href="${path.concat('/NBA/main.jsp')}">球员</a></li>
+					<li><a href="${path.concat('/NBA/team.jsp')}">球队</a></li>
+					<li class="active"><a href="${path.concat('/game/game')}">比赛</a></li>
 					<li><a href="comparison.html">球员对比</a></li>
 					<li><a href="comparison_area.html">分区对比</a></li>
 				</ul>
