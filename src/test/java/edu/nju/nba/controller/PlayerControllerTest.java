@@ -15,7 +15,7 @@ public class PlayerControllerTest {
 		PlayerController controller = ctx.getBean(PlayerController.class);
 		Model model = null;
 		//controller.add();
-		controller.list(model);
+		//controller.list(model);
 		//controller.show("科比", model);
 	}
 	

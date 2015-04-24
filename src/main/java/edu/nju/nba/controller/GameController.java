@@ -1,6 +1,7 @@
 package edu.nju.nba.controller;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -69,6 +69,7 @@ public class GameController {
 		// return view
 		return view;
 	}
+
 
 	//选择日期后刷新页面
 	@RequestMapping(value = "/gameSchedule", method = RequestMethod.GET)

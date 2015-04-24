@@ -48,24 +48,9 @@ public class TeamController {
 	TeamSeasonAverage teamSA;
 	TeamSeasonAverage teamSAPO;
 
-	private List<Team> teams = new ArrayList<Team>();
 
 	public TeamController() {
 
-	}
-
-	/**
-	 * 得到所有球队基本信息
-	 */
-	@RequestMapping(value = "/teams", method = RequestMethod.GET)
-	public String list(Model model) {
-		System.out.println("test");
-		List<Team> teamList = teamService.list();
-		for (int i = 0; i < teamList.size(); i++) {
-			System.out.println(teamList.get(i).toString());
-		}
-		model.addAttribute("teams", teams);
-		return "/teams.jsp";
 	}
 
 	/**
@@ -124,15 +109,15 @@ public class TeamController {
 		mistakeRanking = getMistakeRanking(teamSA, teamSAs);
 		model.addAttribute("mistakeRanking", mistakeRanking);
 
-		// 球队各个赛季常规赛单场比赛数据
+		// 球队最新赛季常规赛单场比赛数据
 		teamSingleGames = teamService.getTeamSingleGames(
 				teamName.split("队")[0], "14-15", "0");
 		model.addAttribute("teamSingleGames", teamSingleGames);
 
-		// 球队各个赛季季后赛单场比赛数据
-		// teamSingleGamesPO=teamService.getTeamSingleGames(teamName.split("队")[0],
-		// "14-15","1");
-		// model.addAttribute("teamSingleGamesPO", teamSingleGamesPO);
+		// 球队最新赛季季后赛单场比赛数据
+		 teamSingleGamesPO=teamService.getTeamSingleGames(teamName.split("队")[0],
+		 "14-15","1");
+		 model.addAttribute("teamSingleGamesPO", teamSingleGamesPO);
 
 		return "TeamInfo";
 	}
@@ -145,7 +130,7 @@ public class TeamController {
 
 		// 得到常规赛和季后赛日期
 		teamSingleGames = teamService.getTeamSingleGames(teamName.split("队")[0], seasonID, "0");
-		// teamSingleGamesPO=teamService.getTeamSingleGames(teamName.split("队")[0],seasonID,"1");
+		teamSingleGamesPO=teamService.getTeamSingleGames(teamName.split("队")[0],seasonID,"1");
 		
 		//常规赛每场比赛统计数据
 		String regular_date = "";
@@ -190,32 +175,74 @@ public class TeamController {
 		grab = grab.substring(0, grab.length() - 1);
 		foul = foul.substring(0, foul.length() - 1);
 		mistake = mistake.substring(0, mistake.length() - 1);
+		//季后赛每场比赛统计
+		String playoff_date = "";
+		String scorePO="";
+		String 	shootTotalPO="";
+		String shootPercentagePO="";
+		String threeHitPO="";//三分得分
+		String threeTotalPO="";
+		String threePercentagePO="";
+		String assistancePO="";
+		String reboundPO="";
+		String blockPO="";
+		String grabPO="";
+		String foulPO="";
+		String mistakePO="";
+		if(teamSingleGamesPO.size()!=0){
+			for (TeamSingleGame t : teamSingleGamesPO) {
+				playoff_date += t.getGameDate() + ",";
+				scorePO+=t.getScore()+ ",";
+				shootTotalPO+=t.getShootTotal()+ ",";
+				shootPercentagePO+=t.getShootPercentage()+ ",";
+				threeHitPO+=String.valueOf((Double.parseDouble(t.getThreeHit())*3))+ ",";
+				threeTotalPO+=t.getThreeTotal()+ ",";
+				threePercentagePO+=t.getThreePercentage()+ ",";
+				assistancePO+=t.getAssistance()+ ",";
+				reboundPO+=t.getRebound()+ ",";
+				blockPO+=t.getBlock()+ ",";
+				grabPO+=t.getGrab()+ ",";
+				foulPO+=t.getFoul()+ ",";
+				mistakePO+=t.getMistake()+ ",";
+			}
+			playoff_date = playoff_date.substring(0, playoff_date.length() - 1);
+			scorePO = scorePO.substring(0, scorePO.length() - 1);
+			scorePO=scorePO.replace("\r", "");
+			System.out.println(scorePO);
+			shootTotalPO = shootTotalPO.substring(0, shootTotalPO.length() - 1);
+			shootPercentagePO = shootPercentagePO.substring(0, shootPercentagePO.length() - 1);
+			threeHitPO = threeHitPO.substring(0, threeHitPO.length() - 1);
+			threeTotalPO = threeTotalPO.substring(0, threeTotalPO.length() - 1);
+			threePercentagePO = threePercentagePO.substring(0, threePercentagePO.length() - 1);
+			assistancePO = assistancePO.substring(0, assistancePO.length() - 1);
+			reboundPO = reboundPO.substring(0, reboundPO.length() - 1);
+			blockPO = blockPO.substring(0, blockPO.length() - 1);
+			grabPO = grabPO.substring(0, grabPO.length() - 1);
+			foulPO = foulPO.substring(0, foulPO.length() - 1);
+			mistakePO = mistakePO.substring(0, mistakePO.length() - 1);
+		}
 		
-		//常规赛每场比赛
+		
+		//每场比赛数据
 		List<Statistics> data=new ArrayList<Statistics>();
-		data.add(new Statistics(score, score));//季后赛数据没有，暂时用常规赛数据代替
-		data.add(new Statistics(shootTotal, shootTotal));
-		data.add(new Statistics(shootPercentage, shootPercentage));
-		data.add(new Statistics(threeHit, threeHit));
-		data.add(new Statistics(threeTotal, threeTotal));
-		data.add(new Statistics(threePercentage, threePercentage));
-		data.add(new Statistics(assistance, assistance));
-		data.add(new Statistics(rebound, rebound));
-		data.add(new Statistics(block, block));
-		data.add(new Statistics(grab, grab));
-		data.add(new Statistics(foul, foul));
-		data.add(new Statistics(mistake, mistake));
+		data.add(new Statistics(score, scorePO));
+		data.add(new Statistics(shootTotal, shootTotalPO));
+		data.add(new Statistics(shootPercentage, shootPercentagePO));
+		data.add(new Statistics(threeHit, threeHitPO));
+		data.add(new Statistics(threeTotal, threeTotalPO));
+		data.add(new Statistics(threePercentage, threePercentagePO));
+		data.add(new Statistics(assistance, assistancePO));
+		data.add(new Statistics(rebound, reboundPO));
+		data.add(new Statistics(block, blockPO));
+		data.add(new Statistics(grab, grabPO));
+		data.add(new Statistics(foul, foulPO));
+		data.add(new Statistics(mistake, mistakePO));
 		
-		
-	
-//		String test[] = { "test1", "test2", "test3" };
 
 		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("test", test);
-
 		map.put("season", seasonID);
 		map.put("regular_date", regular_date);
-		map.put("playoff_date", regular_date);// 季后赛数据没有，暂时用常规赛数据代替
+		map.put("playoff_date", playoff_date);// 季后赛数据没有，暂时用常规赛数据代替
 		map.put("data", data);
 
 		return map;

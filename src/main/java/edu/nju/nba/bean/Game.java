@@ -52,7 +52,6 @@ public class Game implements Serializable{
 
 	public Game() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Game(String gameId, String seasonId, String gameDate,
@@ -133,8 +132,8 @@ public class Game implements Serializable{
 		return guestScore;
 	}
 
-	public void setGuestScore(String gueatScore) {
-		this.guestScore = gueatScore;
+	public void setGuestScore(String guestScore) {
+		this.guestScore = guestScore;
 	}
 
 	public String getFirstHomeScore() {
