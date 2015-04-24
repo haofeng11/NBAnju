@@ -35,6 +35,7 @@ public class TeamGameRecord implements Serializable {
 	private String winGap;
 	// 东西部
 	private String district;
+	private String tag;
 
 	public TeamGameRecord() {
 		super();
@@ -106,10 +107,19 @@ public class TeamGameRecord implements Serializable {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
+	
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 
 	public TeamGameRecord(String rank, String seasonID, String team,
 			String winGame, String loseGame, String victory, String winGap,
-			String district) {
+			String district, String tag) {
 		super();
 		this.rank = rank;
 		this.seasonID = seasonID;
@@ -119,6 +129,9 @@ public class TeamGameRecord implements Serializable {
 		this.victory = victory;
 		this.winGap = winGap;
 		this.district = district;
+		this.tag = tag;
 	}
+
+	
 
 }
