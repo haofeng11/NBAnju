@@ -17,7 +17,7 @@
     <script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
     <script type="text/javascript" src="../NBA/js/highcharts/highcharts-more.js"></script>
-    <script type="text/javascript" src="../NBA/js/highcharts/themes/custom.js"></script>
+    
     <script type="text/javascript" src="../NBA/js/highcharts/modules/exporting.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
