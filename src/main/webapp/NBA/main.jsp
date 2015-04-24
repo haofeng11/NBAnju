@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8">
@@ -34,15 +40,11 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="main.html">球员</a></li>
             <li><a href="team.html">球队</a></li>
-            <li><a href="../game/games">比赛</a></li>
+            <li><a href="${path.concat('/game/game')}">比赛</a></li>
             <li><a href="comparison.html">球员对比</a></li>
             <li><a href="comparison_area.html">分区对比</a></li>
           </ul>
-<!-- aa -->
-<form action="../game/game" method="POST">
-<input type="submit" value="qiuchenggong"/>
-</form>
-<!-- vv -->
+
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group form-group-sm">
               <input id="search" type="text" class="form-control" placeholder="搜索球员或者球队">

@@ -15,7 +15,6 @@
 	<!-- 自动扫面注解包 -->
 	<context:annotation-config />
 	<context:component-scan base-package="edu.nju.*" />
-	
 
 	<!-- 数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

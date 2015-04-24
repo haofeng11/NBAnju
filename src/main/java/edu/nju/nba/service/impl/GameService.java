@@ -75,8 +75,12 @@ public class GameService implements IGameService {
 	
 	@SuppressWarnings("unchecked")
 	public List<TeamGameRecord> listFederalBoard(String seasonId) {
-		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.seasonId=?", seasonId);
+		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.seasonID=?", seasonId);
 
+	}
+	
+	public List<Game> listGameSchedule(String seasonId,String gameDate){
+		return (List<Game>)generalDao.findList2("From edu.nju.nba.bean.Game g where g.seasonID=? and gameDate=?", seasonId,gameDate);
 	}
 
 }

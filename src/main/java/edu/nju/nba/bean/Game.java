@@ -52,7 +52,6 @@ public class Game implements Serializable{
 
 	public Game() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Game(String gameId, String seasonId, String gameDate,
