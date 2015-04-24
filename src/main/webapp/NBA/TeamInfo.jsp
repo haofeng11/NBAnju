@@ -629,19 +629,19 @@
           if(active.attr('id') == "regular"){
             var average = 0;
             var data_array = $(this).attr('regular').split(',');
-            for (var i = 0; i < data_array.length-1; i++) {
+            for (var i = 0; i < data_array.length; i++) {
               average += parseInt(data_array[i]);
             };
-            average = (average / (data_array.length-1)).toFixed(1);
+            average = (average / (data_array.length)).toFixed(1);
             title += "常规" + $(this).attr('tit') + average + measure;
           }
           else if((active.attr('id') == "playoff")){
             var average = 0;
             var data_array = $(this).attr('playoff').split(',');
-            for (var i = 0; i < data_array.length-1; i++) {
+            for (var i = 0; i < data_array.length; i++) {
               average += parseInt(data_array[i]);
             };
-            average = (average / (data_array.length-1)).toFixed(1);
+            average = (average / (data_array.length)).toFixed(1);
             title += "季后" + $(this).attr('tit') + average + measure;
           }
           options.title.text = title;
@@ -654,7 +654,7 @@
             data = $(this).attr('playoff');
           var array = data.split(",");
           var nums = [ ];
-          for (var i=0 ; i< array.length-1; i++)
+          for (var i=0 ; i< array.length; i++)
           {
               nums.push(parseInt(array[i]));
           }
@@ -665,7 +665,7 @@
             var regular_date = $("#season_data").attr('regular-date');
             var date_array = regular_date.split(",");
             var dates = [ ];
-            for (var i=0 ; i< date_array.length-1; i++)
+            for (var i=0 ; i< date_array.length; i++)
             {
                 dates.push(date_array[i]);
             }
@@ -675,7 +675,7 @@
             var playoff_date = $("#season_data").attr('playoff-date');
             var date_array = playoff_date.split(",");
             var dates = [ ];
-            for (var i=0 ; i< date_array.length-1; i++)
+            for (var i=0 ; i< date_array.length; i++)
             {
                 dates.push(date_array[i]);
             }
@@ -773,7 +773,7 @@
                 },
                 timeout: 1000,
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                  alert("服务器请求失败");
+                  alert("该赛季球队未打进季后赛！");
                     // $("#welcome").html(XMLHttpRequest+textStatus+errorThrown.message);
                 }
             });

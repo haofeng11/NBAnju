@@ -39,6 +39,7 @@ public class GameController {
 	@RequestMapping(value="/{seasonID}/{gameDate}/{homeTeam}/{guestTeam}",method=RequestMethod.GET)
 	public String matchstat(@PathVariable String seasonID,@PathVariable String gameDate,@PathVariable String homeTeam,@PathVariable String guestTeam,Model model){
 		Game game=gameService.show(seasonID, gameDate, homeTeam, guestTeam);
+		//图片地址
 		String homeTeamPicture=teamService.show(game.getHomeTeam()+"队").getPicture();
 		String guestTeamPicture=teamService.show(game.getGuestTeam()+"队").getPicture();
 		model.addAttribute("game", game);

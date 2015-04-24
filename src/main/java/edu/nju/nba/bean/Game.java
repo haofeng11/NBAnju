@@ -36,7 +36,7 @@ public class Game implements Serializable{
 	// 主队总分
 	private String homeScore;
 	// 客队总分
-	private String gueatScore;
+	private String guestScore;
 	// 第一节
 	private String firstHomeScore;
 	private String firstGuestScore;
@@ -57,7 +57,7 @@ public class Game implements Serializable{
 
 	public Game(String gameId, String seasonId, String gameDate,
 			String homeTeam, String guestTeam, String homeScore,
-			String gueatScore, String firstHomeScore, String firstGuestScore,
+			String guestScore, String firstHomeScore, String firstGuestScore,
 			String secondHomeScore, String secondGuestScore,
 			String thirdHomeScore, String thirdGuestScore,
 			String forthHomeScore, String forthGuestScore) {
@@ -68,7 +68,7 @@ public class Game implements Serializable{
 		this.homeTeam = homeTeam;
 		this.guestTeam = guestTeam;
 		this.homeScore = homeScore;
-		this.gueatScore = gueatScore;
+		this.guestScore = guestScore;
 		this.firstHomeScore = firstHomeScore;
 		this.firstGuestScore = firstGuestScore;
 		this.secondHomeScore = secondHomeScore;
@@ -129,12 +129,12 @@ public class Game implements Serializable{
 		this.homeScore = homeScore;
 	}
 
-	public String getGueatScore() {
-		return gueatScore;
+	public String getGuestScore() {
+		return guestScore;
 	}
 
-	public void setGueatScore(String gueatScore) {
-		this.gueatScore = gueatScore;
+	public void setGuestScore(String guestScore) {
+		this.guestScore = guestScore;
 	}
 
 	public String getFirstHomeScore() {
@@ -202,6 +202,6 @@ public class Game implements Serializable{
 	}
 
 	public String toString() {
-		return gameDate + ":"+homeTeam+homeScore+"-"+gueatScore+guestTeam;
+		return gameDate + ":"+homeTeam+homeScore+"-"+guestScore+guestTeam;
 	}
 }
