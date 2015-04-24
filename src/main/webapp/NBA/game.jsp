@@ -13,11 +13,16 @@
 <title>比赛</title>
 <!-- Bootstrap -->
 <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
+<<<<<<< HEAD
 <link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
+=======
+<link rel="../NBA/stylesheet" href="js/jquery-ui/jquery-ui.css">
+>>>>>>> 7817d6396cd4153b0ee36a577c571d499bfa2727
 <link href="../NBA/css/new.css" rel="stylesheet">
 <!-- Highchart图表JS库 -->
 <script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript"
 	src="../NBA/js/highcharts/highcharts-more.js"></script>
 <script type="text/javascript"
@@ -25,6 +30,10 @@
 <script type="text/javascript"
 	src="../NBA/js/highcharts/modules/exporting.js"></script>
 
+=======
+<script type="text/javascript" src="../NBA/js/highcharts/highcharts-more.js"></script>
+<script type="text/javascript" src="../NBA/js/highcharts/modules/exporting.js"></script>
+>>>>>>> 7817d6396cd4153b0ee36a577c571d499bfa2727
 <script>
 	$(function() {
 		$("#datepicker").datepicker({
@@ -55,9 +64,9 @@
 			</div>
 			<div class="navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
-					<li><a href="../NBA/main.html">球员</a></li>
-					<li><a href="../NBA/team.html">球队</a></li>
-					<li class="active"><a href="game.html">比赛</a></li>
+					<li><a href="${path.concat('/NBA/main.jsp')}">球员</a></li>
+					<li><a href="${path.concat('/NBA/team.jsp')}">球队</a></li>
+					<li class="active"><a href="${path.concat('/game/game')}">比赛</a></li>
 					<li><a href="comparison.html">球员对比</a></li>
 					<li><a href="comparison_area.html">分区对比</a></li>
 				</ul>

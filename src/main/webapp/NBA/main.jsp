@@ -104,9 +104,9 @@
       <div class="bs-glyphicons">
         <ul class="bs-glyphicons-list">
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/科比-布莱恩特')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Kobe.jpg" alt="科比">
+                <img src="playersImage/P0000386.jpg" alt="科比">
               </div>
             </a>
               <span class="glyphicon-class">Kobe Bryant</span>
@@ -115,7 +115,7 @@
           <li>
             <a href="PlayerInfo.html">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Lebron.jpg" alt="詹姆斯">
+                <img src="playersImage/P0000094.jpg" alt="詹姆斯">
               </div>
             </a>
             <span class="glyphicon-class">LeBron Raymone James</span>
@@ -253,7 +253,7 @@
           <li>
             <a href="PlayerInfo.html">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Kobe.jpg" alt="科比">
+                <img src="playersImage/P0000386.jpg" alt="科比">
               </div>
             </a>
               <span class="glyphicon-class">Kobe Bryant</span>
