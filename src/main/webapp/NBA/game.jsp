@@ -12,28 +12,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>比赛</title>
 <!-- Bootstrap -->
-<link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
-<<<<<<< HEAD
-<link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
-=======
-<link rel="../NBA/stylesheet" href="js/jquery-ui/jquery-ui.css">
->>>>>>> 7817d6396cd4153b0ee36a577c571d499bfa2727
-<link href="../NBA/css/new.css" rel="stylesheet">
-<!-- Highchart图表JS库 -->
-<script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
-<<<<<<< HEAD
-<script type="text/javascript"
-	src="../NBA/js/highcharts/highcharts-more.js"></script>
-<script type="text/javascript"
-	src="../NBA/js/highcharts/themes/custom.js"></script>
-<script type="text/javascript"
-	src="../NBA/js/highcharts/modules/exporting.js"></script>
+    <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
+    <link href="../NBA/css/new.css" rel="stylesheet">
+    <!-- Highchart图表JS库 -->
+    <script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="../NBA/js/highcharts/highcharts-more.js"></script>
+    <script type="text/javascript" src="../NBA/js/highcharts/themes/custom.js"></script>
+    <script type="text/javascript" src="../NBA/js/highcharts/modules/exporting.js"></script>
 
-=======
-<script type="text/javascript" src="../NBA/js/highcharts/highcharts-more.js"></script>
-<script type="text/javascript" src="../NBA/js/highcharts/modules/exporting.js"></script>
->>>>>>> 7817d6396cd4153b0ee36a577c571d499bfa2727
 <script>
 	$(function() {
 		$("#datepicker").datepicker({
@@ -156,9 +144,11 @@
 								</tbody>
 							</table>
 							<div class="border_red"></div>
-	                    	<table class="itinerary_table itinerary_table_show" id="eastdata_regular">
+							<table class="itinerary_table itinerary_table_show"
+								id="eastdata_regular">
 								<tbody>
-									<c:forEach items="${regularEastRankGameRecords}" var="regularEast">
+									<c:forEach items="${regularEastRankGameRecords}"
+										var="regularEast">
 										<tr class=" bg_color">
 											<td width="25" height="35">${regularEast.rank}</td>
 											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
@@ -175,9 +165,11 @@
 							</table>
 
 
-							<table class="itinerary_table itinerary_table_show" id="eastdata_playoff" style="display:none">
+							<table class="itinerary_table itinerary_table_show"
+								id="eastdata_playoff" style="display: none">
 								<tbody>
-									<c:forEach items="${playoffEastRankGameRecords}" var="playoffEast">
+									<c:forEach items="${playoffEastRankGameRecords}"
+										var="playoffEast">
 										<tr class=" bg_color">
 											<td width="25" height="35">${playoffEast.rank}</td>
 											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
@@ -193,10 +185,12 @@
 
 								</tbody>
 							</table>
-							
-							<table class="itinerary_table itinerary_table_show" id="westdata_regular" style="display:none">
+
+							<table class="itinerary_table itinerary_table_show"
+								id="westdata_regular" style="display: none">
 								<tbody>
-									<c:forEach items="${regularWestRankGameRecords}" var="regularWest">
+									<c:forEach items="${regularWestRankGameRecords}"
+										var="regularWest">
 										<tr class=" bg_color">
 											<td width="25" height="35">${regularWest.rank}</td>
 											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
@@ -212,26 +206,29 @@
 
 								</tbody>
 							</table>
-							
-							<table class="itinerary_table itinerary_table_show" id="westdata_playoff" style="display:none">								<tbody>
+
+							<table class="itinerary_table itinerary_table_show"
+								id="westdata_playoff" style="display: none">
+								<tbody>
 									<tr class=" bg_color">
-										<c:forEach items="${playoffWestRankGameRecords}" var="playoffWest">
-										<tr class=" bg_color">
-											<td width="25" height="35">${playoffWest.rank}</td>
-											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
-											<c:set var="temp2" value="${temp.concat(playoffWest.team)}"></c:set>
-											<td width="55"><a target="_blank" href="${temp2}">${playoffWest.team}</a></td>
-											<td width="20">${playoffWest.winGame}</td>
-											<td width="25">${playoffWest.loseGame}</td>
-											<td width="25">${playoffWest.winGap}</td>
-											<td>${playoffWest.victory}</td>
-										</tr>
-									</c:forEach>
+										<c:forEach items="${playoffWestRankGameRecords}"
+											var="playoffWest">
+											<tr class=" bg_color">
+												<td width="25" height="35">${playoffWest.rank}</td>
+												<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+												<c:set var="temp2" value="${temp.concat(playoffWest.team)}"></c:set>
+												<td width="55"><a target="_blank" href="${temp2}">${playoffWest.team}</a></td>
+												<td width="20">${playoffWest.winGame}</td>
+												<td width="25">${playoffWest.loseGame}</td>
+												<td width="25">${playoffWest.winGap}</td>
+												<td>${playoffWest.victory}</td>
+											</tr>
+										</c:forEach>
 									</tr>
 
 								</tbody>
 							</table>
-							
+
 						</div>
 					</div>
 				</div>
@@ -365,132 +362,139 @@
 						<table class="itinerary_table itinerary_table_show">
 							<tbody id="regular_changjun_defen">
 								<tr class=" bg_color">
-								<c:forEach items="${playerScoreRank}" var="ScoreTopten">
-									<td width="40" height="35">${ScoreTopten.player}</td>
-									<td width="35"><a target="_blank" title="${ScoreTopten.team}"
-										href="/nba/teams/hawks">${ScoreTopten.team}</a></td>
-									<td width="35">${ScoreTopten.score}分</td>
-								</c:forEach>
+									<c:forEach items="${playerScoreRank}" var="ScoreTopten">
+										<td width="40" height="35">${ScoreTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${ScoreTopten.team}" href="/nba/teams/hawks">${ScoreTopten.team}</a></td>
+										<td width="35">${ScoreTopten.score}分</td>
+									</c:forEach>
 								</tr>
 							</tbody>
-							<tbody id="playoff_changjun_defen" style="display:none;">
+							<tbody id="playoff_changjun_defen" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerOffScoreRank}" var="PlayoffScoreTopten">
-									<td width="40" height="35">${PlayoffScoreTopten.player}</td>
-									<td width="35"><a target="_blank" title="${PlayoffScoreTopten.team}"
-										href="/nba/teams/hawks">${PlayoffScoreTopten.team}</a></td>
-									<td width="35">${PlayoffScoreTopten.score}分</td>
-								</c:forEach>
+									<c:forEach items="${playerOffScoreRank}"
+										var="PlayoffScoreTopten">
+										<td width="40" height="35">${PlayoffScoreTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${PlayoffScoreTopten.team}" href="/nba/teams/hawks">${PlayoffScoreTopten.team}</a></td>
+										<td width="35">${PlayoffScoreTopten.score}分</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_lanban" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerReboundRank}" var="ReboundTopten">
-									<td width="40" height="35">${ReboundTopten.player}</td>
-									<td width="35"><a target="_blank" title="${ReboundTopten.team}"
-										href="/nba/teams/hawks">${ReboundTopten.team}</a></td>
-									<td width="35">${ReboundTopten.rebound}</td>
-								</c:forEach>
+									<c:forEach items="${playerReboundRank}" var="ReboundTopten">
+										<td width="40" height="35">${ReboundTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${ReboundTopten.team}" href="/nba/teams/hawks">${ReboundTopten.team}</a></td>
+										<td width="35">${ReboundTopten.rebound}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_lanban" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playeroffReboundRank}" var="PlayoffReboundTopten">
-									<td width="40" height="35">${PlayoffReboundTopten.player}</td>
-									<td width="35"><a target="_blank" title="${PlayoffReboundTopten.team}"
-										href="/nba/teams/hawks">${PlayoffReboundTopten.team}</a></td>
-									<td width="35">${PlayoffReboundTopten.rebound}</td>
-								</c:forEach>
+									<c:forEach items="${playeroffReboundRank}"
+										var="PlayoffReboundTopten">
+										<td width="40" height="35">${PlayoffReboundTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${PlayoffReboundTopten.team}" href="/nba/teams/hawks">${PlayoffReboundTopten.team}</a></td>
+										<td width="35">${PlayoffReboundTopten.rebound}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_zhugong" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerAssistanceRank}" var="AssistanceTopten">
-									<td width="40" height="35">${AssistanceTopten.player}</td>
-									<td width="35"><a target="_blank" title="${AssistanceTopten.team}"
-										href="/nba/teams/hawks">${AssistanceTopten.team}</a></td>
-									<td width="35">${AssistanceTopten.assistance}</td>
-								</c:forEach>
+									<c:forEach items="${playerAssistanceRank}"
+										var="AssistanceTopten">
+										<td width="40" height="35">${AssistanceTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${AssistanceTopten.team}" href="/nba/teams/hawks">${AssistanceTopten.team}</a></td>
+										<td width="35">${AssistanceTopten.assistance}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_zhugong" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerOffAssistanceRank}" var="PlayoffAssistanceTopten">
-									<td width="40" height="35">${PlayoffAssistanceTopten.player}</td>
-									<td width="35"><a target="_blank" title="${PlayoffAssistanceTopten.team}"
-										href="/nba/teams/hawks">${PlayoffAssistanceTopten.team}</a></td>
-									<td width="35">${PlayoffAssistanceTopten.assistance}</td>
-								</c:forEach>
+									<c:forEach items="${playerOffAssistanceRank}"
+										var="PlayoffAssistanceTopten">
+										<td width="40" height="35">${PlayoffAssistanceTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${PlayoffAssistanceTopten.team}"
+											href="/nba/teams/hawks">${PlayoffAssistanceTopten.team}</a></td>
+										<td width="35">${PlayoffAssistanceTopten.assistance}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_qiangduan" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerGrabRank}" var="GrabTopten">
-									<td width="40" height="35">${GrabTopten.player}</td>
-									<td width="35"><a target="_blank" title="${GrabTopten.team}"
-										href="/nba/teams/hawks">${GrabTopten.team}</a></td>
-									<td width="35">${GrabTopten.grab}</td>
-								</c:forEach>
+									<c:forEach items="${playerGrabRank}" var="GrabTopten">
+										<td width="40" height="35">${GrabTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${GrabTopten.team}" href="/nba/teams/hawks">${GrabTopten.team}</a></td>
+										<td width="35">${GrabTopten.grab}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_qiangduan" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerOffGrabRank}" var="PlayoffGrabTopten">
-									<td width="40" height="35">${PlayoffGrabTopten.player}</td>
-									<td width="35"><a target="_blank" title="${PlayoffGrabTopten.team}"
-										href="/nba/teams/hawks">${PlayoffGrabTopten.team}</a></td>
-									<td width="35">${PlayoffGrabTopten.grab}</td>
-								</c:forEach>
+									<c:forEach items="${playerOffGrabRank}" var="PlayoffGrabTopten">
+										<td width="40" height="35">${PlayoffGrabTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${PlayoffGrabTopten.team}" href="/nba/teams/hawks">${PlayoffGrabTopten.team}</a></td>
+										<td width="35">${PlayoffGrabTopten.grab}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_sanfen" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerThreehitRank}" var="ThreehitTopten">
-									<td width="40" height="35">${ThreehitTopten.player}</td>
-									<td width="35"><a target="_blank" title="${ThreehitTopten.team}"
-										href="/nba/teams/hawks">${ThreehitTopten.team}</a></td>
-									<td width="35">${ThreehitTopten.threeHit}</td>
-								</c:forEach>
+									<c:forEach items="${playerThreehitRank}" var="ThreehitTopten">
+										<td width="40" height="35">${ThreehitTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${ThreehitTopten.team}" href="/nba/teams/hawks">${ThreehitTopten.team}</a></td>
+										<td width="35">${ThreehitTopten.threeHit}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_sanfen" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerOffThreehitRank}" var="PlayoffThreehitTopten">
-									<td width="40" height="35">${PlayoffThreehitTopten.player}</td>
-									<td width="35"><a target="_blank" title="${PlayoffThreehitTopten.team}"
-										href="/nba/teams/hawks">${PlayoffThreehitTopten.team}</a></td>
-									<td width="35">${PlayoffThreehitTopten.threeHit}</td>
-								</c:forEach>
+									<c:forEach items="${playerOffThreehitRank}"
+										var="PlayoffThreehitTopten">
+										<td width="40" height="35">${PlayoffThreehitTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${PlayoffThreehitTopten.team}" href="/nba/teams/hawks">${PlayoffThreehitTopten.team}</a></td>
+										<td width="35">${PlayoffThreehitTopten.threeHit}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="regular_changjun_gaimao" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerBlockRank}" var="BlockTopten">
-									<td width="40" height="35">${BlockTopten.player}</td>
-									<td width="35"><a target="_blank" title="${BlockTopten.team}"
-										href="/nba/teams/hawks">${BlockTopten.team}</a></td>
-									<td width="35">${BlockTopten.block}</td>
-								</c:forEach>
+									<c:forEach items="${playerBlockRank}" var="BlockTopten">
+										<td width="40" height="35">${BlockTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${BlockTopten.team}" href="/nba/teams/hawks">${BlockTopten.team}</a></td>
+										<td width="35">${BlockTopten.block}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 
 							<tbody id="playoff_changjun_gaimao" style="display: none;">
 								<tr class=" bg_color">
-								<c:forEach items="${playerOffBlockRank}" var="PlayoffBlockTopten">
-									<td width="40" height="35">${PlayoffBlockTopten.player}</td>
-									<td width="35"><a target="_blank" title="${PlayoffBlockTopten.team}"
-										href="/nba/teams/hawks">${BlockTopten.team}</a></td>
-									<td width="35">${PlayoffBlockTopten.block}</td>
-								</c:forEach>
+									<c:forEach items="${playerOffBlockRank}"
+										var="PlayoffBlockTopten">
+										<td width="40" height="35">${PlayoffBlockTopten.player}</td>
+										<td width="35"><a target="_blank"
+											title="${PlayoffBlockTopten.team}" href="/nba/teams/hawks">${BlockTopten.team}</a></td>
+										<td width="35">${PlayoffBlockTopten.block}</td>
+									</c:forEach>
 								</tr>
 							</tbody>
 						</table>

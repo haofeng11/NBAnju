@@ -73,53 +73,48 @@ public class GeneralDao implements IGeneralDao {
 		hibernateTemplate.flush();
 	}
 
-	
 	public Object find(String queryString, Object value) {
+//		System.out.println("[[[[[" + queryString + "----");
+//		System.out.println("[[[[[" + value + "===");
 		return hibernateTemplate.find(queryString, value).get(0);
 	}
 
-	
 	public Object find2(String queryString, String value1, String value2) {
-		Object[] values=new String[]{value1,value2};
+		Object[] values = new String[] { value1, value2 };
 		return hibernateTemplate.find(queryString, values).get(0);
 	}
 
-	
 	public Object find3(String queryString, String value1, String value2,
 			String value3) {
-		Object[] values=new String[]{value1,value2,value3};
+		Object[] values = new String[] { value1, value2, value3 };
 		return hibernateTemplate.find(queryString, values).get(0);
 	}
 
-	
 	public Object find4(String queryString, String value1, String value2,
 			String value3, String value4) {
-		Object[] values=new String[]{value1,value2,value3,value4};
+		Object[] values = new String[] { value1, value2, value3, value4 };
 		return hibernateTemplate.find(queryString, values).get(0);
 	}
 
-	
 	public Object findList(String queryString, Object value) {
 		return hibernateTemplate.find(queryString, value);
 	}
 
 	public Object findList2(String queryString, String value1, String value2) {
-		Object[] values=new String[]{value1,value2};
+		Object[] values = new String[] { value1, value2 };
 		return hibernateTemplate.find(queryString, values);
 	}
 
 	public Object findList3(String queryString, String value1, String value2,
 			String value3) {
-		Object[] values=new String[]{value1,value2,value3};
+		Object[] values = new String[] { value1, value2, value3 };
 		return hibernateTemplate.find(queryString, values);
 	}
 
 	public Object findList4(String queryString, String value1, String value2,
 			String value3, String value4) {
-		Object[] values=new String[]{value1,value2,value3,value4};
+		Object[] values = new String[] { value1, value2, value3, value4 };
 		return hibernateTemplate.find(queryString, values);
 	}
-	
-	
 
 }
