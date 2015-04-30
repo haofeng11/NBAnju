@@ -6,15 +6,19 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.nba.bean.Game;
 import edu.nju.nba.bean.GameSchedule;
 import edu.nju.nba.bean.PlayerSingleGame;
-
 import edu.nju.nba.bean.TeamGameRecord;
-
 import edu.nju.nba.bean.TeamSingleGame;
 import edu.nju.nba.dao.IGeneralDao;
 import edu.nju.nba.service.IGameService;
@@ -79,8 +83,36 @@ public class GameService implements IGameService {
 
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Game> listGameSchedule(String seasonId,String gameDate){
 		return (List<Game>)generalDao.findList2("From edu.nju.nba.bean.Game g where g.seasonID=? and gameDate=?", seasonId,gameDate);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TeamGameRecord> getRegularEastRank(String seasonId) {
+		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='东部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TeamGameRecord> getRegularWestRank(String seasonId) {
+		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='西部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TeamGameRecord> getPlayoffEastRank(String seasonId) {
+		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='东部' and tgr.tag='1' and tgr.seasonID=? ", seasonId);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TeamGameRecord> getPlayoffWestRank(String seasonId) {
+		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='西部' and tgr.tag='1' and tgr.seasonID=? ", seasonId);
+
 	}
 
 }

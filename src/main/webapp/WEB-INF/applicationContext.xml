@@ -21,7 +21,7 @@
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<!-- 数据库名称和用户名密码 -->
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/nba" />
+		<property name="url" value="jdbc:mysql://localhost:3306/nba" />
 		<property name="username" value="root" />
 		<property name="password" value="wxd19931125" />
 	</bean>

@@ -1,9 +1,18 @@
 package edu.nju.nba.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+
+
+
+
+
+
+
 
 
 
@@ -102,7 +111,11 @@ public class PlayerService implements IPlayerService {
 	public List<PlayerDataStatistics> getPlayerScoreRankingList(String seasonId) {
 		List<PlayerDataStatistics> scoreList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(scoreList,new sortByScore());
-		return scoreList;
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(scoreList.get(i));
+		}
+		return Topten;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -111,7 +124,11 @@ public class PlayerService implements IPlayerService {
 			String seasonId) {
 		List<PlayerDataStatistics> reboundList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(reboundList,new sortByRebound());
-		return reboundList;
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(reboundList.get(i));
+		}
+		return Topten;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -120,7 +137,11 @@ public class PlayerService implements IPlayerService {
 			String seasonId) {
 		List<PlayerDataStatistics> assistanceList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(assistanceList,new sortByAssistance());
-		return assistanceList;
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(assistanceList.get(i));
+		}
+		return Topten;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -128,7 +149,11 @@ public class PlayerService implements IPlayerService {
 	public List<PlayerDataStatistics> getPlayerGrabRankingList(String seasonId) {
 		List<PlayerDataStatistics> grabList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(grabList,new sortByGrab());
-		return grabList;
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(grabList.get(i));
+		}
+		return Topten;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -137,7 +162,11 @@ public class PlayerService implements IPlayerService {
 			String seasonId) {
 		List<PlayerDataStatistics> threehitList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(threehitList,new sortByThreeehit());
-		return threehitList;
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(threehitList.get(i));
+		}
+		return Topten;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -145,7 +174,11 @@ public class PlayerService implements IPlayerService {
 	public List<PlayerDataStatistics> getPlayerBlockRankingList(String seasonId) {
 		List<PlayerDataStatistics> blockList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(blockList,new sortByBlock());
-		return blockList;
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(blockList.get(i));
+		}
+		return Topten;
 	}
 
 
@@ -261,6 +294,84 @@ public class PlayerService implements IPlayerService {
 			return -1;
 		}
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataStatistics> getPlayerScoreRankingOffList(
+			String seasonId) {
+		List<PlayerDataStatistics> scoreList = getAllDataStatistics(seasonId,"1");
+		Collections.sort(scoreList,new sortByScore());
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(scoreList.get(i));
+		}
+		return Topten;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataStatistics> getPlayerReboundRankingOffList(
+			String seasonId) {
+		List<PlayerDataStatistics> reboundList = getAllDataStatistics(seasonId,"1");
+		Collections.sort(reboundList,new sortByRebound());
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(reboundList.get(i));
+		}
+		return Topten;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataStatistics> getPlayerAssistanceRankingOffList(
+			String seasonId) {
+		List<PlayerDataStatistics> assistanceList = getAllDataStatistics(seasonId,"1");
+		Collections.sort(assistanceList,new sortByAssistance());
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(assistanceList.get(i));
+		}
+		return Topten;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataStatistics> getPlayerGrabRankingOffList(
+			String seasonId) {
+		List<PlayerDataStatistics> grabList = getAllDataStatistics(seasonId,"1");
+		Collections.sort(grabList,new sortByGrab());
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(grabList.get(i));
+		}
+		return Topten;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataStatistics> getPlayerThreehitRankingOffList(
+			String seasonId) {
+		List<PlayerDataStatistics> threehitList = getAllDataStatistics(seasonId,"1");
+		Collections.sort(threehitList,new sortByThreeehit());
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(threehitList.get(i));
+		}
+		return Topten;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataStatistics> getPlayerBlockRankingOffList(
+			String seasonId) {
+		List<PlayerDataStatistics> blockList = getAllDataStatistics(seasonId,"1");
+		Collections.sort(blockList,new sortByBlock());
+		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
+		for (int i = 0; i < 10; i++) {
+			Topten.add(blockList.get(i));
+		}
+		return Topten;
 	}
 
 

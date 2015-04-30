@@ -64,6 +64,7 @@ public interface IPlayerService {
      * @param seasonId
      * @return List<PlayerDataStatistics>
      */
+    //以下是常规赛球员榜单
     //球员得分榜
     public List<PlayerDataStatistics> getPlayerScoreRankingList(String seasonId);
     //球员篮板榜
@@ -76,6 +77,18 @@ public interface IPlayerService {
     public List<PlayerDataStatistics> getPlayerThreehitRankingList(String seasonId);
     //盖帽榜
     public List<PlayerDataStatistics> getPlayerBlockRankingList(String seasonId);
-
+    //以下是季后赛球员榜单
+  //球员得分榜
+    public List<PlayerDataStatistics> getPlayerScoreRankingOffList(String seasonId);
+    //球员篮板榜
+    public List<PlayerDataStatistics> getPlayerReboundRankingOffList(String seasonId);
+    //助攻榜
+    public List<PlayerDataStatistics> getPlayerAssistanceRankingOffList(String seasonId);
+    //抢断榜 
+    public List<PlayerDataStatistics> getPlayerGrabRankingOffList(String seasonId);
+    //三分榜
+    public List<PlayerDataStatistics> getPlayerThreehitRankingOffList(String seasonId);
+    //盖帽榜
+    public List<PlayerDataStatistics> getPlayerBlockRankingOffList(String seasonId);
 
 }

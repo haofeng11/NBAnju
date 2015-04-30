@@ -26,4 +26,10 @@ public interface ITeamService {
 	
 	//根据球队名称，赛季ID,比赛日期得到某场比赛数据
 	public TeamSingleGame getTeamSingleGame(String teamName,String seasonID,String gameDate,String tag);
+
+	//根据分区得到东西分区球队赛季平均数据list
+	public TeamSeasonAverage getDistrictSeasonAverages(String seasonID,String district);
+	
+	
+
 }
