@@ -124,7 +124,7 @@
 					<p>现任教练: ${team.coach }</p>
 					<p>
 						历任球星: <c:forEach items="${teamStars }" var="star" >
-						           <a href="">${star }</a>
+						           <a href="../player/${star }">${star }</a>
 						        </c:forEach>	
 					</p>
 					<p>总冠军次数: ${team.champion }</p>
@@ -178,19 +178,19 @@
               </div>赛季数据
             </h2>
             <!-- Highchart图表 -->
-            <div class="data-select" id="season_data" season="${teamSingleGames.get(0).seasonID }" regular-date="<c:forEach items="${teamSingleGames}" var="t"> ${t.gameDate},</c:forEach>" playoff-date="2015-04-20,2015-04-21,2015-04-23,2015-04-25, 2015-04-26,2015-04-27,2015-04-28,2015-04-29,2015-04-30,2015-05-01,2015-05-05,2015-05-08">
-              <a class="on" href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.score},</c:forEach>" tit="赛季得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均得分：" playoff="85,111,121,134,106,107,102,102,80,115,114,98" measure = "分" >得分</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.shootTotal},</c:forEach>" tit="赛季出手数变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均出手数：" playoff="87,84,75,99,87,91,85,89,81,89,99,81" measure = "次" >出手数</a>
-              <a href="javascript:void(0);"  name="湖人" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.shootPercentage},</c:forEach>" tit="赛季命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均命中率：" playoff="46.6,39.8,51.2,47.1,41.7,37.3,39.4,54,40.7,51.8,37.1,40.7" measure = "%">命中率</a>
-              <a href="javascript:void(0);"  name="湖人" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.threeHit*3},</c:forEach>" tit="赛季3分得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分得分：" playoff="18,21,21,6,9,18,15,15,9,24,24,30" measure = "分">三分得分</a>
-              <a href="javascript:void(0);"  name="湖人" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.threeTotal},</c:forEach>" tit="赛季3分出手变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分出手：" playoff="22,21,12,16,17,20,13,24,19,21,24,17" measure = "次">三分出手</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.threePercentage},</c:forEach>" tit="赛季3分命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分命中率：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">三分命中率</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.assistance},</c:forEach>" tit="赛季助攻变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均助攻数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">助攻</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.rebound},</c:forEach>" tit="赛季篮板变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均篮板数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">篮板</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.block},</c:forEach>" tit="赛季盖帽变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均盖帽数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">盖帽</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.grab},</c:forEach>" tit="赛季抢断变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均抢断数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">抢断</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.foul},</c:forEach>" tit="赛季犯规变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均犯规数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">犯规</a>
-              <a href="javascript:void(0);" regular="<c:forEach items="${teamSingleGames}" var="t"> ${t.mistake},</c:forEach>" tit="赛季失误变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均失误数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">失误</a>
+            <div class="data-select" id="season_data" season="${teamSingleGames.get(0).seasonID }" regular-date="${regular_date }" playoff-date="${playoff_date }">
+              <a class="on" href="javascript:void(0);" regular="${scoreRegular }" tit="赛季得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均得分：" playoff="85,111,121,134,106,107,102,102,80,115,114,98" measure = "分" >得分</a>
+              <a href="javascript:void(0);" regular="${shootTotalRegular }" tit="赛季出手数变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均出手数：" playoff="87,84,75,99,87,91,85,89,81,89,99,81" measure = "次" >出手数</a>
+              <a href="javascript:void(0);"  name="${team.cName }" regular="${shootPercentageRegular }" tit="赛季命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均命中率：" playoff="46.6,39.8,51.2,47.1,41.7,37.3,39.4,54,40.7,51.8,37.1,40.7" measure = "%">命中率</a>
+              <a href="javascript:void(0);"  name="${team.cName }" regular="${threeHitRegular }" tit="赛季3分得分变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分得分：" playoff="18,21,21,6,9,18,15,15,9,24,24,30" measure = "分">三分得分</a>
+              <a href="javascript:void(0);"  name="${team.cName }" regular="${threeTotalRegular }" tit="赛季3分出手变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分出手：" playoff="22,21,12,16,17,20,13,24,19,21,24,17" measure = "次">三分出手</a>
+              <a href="javascript:void(0);" regular="${threePercentageRegular }" tit="赛季3分命中率变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均3分命中率：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "%">三分命中率</a>
+              <a href="javascript:void(0);" regular="${assistanceRegular }" tit="赛季助攻变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均助攻数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">助攻</a>
+              <a href="javascript:void(0);" regular="${reboundRegular }" tit="赛季篮板变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均篮板数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">篮板</a>
+              <a href="javascript:void(0);" regular="${blockRegular } tit="赛季盖帽变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均盖帽数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">盖帽</a>
+              <a href="javascript:void(0);" regular="${grabRegular }" tit="赛季抢断变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均抢断数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">抢断</a>
+              <a href="javascript:void(0);" regular="${foulRegular }" tit="赛季犯规变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均犯规数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">犯规</a>
+              <a href="javascript:void(0);" regular="${mistakeRegular }" tit="赛季失误变化趋势图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平均失误数：" playoff="31.8,33.3,16.7,18.8,35.3,25,38.5,12.5,42.1,38.1,41.7,58.8" measure = "次">失误</a>
             </div>
             <div class="row">
               <div id="data-container" class="col-md-11" style="min-width: 310px; height: 400px; margin: 0 auto;">
@@ -286,7 +286,7 @@
 								},
 
 								series : [ {
-									name : '科比',
+									name : '${team.cName }',
 									data : [ ${scoreRanking }, ${assistanceRanking }, ${reboundRanking }, ${grabRanking }, ${blockRanking }, ${mistakeRanking } ],
 									pointPlacement : 'on'
 								} ]
@@ -402,77 +402,77 @@
 					density : 0.05,
 					attractiveness : 1.8,
 					nodes : [ {
-						category : 2,
-						name : '科比',
-						value : 2350,
+						category : ${playerList.get(0).position},
+						name : '${playerList.get(0).cName}',
+						value : ${playerList.get(0).salary.split("万美元")[0]},
 						initial : [ width / 2, height / 2 ],
 						fixX : true,
 						fixY : true,
 						draggable : false
 					}, {
-						category : 2,
-						name : '纳什',
-						value : 970,
+						category : ${playerList.get(1).position},
+						name : '${playerList.get(1).cName}',
+						value : ${playerList.get(1).salary.split("万美元")[0]},
 						initial : [ width / 2 - 50, height / 2 - 50 ],
 						fixX : true,
 						fixY : true,
 						draggable : true
 					}, {
-						category : 2,
-						name : '林书豪',
-						value : 837,
+						category : ${playerList.get(2).position},
+						name : '${playerList.get(2).cName}',
+						value : ${playerList.get(2).salary.split("万美元")[0]},
 						initial : [ width / 2 + 50, height / 2 - 50 ],
 						fixX : true,
 						fixY : true,
 						draggable : true
 					}, {
-						category : 2,
-						name : '尼克·杨',
-						value : 483,
+						category : ${playerList.get(3).position},
+						name : '${playerList.get(3).cName}',
+						value : ${playerList.get(3).salary.split("万美元")[0]},
 						initial : [ width / 2 - 50, height / 2 + 50 ],
 						fixX : true,
 						fixY : true,
 						draggable : true
 					}, {
-						category : 1,
-						name : '布泽尔',
-						value : 325,
+						category : ${playerList.get(4).position},
+						name : '${playerList.get(4).cName}',
+						value : ${playerList.get(4).salary.split("万美元")[0]},
 						initial : [ width / 2 + 50, height / 2 + 50 ],
 						fixX : true,
 						fixY : true,
 						draggable : true
 					}, {
-						category : 1,
-						name : '兰德尔',
-						value : 299
+						category : ${playerList.get(5).position},
+						name : '${playerList.get(5).cName}',
+						value : ${playerList.get(5).salary.split("万美元")[0]}
 					}, {
-						category : 1,
-						name : '艾灵顿',
-						value : 277,
+						category : ${playerList.get(6).position},
+						name : '${playerList.get(6).cName}',
+						value : ${playerList.get(6).salary.split("万美元")[0]},
 						initial : [ width / 2 - 200, height / 2 ],
 						fixX : true,
 						fixY : true,
 						draggable : true
 					}, {
-						category : 1,
-						name : '凯利',
-						value : 165
+						category : ${playerList.get(7).position},
+						name : '${playerList.get(7).cName}',
+						value : ${playerList.get(7).salary.split("万美元")[0]}
 					}, {
-						category : 2,
-						name : '普莱斯',
-						value : 114
+						category : ${playerList.get(8).position},
+						name : '${playerList.get(8).cName}',
+						value : ${playerList.get(8).salary.split("万美元")[0]}
 					}, {
-						category : 2,
-						name : '戴维斯',
-						value : 98,
+						category : ${playerList.get(9).position},
+						name : '${playerList.get(9).cName}',
+						value : ${playerList.get(9).salary.split("万美元")[0]},
 						initial : [ width / 2 + 200, height / 2 ],
 						fixX : true,
 						fixY : true,
 						draggable : true
 					}, {
-						category : 0,
-						name : '萨克雷',
-						value : 91
+						category : ${playerList.get(10).position},
+						name : '${playerList.get(10).cName}',
+						value : ${playerList.get(10).salary.split("万美元")[0]}
 					}, ],
 					links : [ {
 						source : 1,
@@ -605,7 +605,7 @@
             valueSuffix: ' 分',
           },
           series: [{
-              name: '湖人',
+              name: '${team.cName }',
               color: 'red',
               data: [<c:forEach items="${teamSingleGames}" var="t">
 							${t.score},

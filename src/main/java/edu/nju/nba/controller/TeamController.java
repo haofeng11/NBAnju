@@ -4,20 +4,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.nju.nba.bean.Player;
+import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamSeasonAverage;
 import edu.nju.nba.bean.TeamSingleGame;
+import edu.nju.nba.service.IPlayerService;
 import edu.nju.nba.service.ITeamService;
 
 @Controller
@@ -26,6 +34,8 @@ public class TeamController {
 
 	@Autowired
 	private ITeamService teamService;
+	@Autowired
+	private IPlayerService playerService;
 
 	// 场均得分联盟排名
 	int scoreRanking;
@@ -68,6 +78,7 @@ public class TeamController {
 	}
 
 	// 球队信息介绍
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/{teamName}", method = RequestMethod.GET)
 	public String show(@PathVariable String teamName, Model model) {
 
@@ -118,16 +129,102 @@ public class TeamController {
 		 teamSingleGamesPO=teamService.getTeamSingleGames(teamName.split("队")[0],
 		 "14-15","1");
 		 model.addAttribute("teamSingleGamesPO", teamSingleGamesPO);
+		 
+		 Map<String, Object> teamSingleGames14=getSeasonData(teamName, "14-15");
+		 List<Statistics> dataList=(List<Statistics>)teamSingleGames14.get("data");
+		 String regular_date=teamSingleGames14.get("regular_date").toString();
+		 String playoff_date=teamSingleGames14.get("playoff_date").toString();
+		 String scoreRegular=dataList.get(0).getRegular();
+		 String scorePO=dataList.get(0).getPlayoff();
+		 String shootTotalRegular=dataList.get(1).getRegular();
+		 String shootPercentageRegular=dataList.get(2).getRegular();
+		 String threeHitRegular=dataList.get(3).getRegular();
+		 String threeTotalRegular=dataList.get(4).getRegular();
+		 String threePercentageRegular=dataList.get(5).getRegular();
+		 String assistanceRegular=dataList.get(6).getRegular();
+		 String reboundRegular=dataList.get(7).getRegular();
+		 String blockRegular=dataList.get(8).getRegular();
+		 String grabRegular=dataList.get(9).getRegular();
+		 String foulRegular=dataList.get(10).getRegular();
+		 String mistakeRegular=dataList.get(11).getRegular();
+		 model.addAttribute("regular_date", regular_date);
+		 model.addAttribute("playoff_date", playoff_date);
+		 model.addAttribute("scoreRegular", scoreRegular);
+		 model.addAttribute("scorePO", scorePO);
+		 model.addAttribute("shootTotalRegular", shootTotalRegular);
+		 model.addAttribute("shootPercentageRegular", shootPercentageRegular);
+		 model.addAttribute("threeHitRegular", threeHitRegular);
+		 model.addAttribute("threeTotalRegular", threeTotalRegular);
+		 model.addAttribute("threePercentageRegular", threePercentageRegular);
+		 model.addAttribute("assistanceRegular", assistanceRegular);
+		 model.addAttribute("reboundRegular", reboundRegular);
+		 model.addAttribute("blockRegular", blockRegular);
+		 model.addAttribute("grabRegular", grabRegular);
+		 model.addAttribute("foulRegular", foulRegular);
+		 model.addAttribute("mistakeRegular", mistakeRegular);
+		 
+		 //得到球队薪水排名前11的球员作为球队阵容的一员
+		 List<Player> playerList=team(teamName);
+		 Collections.sort(playerList, new sortBySalary());
+		 for (Player player : playerList) {
+			if (player.getPosition().split("-")[0].equals("中锋")) {
+				player.setPosition("0");
+			}else if(player.getPosition().split("-")[0].equals("前锋")){
+				player.setPosition("1");
+			}else if(player.getPosition().split("-")[0].equals("后卫")){
+				player.setPosition("2");
+			}
+		}
+		 
+		 for (Player player : playerList) {
+				System.out.println(player.toString());
+		}
+		 model.addAttribute("playerList", playerList);
+		 
 
 		return "TeamInfo";
+	}
+	
+	//搜索球队或者球员
+	@RequestMapping("/search")
+	@ResponseBody
+	public  Map<String, Object> search(@ModelAttribute Player player,HttpServletRequest request, HttpServletResponse response){
+		System.out.println(player.getcName());
+		return null;	
+	}
+	
+	
+	// 得到球队阵容
+	public List<Player> team(String teamName) {
+		List<PlayerDataStatistics> PD = playerService.findTeam(teamName.split("队")[0],
+				"14-15", "0");
+		List<Player> playerList = new ArrayList<Player>();
+		
+		for (PlayerDataStatistics p : PD) {
+			playerList.add(playerService.show(p.getPlayer()));
+		}
+		
+        for (Player player : playerList) {
+			System.out.println(player.toString());
+		}
+        
+		return playerList;
 	}
 
 	// 根据赛季ID返回各个赛季常规赛和季后赛json数据
 	@RequestMapping(value = "/{teamName}/{seasonID}", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> showSeasonData(@PathVariable String teamName,
-			@PathVariable String seasonID) {
+			@PathVariable String seasonID) {	
 
+		//调用getSeasonData方法得到数据
+		Map<String, Object> map = getSeasonData(teamName, seasonID);
+		return map;
+	}
+	
+	//根据赛季ID返回各个赛季常规赛和季后赛数据
+	public Map<String, Object> getSeasonData( String teamName,
+			String seasonID) {
 		// 得到常规赛和季后赛日期
 		teamSingleGames = teamService.getTeamSingleGames(teamName.split("队")[0], seasonID, "0");
 		teamSingleGamesPO=teamService.getTeamSingleGames(teamName.split("队")[0],seasonID,"1");
@@ -244,9 +341,11 @@ public class TeamController {
 		map.put("regular_date", regular_date);
 		map.put("playoff_date", playoff_date);// 季后赛数据没有，暂时用常规赛数据代替
 		map.put("data", data);
+		
 
 		return map;
 	}
+	
 
 	//用来转json对象
 	class Statistics {
@@ -469,6 +568,25 @@ public class TeamController {
 				return 1;
 			} else if (Double.parseDouble(t1.getMistake()) == Double
 					.parseDouble(t2.getScore())) {
+				return 0;
+			}
+			return -1;
+		}
+
+	}
+	
+	// 球员薪水排序
+	@SuppressWarnings("rawtypes")
+	class sortBySalary implements Comparator {
+
+		public int compare(Object o1, Object o2) {
+			Player t1 = (Player) o1;
+			Player t2 = (Player) o2;
+			if (Double.parseDouble(t1.getSalary().split("万美元")[0]) < Double.parseDouble(t2
+					.getSalary().split("万美元")[0])) {
+				return 1;
+			} else if (Double.parseDouble(t1.getSalary().split("万美元")[0]) == Double
+					.parseDouble(t2.getSalary().split("万美元")[0])) {
 				return 0;
 			}
 			return -1;

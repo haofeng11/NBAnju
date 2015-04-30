@@ -114,24 +114,98 @@ public class PlayerController {
 				freeThrowPercentageRanking);
 
 		// 球员生涯表现
-		List<PlayerDataStatistics> dataStatistics = playerService
+		List<PlayerDataStatistics> list = playerService
 				.getDataStatisticsByName(playerName, "0");
-		model.addAttribute("dataStatistics", dataStatistics);
-		for (PlayerDataStatistics PD : dataStatistics) {
-			System.out.println(PD.toString());
+		List<PlayerDataStatistics> dataStatistics=new ArrayList<PlayerDataStatistics>();
+		List<PlayerDataStatistics> listPO = playerService
+				.getDataStatisticsByName(playerName, "1");
+		List<PlayerDataStatistics> dataStatisticsPO=new ArrayList<PlayerDataStatistics>();
+		
+		for(int i=list.size()-1;i>=0;i--){
+			dataStatistics.add(list.get(i));
 		}
 		
+		for(int i=listPO.size()-1;i>=0;i--){
+			dataStatisticsPO.add(listPO.get(i));
+		}
+		
+		for (PlayerDataStatistics PD : dataStatisticsPO) {
+			System.out.println(PD.toString());
+		}
+		model.addAttribute("dataStatistics", dataStatistics);
+		model.addAttribute("dataStatisticsPO", dataStatisticsPO);
+
+		
 		//球员生涯平均统计数据
+		//球员生涯平均进阶数据
 		 Map<String, Object> dataAverageList=careerDataStatistics(dataStatistics);
 		 model.addAttribute("dataAverageList", dataAverageList);
 		 
-		//球员生涯平均进阶数据
-		// 进攻能力分析：真实命中率，投篮效率，进攻篮板率，使用率，进攻效率、失误率
-		// 防守能力分析：防守篮板率、抢断率、盖帽率、防守效率
-		// 策应能力分析：助攻率、助攻失误比
-		// 综合能力分析：WS，PER，进攻能力、防守能力、策应能力
 		 List<PlayerDataAnalysis> dataAnalysis=playerService.getDataAnalysisByName(playerName, "0");
 		 Map<String, Object> analysisAverageList=careerDataAnalysis(dataAnalysis);
+		 
+		//真实命中率
+		 int truePercentage=Integer.parseInt(analysisAverageList.get("truePercentageAverage").toString());
+		 model.addAttribute("truePercentage", truePercentage);
+		 //投篮效率
+		 int shootEfficiency=Integer.parseInt(analysisAverageList.get("shootEfficiencyAverage").toString());
+		 model.addAttribute("shootEfficiency", shootEfficiency);
+		 //进攻篮板率
+		 int offenReboundPercent=Integer.parseInt(analysisAverageList.get("offenReboundPercentAverage").toString());
+		 model.addAttribute("offenReboundPercent", offenReboundPercent);
+		 //使用率
+		 int usePercent=Integer.parseInt(analysisAverageList.get("usePercentAverage").toString());
+		 model.addAttribute("usePercent", usePercent);
+		 //进攻效率
+		 int offensiveEfficiency=Integer.parseInt(analysisAverageList.get("offensiveEfficiencyAverage").toString());
+		 model.addAttribute("offensiveEfficiency", offensiveEfficiency);
+		 //失误率
+		 int mistakePercent=Integer.parseInt(analysisAverageList.get("mistakePercentAverage").toString());
+		 model.addAttribute("mistakePercent", mistakePercent);
+		 //防守篮板率
+		 int defenReboundPercent=Integer.parseInt(analysisAverageList.get("defenReboundPercentAverage").toString());
+		 model.addAttribute("defenReboundPercent", defenReboundPercent);
+		 //抢断率
+		 int grabPercent=Integer.parseInt(analysisAverageList.get("grabPercentAverage").toString());
+		 model.addAttribute("grabPercent", grabPercent);
+		 //盖帽率
+		 int blockPercent=Integer.parseInt(analysisAverageList.get("blockPercentAverage").toString());
+		 model.addAttribute("blockPercent", blockPercent);
+		 //防守效率
+		 int defensiveEfficiency=Integer.parseInt(analysisAverageList.get("defensiveEfficiencyAverage").toString());
+		 model.addAttribute("defensiveEfficiency", defensiveEfficiency);
+		 //助攻率
+		 int assistancePercent=Integer.parseInt(analysisAverageList.get("assistancePercentAverage").toString());
+		 model.addAttribute("assistancePercent", assistancePercent);
+		 //助攻失误比
+		 int ATR=Integer.parseInt(dataAverageList.get("ATRAverage").toString());
+		 model.addAttribute("ATR", ATR);
+		 /*
+		  * 综合能力
+		  */
+		 //PER
+		 int PER=Integer.parseInt(analysisAverageList.get("PERAverage").toString());
+		 model.addAttribute("PER", PER);
+		 //WS
+		 int WS=Integer.parseInt(analysisAverageList.get("WSAverage").toString());
+		 model.addAttribute("WS", WS);
+		 //进攻能力 计算公式：进攻能力=真实命中率*0.2+投篮效率*0.2+进攻篮板率*0.1+使用率*0.2+进攻效率*0.2+失误率*0.1
+		 int OffensiveCapability=(int)(truePercentage*0.2+shootEfficiency*0.2+offenReboundPercent*0.1+usePercent*0.2+offensiveEfficiency*0.2+mistakePercent*0.1);
+		 model.addAttribute("OffensiveCapability", OffensiveCapability);
+		 //防守能力 计算公式：防守能力=(防守篮板率+抢断率+盖帽率+防守效率)/4
+		 int DefensiveCapability=(int)((defenReboundPercent+grabPercent+blockPercent+defensiveEfficiency)/4);
+		 model.addAttribute("DefensiveCapability", DefensiveCapability);
+		 //策应能力 计算公式：策应能力=助攻率*0.4+助攻失误比*0.6
+		 int AssistanceCapability=(int)(assistancePercent*0.4+ATR*0.6);
+		 model.addAttribute("AssistanceCapability", AssistanceCapability);
+		 
+		 
+		 System.out.println("truePercentage: "+truePercentage);
+		 System.out.println("shootEfficiency: "+shootEfficiency);
+		 System.out.println("offenReboundPercent: "+offenReboundPercent);
+		 System.out.println("usePercent: "+usePercent);
+		 System.out.println("offensiveEfficiency: "+offensiveEfficiency);
+		 System.out.println("mistakePercent: "+mistakePercent);
 
 		return "PlayerInfo";
 	}
@@ -300,8 +374,8 @@ public class PlayerController {
 		double winCntAverage = winCntSum / length;
 		// 生涯平均负场
 		double loseCntAverage = loseCntSum / length;
-		// 生涯平均助攻失误比
-		double ATRAverage = assistanceAverage / mistakeAverage;
+		// 生涯平均助攻失误比，一般4.5算100分
+		String ATRAverage = String.valueOf(new BigDecimal(((assistanceAverage / mistakeAverage) / 4.5)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
 
 		Map<String, Object> dataAverageList = new HashMap<String, Object>();
 		dataAverageList.put("scoreAverage", scoreAverage);
@@ -431,22 +505,7 @@ public class PlayerController {
 				.valueOf(new BigDecimal(((PERSum / length) / 40)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
 		//生涯WS一般25算100分
 		String WSAverage=String
-				.valueOf(new BigDecimal(((WSSum / length) / 25)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		
-		System.out.println("truePercentageAverage: "+truePercentageAverage);
-		System.out.println("shootEfficiencyAverage: "+shootEfficiencyAverage);
-		System.out.println("offenReboundPercentAverage: "+offenReboundPercentAverage);
-		System.out.println("offensiveEfficiencySum: "+offensiveEfficiencySum);
-		System.out.println("offensiveEfficiencyAverage: "+offensiveEfficiencyAverage);
-		System.out.println("mistakePercentAverage: "+mistakePercentAverage);
-		System.out.println("defenReboundPercentAverage: "+defenReboundPercentAverage);
-		System.out.println("grabPercentAverage: "+grabPercentAverage);
-		System.out.println("blockPercentAverage: "+blockPercentAverage);
-		System.out.println("defensiveEfficiencyAverage: "+defensiveEfficiencyAverage);
-		System.out.println("assistancePercentAverage: "+assistancePercentAverage);
-		System.out.println("PERAverage: "+PERAverage);
-		System.out.println("WSAverage: "+WSAverage);
-		
+				.valueOf(new BigDecimal(((WSSum / length) / 25)*100).setScale(0, BigDecimal.ROUND_HALF_UP));	
 		
 		Map<String, Object> dataAnalysisAverageList = new HashMap<String, Object>();
 		dataAnalysisAverageList.put("truePercentageAverage", truePercentageAverage);
@@ -466,17 +525,6 @@ public class PlayerController {
 		return dataAnalysisAverageList;
 	}
 
-	// 得到球队阵容
-	public String team(String teamName, Model model) {
-		List<PlayerDataStatistics> PD = playerService.findTeam(teamName,
-				"14-15", "0");
-		List<Player> playerList = new ArrayList<Player>();
-		for (PlayerDataStatistics p : PD) {
-			playerList.add(playerService.show(p.getPlayer()));
-		}
-		model.addAttribute("playerList", playerList);
-		return null;
-	}
 
 	// 场均得分联盟排名
 	@SuppressWarnings("unchecked")

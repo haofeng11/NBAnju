@@ -88,7 +88,7 @@ public class PlayerService implements IPlayerService {
 	
 	@SuppressWarnings("unchecked")
 	public List<PlayerDataStatistics> findTeam(String teamName, String seasonID, String tag) {
-		return (List<PlayerDataStatistics>)generalDao.find3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.team=? and p.tag=?", seasonID, teamName, tag);
+		return (List<PlayerDataStatistics>)generalDao.findList3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.team=? and p.tag=?", seasonID, teamName, tag);
 	}
 	
 	@SuppressWarnings("unchecked")
