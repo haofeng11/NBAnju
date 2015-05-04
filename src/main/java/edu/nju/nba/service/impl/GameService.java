@@ -12,6 +12,7 @@ import java.util.List;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -73,7 +74,7 @@ public class GameService implements IGameService {
 
 	@SuppressWarnings("unchecked")
 	public List<Game> getGames(String homeTeam, String guestTeam) {
-		return (List<Game>)generalDao.findList2("From edu.nju.nba.bean.Game g where g.homeTeam=? and gs.guestTeam=?", homeTeam, guestTeam);
+		return (List<Game>)generalDao.findList2("From edu.nju.nba.bean.Game g where g.homeTeam=? and g.guestTeam=?", homeTeam, guestTeam);
 
 	}
 	
@@ -113,6 +114,10 @@ public class GameService implements IGameService {
 	public List<TeamGameRecord> getPlayoffWestRank(String seasonId) {
 		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='西部' and tgr.tag='1' and tgr.seasonID=? ", seasonId);
 
+	}
+
+	public Game getGameByID(String GameID) {
+		return (Game)generalDao.find("from edu.nju.nba.bean.Game g where g.gameID=?", GameID);
 	}
 
 }

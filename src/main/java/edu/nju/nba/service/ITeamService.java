@@ -11,6 +11,9 @@ public interface ITeamService {
 
 	// 根据球队名称查找球队，返回球队基本信息
 	public Team show(String teamName);
+	
+	//模糊查找球队
+	public List<Team> searchTeam(String name);
 
 	// 查找所有球队基本信息
 	public List<Team> list();

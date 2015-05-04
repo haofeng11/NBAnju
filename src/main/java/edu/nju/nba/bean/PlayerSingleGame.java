@@ -342,6 +342,8 @@ public class PlayerSingleGame implements Serializable {
 		this.tag = tag;
 	}
 	
-	
+	public String toString() {		
+		return "seasonID: "+this.seasonID+" gameDate: "+this.gameDate+" player: "+this.player+" score: "+this.score;
+	}
 
 }

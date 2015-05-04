@@ -9,6 +9,9 @@ import edu.nju.nba.bean.TeamGameRecord;
 import edu.nju.nba.bean.TeamSingleGame;
 
 public interface IGameService {
+	
+	//根据GameID查询Game
+	public Game getGameByID(String GameID);
 
 	// 查询某场比赛基本信息（game类中字段）
 	public Game show(String seasonId, String gameDate, String homeTeam,

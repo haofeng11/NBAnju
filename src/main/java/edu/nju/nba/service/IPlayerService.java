@@ -4,7 +4,10 @@ package edu.nju.nba.service;
 
 import java.util.List;
 
+
+
 import edu.nju.nba.bean.Player;
+import edu.nju.nba.bean.PlayerCareerHigh;
 import edu.nju.nba.bean.PlayerDataAnalysis;
 import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.bean.PlayerSingleGame;
@@ -16,6 +19,9 @@ public interface IPlayerService {
 	
 	//根据球员姓名查找球员，返回球员基本信息
 	public Player show(String playerName);
+	
+	//模糊查找球员
+	public List<Player> searchPlayer(String name);
 	
 	//根据球队名称，赛季ID查找属于一个球队的所有球员姓名
 	public List<PlayerDataStatistics> findTeam(String teamName,String seasonID,String tag);
@@ -51,13 +57,12 @@ public interface IPlayerService {
     
     //根据gameID查找PlayerSingleGame
     public List<PlayerSingleGame> getPlayerSingleGameByID(String gameID);
-	
-	/**
-	 * 球员对比
-	 * 根据球员所在球队找出比赛场次
-	 * 根据比赛场次计算交手数据
-	 */
-	
+
+	//根据球员cName得到某一球员所有的单场比赛数据
+    public List<PlayerSingleGame> getPlayerSingleGameByName(String cName);
+    
+    //根据球员名字playerName得到一个球员生涯之最的所有数据
+    public List<PlayerCareerHigh> getPlayerCareerHighList(String playerName);
     
     /**计算球员单项数据榜单
      * 

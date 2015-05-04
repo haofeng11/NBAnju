@@ -45,7 +45,7 @@
             <li class="active"><a href="${path.concat('/NBA/main.jsp')}">球员</a></li>
             <li><a href="${path.concat('/NBA/team.jsp')}">球队</a></li>
             <li><a href="${path.concat('/game/game')}">比赛</a></li>
-            <li><a href="comparison.html">球员对比</a></li>
+            <li><a href="${path.concat('/player/comparison')}">球员对比</a></li>
             <li><a href="comparison_area.html">分区对比</a></li>
           </ul>
           <form class="navbar-form navbar-left" role="search">
@@ -63,24 +63,23 @@
     <!-- 基本信息 -->
     <div class="bs-docs-header" id="content">
       <div class="container">
-        <h1>科比·布莱恩特 [ Kobe Bryant ]</h1>
+        <h1>${player.cName }[${player.eName }]</h1>
         <div class="row">
           <div class="col-md-2">
             <div class="rounded" > <!-- 头像大小选择160*190 -->
-              <img src="PlayersBigAvatar/kobe.jpg" style="width:160px;height:190px;"alt="科比">
+              <img src="../NBA/${player.picture }" style="width:160px;height:190px;"alt="科比">
             </div>
           </div>
           <div class="col-md-6">
-            <p>位置: G/F ( 24号 )</p>
-            <p>身高: 1.98米 / 6尺6</p>
-            <p>体重: 96公斤 / 212磅</p>
-            <p>生日: 1978-08-23</p>
-            <p>球队: <a href="TeamInfo.html">洛杉矶湖人</a></p>
-            <p>选秀: 1996年第一轮第 13 顺位</p>
-            <p>出生地: 美国</p>
-            <p>本赛季薪金: 2350万美元</p>
-            <p>合同: 2年4860万, 2013/11/25续签, 2014夏生效,2016年到期★合同包括15%交易保证金★拥有不可交易条款</p>
-            <p>主要奖项: <i>NBA最有价值球员、两届NBA总决赛最有价值球员、四届NBA全明星赛最有价值球员、五届NBA总冠军</i></p>
+            <p>位置: ${player.position } ( ${player.playerNumber } )</p>
+            <p>身高: ${player.height }</p>
+            <p>体重: ${player.weight }</p>
+            <p>生日: ${player.birthday }</p>
+            <p>球队: <a href="../team/${player.team }队">${player.team }</a></p>
+            <p>选秀: ${player.draftInfo }</p>
+            <p>出生地: ${player.birthplace }</p>
+            <p>本赛季薪金: ${player.salary }</p>
+            <p>主要奖项: <i>${player.prize }</i></p>
           </div>
           <!-- 技术统计 -->
           <div class="col-md-4" >
@@ -92,43 +91,48 @@
               </tr>
               <tr>
                 <td>场均得分</td>
-                <th>22.3</th>
-                <th>9</th>
+                <th>${playerDataStatistics14.score }</th>
+                <th>${scoreRanking }</th>
               </tr>
               <tr>
                 <td>场均助攻</td>
-                <th>5.6</th>
-                <th>19</th>
+                <th>${playerDataStatistics14.assistance }</th>
+                <th>${assistanceRanking }</th>
               </tr>
               <tr>
                 <td>场均篮板</td>
-                <th>5.7</th>
-                <th>71</th>
+                <th>${playerDataStatistics14.rebound }</th>
+                <th>${reboundRanking }</th>
               </tr>
               <tr>
                 <td>命中率</td>
-                <th>37.3%</th>
-                <th>118</th>
+                <th>${playerDataStatistics14.shootPercentage }</th>
+                <th>${shootPercentageRanking }</th>
               </tr>
               <tr>
                 <td>三分命中率</td>
-                <th>29.3%</th>
-                <th>89</th>
+                <th>${playerDataStatistics14.threePercentage }</th>
+                <th>${threePercentageRanking }</th>
               </tr>
               <tr>
                 <td>罚球命中率</td>
-                <th>81.3%</th>
-                <th>51</th>
+                <th>${playerDataStatistics14.freeThrowPercentage }</th>
+                <th>${freeThrowPercentageRanking }</th>
               </tr>
               <tr>
                 <td>场均盖帽</td>
-                <th>0.20</th>
-                <th>190</th>
+                <th>${playerDataStatistics14.block }</th>
+                <th>${blockRanking }</th>
               </tr>
               <tr>
                 <td>场均抢断</td>
-                <th>1.34</th>
-                <th>40</th>
+                <th>${playerDataStatistics14.grab }</th>
+                <th>${grabRanking }</th>
+              </tr>
+			  <tr>
+                <td>场均失误</td>
+                <th>${playerDataStatistics14.mistake }</th>
+                <th>${mistakeRanking }</th>
               </tr>
             </table>
           </div>
@@ -142,13 +146,13 @@
           <div class="col-md-10" role="main">
             <div class="bs-docs-section">
               <h2 id="Career" class="page-header solutionForFixBar">生涯表现</h2>
-              <div class="data-select" id="career_type" regular-date="2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014" playoff-date="2002,2004,2005,2007,2008,2009,2010,2011,2012">
-                <a class="on" id="defen" href="javascript:void(0);" regular-data="30.0,24.0,27.6,35.4,31.6,28.3,26.8,27.0,25.3,27.9,27.3,13.8,22.3" playoff-data="28.2,29.1,22.3,24.0,25.2,22.0,28,29.2,30.3" measure="分">得分</a>
-                <a href="javascript:void(0);" id="sanfen" regular-data="11.0,7.0,8.6,11.4,12,18.3,6.8,7.0,15.3,7.9,7.3,13.8,8.3" playoff-data="8.2,9.1,12.3,14.0,15.2,12.0,18,9.2,10.3" measure="个">三分</a>
-                <a href="javascript:void(0);" id="lanban">篮板</a>
-                <a href="javascript:void(0);" id="zhugong">助攻</a>
-                <a href="javascript:void(0);" id="qiangduan">抢断</a>
-                <a href="javascript:void(0);" id="gaimao">盖帽</a>
+              <div class="data-select" id="career_type" regular-date="<c:forEach items="${dataStatistics}" var="t"> ${t.seasonID},</c:forEach>" playoff-date="<c:forEach items="${dataStatisticsPO}" var="t"> ${t.seasonID},</c:forEach>">
+                <a class="on" id="defen" href="javascript:void(0);" regular-data="<c:forEach items="${dataStatistics}" var="t"> ${t.score},</c:forEach>" playoff-data="<c:forEach items="${dataStatisticsPO}" var="t"> ${t.score},</c:forEach>" measure="分">得分</a>
+                <a href="javascript:void(0);" id="sanfen" regular-data="<c:forEach items="${dataStatistics}" var="t"> ${t.threeHit},</c:forEach>" playoff-data="<c:forEach items="${dataStatisticsPO}" var="t"> ${t.threeHit},</c:forEach>" measure="个">三分</a>
+                <a href="javascript:void(0);" id="lanban" regular-data="<c:forEach items="${dataStatistics}" var="t"> ${t.rebound},</c:forEach>" playoff-data="<c:forEach items="${dataStatisticsPO}" var="t"> ${t.rebound},</c:forEach>" measure="个">篮板</a>
+                <a href="javascript:void(0);" id="zhugong" regular-data="<c:forEach items="${dataStatistics}" var="t"> ${t.assistance},</c:forEach>" playoff-data="<c:forEach items="${dataStatisticsPO}" var="t"> ${t.assistance},</c:forEach>" measure="个">助攻</a>
+                <a href="javascript:void(0);" id="qiangduan" regular-data="<c:forEach items="${dataStatistics}" var="t"> ${t.grab},</c:forEach>" playoff-data="<c:forEach items="${dataStatisticsPO}" var="t"> ${t.grab},</c:forEach>" measure="个">抢断</a>
+                <a href="javascript:void(0);" id="gaimao" regular-data="<c:forEach items="${dataStatistics}" var="t"> ${t.block},</c:forEach>" playoff-data="<c:forEach items="${dataStatisticsPO}" var="t"> ${t.block},</c:forEach>" measure="个">盖帽</a>
               </div>
                <div class="row">
                 <!-- Highchart图表 -->
@@ -266,7 +270,10 @@
                   text: ''
               },
               xAxis: {
-                  categories: ['2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014']
+                  categories: [<c:forEach items="${dataStatistics}" var="t"> 
+				                    '${t.seasonID}',
+						       </c:forEach>
+						      ]
               },
               yAxis: {
                   title: {
@@ -300,8 +307,11 @@
                   }
               },
               series: [{
-                  name: '科比',
-                  data: [30.0,24.0,27.6,35.4,31.6,28.3,26.8,27.0,25.3,27.9,27.3,13.8,22.3]
+                  name: '${player.cName}',
+                  data: [<c:forEach items="${dataStatistics}" var="t"> 
+				           ${t.score},
+						 </c:forEach>
+						]
               }]
           };
       var chart = new Highcharts.Chart(options);
@@ -329,7 +339,7 @@
           data = $(this).attr('playoff-data');
         var array = data.split(",");
         var nums = [ ];
-        for (var i=0 ; i< array.length ; i++)
+        for (var i=0 ; i< array.length-1 ; i++)
         {
             nums.push(array[i]*1);
         }
@@ -354,7 +364,7 @@
           data = active.attr('playoff-data');
         var array = data.split(",");
         var nums = [ ];
-        for (var i=0 ; i< array.length ; i++)
+        for (var i=0 ; i< array.length-1 ; i++)
         {
             nums.push(array[i]*1);
         }
@@ -413,7 +423,7 @@
             },
             series: [{
                 name: 'Population',
-                data: [50, 50, 35, 90, 80, 20],
+                data: [${truePercentage }, ${shootEfficiency }, ${offenReboundPercent }, ${usePercent }, ${offensiveEfficiency }, ${mistakePercent }],
                 dataLabels: {
                     enabled: true,
                     rotation: -90,
@@ -475,7 +485,7 @@
             series: [{
                 color: Highcharts.getOptions().colors[3],
                 name: 'Population',
-                data: [80, 60, 70, 90],
+                data: [${defenReboundPercent }, ${grabPercent }, ${blockPercent }, ${defensiveEfficiency }],
                 dataLabels: {
                     enabled: true,
                     rotation: -90,
@@ -540,7 +550,7 @@
               series: [{
                   color: Highcharts.getOptions().colors[4],
                   name: 'Population',
-                  data: [60, 70],
+                  data: [${assistancePercent }, ${ATR }],
                   dataLabels: {
                       enabled: true,
                       rotation: -90,
@@ -601,8 +611,8 @@
               
               
               series: [{
-                  name: '科比',
-                  data: [80, 90, 90, 70, 60],
+                  name: '${player.cName }',
+                  data: [${WS }, ${PER }, ${OffensiveCapability }, ${DefensiveCapability }, ${AssistanceCapability }],
                   pointPlacement: 'on'
               }]             
           });
@@ -630,7 +640,10 @@
               enabled: false
             },
               xAxis: {
-                  categories: ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014']
+                  categories: [<c:forEach items="${playerCareerHighList}" var="p">
+								'${p.year}',
+						        </c:forEach>
+				              ]
               },
               yAxis: {
                   title: {
@@ -643,38 +656,17 @@
               tooltip: {
                   enabled: true,
                   formatter: function() {
-                      return '<b>'+ this.x +'</b><br/>场均得分: '+ this.y +'分';
+                      return '<b>'+ this.x +'年';
                   }
               },
               plotOptions: {
                   spline: {
                       dataLabels: {
                       formatter: function() {
-                          if(this.x == 1996)
-                            return '<b>进入联盟</b>';
-                          else if(this.x == 1997)
-                            return '<b>NBA史上最年轻的扣篮大赛冠军</b>';
-                          else if(this.x == 1998)
-                            return '<b>NBA史上最年轻的全明星赛首发球员</b>';
-                          else if(this.x == 2000)
-                            return '<b>职业生涯第一个总冠军</b>';
-                          else if(this.x == 2001)
-                            return '<b>第二个冠军</b>';
-                          else if(this.x == 2002)
-                            return '<b>完成三连冠</b>';
-                          else if(this.x == 2006)
-                            return '<b>单场砍下81分,<br/>球衣号码由8号改为24号</b>';
-                          else if(this.x == 2007)
-                            return '<b>单赛季砍下10次50+</b>';
-                          else if(this.x == 2008)
-                            return '<b>第一次获得NBA最有价值球员</b>';
-                          else if(this.x == 2009)
-                            return '<b><br/>夺得总冠军,并获得总决赛最有价值球员</b>';
-                          else if(this.x == 2010)
-                            return '<b>第一次获得NBA最有价值球员</b>';
-                          else
-                            return '';
-                            //return '<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C';
+					     <c:forEach items="${playerCareerHighList}" var="p">
+						    if(this.x == ${p.year })
+                               return '<b>${p.careerHighData }</b>';
+						 </c:forEach>
                       },
                           enabled: true
                       },
@@ -682,8 +674,11 @@
                   }
               },
               series: [{
-                  name: '科比',
-                  data: [7.6,15.4,19.9,22.5,28.5,25.2,30.0,24.0,27.6,35.4,31.6,28.3,26.8,27.0,25.3,27.9,27.3,13.8,22.3]
+                  name: '${player.cName }',
+                  data: [<c:forEach items="${playerCareerHighList}" var="p">
+								${p.yAxis},
+						 </c:forEach>
+				        ]
               }]
           });
       });
