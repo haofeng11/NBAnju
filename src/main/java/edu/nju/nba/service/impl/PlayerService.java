@@ -25,10 +25,18 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.nba.bean.Player;
+import edu.nju.nba.bean.PlayerCareerHigh;
 import edu.nju.nba.bean.PlayerDataAnalysis;
 import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.bean.PlayerSingleGame;
@@ -362,7 +370,6 @@ public class PlayerService implements IPlayerService {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<PlayerDataStatistics> getPlayerBlockRankingOffList(
 			String seasonId) {
 		List<PlayerDataStatistics> blockList = getAllDataStatistics(seasonId,"1");
@@ -372,6 +379,23 @@ public class PlayerService implements IPlayerService {
 			Topten.add(blockList.get(i));
 		}
 		return Topten;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Player> searchPlayer(String name) {
+		String value="%"+name+"%";
+		return (List<Player>)generalDao.findList("from edu.nju.nba.bean.Player p where p.cName like ?", value);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<PlayerSingleGame> getPlayerSingleGameByName(String cName) {
+		return (List<PlayerSingleGame>)generalDao.findList("from edu.nju.nba.bean.PlayerSingleGame p where p.player=?", cName);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<PlayerCareerHigh> getPlayerCareerHighList(String playerName) {	
+		String value="%"+playerName+"%";
+		return (List<PlayerCareerHigh>)generalDao.findList("from edu.nju.nba.bean.PlayerCareerHigh p where p.playerName like ?", value);
 	}
 
 

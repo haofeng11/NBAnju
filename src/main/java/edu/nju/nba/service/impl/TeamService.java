@@ -66,7 +66,6 @@ public class TeamService implements ITeamService {
 	}
 
 
-	@Override
 	public TeamSeasonAverage getDistrictSeasonAverages(String seasonID,
 			String district) {
 		// 某赛季分区平均数据
@@ -125,6 +124,12 @@ public class TeamService implements ITeamService {
 		districSeasonAverage.setFoul(df.format(totalFoul/NumOfTeams)+"");
 		
 		return districSeasonAverage;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Team> searchTeam(String name) {
+		String value="%"+name+"%";
+		return (List<Team>)generalDao.findList("from edu.nju.nba.bean.Team t where t.cName like ?", value);
 	}
 
 }

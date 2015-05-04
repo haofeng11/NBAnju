@@ -1,30 +1,66 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>球员对比</title>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+			    <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>球员对比</title>
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.css">
-    <link href="css/new.css" rel="stylesheet">
+    <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
+    <link href="../NBA/css/new.css" rel="stylesheet">
     <!-- Highchart图表JS库 -->
-    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="js/highcharts/highcharts.js"></script>
-    <script type="text/javascript" src="js/highcharts/highcharts-more.js"></script>
-    <script type="text/javascript" src="js/highcharts/modules/exporting.js"></script>
+    <script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="../NBA/js/highcharts/highcharts-more.js"></script>
+    
+    <script type="text/javascript" src="../NBA/js/highcharts/modules/exporting.js"></script>
+    
+     <script type="text/javascript">
+       function compare() {
+		   var name1=eval(document.getElementById("1")).value;
+		   var name2=eval(document.getElementById("2")).value;
+		   //alert(name1);
+		   //alert(name2);
+		   post('compare',{'firstName':name1,'secondName':name2});
+	   }
+       
+       function post(URL, PARAMS) {      
+    	    var temp = document.createElement("form");      
+    	    temp.action = URL;      
+    	    temp.method = "get";      
+    	    temp.style.display = "none";      
+    	    for (var x in PARAMS) {      
+    	        var opt = document.createElement("textarea");      
+    	        opt.name = x;      
+    	        opt.value = PARAMS[x];      
+    	        // alert(opt.name)      
+    	        temp.appendChild(opt);      
+    	    }      
+    	    document.body.appendChild(temp);      
+    	    temp.submit();      
+    	    return temp;      
+    	}  
+
+     </script>
+	
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+       window.open("${path}/player/picture/"+document.getElementByName("cName1").value) ;
     <![endif]-->
-  </head>
-  <body>
-    <!-- 导航栏 -->
+    
+
+</head>
+<body>
+          <!-- 导航栏 -->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -38,10 +74,10 @@
         </div>
         <div class="navbar-collapse collapse" role="navigation">
           <ul class="nav navbar-nav">
-            <li><a href="main.html">球员</a></li>
-            <li><a href="team.html">球队</a></li>
-            <li><a href="game.html">比赛</a></li>
-            <li class="active"><a href="comparison.html">球员对比</a></li>
+            <li><a href="${path.concat('/NBA/main.jsp')}">球员</a></li>
+            <li><a href="${path.concat('/NBA/team.jsp')}">球队</a></li>
+            <li><a href="${path.concat('/game/game')}">比赛</a></li>
+            <li class="active"><a href="${path.concat('/player/comparison')}">球员对比</a></li>
             <li><a href="comparison_area.html">分区对比</a></li>
           </ul>
           <form class="navbar-form navbar-left" role="search">
@@ -57,40 +93,36 @@
     </div> <!-- 导航栏 -->
 	
 	<!-- 选择球员 -->
-    <div class="bs-docs-header" id="content" style="background-image:url('images/compare_player.jpg');">
+    <div class="bs-docs-header" id="content" style="background-image:url('../NBA/images/compare_player.jpg');">
       <div class="container">
       	    <div class="row">
       	    	<div class="col-md-2"></div>
       	    	<div class="col-md-8">
       	    		<div class="col-md-4 compareinput">
-      	    			<form  role="form">
+      	    			<form role="form" action="${path.concat('/player/picture1')}" method="get">
 						    <div class="input-group search">
-						      <input type="text" class="form-control" placeholder="请输入球员姓名">
+						      <input type="text" class="form-control" name="cName" id="1" placeholder="请输入球员姓名" value="${name1 }">
 						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">
-						        	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						        </button>
+						        <input type="submit" class="form-control" value="搜索">						        	
 						      </span>
 						    </div><!-- /input-group -->
 						</form>
-						<img class="img-rounded" src="PlayersBigAvatar/jordon.jpg" />
+						<img class="img-rounded" src="../NBA/${picture1 }" />
       	    		</div>
       	    		<div class="col-md-4 compare">
-      	    			<img src="images/vs.png" />
-      	    			<button type="button" class="btn btn-danger btn-lg">开始对比</button>
+      	    			<img src="../NBA/images/vs.png" />
+      	    			<button type="button" class="btn btn-danger btn-lg" onclick="compare()">开始对比</button>
       	    		</div>
       	    		<div class="col-md-4 compareinput">
-      	    			<form  role="form">
+      	    			<form  role="form" action="${path.concat('/player/picture2')}" method="get">
 						    <div class="input-group search">
-						      <input type="text" class="form-control" placeholder="请输入球员姓名">
+						      <input type="text" class="form-control" name="cName" id="2" placeholder="请输入球员姓名" value="${name2 }">
 						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">
-						        	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-						        </button>
+						        <input type="submit" class="form-control" value="搜索">		
 						      </span>
 						    </div><!-- /input-group -->
 						</form>
-						<img class="img-rounded" src="PlayersBigAvatar/kobe.jpg" />
+						<img class="img-rounded" src="../NBA/${picture2 }" />
       	    		</div>
       	    	</div>
       	    	<div class="col-md-2"></div>
@@ -112,7 +144,7 @@
 	              	<table class="table table-bordered table-striped table-hover" style="width: 100%;">
 						<thead>
 							<tr>
-								<th>场均交手数据(共8场)</th>
+								<th>场均交手数据(共${number }场)</th>
 								<th>胜负次数</th>
 								<th>时间</th>
 								<th>投篮</th>
@@ -137,71 +169,80 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>迈克尔-乔丹</a></td>
-								<td>3胜 5负</td>
-								<td>35.4</td>
-								<td>43.6%</td>
-								<td>8.9</td>
-								<td>20.4</td>
-								<td>30%</td>
-								<td>0.4</td>
-								<td>1.3</td>
-								<td>75%</td>
-								<td>6.4</td>
-								<td>8.5</td>
-								<td>4.3</td>
-								<td>1</td>
-								<td>3.3</td>
-								<td>3.6</td>
-								<td>1.1</td>
-								<td>0.5</td>
-								<td>2</td>
-								<td>1.8</td>
-								<td>24.5</td>
+								<td>${firstName }</td>
+								<td>${P1Win }胜 ${P2Win }负</td>
+								<td>${playerSingleGamesAverageP1.playTime }</td>
+								<td>${playerSingleGamesAverageP1.shootPercentage }</td>
+								<td>${playerSingleGamesAverageP1.shootHit }</td>
+								<td>${playerSingleGamesAverageP1.shootTotal }</td>
+								<td>${playerSingleGamesAverageP1.threePercentage }</td>
+								<td>${playerSingleGamesAverageP1.threeHit }</td>
+								<td>${playerSingleGamesAverageP1.threeTotal }</td>
+								<td>${playerSingleGamesAverageP1.freeThrowPercentage }</td>
+								<td>${playerSingleGamesAverageP1.freeThrowHit }</td>
+								<td>${playerSingleGamesAverageP1.freeThrowTotal }</td>
+								<td>${playerSingleGamesAverageP1.rebound }</td>
+								<td>${playerSingleGamesAverageP1.offensiveRebound }</td>
+								<td>${playerSingleGamesAverageP1.defensiveRebound }</td>
+								<td>${playerSingleGamesAverageP1.assistance }</td>
+								<td>${playerSingleGamesAverageP1.grab }</td>
+								<td>${playerSingleGamesAverageP1.block }</td>
+								<td>${playerSingleGamesAverageP1.mistake }</td>
+								<td>${playerSingleGamesAverageP1.foul }</td>
+								<td>${playerSingleGamesAverageP1.score }</td>
+
 							</tr>
 							<tr>
-								<td>科比-布莱恩特</a></td>
-								<td>5胜 3负</td>
-								<td>29.1</td>
-								<td>46.6%</td>
-								<td>7.6</td>
-								<td>16.4</td>
-								<td>55.2%</td>
-								<td>2</td>
-								<td>3.6</td>
-								<td>75.9%</td>
-								<td>5.5</td>
-								<td>7.3</td>
-								<td>4.4</td>
-								<td>0.6</td>
-								<td>3.8</td>
-								<td>3.9</td>
-								<td>0.9</td>
-								<td>0.6</td>
-								<td>1.5</td>
-								<td>3.1</td>
-								<td>22.8</td>
+								<td>${secondName }</td>
+								<td>${P2Win }胜 ${P1Win }负</td>
+								<td>${playerSingleGamesAverageP2.playTime }</td>
+								<td>${playerSingleGamesAverageP2.shootPercentage }</td>
+								<td>${playerSingleGamesAverageP2.shootHit }</td>
+								<td>${playerSingleGamesAverageP2.shootTotal }</td>
+								<td>${playerSingleGamesAverageP2.threePercentage }</td>
+								<td>${playerSingleGamesAverageP2.threeHit }</td>
+								<td>${playerSingleGamesAverageP2.threeTotal }</td>
+								<td>${playerSingleGamesAverageP2.freeThrowPercentage }</td>
+								<td>${playerSingleGamesAverageP2.freeThrowHit }</td>
+								<td>${playerSingleGamesAverageP2.freeThrowTotal }</td>
+								<td>${playerSingleGamesAverageP2.rebound }</td>
+								<td>${playerSingleGamesAverageP2.offensiveRebound }</td>
+								<td>${playerSingleGamesAverageP2.defensiveRebound }</td>
+								<td>${playerSingleGamesAverageP2.assistance }</td>
+								<td>${playerSingleGamesAverageP2.grab }</td>
+								<td>${playerSingleGamesAverageP2.block }</td>
+								<td>${playerSingleGamesAverageP2.mistake }</td>
+								<td>${playerSingleGamesAverageP2.foul }</td>
+								<td>${playerSingleGamesAverageP2.score }</td>
+
 							</tr>
 						</tbody>
 					</table>
 
 					<!-- 选择场次 -->
+					
 					<div class="btn-group">
 					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 					    选择场次 <span class="caret"></span>
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
+					  	<c:forEach items="${gameList }" var="g" >
+						    <li><a href="./singleGame?gameID=${g.gameID }">${g.seasonID } 常规赛 ${g.homeTeam }${g.homeScore }-${g.guestTeam }${g.guestScore }</a></li>     
+						 </c:forEach>
+					  <!--
 					    <li><a href="#">96-97 常规赛 公牛129-123湖人</a></li>
 					    <li><a href="#">96-97 常规赛 公牛90-106湖人</a></li>
 					    <li><a href="#">97-98 常规赛 公牛104-83湖人</a></li>
 					    <li><a href="#">97-98 常规赛 公牛87-112湖人</a></li>
 					    <li><a href="#">01-02 常规赛 奇才94-103湖人</a></li>
+						-->
 					  </ul>
 					</div>
+					
 					<table class="table table-bordered table-striped table-hover" style="width: 100%;">
 						<thead>
 							<tr>
-								<th>公牛129-123湖人</th>
+								<th>${game.homeTeam }${game.homeScore }-${game.guestTeam }${game.guestScore }</th>
 								<th>球队</th>
 								<th>时间</th>
 								<th>投篮</th>
@@ -226,50 +267,50 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>迈克尔-乔丹</a></td>
-								<td>芝加哥公牛</td>
-								<td>47</td>
-								<td>31.3%</td>
-								<td>10</td>
-								<td>32</td>
-								<td>0.0%</td>
-								<td>0</td>
-								<td>2</td>
-								<td>71.4%</td>
-								<td>10</td>
-								<td>14</td>
-								<td>9</td>
-								<td>5</td>
-								<td>4</td>
-								<td>3</td>
-								<td>1</td>
-								<td>1</td>
-								<td>2</td>
-								<td>2</td>
-								<td>30</td>
+								<td>${P1.player }</a></td>
+								<td>${P1.team }</td>
+								<td>${P1.playTime }</td>
+								<td>${P1.shootPercentage }</td>
+								<td>${P1.shootHit }</td>
+								<td>${P1.shootTotal }</td>
+								<td>${P1.threePercentage }</td>
+								<td>${P1.threeHit }</td>
+								<td>${P1.threeTotal }</td>
+								<td>${P1.freeThrowPercentage }</td>
+								<td>${P1.freeThrowHit }</td>
+								<td>${P1.freeThrowTotal }</td>
+								<td>${P1.rebound }</td>
+								<td>${P1.offensiveRebound }</td>
+								<td>${P1.defensiveRebound }</td>
+								<td>${P1.assistance }</td>
+								<td>${P1.grab }</td>
+								<td>${P1.block }</td>
+								<td>${P1.mistake }</td>
+								<td>${P1.foul }</td>
+								<td>${P1.score }</td>
 							</tr>
 							<tr>
-								<td>科比-布莱恩特</a></td>
-								<td>洛杉矶湖人</td>
-								<td>10</td>
-								<td>40.0%</td>
-								<td>2</td>
-								<td>5</td>
-								<td>50%</td>
-								<td>1</td>
-								<td>2</td>
-								<td>0.0%</td>
-								<td>0</td>
-								<td>2</td>
-								<td>1</td>
-								<td>0</td>
-								<td>1</td>
-								<td>0</td>
-								<td>0</td>
-								<td>1</td>
-								<td>0</td>
-								<td>1</td>
-								<td>5</td>
+								<td>${P2.player }</a></td>
+								<td>${P2.team }</td>
+								<td>${P2.playTime }</td>
+								<td>${P2.shootPercentage }</td>
+								<td>${P2.shootHit }</td>
+								<td>${P2.shootTotal }</td>
+								<td>${P2.threePercentage }</td>
+								<td>${P2.threeHit }</td>
+								<td>${P2.threeTotal }</td>
+								<td>${P2.freeThrowPercentage }</td>
+								<td>${P2.freeThrowHit }</td>
+								<td>${P2.freeThrowTotal }</td>
+								<td>${P2.rebound }</td>
+								<td>${P2.offensiveRebound }</td>
+								<td>${P2.defensiveRebound }</td>
+								<td>${P2.assistance }</td>
+								<td>${P2.grab }</td>
+								<td>${P2.block }</td>
+								<td>${P2.mistake }</td>
+								<td>${P2.foul }</td>
+								<td>${P2.score }</td>
 							</tr>
 						</tbody>
 					</table>
@@ -375,23 +416,22 @@
               
               
               series: [{
-                  name: '迈克尔-乔丹',
-                  data: [24.5*100/22.8,3.6*100/3.9,4.3*100/4.4,1.1*100/0.9,0.5*100/0.6,2*100/1.5,14*100/18,43.6*100/46.6],
+                  name: '${firstName }',
+                  data: [${scoreAverageP1 },${assistanceAverageP1 },${reboundAverageP1 },${grabAverageP1 },${blockAverageP1 },${mistakeAverageP1 },${PERAverageP1 },${shootPercentageAverageP1 }],
                   pointPlacement: 'on'
               },{
-                  name: '科比-布莱恩特',
-                  data: [22.8*100/24.5,3.9*100/3.6,4.4*100/4.3,0.9*100/1.1,0.6*100/0.5,1.5*100/2,18*100/14,46.6*100/43.3],
+                  name: '${secondName }',
+                  data: [${scoreAverageP2 },${assistanceAverageP2 },${reboundAverageP2 },${grabAverageP2 },${blockAverageP2 },${mistakeAverageP2 },${PERAverageP2 },${shootPercentageAverageP2 }],
                   pointPlacement: 'on'
               }]             
           });
       });
 	</script>
-
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
-    <!-- 导航栏搜索匹配 -->
-    <script src="js/jquery-ui/jquery-ui.js"></script>
-    <script src="js/search-autocomplete.js"></script>
+	<script src="../NBA/js/bootstrap.min.js"></script>
+	<script src="../NBA/js/docs.min.js"></script>
+	<!-- 导航栏搜索匹配 -->
+	<script src="../NBA/js/jquery-ui/jquery-ui.js"></script>
+	<script src="../NBA/js/search-autocomplete.js"></script>
 </body>
 </html>

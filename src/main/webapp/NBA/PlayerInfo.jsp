@@ -45,7 +45,7 @@
             <li class="active"><a href="${path.concat('/NBA/main.jsp')}">球员</a></li>
             <li><a href="${path.concat('/NBA/team.jsp')}">球队</a></li>
             <li><a href="${path.concat('/game/game')}">比赛</a></li>
-            <li><a href="comparison.html">球员对比</a></li>
+            <li><a href="${path.concat('/player/comparison')}">球员对比</a></li>
             <li><a href="comparison_area.html">分区对比</a></li>
           </ul>
           <form class="navbar-form navbar-left" role="search">
@@ -640,7 +640,10 @@
               enabled: false
             },
               xAxis: {
-                  categories: ['1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014']
+                  categories: [<c:forEach items="${playerCareerHighList}" var="p">
+								'${p.year}',
+						        </c:forEach>
+				              ]
               },
               yAxis: {
                   title: {
@@ -653,38 +656,17 @@
               tooltip: {
                   enabled: true,
                   formatter: function() {
-                      return '<b>'+ this.x +'</b><br/>场均得分: '+ this.y +'分';
+                      return '<b>'+ this.x +'年';
                   }
               },
               plotOptions: {
                   spline: {
                       dataLabels: {
                       formatter: function() {
-                          if(this.x == 1996)
-                            return '<b>进入联盟</b>';
-                          else if(this.x == 1997)
-                            return '<b>NBA史上最年轻的扣篮大赛冠军</b>';
-                          else if(this.x == 1998)
-                            return '<b>NBA史上最年轻的全明星赛首发球员</b>';
-                          else if(this.x == 2000)
-                            return '<b>职业生涯第一个总冠军</b>';
-                          else if(this.x == 2001)
-                            return '<b>第二个冠军</b>';
-                          else if(this.x == 2002)
-                            return '<b>完成三连冠</b>';
-                          else if(this.x == 2006)
-                            return '<b>单场砍下81分,<br/>球衣号码由8号改为24号</b>';
-                          else if(this.x == 2007)
-                            return '<b>单赛季砍下10次50+</b>';
-                          else if(this.x == 2008)
-                            return '<b>第一次获得NBA最有价值球员</b>';
-                          else if(this.x == 2009)
-                            return '<b><br/>夺得总冠军,并获得总决赛最有价值球员</b>';
-                          else if(this.x == 2010)
-                            return '<b>第一次获得NBA最有价值球员</b>';
-                          else
-                            return '';
-                            //return '<b>'+ this.series.name +'</b><br/>'+this.x +': '+ this.y +'°C';
+					     <c:forEach items="${playerCareerHighList}" var="p">
+						    if(this.x == ${p.year })
+                               return '<b>${p.careerHighData }</b>';
+						 </c:forEach>
                       },
                           enabled: true
                       },
@@ -692,8 +674,11 @@
                   }
               },
               series: [{
-                  name: '科比',
-                  data: [7.6,15.4,19.9,22.5,28.5,25.2,30.0,24.0,27.6,35.4,31.6,28.3,26.8,27.0,25.3,27.9,27.3,13.8,22.3]
+                  name: '${player.cName }',
+                  data: [<c:forEach items="${playerCareerHighList}" var="p">
+								${p.yAxis},
+						 </c:forEach>
+				        ]
               }]
           });
       });
