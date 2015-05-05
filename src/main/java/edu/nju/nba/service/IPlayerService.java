@@ -82,8 +82,21 @@ public interface IPlayerService {
     public List<PlayerDataStatistics> getPlayerThreehitRankingList(String seasonId);
     //盖帽榜
     public List<PlayerDataStatistics> getPlayerBlockRankingList(String seasonId);
+    //真实命中率
+    public List<PlayerDataAnalysis> getPlayerTruePercentRanking(String seasonId);
+    //投篮效率
+    public List<PlayerDataAnalysis> getPlayerShootEfficiencyRanking(String seasonId);
+    //篮板率
+    public List<PlayerDataAnalysis> getPlayerReboundPercentRanking(String seasonId);
+    //助攻率
+    public List<PlayerDataAnalysis> getPlayerAssistancePercentRanking(String seasonId);
+    //抢断率
+    public List<PlayerDataAnalysis> getPlayerGrabPercentRanking(String seasonId);
+    //盖帽率
+    public List<PlayerDataAnalysis> getPlayerBlockPercentRanking(String seasonId);
+    
     //以下是季后赛球员榜单
-  //球员得分榜
+    //球员得分榜
     public List<PlayerDataStatistics> getPlayerScoreRankingOffList(String seasonId);
     //球员篮板榜
     public List<PlayerDataStatistics> getPlayerReboundRankingOffList(String seasonId);
@@ -95,5 +108,17 @@ public interface IPlayerService {
     public List<PlayerDataStatistics> getPlayerThreehitRankingOffList(String seasonId);
     //盖帽榜
     public List<PlayerDataStatistics> getPlayerBlockRankingOffList(String seasonId);
+    //真实命中率
+    public List<PlayerDataAnalysis> getPlayerTruePercentOffRanking(String seasonId);
+    //投篮效率
+    public List<PlayerDataAnalysis> getPlayerShootEfficiencyOffRanking(String seasonId);
+    //篮板率
+    public List<PlayerDataAnalysis> getPlayerReboundPercentOffRanking(String seasonId);
+    //助攻率
+    public List<PlayerDataAnalysis> getPlayerAssistancePercentOffRanking(String seasonId);
+    //抢断率
+    public List<PlayerDataAnalysis> getPlayerGrabPercentOffRanking(String seasonId);
+    //盖帽率
+    public List<PlayerDataAnalysis> getPlayerBlockPercentOffRanking(String seasonId);
 
 }

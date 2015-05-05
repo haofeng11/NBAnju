@@ -32,6 +32,19 @@ import java.util.List;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -120,7 +133,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> scoreList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(scoreList,new sortByScore());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(scoreList.get(i));
 		}
 		return Topten;
@@ -133,7 +146,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> reboundList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(reboundList,new sortByRebound());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(reboundList.get(i));
 		}
 		return Topten;
@@ -146,7 +159,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> assistanceList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(assistanceList,new sortByAssistance());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(assistanceList.get(i));
 		}
 		return Topten;
@@ -158,7 +171,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> grabList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(grabList,new sortByGrab());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(grabList.get(i));
 		}
 		return Topten;
@@ -171,7 +184,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> threehitList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(threehitList,new sortByThreeehit());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(threehitList.get(i));
 		}
 		return Topten;
@@ -183,7 +196,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> blockList = getAllDataStatistics(seasonId,"0");
 		Collections.sort(blockList,new sortByBlock());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(blockList.get(i));
 		}
 		return Topten;
@@ -311,7 +324,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> scoreList = getAllDataStatistics(seasonId,"1");
 		Collections.sort(scoreList,new sortByScore());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(scoreList.get(i));
 		}
 		return Topten;
@@ -324,7 +337,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> reboundList = getAllDataStatistics(seasonId,"1");
 		Collections.sort(reboundList,new sortByRebound());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(reboundList.get(i));
 		}
 		return Topten;
@@ -337,7 +350,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> assistanceList = getAllDataStatistics(seasonId,"1");
 		Collections.sort(assistanceList,new sortByAssistance());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(assistanceList.get(i));
 		}
 		return Topten;
@@ -350,7 +363,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> grabList = getAllDataStatistics(seasonId,"1");
 		Collections.sort(grabList,new sortByGrab());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(grabList.get(i));
 		}
 		return Topten;
@@ -363,7 +376,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> threehitList = getAllDataStatistics(seasonId,"1");
 		Collections.sort(threehitList,new sortByThreeehit());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(threehitList.get(i));
 		}
 		return Topten;
@@ -375,7 +388,7 @@ public class PlayerService implements IPlayerService {
 		List<PlayerDataStatistics> blockList = getAllDataStatistics(seasonId,"1");
 		Collections.sort(blockList,new sortByBlock());
 		List<PlayerDataStatistics> Topten = new ArrayList<PlayerDataStatistics>(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 3; i++) {
 			Topten.add(blockList.get(i));
 		}
 		return Topten;
@@ -398,7 +411,273 @@ public class PlayerService implements IPlayerService {
 		return (List<PlayerCareerHigh>)generalDao.findList("from edu.nju.nba.bean.PlayerCareerHigh p where p.playerName like ?", value);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerTruePercentRanking(String seasonId) {
+		List<PlayerDataAnalysis> TruePercentageList = getAllDataAnalysis(seasonId,"0");
+		Collections.sort(TruePercentageList,new sortByTruePercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(TruePercentageList.get(i));
+		}
+		return TopThreee;
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerShootEfficiencyRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> ShootEfficiencyList = getAllDataAnalysis(seasonId,"0");
+		Collections.sort(ShootEfficiencyList,new sortByShootEfficiency());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(ShootEfficiencyList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerReboundPercentRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> ReboundPercentList = getAllDataAnalysis(seasonId,"0");
+		Collections.sort(ReboundPercentList,new sortByReboundPercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(ReboundPercentList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerAssistancePercentRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> AssistancePercentList = getAllDataAnalysis(seasonId,"0");
+		Collections.sort(AssistancePercentList,new sortByAssistancePercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(AssistancePercentList.get(i));
+		}
+		return TopThreee;
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerGrabPercentRanking(String seasonId) {
+		List<PlayerDataAnalysis> GrabPercentList = getAllDataAnalysis(seasonId,"0");
+		Collections.sort(GrabPercentList,new sortByGrabPercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(GrabPercentList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerBlockPercentRanking(String seasonId) {
+		List<PlayerDataAnalysis> BlockPercentList = getAllDataAnalysis(seasonId,"0");
+		Collections.sort(BlockPercentList,new sortByBlockPercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(BlockPercentList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerTruePercentOffRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> TruePercentageList = getAllDataAnalysis(seasonId,"1");
+		Collections.sort(TruePercentageList,new sortByTruePercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(TruePercentageList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerShootEfficiencyOffRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> ShootEfficiencyList = getAllDataAnalysis(seasonId,"1");
+		Collections.sort(ShootEfficiencyList,new sortByShootEfficiency());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(ShootEfficiencyList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerReboundPercentOffRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> ReboundPercentList = getAllDataAnalysis(seasonId,"1");
+		Collections.sort(ReboundPercentList,new sortByReboundPercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(ReboundPercentList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerAssistancePercentOffRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> AssistancePercentList = getAllDataAnalysis(seasonId,"1");
+		Collections.sort(AssistancePercentList,new sortByAssistancePercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(AssistancePercentList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerGrabPercentOffRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> GrabPercentList = getAllDataAnalysis(seasonId,"1");
+		Collections.sort(GrabPercentList,new sortByGrabPercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(GrabPercentList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PlayerDataAnalysis> getPlayerBlockPercentOffRanking(
+			String seasonId) {
+		List<PlayerDataAnalysis> BlockPercentList = getAllDataAnalysis(seasonId,"1");
+		Collections.sort(BlockPercentList,new sortByBlockPercent());
+		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
+		for (int i = 0; i < 3; i++) {
+			TopThreee.add(BlockPercentList.get(i));
+		}
+		return TopThreee;
+	}
+
+	@SuppressWarnings("rawtypes")
+	class sortByTruePercent implements Comparator{
+
+		@Override
+		public int compare(Object o1, Object o2) {
+			PlayerDataAnalysis t1 = (PlayerDataAnalysis) o1;
+			PlayerDataAnalysis t2 = (PlayerDataAnalysis) o2;
+			if (Double.parseDouble(t1.getTruePercentage().replace("%", "")) < Double.parseDouble(t2
+					.getTruePercentage().replace("%", ""))) {
+				return 1;
+			} else if (Double.parseDouble(t1.getTruePercentage().replace("%", "")) == Double
+					.parseDouble(t2.getTruePercentage().replace("%", ""))) {
+				return 0;
+			}
+			return -1;
+		}
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	class sortByShootEfficiency implements Comparator{
+
+		@Override
+		public int compare(Object o1, Object o2) {
+			PlayerDataAnalysis t1 = (PlayerDataAnalysis) o1;
+			PlayerDataAnalysis t2 = (PlayerDataAnalysis) o2;
+			if (Double.parseDouble(t1.getShootEfficiency().replace("%", "")) < Double.parseDouble(t2
+					.getShootEfficiency().replace("%", ""))) {
+				return 1;
+			} else if (Double.parseDouble(t1.getShootEfficiency().replace("%", "")) == Double
+					.parseDouble(t2.getShootEfficiency().replace("%", ""))) {
+				return 0;
+			}
+			return -1;
+		}
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	class sortByReboundPercent implements Comparator{
+
+		@Override
+		public int compare(Object o1, Object o2) {
+			PlayerDataAnalysis t1 = (PlayerDataAnalysis) o1;
+			PlayerDataAnalysis t2 = (PlayerDataAnalysis) o2;
+			if (Double.parseDouble(t1.getReboundPercent().replace("%", "")) < Double.parseDouble(t2
+					.getReboundPercent().replace("%", ""))) {
+				return 1;
+			} else if (Double.parseDouble(t1.getReboundPercent().replace("%", "")) == Double
+					.parseDouble(t2.getReboundPercent().replace("%", ""))) {
+				return 0;
+			}
+			return -1;
+		}
+		
+	}
+
+	@SuppressWarnings("rawtypes")
+	class sortByAssistancePercent implements Comparator{
+
+		@Override
+		public int compare(Object o1, Object o2) {
+			PlayerDataAnalysis t1 = (PlayerDataAnalysis) o1;
+			PlayerDataAnalysis t2 = (PlayerDataAnalysis) o2;
+			if (Double.parseDouble(t1.getAssistancePercent().replace("%", "")) < Double.parseDouble(t2
+					.getAssistancePercent().replace("%", ""))) {
+				return 1;
+			} else if (Double.parseDouble(t1.getAssistancePercent().replace("%", "")) == Double
+					.parseDouble(t2.getAssistancePercent().replace("%", ""))) {
+				return 0;
+			}
+			return -1;
+		}
+		
+	}
+
+	@SuppressWarnings("rawtypes")
+	class sortByGrabPercent implements Comparator{
+
+		@Override
+		public int compare(Object o1, Object o2) {
+			PlayerDataAnalysis t1 = (PlayerDataAnalysis) o1;
+			PlayerDataAnalysis t2 = (PlayerDataAnalysis) o2;
+			if (Double.parseDouble(t1.getGrabPercent().replace("%", "")) < Double.parseDouble(t2
+					.getGrabPercent().replace("%", ""))) {
+				return 1;
+			} else if (Double.parseDouble(t1.getGrabPercent().replace("%", "")) == Double
+					.parseDouble(t2.getGrabPercent().replace("%", ""))) {
+				return 0;
+			}
+			return -1;
+		}
+		
+	}
+	
+	@SuppressWarnings("rawtypes")
+	class sortByBlockPercent implements Comparator{
+
+		@Override
+		public int compare(Object o1, Object o2) {
+			PlayerDataAnalysis t1 = (PlayerDataAnalysis) o1;
+			PlayerDataAnalysis t2 = (PlayerDataAnalysis) o2;
+			if (Double.parseDouble(t1.getBlockPercent().replace("%", "")) < Double.parseDouble(t2
+					.getBlockPercent().replace("%", ""))) {
+				return 1;
+			} else if (Double.parseDouble(t1.getBlockPercent().replace("%", "")) == Double
+					.parseDouble(t2.getBlockPercent().replace("%", ""))) {
+				return 0;
+			}
+			return -1;
+		}
+		
+	}
 
 
 
