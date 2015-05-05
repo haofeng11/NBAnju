@@ -1,6 +1,7 @@
 package edu.nju.nba.controller;
 
 import java.math.BigDecimal;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class PlayerController {
 	int threePercentageRanking;
 	// 场均罚球命中率联盟排名
 	int freeThrowPercentageRanking;
-	
+
 	List<PlayerSingleGame> playerSingleGamesP1 = new ArrayList<PlayerSingleGame>();
 	List<PlayerSingleGame> playerSingleGamesP2 = new ArrayList<PlayerSingleGame>();
 
@@ -67,6 +68,7 @@ public class PlayerController {
 	/*
 	 * 根据球员姓名查找球员 return 球员信息 PS：球员姓名唯一
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/{playerName}", method = RequestMethod.GET)
 	public String show(@PathVariable String playerName, Model model) {
 
@@ -124,189 +126,214 @@ public class PlayerController {
 		// 球员生涯表现
 		List<PlayerDataStatistics> list = playerService
 				.getDataStatisticsByName(playerName, "0");
-		List<PlayerDataStatistics> dataStatistics=new ArrayList<PlayerDataStatistics>();
+		List<PlayerDataStatistics> dataStatistics = new ArrayList<PlayerDataStatistics>();
 		List<PlayerDataStatistics> listPO = playerService
 				.getDataStatisticsByName(playerName, "1");
-		List<PlayerDataStatistics> dataStatisticsPO=new ArrayList<PlayerDataStatistics>();
-		
-		for(int i=list.size()-1;i>=0;i--){
+		List<PlayerDataStatistics> dataStatisticsPO = new ArrayList<PlayerDataStatistics>();
+
+		for (int i = list.size() - 1; i >= 0; i--) {
 			dataStatistics.add(list.get(i));
 		}
-		
-		for(int i=listPO.size()-1;i>=0;i--){
+
+		for (int i = listPO.size() - 1; i >= 0; i--) {
 			dataStatisticsPO.add(listPO.get(i));
 		}
-		
+
 		for (PlayerDataStatistics PD : dataStatisticsPO) {
 			System.out.println(PD.toString());
 		}
 		model.addAttribute("dataStatistics", dataStatistics);
 		model.addAttribute("dataStatisticsPO", dataStatisticsPO);
 
-		
-		//球员生涯平均统计数据
-		//球员生涯平均进阶数据
-		 Map<String, Object> dataAverageList=careerDataStatistics(dataStatistics);
-		 model.addAttribute("dataAverageList", dataAverageList);
-		 
-		 List<PlayerDataAnalysis> dataAnalysis=playerService.getDataAnalysisByName(playerName, "0");
-		 Map<String, Object> analysisAverageList=careerDataAnalysis(dataAnalysis);
-		 
-		//真实命中率
-		 int truePercentage=Integer.parseInt(analysisAverageList.get("truePercentageAverage").toString());
-		 model.addAttribute("truePercentage", truePercentage);
-		 //投篮效率
-		 int shootEfficiency=Integer.parseInt(analysisAverageList.get("shootEfficiencyAverage").toString());
-		 model.addAttribute("shootEfficiency", shootEfficiency);
-		 //进攻篮板率
-		 int offenReboundPercent=Integer.parseInt(analysisAverageList.get("offenReboundPercentAverage").toString());
-		 model.addAttribute("offenReboundPercent", offenReboundPercent);
-		 //使用率
-		 int usePercent=Integer.parseInt(analysisAverageList.get("usePercentAverage").toString());
-		 model.addAttribute("usePercent", usePercent);
-		 //进攻效率
-		 int offensiveEfficiency=Integer.parseInt(analysisAverageList.get("offensiveEfficiencyAverage").toString());
-		 model.addAttribute("offensiveEfficiency", offensiveEfficiency);
-		 //失误率
-		 int mistakePercent=Integer.parseInt(analysisAverageList.get("mistakePercentAverage").toString());
-		 model.addAttribute("mistakePercent", mistakePercent);
-		 //防守篮板率
-		 int defenReboundPercent=Integer.parseInt(analysisAverageList.get("defenReboundPercentAverage").toString());
-		 model.addAttribute("defenReboundPercent", defenReboundPercent);
-		 //抢断率
-		 int grabPercent=Integer.parseInt(analysisAverageList.get("grabPercentAverage").toString());
-		 model.addAttribute("grabPercent", grabPercent);
-		 //盖帽率
-		 int blockPercent=Integer.parseInt(analysisAverageList.get("blockPercentAverage").toString());
-		 model.addAttribute("blockPercent", blockPercent);
-		 //防守效率
-		 int defensiveEfficiency=Integer.parseInt(analysisAverageList.get("defensiveEfficiencyAverage").toString());
-		 model.addAttribute("defensiveEfficiency", defensiveEfficiency);
-		 //助攻率
-		 int assistancePercent=Integer.parseInt(analysisAverageList.get("assistancePercentAverage").toString());
-		 model.addAttribute("assistancePercent", assistancePercent);
-		 //助攻失误比
-		 int ATR=Integer.parseInt(dataAverageList.get("ATRAverage").toString());
-		 model.addAttribute("ATR", ATR);
-		 /*
-		  * 综合能力
-		  */
-		 //PER
-		 int PER=Integer.parseInt(analysisAverageList.get("PERAverage").toString());
-		 model.addAttribute("PER", PER);
-		 //WS
-		 int WS=Integer.parseInt(analysisAverageList.get("WSAverage").toString());
-		 model.addAttribute("WS", WS);
-		 //进攻能力 计算公式：进攻能力=真实命中率*0.2+投篮效率*0.2+进攻篮板率*0.1+使用率*0.2+进攻效率*0.2+失误率*0.1
-		 int OffensiveCapability=(int)(truePercentage*0.2+shootEfficiency*0.2+offenReboundPercent*0.1+usePercent*0.2+offensiveEfficiency*0.2+mistakePercent*0.1);
-		 model.addAttribute("OffensiveCapability", OffensiveCapability);
-		 //防守能力 计算公式：防守能力=(防守篮板率+抢断率+盖帽率+防守效率)/4
-		 int DefensiveCapability=(int)((defenReboundPercent+grabPercent+blockPercent+defensiveEfficiency)/4);
-		 model.addAttribute("DefensiveCapability", DefensiveCapability);
-		 //策应能力 计算公式：策应能力=助攻率*0.4+助攻失误比*0.6
-		 int AssistanceCapability=(int)(assistancePercent*0.4+ATR*0.6);
-		 model.addAttribute("AssistanceCapability", AssistanceCapability);
-		 
-		 
-		 System.out.println("truePercentage: "+truePercentage);
-		 System.out.println("shootEfficiency: "+shootEfficiency);
-		 System.out.println("offenReboundPercent: "+offenReboundPercent);
-		 System.out.println("usePercent: "+usePercent);
-		 System.out.println("offensiveEfficiency: "+offensiveEfficiency);
-		 System.out.println("mistakePercent: "+mistakePercent); 
-		 
-		 
-		 //球员生涯之最数据
-		 List<PlayerCareerHigh> playerCareerHighList=playerService.getPlayerCareerHighList(playerName);
-		 
-		 for (int i = 0; i < playerCareerHighList.size(); i++) {
-			 for (int j = i+1; j < playerCareerHighList.size(); j++) {
-				if (playerCareerHighList.get(i).getYear().equals(playerCareerHighList.get(j).getYear())) {
-					playerCareerHighList.get(i).setCareerHighData(playerCareerHighList.get(i).getCareerHighData()+" "+playerCareerHighList.get(j).getCareerHighData());
+		// 球员生涯平均统计数据
+		// 球员生涯平均进阶数据
+		Map<String, Object> dataAverageList = careerDataStatistics(dataStatistics);
+		model.addAttribute("dataAverageList", dataAverageList);
+
+		List<PlayerDataAnalysis> dataAnalysis = playerService
+				.getDataAnalysisByName(playerName, "0");
+		Map<String, Object> analysisAverageList = careerDataAnalysis(dataAnalysis);
+
+		// 真实命中率
+		int truePercentage = Integer.parseInt(analysisAverageList.get(
+				"truePercentageAverage").toString());
+		model.addAttribute("truePercentage", truePercentage);
+		// 投篮效率
+		int shootEfficiency = Integer.parseInt(analysisAverageList.get(
+				"shootEfficiencyAverage").toString());
+		model.addAttribute("shootEfficiency", shootEfficiency);
+		// 进攻篮板率
+		int offenReboundPercent = Integer.parseInt(analysisAverageList.get(
+				"offenReboundPercentAverage").toString());
+		model.addAttribute("offenReboundPercent", offenReboundPercent);
+		// 使用率
+		int usePercent = Integer.parseInt(analysisAverageList.get(
+				"usePercentAverage").toString());
+		model.addAttribute("usePercent", usePercent);
+		// 进攻效率
+		int offensiveEfficiency = Integer.parseInt(analysisAverageList.get(
+				"offensiveEfficiencyAverage").toString());
+		model.addAttribute("offensiveEfficiency", offensiveEfficiency);
+		// 失误率
+		int mistakePercent = Integer.parseInt(analysisAverageList.get(
+				"mistakePercentAverage").toString());
+		model.addAttribute("mistakePercent", mistakePercent);
+		// 防守篮板率
+		int defenReboundPercent = Integer.parseInt(analysisAverageList.get(
+				"defenReboundPercentAverage").toString());
+		model.addAttribute("defenReboundPercent", defenReboundPercent);
+		// 抢断率
+		int grabPercent = Integer.parseInt(analysisAverageList.get(
+				"grabPercentAverage").toString());
+		model.addAttribute("grabPercent", grabPercent);
+		// 盖帽率
+		int blockPercent = Integer.parseInt(analysisAverageList.get(
+				"blockPercentAverage").toString());
+		model.addAttribute("blockPercent", blockPercent);
+		// 防守效率
+		int defensiveEfficiency = Integer.parseInt(analysisAverageList.get(
+				"defensiveEfficiencyAverage").toString());
+		model.addAttribute("defensiveEfficiency", defensiveEfficiency);
+		// 助攻率
+		int assistancePercent = Integer.parseInt(analysisAverageList.get(
+				"assistancePercentAverage").toString());
+		model.addAttribute("assistancePercent", assistancePercent);
+		// 助攻失误比
+		int ATR = Integer
+				.parseInt(dataAverageList.get("ATRAverage").toString());
+		model.addAttribute("ATR", ATR);
+		/*
+		 * 综合能力
+		 */
+		// PER
+		int PER = Integer.parseInt(analysisAverageList.get("PERAverage")
+				.toString());
+		model.addAttribute("PER", PER);
+		// WS
+		int WS = Integer.parseInt(analysisAverageList.get("WSAverage")
+				.toString());
+		model.addAttribute("WS", WS);
+		// 进攻能力 计算公式：进攻能力=真实命中率*0.2+投篮效率*0.2+进攻篮板率*0.1+使用率*0.2+进攻效率*0.2+失误率*0.1
+		int OffensiveCapability = (int) (truePercentage * 0.2 + shootEfficiency
+				* 0.2 + offenReboundPercent * 0.1 + usePercent * 0.2
+				+ offensiveEfficiency * 0.2 + mistakePercent * 0.1);
+		model.addAttribute("OffensiveCapability", OffensiveCapability);
+		// 防守能力 计算公式：防守能力=(防守篮板率+抢断率+盖帽率+防守效率)/4
+		int DefensiveCapability = (int) ((defenReboundPercent + grabPercent
+				+ blockPercent + defensiveEfficiency) / 4);
+		model.addAttribute("DefensiveCapability", DefensiveCapability);
+		// 策应能力 计算公式：策应能力=助攻率*0.4+助攻失误比*0.6
+		int AssistanceCapability = (int) (assistancePercent * 0.4 + ATR * 0.6);
+		model.addAttribute("AssistanceCapability", AssistanceCapability);
+
+		System.out.println("truePercentage: " + truePercentage);
+		System.out.println("shootEfficiency: " + shootEfficiency);
+		System.out.println("offenReboundPercent: " + offenReboundPercent);
+		System.out.println("usePercent: " + usePercent);
+		System.out.println("offensiveEfficiency: " + offensiveEfficiency);
+		System.out.println("mistakePercent: " + mistakePercent);
+
+		// 球员生涯之最数据
+		List<PlayerCareerHigh> playerCareerHighList = playerService
+				.getPlayerCareerHighList(playerName);
+
+		for (int i = 0; i < playerCareerHighList.size(); i++) {
+			for (int j = i + 1; j < playerCareerHighList.size(); j++) {
+				if (playerCareerHighList.get(i).getYear()
+						.equals(playerCareerHighList.get(j).getYear())) {
+					playerCareerHighList.get(i).setCareerHighData(
+							playerCareerHighList.get(i).getCareerHighData()
+									+ " "
+									+ playerCareerHighList.get(j)
+											.getCareerHighData());
 					playerCareerHighList.remove(j);
 				}
 			}
 
-		}		 
-		 model.addAttribute("playerCareerHighList", playerCareerHighList);
-		 for (PlayerCareerHigh playerCareerHigh : playerCareerHighList) {
+		}
+		Collections.sort(playerCareerHighList, new sortByYear());
+		model.addAttribute("playerCareerHighList", playerCareerHighList);
+		for (PlayerCareerHigh playerCareerHigh : playerCareerHighList) {
 			System.out.println(playerCareerHigh.toString());
 		}
 
-
 		return "PlayerInfo";
 	}
-	
-	//跳转到球员对比界面
+
+	// 跳转到球员对比界面
 	@RequestMapping(value = "/comparison", method = RequestMethod.GET)
-	public String showCompare(HttpSession session){
+	public String showCompare(HttpSession session) {
 		session.setAttribute("picture1", "PlayersBigAvatar/jordon.jpg");
 		session.setAttribute("picture2", "PlayersBigAvatar/kobe.jpg");
-		
-		//初始界面
-		 session.setAttribute("scoreAverageP1", 100);
-		 session.setAttribute("assistanceAverageP1", 90);
-		 session.setAttribute("reboundAverageP1", 70);
-		 session.setAttribute("grabAverageP1", 66);
-		 session.setAttribute("blockAverageP1", 87);
-		 session.setAttribute("mistakeAverageP1", 96);
-		 session.setAttribute("shootPercentageAverageP1", 77);
-		 session.setAttribute("PERAverageP1", 89);
-		 
-		 session.setAttribute("scoreAverageP2", 100);
-		 session.setAttribute("assistanceAverageP2", 88);
-		 session.setAttribute("reboundAverageP2", 75);
-		 session.setAttribute("grabAverageP2", 91);
-		 session.setAttribute("blockAverageP2", 69);
-		 session.setAttribute("mistakeAverageP2", 86);
-		 session.setAttribute("shootPercentageAverageP2", 90);
-		 session.setAttribute("PERAverageP2", 77);
-		 
-		 List<PlayerSingleGame> playerSingleGames1=playerService.getPlayerSingleGameByName("科比-布莱恩特"); 
-		 List<PlayerSingleGame> playerSingleGames2=playerService.getPlayerSingleGameByName("凯文-加内特"); 
-			List<PlayerSingleGame> PSGP1 = new ArrayList<PlayerSingleGame>();
-			List<PlayerSingleGame> PSGP2 = new ArrayList<PlayerSingleGame>();
-		 for (PlayerSingleGame P1 : playerSingleGames1) {
-				for (PlayerSingleGame P2 : playerSingleGames2) {
-					if (P1.getGameID().equals(P2.getGameID())) {
-						PSGP1.add(P1);
-						PSGP2.add(P2);
-					}
+
+		// 初始界面
+		session.setAttribute("scoreAverageP1", 100);
+		session.setAttribute("assistanceAverageP1", 90);
+		session.setAttribute("reboundAverageP1", 70);
+		session.setAttribute("grabAverageP1", 66);
+		session.setAttribute("blockAverageP1", 87);
+		session.setAttribute("mistakeAverageP1", 96);
+		session.setAttribute("shootPercentageAverageP1", 77);
+		session.setAttribute("PERAverageP1", 89);
+
+		session.setAttribute("scoreAverageP2", 100);
+		session.setAttribute("assistanceAverageP2", 88);
+		session.setAttribute("reboundAverageP2", 75);
+		session.setAttribute("grabAverageP2", 91);
+		session.setAttribute("blockAverageP2", 69);
+		session.setAttribute("mistakeAverageP2", 86);
+		session.setAttribute("shootPercentageAverageP2", 90);
+		session.setAttribute("PERAverageP2", 77);
+
+		List<PlayerSingleGame> playerSingleGames1 = playerService
+				.getPlayerSingleGameByName("科比-布莱恩特");
+		List<PlayerSingleGame> playerSingleGames2 = playerService
+				.getPlayerSingleGameByName("凯文-加内特");
+		List<PlayerSingleGame> PSGP1 = new ArrayList<PlayerSingleGame>();
+		List<PlayerSingleGame> PSGP2 = new ArrayList<PlayerSingleGame>();
+		for (PlayerSingleGame P1 : playerSingleGames1) {
+			for (PlayerSingleGame P2 : playerSingleGames2) {
+				if (P1.getGameID().equals(P2.getGameID())) {
+					PSGP1.add(P1);
+					PSGP2.add(P2);
 				}
-				
-		 }
-		 PlayerSingleGame playerSingleGamesAverageP1=calculateComparison(PSGP1);
-		 PlayerSingleGame playerSingleGamesAverageP2=calculateComparison(PSGP2);
-			
-		 session.setAttribute("playerSingleGamesAverageP1", playerSingleGamesAverageP1);
-		 session.setAttribute("playerSingleGamesAverageP2", playerSingleGamesAverageP2);
-			
-		 session.setAttribute("P1Win", 29);
-		 session.setAttribute("P2Win", 24);
-		 
-		 session.setAttribute("P1", PSGP1.get(0));
-		 session.setAttribute("P2", PSGP2.get(0));
+			}
 
+		}
+		PlayerSingleGame playerSingleGamesAverageP1 = calculateComparison(PSGP1);
+		PlayerSingleGame playerSingleGamesAverageP2 = calculateComparison(PSGP2);
 
-		
+		session.setAttribute("playerSingleGamesAverageP1",
+				playerSingleGamesAverageP1);
+		session.setAttribute("playerSingleGamesAverageP2",
+				playerSingleGamesAverageP2);
+
+		session.setAttribute("P1Win", 29);
+		session.setAttribute("P2Win", 24);
+
+		session.setAttribute("P1", PSGP1.get(0));
+		session.setAttribute("P2", PSGP2.get(0));
+
 		return "comparison";
 	}
-	
-	//得到球员对比的球员一的图片
+
+	// 得到球员对比的球员一的图片
 	@RequestMapping(value = "/picture1", method = RequestMethod.GET)
-	public String getPlayerPictureFirst(@ModelAttribute Player player,HttpSession session){
+	public String getPlayerPictureFirst(@ModelAttribute Player player,
+			HttpSession session) {
 		System.out.println(player.getcName());
 		List<Player> playerList = playerService.searchPlayer(player.getcName());
 		session.setAttribute("picture1", playerList.get(0).getPicture());
 		session.setAttribute("picture2", session.getAttribute("picture2"));
 		session.setAttribute("name1", player.getcName());
-		
+
 		return "comparison";
 	}
-	
-	//得到球员对比的球员二的图片
+
+	// 得到球员对比的球员二的图片
 	@RequestMapping(value = "/picture2", method = RequestMethod.GET)
-	public String getPlayerPictureSecond(@ModelAttribute Player player,HttpSession session){
+	public String getPlayerPictureSecond(@ModelAttribute Player player,
+			HttpSession session) {
 		System.out.println(player.getcName());
 		List<Player> playerList = playerService.searchPlayer(player.getcName());
 		session.setAttribute("picture2", playerList.get(0).getPicture());
@@ -317,15 +344,16 @@ public class PlayerController {
 
 	// 球员数据对比
 	@RequestMapping(value = "/compare", method = RequestMethod.GET)
-	public String compare(String firstName,String secondName, HttpSession session) {
+	public String compare(String firstName, String secondName,
+			HttpSession session) {
 		List<Player> playerList1 = playerService.searchPlayer(firstName);
 		List<Player> playerList2 = playerService.searchPlayer(secondName);
-		
-		firstName=playerList1.get(0).getcName();
-		secondName=playerList2.get(0).getcName();
+
+		firstName = playerList1.get(0).getcName();
+		secondName = playerList2.get(0).getcName();
 		session.setAttribute("firstName", firstName);
 		session.setAttribute("secondName", secondName);
-		
+
 		// 球员一所有常规赛场均数据
 		List<PlayerDataStatistics> dataStatisticsP1 = playerService
 				.getDataStatisticsByName(firstName, "0");
@@ -336,45 +364,71 @@ public class PlayerController {
 				.getDataStatisticsByName(secondName, "0");
 		List<PlayerDataAnalysis> dataAnalysisP2 = playerService
 				.getDataAnalysisByName(secondName, "0");
-		
-		//球员一生涯常规赛场均数据
-		Map<String, Object> dataAverageListP1=careerDataStatistics(dataStatisticsP1);
-		Map<String, Object> analysisAverageListP1=careerDataAnalysis(dataAnalysisP1);
-		//球员二生涯常规赛场均数据
-		Map<String, Object> dataAverageListP2=careerDataStatistics(dataStatisticsP2);
-		Map<String, Object> analysisAverageListP2=careerDataAnalysis(dataAnalysisP2);
-		
-		System.out.println("场均得分："+dataAverageListP1.get("scoreAverage")+"  "+dataAverageListP2.get("scoreAverage"));
-		System.out.println("场均助攻："+dataAverageListP1.get("assistanceAverage")+"  "+dataAverageListP2.get("assistanceAverage"));
-		System.out.println("场均篮板："+dataAverageListP1.get("reboundAverage")+"  "+dataAverageListP2.get("reboundAverage"));
-		System.out.println("场均抢断："+dataAverageListP1.get("grabAverage")+"  "+dataAverageListP2.get("grabAverage"));
-		System.out.println("场均盖帽："+dataAverageListP1.get("blockAverage")+"  "+dataAverageListP2.get("blockAverage"));
-		System.out.println("场均失误："+dataAverageListP1.get("mistakeAverage")+"  "+dataAverageListP2.get("mistakeAverage"));
-		System.out.println("场均命中率："+dataAverageListP1.get("mistakeAverage")+"  "+dataAverageListP2.get("shootPercentageAverage"));
-		System.out.println("场均PER："+analysisAverageListP1.get("PERAverage")+"  "+analysisAverageListP2.get("PERAverage"));
-		
-		 session.setAttribute("scoreAverageP1", dataAverageListP1.get("scoreAverage"));
-		 session.setAttribute("assistanceAverageP1", dataAverageListP1.get("assistanceAverage"));
-		 session.setAttribute("reboundAverageP1", dataAverageListP1.get("reboundAverage"));
-		 session.setAttribute("grabAverageP1", dataAverageListP1.get("grabAverage"));
-		 session.setAttribute("blockAverageP1", dataAverageListP1.get("blockAverage"));
-		 session.setAttribute("mistakeAverageP1", dataAverageListP1.get("mistakeAverage"));
-		 session.setAttribute("shootPercentageAverageP1", dataAverageListP1.get("mistakeAverage"));
-		 session.setAttribute("PERAverageP1", analysisAverageListP1.get("PERAverage"));
-		 
-		 session.setAttribute("scoreAverageP2", dataAverageListP2.get("scoreAverage"));
-		 session.setAttribute("assistanceAverageP2", dataAverageListP2.get("assistanceAverage"));
-		 session.setAttribute("reboundAverageP2", dataAverageListP2.get("reboundAverage"));
-		 session.setAttribute("grabAverageP2", dataAverageListP2.get("grabAverage"));
-		 session.setAttribute("blockAverageP2", dataAverageListP2.get("blockAverage"));
-		 session.setAttribute("mistakeAverageP2", dataAverageListP2.get("mistakeAverage"));
-		 session.setAttribute("shootPercentageAverageP2", dataAverageListP2.get("mistakeAverage"));
-		 session.setAttribute("PERAverageP2", analysisAverageListP2.get("PERAverage"));
+
+		// 球员一生涯常规赛场均数据
+		Map<String, Object> dataAverageListP1 = careerDataStatistics(dataStatisticsP1);
+		Map<String, Object> analysisAverageListP1 = careerDataAnalysis(dataAnalysisP1);
+		// 球员二生涯常规赛场均数据
+		Map<String, Object> dataAverageListP2 = careerDataStatistics(dataStatisticsP2);
+		Map<String, Object> analysisAverageListP2 = careerDataAnalysis(dataAnalysisP2);
+
+		System.out.println("场均得分：" + dataAverageListP1.get("scoreAverage")
+				+ "  " + dataAverageListP2.get("scoreAverage"));
+		System.out.println("场均助攻：" + dataAverageListP1.get("assistanceAverage")
+				+ "  " + dataAverageListP2.get("assistanceAverage"));
+		System.out.println("场均篮板：" + dataAverageListP1.get("reboundAverage")
+				+ "  " + dataAverageListP2.get("reboundAverage"));
+		System.out.println("场均抢断：" + dataAverageListP1.get("grabAverage")
+				+ "  " + dataAverageListP2.get("grabAverage"));
+		System.out.println("场均盖帽：" + dataAverageListP1.get("blockAverage")
+				+ "  " + dataAverageListP2.get("blockAverage"));
+		System.out.println("场均失误：" + dataAverageListP1.get("mistakeAverage")
+				+ "  " + dataAverageListP2.get("mistakeAverage"));
+		System.out.println("场均命中率：" + dataAverageListP1.get("mistakeAverage")
+				+ "  " + dataAverageListP2.get("shootPercentageAverage"));
+		System.out.println("场均PER：" + analysisAverageListP1.get("PERAverage")
+				+ "  " + analysisAverageListP2.get("PERAverage"));
+
+		session.setAttribute("scoreAverageP1",
+				dataAverageListP1.get("scoreAverage"));
+		session.setAttribute("assistanceAverageP1",
+				dataAverageListP1.get("assistanceAverage"));
+		session.setAttribute("reboundAverageP1",
+				dataAverageListP1.get("reboundAverage"));
+		session.setAttribute("grabAverageP1",
+				dataAverageListP1.get("grabAverage"));
+		session.setAttribute("blockAverageP1",
+				dataAverageListP1.get("blockAverage"));
+		session.setAttribute("mistakeAverageP1",
+				dataAverageListP1.get("mistakeAverage"));
+		session.setAttribute("shootPercentageAverageP1",
+				dataAverageListP1.get("mistakeAverage"));
+		session.setAttribute("PERAverageP1",
+				analysisAverageListP1.get("PERAverage"));
+
+		session.setAttribute("scoreAverageP2",
+				dataAverageListP2.get("scoreAverage"));
+		session.setAttribute("assistanceAverageP2",
+				dataAverageListP2.get("assistanceAverage"));
+		session.setAttribute("reboundAverageP2",
+				dataAverageListP2.get("reboundAverage"));
+		session.setAttribute("grabAverageP2",
+				dataAverageListP2.get("grabAverage"));
+		session.setAttribute("blockAverageP2",
+				dataAverageListP2.get("blockAverage"));
+		session.setAttribute("mistakeAverageP2",
+				dataAverageListP2.get("mistakeAverage"));
+		session.setAttribute("shootPercentageAverageP2",
+				dataAverageListP2.get("mistakeAverage"));
+		session.setAttribute("PERAverageP2",
+				analysisAverageListP2.get("PERAverage"));
 
 		// 球员交手数据
-		List<PlayerSingleGame> playerSingleGames1=playerService.getPlayerSingleGameByName(firstName); 
-		List<PlayerSingleGame> playerSingleGames2=playerService.getPlayerSingleGameByName(secondName); 
-		List<Game> gameList=new ArrayList<Game>();
+		List<PlayerSingleGame> playerSingleGames1 = playerService
+				.getPlayerSingleGameByName(firstName);
+		List<PlayerSingleGame> playerSingleGames2 = playerService
+				.getPlayerSingleGameByName(secondName);
+		List<Game> gameList = new ArrayList<Game>();
 		for (PlayerSingleGame P1 : playerSingleGames1) {
 			for (PlayerSingleGame P2 : playerSingleGames2) {
 				if (P1.getGameID().equals(P2.getGameID())) {
@@ -383,62 +437,74 @@ public class PlayerController {
 					gameList.add(gameService.getGameByID(P1.getGameID()));
 				}
 			}
-			
+
 		}
 		session.setAttribute("gameList", gameList);
-		session.setAttribute("playerSingleGamesP1", analysisAverageListP2.get("playerSingleGamesP1"));
-		session.setAttribute("playerSingleGamesP2", analysisAverageListP2.get("playerSingleGamesP2"));
-		int P1Win=0;
-		int P2Win=0;
-		for (int i=0;i<gameList.size();i++) {
-			if (playerSingleGamesP1.get(i).getTeam().equals(gameList.get(i).getHomeTeam())) {
-				if (Integer.parseInt(gameList.get(i).getHomeScore())>Integer.parseInt(gameList.get(i).getGuestScore())) {
+		session.setAttribute("playerSingleGamesP1",
+				analysisAverageListP2.get("playerSingleGamesP1"));
+		session.setAttribute("playerSingleGamesP2",
+				analysisAverageListP2.get("playerSingleGamesP2"));
+		int P1Win = 0;
+		int P2Win = 0;
+		for (int i = 0; i < gameList.size(); i++) {
+			if (playerSingleGamesP1.get(i).getTeam()
+					.equals(gameList.get(i).getHomeTeam())) {
+				if (Integer.parseInt(gameList.get(i).getHomeScore()) > Integer
+						.parseInt(gameList.get(i).getGuestScore())) {
 					P1Win++;
-				}else {
+				} else {
 					P2Win++;
 				}
-			}else {
-				if (Integer.parseInt(gameList.get(i).getHomeScore())>Integer.parseInt(gameList.get(i).getGuestScore())) {
+			} else {
+				if (Integer.parseInt(gameList.get(i).getHomeScore()) > Integer
+						.parseInt(gameList.get(i).getGuestScore())) {
 					P2Win++;
-				}else {
+				} else {
 					P1Win++;
 				}
 			}
 		}
-		PlayerSingleGame playerSingleGamesAverageP1=calculateComparison(playerSingleGamesP1);
-		PlayerSingleGame playerSingleGamesAverageP2=calculateComparison(playerSingleGamesP2);
-		
-		session.setAttribute("playerSingleGamesAverageP1", playerSingleGamesAverageP1);
-		session.setAttribute("playerSingleGamesAverageP2", playerSingleGamesAverageP2);
-		
+		PlayerSingleGame playerSingleGamesAverageP1 = calculateComparison(playerSingleGamesP1);
+		PlayerSingleGame playerSingleGamesAverageP2 = calculateComparison(playerSingleGamesP2);
+
+		session.setAttribute("playerSingleGamesAverageP1",
+				playerSingleGamesAverageP1);
+		session.setAttribute("playerSingleGamesAverageP2",
+				playerSingleGamesAverageP2);
+
 		session.setAttribute("P1Win", P1Win);
 		session.setAttribute("P2Win", P2Win);
-		
-		System.out.println("P1Win: "+P1Win);
-		System.out.println("P2Win: "+P2Win);
+
+		System.out.println("P1Win: " + P1Win);
+		System.out.println("P2Win: " + P2Win);
 		for (PlayerSingleGame p : playerSingleGamesP1) {
 			System.out.println(p.toString());
 		}
 		for (PlayerSingleGame p : playerSingleGamesP2) {
 			System.out.println(p.toString());
 		}
-		
+
 		session.setAttribute("number", playerSingleGamesP1.size());
-		System.out.println("playerSingleGamesP1: "+playerSingleGamesP1.size());
-		System.out.println("playerSingleGamesP2: "+playerSingleGamesP2.size());
-		System.out.println("playerSingleGamesAverageP1: "+playerSingleGamesAverageP1.toString());
-		System.out.println("playerSingleGamesAverageP2: "+playerSingleGamesAverageP2.toString());
+		System.out
+				.println("playerSingleGamesP1: " + playerSingleGamesP1.size());
+		System.out
+				.println("playerSingleGamesP2: " + playerSingleGamesP2.size());
+		System.out.println("playerSingleGamesAverageP1: "
+				+ playerSingleGamesAverageP1.toString());
+		System.out.println("playerSingleGamesAverageP2: "
+				+ playerSingleGamesAverageP2.toString());
 
 		return "comparison";
 	}
-	
-	//得到某一场两名球员的交手数据
-	@RequestMapping(value = "/singleGame", method = RequestMethod.GET)
-	public String SingleGameComparison(@ModelAttribute Game game,HttpSession session){
 
-		Game g=gameService.getGameByID(game.getGameID());
+	// 得到某一场两名球员的交手数据
+	@RequestMapping(value = "/singleGame", method = RequestMethod.GET)
+	public String SingleGameComparison(@ModelAttribute Game game,
+			HttpSession session) {
+
+		Game g = gameService.getGameByID(game.getGameID());
 		System.out.println("test:---------------------------");
-		System.out.println("gameDate: "+g.getGameDate());
+		System.out.println("gameDate: " + g.getGameDate());
 		System.out.println(g.toString());
 		session.setAttribute("game", g);
 		for (PlayerSingleGame p : playerSingleGamesP1) {
@@ -455,29 +521,30 @@ public class PlayerController {
 		}
 		return "comparison";
 	}
-	
-	//计算球员场均交手数据
-	public PlayerSingleGame calculateComparison(List<PlayerSingleGame> playerSingleGames){
-		//各种数据的交手总数据
-		double playTimeSum=0;
-		double shootPercentageSum=0;
-		double shootHitSum=0;
-		double shootTotalSum=0;
-		double threePercentageSum=0;
-		double threeHitSum=0;
-		double threeTotalSum=0;
-		double freeThrowPercentageSum=0;
-		double freeThrowHitSum=0;
-		double freeThrowTotalSum=0;
-		double reboundSum=0;
-		double offensiveReboundSum=0;
-		double defensiveReboundSum=0;
-		double assistanceSum=0;
-		double grabSum=0;
-		double blockSum=0;
-		double mistakeSum=0;
-		double foulSum=0;
-		double scoreSum=0;
+
+	// 计算球员场均交手数据
+	public PlayerSingleGame calculateComparison(
+			List<PlayerSingleGame> playerSingleGames) {
+		// 各种数据的交手总数据
+		double playTimeSum = 0;
+		double shootPercentageSum = 0;
+		double shootHitSum = 0;
+		double shootTotalSum = 0;
+		double threePercentageSum = 0;
+		double threeHitSum = 0;
+		double threeTotalSum = 0;
+		double freeThrowPercentageSum = 0;
+		double freeThrowHitSum = 0;
+		double freeThrowTotalSum = 0;
+		double reboundSum = 0;
+		double offensiveReboundSum = 0;
+		double defensiveReboundSum = 0;
+		double assistanceSum = 0;
+		double grabSum = 0;
+		double blockSum = 0;
+		double mistakeSum = 0;
+		double foulSum = 0;
+		double scoreSum = 0;
 		for (PlayerSingleGame p : playerSingleGames) {
 			scoreSum += Double.parseDouble(p.getScore());
 			playTimeSum += Double.parseDouble(p.getPlayTime());
@@ -505,40 +572,46 @@ public class PlayerController {
 		/*
 		 * 场均交手平均数据
 		 */
-		DecimalFormat df= new DecimalFormat("######0.00");   
-		NumberFormat fmt = NumberFormat.getPercentInstance();  
-		fmt.setMaximumFractionDigits(2);//最多两位百分小数，如25.23%  
+		DecimalFormat df = new DecimalFormat("######0.00");
+		NumberFormat fmt = NumberFormat.getPercentInstance();
+		fmt.setMaximumFractionDigits(2);// 最多两位百分小数，如25.23%
 		int length = playerSingleGames.size();
 		String scoreAverage = df.format(scoreSum / length);
 		String playTimeAverage = df.format(playTimeSum / length);
 		String assistanceAverage = df.format(assistanceSum / length);
 		String reboundAverage = df.format(reboundSum / length);
-		String offensiveReboundAverage = df.format(offensiveReboundSum / length);
-		String defensiveReboundAverage = df.format(defensiveReboundSum / length);
+		String offensiveReboundAverage = df
+				.format(offensiveReboundSum / length);
+		String defensiveReboundAverage = df
+				.format(defensiveReboundSum / length);
 		String shootTotalAverage = df.format(shootTotalSum / length);
 		String shootHitAverage = df.format(shootHitSum / length);
-		String shootPercentageAverage = fmt.format((shootPercentageSum / length)*0.01);
+		String shootPercentageAverage = fmt
+				.format((shootPercentageSum / length) * 0.01);
 		String threeTotalAverage = df.format(threeTotalSum / length);
 		String threeHitAverage = df.format(threeHitSum / length);
-		String threePercentageAverage =fmt.format((threePercentageSum / length)*0.01);
-		String freeThrowPercentageAverage = df.format(freeThrowPercentageSum / length);
+		String threePercentageAverage = fmt
+				.format((threePercentageSum / length) * 0.01);
+		String freeThrowPercentageAverage = df.format(freeThrowPercentageSum
+				/ length);
 		String freeThrowTotalAverage = df.format(freeThrowTotalSum / length);
-		String freeThrowHitAverage = fmt.format((freeThrowHitSum / length)*0.01);
+		String freeThrowHitAverage = fmt
+				.format((freeThrowHitSum / length) * 0.01);
 		String blockAverage = df.format(blockSum / length);
 		String grabAverage = df.format(grabSum / length);
 		String mistakeAverage = df.format(mistakeSum / length);
 		String foulAverage = df.format(foulSum / length);
-		
-		PlayerSingleGame playerSingleGame=new PlayerSingleGame(0, "", "", "", "", "", "", 
-				playTimeAverage, shootPercentageAverage, shootHitAverage, 
-				shootTotalAverage, threePercentageAverage, threeHitAverage, 
-				threeTotalAverage, freeThrowPercentageAverage, freeThrowHitAverage, 
-				freeThrowTotalAverage, "", reboundAverage,
-				offensiveReboundAverage, defensiveReboundAverage, assistanceAverage, 
-				grabAverage,blockAverage,  mistakeAverage, 
+
+		PlayerSingleGame playerSingleGame = new PlayerSingleGame(0, "", "", "",
+				"", "", "", playTimeAverage, shootPercentageAverage,
+				shootHitAverage, shootTotalAverage, threePercentageAverage,
+				threeHitAverage, threeTotalAverage, freeThrowPercentageAverage,
+				freeThrowHitAverage, freeThrowTotalAverage, "", reboundAverage,
+				offensiveReboundAverage, defensiveReboundAverage,
+				assistanceAverage, grabAverage, blockAverage, mistakeAverage,
 				foulAverage, scoreAverage);
 		return playerSingleGame;
-		
+
 	}
 
 	// 计算球员生涯平均统计数据
@@ -627,18 +700,23 @@ public class PlayerController {
 		NumberFormat fmt = NumberFormat.getPercentInstance();
 		fmt.setMaximumFractionDigits(2);// 最多两位百分小数，如25.23%
 		// 生涯平均得分 28分算100
-		String scoreAverage = String
-				.valueOf(new BigDecimal(((scoreSum / length) / 28)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
+		String scoreAverage = String.valueOf(new BigDecimal(
+				((scoreSum / length) / 28) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
 		// 生涯平均出场次数
 		double appearCntAverage = appearCntSum / length;
 		// 生涯平均首发次数
 		double firstCntAverage = firstCntSum / length;
 		// 生涯平均时间
 		double playTimeAverage = playTimeSum / length;
-		// 生涯平均助攻   10个算100分
-		String assistanceAverage = String.valueOf(new BigDecimal(((assistanceSum / length) / 10)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
+		// 生涯平均助攻 10个算100分
+		String assistanceAverage = String.valueOf(new BigDecimal(
+				((assistanceSum / length) / 10) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
 		// 生涯平均篮板 10个算100分
-		String reboundAverage = String.valueOf(new BigDecimal(((reboundSum / length) / 10)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
+		String reboundAverage = String.valueOf(new BigDecimal(
+				((reboundSum / length) / 10) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
 		// 生涯平均进攻篮板
 		double offensiveReboundAverage = offensiveReboundSum / length;
 		// 生涯平均防守篮板
@@ -647,8 +725,10 @@ public class PlayerController {
 		double shootTotalAverage = shootTotalSum / length;
 		// 生涯平均命中
 		double shootHitAverage = shootHitSum / length;
-		// 生涯平均命中率  58%算100分
-		String shootPercentageAverage = String.valueOf(new BigDecimal(((shootPercentageSum / length) / 58)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
+		// 生涯平均命中率 58%算100分
+		String shootPercentageAverage = String.valueOf(new BigDecimal(
+				((shootPercentageSum / length) / 58) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
 		// 生涯平均三分出手
 		double threeTotalAverage = threeTotalSum / length;
 		// 生涯平均三分命中
@@ -663,12 +743,18 @@ public class PlayerController {
 		double freeThrowTotalAverage = freeThrowTotalSum / length;
 		// 生涯平均罚球命中
 		double freeThrowHitAverage = freeThrowHitSum / length;
-		// 生涯平均盖帽  3.5个算100分
-		String blockAverage = String.valueOf(new BigDecimal(((blockSum / length) / 3.5)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		// 生涯平均抢断  3.5个算100分
-		String grabAverage = String.valueOf(new BigDecimal(((grabSum / length) / 3.5)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		// 生涯平均失误次数  5次算100分
-		String mistakeAverage = String.valueOf(new BigDecimal(((mistakeSum / length)/5)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
+		// 生涯平均盖帽 3.5个算100分
+		String blockAverage = String.valueOf(new BigDecimal(
+				((blockSum / length) / 3.5) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯平均抢断 3.5个算100分
+		String grabAverage = String.valueOf(new BigDecimal(
+				((grabSum / length) / 3.5) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯平均失误次数 5次算100分
+		String mistakeAverage = String.valueOf(new BigDecimal(
+				((mistakeSum / length) / 5) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
 		// 生涯平均犯规次数
 		double foulAverage = foulSum / length;
 		// 生涯平均胜场
@@ -676,7 +762,10 @@ public class PlayerController {
 		// 生涯平均负场
 		double loseCntAverage = loseCntSum / length;
 		// 生涯平均助攻失误比，一般4.5算100分
-		String ATRAverage = String.valueOf(new BigDecimal(((Double.parseDouble(assistanceAverage) / Double.parseDouble(mistakeAverage))/ 4.5)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
+		String ATRAverage = String.valueOf(new BigDecimal(((Double
+				.parseDouble(assistanceAverage) / Double
+				.parseDouble(mistakeAverage)) / 4.5) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
 
 		Map<String, Object> dataAverageList = new HashMap<String, Object>();
 		dataAverageList.put("scoreAverage", scoreAverage);
@@ -769,63 +858,83 @@ public class PlayerController {
 		 */
 		int length = dataAnalysis.size();
 		// 真实命中率一般70%算100分
-		String truePercentageAverage = String
-				.valueOf(new BigDecimal(((truePercentageSum / length) / 70)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//投篮效率 一般68%算100分
-		String shootEfficiencyAverage=String
-				.valueOf(new BigDecimal(((shootEfficiencySum / length) / 68)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//进攻篮板率一般30%算100分
-		String offenReboundPercentAverage=String
-				.valueOf(new BigDecimal(((offenReboundPercentSum / length) / 30)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-        //使用率一般40%算100分
-		String usePercentAverage=String
-				.valueOf(new BigDecimal(((usePercentSum / length) / 40)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-        //生涯进攻效率一般120算100分
-		String offensiveEfficiencyAverage=String
-				.valueOf(new BigDecimal(((offensiveEfficiencySum / length) / 120)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯失误率一般30%算100分
-		String mistakePercentAverage=String
-				.valueOf(new BigDecimal(((mistakePercentSum / length) / 30)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯防守篮板率一般40%算100分
-		String defenReboundPercentAverage=String
-				.valueOf(new BigDecimal(((defenReboundPercentSum / length) / 40)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯抢断率一般3%算100分
-		String grabPercentAverage=String
-				.valueOf(new BigDecimal(((grabPercentSum / length) / 3)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯盖帽率一般10%算100分
-		String blockPercentAverage=String
-				.valueOf(new BigDecimal(((blockPercentSum / length) / 10)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯防守效率一般120算100分
-		String defensiveEfficiencyAverage=String
-				.valueOf(new BigDecimal(((defensiveEfficiencySum / length) / 120)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯助攻率一般65%算100分
-		String assistancePercentAverage=String
-				.valueOf(new BigDecimal(((assistancePercentSum / length) / 65)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯PER一般40算100分
-		String PERAverage=String
-				.valueOf(new BigDecimal(((PERSum / length) / 40)*100).setScale(0, BigDecimal.ROUND_HALF_UP));
-		//生涯WS一般25算100分
-		String WSAverage=String
-				.valueOf(new BigDecimal(((WSSum / length) / 25)*100).setScale(0, BigDecimal.ROUND_HALF_UP));	
-		
+		String truePercentageAverage = String.valueOf(new BigDecimal(
+				((truePercentageSum / length) / 70) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 投篮效率 一般68%算100分
+		String shootEfficiencyAverage = String.valueOf(new BigDecimal(
+				((shootEfficiencySum / length) / 68) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 进攻篮板率一般30%算100分
+		String offenReboundPercentAverage = String.valueOf(new BigDecimal(
+				((offenReboundPercentSum / length) / 30) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 使用率一般40%算100分
+		String usePercentAverage = String.valueOf(new BigDecimal(
+				((usePercentSum / length) / 40) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯进攻效率一般120算100分
+		String offensiveEfficiencyAverage = String.valueOf(new BigDecimal(
+				((offensiveEfficiencySum / length) / 120) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯失误率一般30%算100分
+		String mistakePercentAverage = String.valueOf(new BigDecimal(
+				((mistakePercentSum / length) / 30) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯防守篮板率一般40%算100分
+		String defenReboundPercentAverage = String.valueOf(new BigDecimal(
+				((defenReboundPercentSum / length) / 40) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯抢断率一般3%算100分
+		String grabPercentAverage = String.valueOf(new BigDecimal(
+				((grabPercentSum / length) / 3) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯盖帽率一般10%算100分
+		String blockPercentAverage = String.valueOf(new BigDecimal(
+				((blockPercentSum / length) / 10) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯防守效率一般120算100分
+		String defensiveEfficiencyAverage = String.valueOf(new BigDecimal(
+				((defensiveEfficiencySum / length) / 120) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯助攻率一般65%算100分
+		String assistancePercentAverage = String.valueOf(new BigDecimal(
+				((assistancePercentSum / length) / 65) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯PER一般40算100分
+		String PERAverage = String.valueOf(new BigDecimal(
+				((PERSum / length) / 40) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+		// 生涯WS一般25算100分
+		String WSAverage = String.valueOf(new BigDecimal(
+				((WSSum / length) / 25) * 100).setScale(0,
+				BigDecimal.ROUND_HALF_UP));
+
 		Map<String, Object> dataAnalysisAverageList = new HashMap<String, Object>();
-		dataAnalysisAverageList.put("truePercentageAverage", truePercentageAverage);
-		dataAnalysisAverageList.put("shootEfficiencyAverage", shootEfficiencyAverage);
-		dataAnalysisAverageList.put("offenReboundPercentAverage", offenReboundPercentAverage);
+		dataAnalysisAverageList.put("truePercentageAverage",
+				truePercentageAverage);
+		dataAnalysisAverageList.put("shootEfficiencyAverage",
+				shootEfficiencyAverage);
+		dataAnalysisAverageList.put("offenReboundPercentAverage",
+				offenReboundPercentAverage);
 		dataAnalysisAverageList.put("usePercentAverage", usePercentAverage);
-		dataAnalysisAverageList.put("offensiveEfficiencyAverage", offensiveEfficiencyAverage);
-		dataAnalysisAverageList.put("mistakePercentAverage", mistakePercentAverage);
-		dataAnalysisAverageList.put("defenReboundPercentAverage", defenReboundPercentAverage);
+		dataAnalysisAverageList.put("offensiveEfficiencyAverage",
+				offensiveEfficiencyAverage);
+		dataAnalysisAverageList.put("mistakePercentAverage",
+				mistakePercentAverage);
+		dataAnalysisAverageList.put("defenReboundPercentAverage",
+				defenReboundPercentAverage);
 		dataAnalysisAverageList.put("grabPercentAverage", grabPercentAverage);
 		dataAnalysisAverageList.put("blockPercentAverage", blockPercentAverage);
-		dataAnalysisAverageList.put("defensiveEfficiencyAverage", defensiveEfficiencyAverage);
-		dataAnalysisAverageList.put("assistancePercentAverage", assistancePercentAverage);
+		dataAnalysisAverageList.put("defensiveEfficiencyAverage",
+				defensiveEfficiencyAverage);
+		dataAnalysisAverageList.put("assistancePercentAverage",
+				assistancePercentAverage);
 		dataAnalysisAverageList.put("PERAverage", PERAverage);
 		dataAnalysisAverageList.put("WSAverage", WSAverage);
-		
+
 		return dataAnalysisAverageList;
 	}
-
 
 	// 场均得分联盟排名
 	@SuppressWarnings("unchecked")
@@ -1126,6 +1235,23 @@ public class PlayerController {
 			} else if (Double.parseDouble(p1.getFreeThrowPercentage().replace(
 					"%", "")) == Double.parseDouble(p2.getFreeThrowPercentage()
 					.replace("%", ""))) {
+				return 0;
+			}
+			return -1;
+		}
+
+	}
+
+	// 生涯之最数据按年份从小到大排序
+	@SuppressWarnings("rawtypes")
+	class sortByYear implements Comparator {
+
+		public int compare(Object o1, Object o2) {
+			PlayerCareerHigh p1 = (PlayerCareerHigh) o1;
+			PlayerCareerHigh p2 = (PlayerCareerHigh) o2;
+			if (Double.parseDouble(p1.getYear()) > Double.parseDouble(p2.getYear())) {
+				return 1;
+			} else if (Double.parseDouble(p1.getYear()) == Double.parseDouble(p2.getYear())) {
 				return 0;
 			}
 			return -1;
