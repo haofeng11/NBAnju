@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand hidden-sm" href="main.html">NBA数据分析网</a>
+           <a class="navbar-brand hidden-sm" href="${path.concat('/NBA/main.jsp')}">NBA数据分析网</a>
         </div>
         <div class="navbar-collapse collapse" role="navigation">
           <ul class="nav navbar-nav">

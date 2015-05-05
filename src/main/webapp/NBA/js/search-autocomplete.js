@@ -24,11 +24,13 @@ $(function() {
            cName: request.term 
          },
          success: function( data ) {
-		   alert(data);
+		   alert("success");
            response( data );
          },
-		 error: function( data ){
-           alert("An error occurred!");
+		 error: function(XMLHttpRequest, textStatus, errorThrown){
+           alert(XMLHttpRequest.status);
+           alert(XMLHttpRequest.readyState);
+           alert(textStatus);
          },
        });
      },
