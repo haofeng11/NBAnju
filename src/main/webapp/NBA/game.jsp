@@ -12,15 +12,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>比赛</title>
 <!-- Bootstrap -->
-    <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
-    <link href="../NBA/css/new.css" rel="stylesheet">
-    <!-- Highchart图表JS库 -->
-    <script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
-    <script type="text/javascript" src="../NBA/js/highcharts/highcharts-more.js"></script>
-    <script type="text/javascript" src="../NBA/js/highcharts/themes/custom.js"></script>
-    <script type="text/javascript" src="../NBA/js/highcharts/modules/exporting.js"></script>
+<link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
+<link href="../NBA/css/new.css" rel="stylesheet">
+<!-- Highchart图表JS库 -->
+<script type="text/javascript" src="../NBA/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../NBA/js/highcharts/highcharts.js"></script>
+<script type="text/javascript"
+	src="../NBA/js/highcharts/highcharts-more.js"></script>
+<script type="text/javascript"
+	src="../NBA/js/highcharts/themes/custom.js"></script>
+<script type="text/javascript"
+	src="../NBA/js/highcharts/modules/exporting.js"></script>
 
 <script>
 	$(function() {
@@ -361,150 +364,356 @@
 						<div class="border_red"></div>
 						<table class="itinerary_table itinerary_table_show">
 							<tbody id="regular_changjun_defen">
-								<tr class=" bg_color">
-									<c:forEach items="${playerScoreRank}" var="ScoreTopten">
+								<c:forEach items="${playerScoreRank}" var="ScoreTopten">
+									<tr class=" bg_color">
 										<td width="40" height="35">${ScoreTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${ScoreTopten.team}" href="/nba/teams/hawks">${ScoreTopten.team}</a></td>
 										<td width="35">${ScoreTopten.score}分</td>
-									</c:forEach>
-								</tr>
+									</tr>
+								</c:forEach>
 							</tbody>
 							<tbody id="playoff_changjun_defen" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerOffScoreRank}"
-										var="PlayoffScoreTopten">
+								<c:forEach items="${playerOffScoreRank}"
+									var="PlayoffScoreTopten">
+									<tr class=" bg_color">
 										<td width="40" height="35">${PlayoffScoreTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffScoreTopten.team}" href="/nba/teams/hawks">${PlayoffScoreTopten.team}</a></td>
 										<td width="35">${PlayoffScoreTopten.score}分</td>
-									</c:forEach>
-								</tr>
+									</tr>
+								</c:forEach>
+
 							</tbody>
 
 							<tbody id="regular_changjun_lanban" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerReboundRank}" var="ReboundTopten">
+								<c:forEach items="${playerReboundRank}" var="ReboundTopten">
+
+									<tr class=" bg_color">
 										<td width="40" height="35">${ReboundTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${ReboundTopten.team}" href="/nba/teams/hawks">${ReboundTopten.team}</a></td>
 										<td width="35">${ReboundTopten.rebound}</td>
-									</c:forEach>
-								</tr>
+									</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="playoff_changjun_lanban" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playeroffReboundRank}"
-										var="PlayoffReboundTopten">
+								<c:forEach items="${playerOffReboundRank}"
+									var="PlayoffReboundTopten">
+									<tr class=" bg_color">
 										<td width="40" height="35">${PlayoffReboundTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffReboundTopten.team}" href="/nba/teams/hawks">${PlayoffReboundTopten.team}</a></td>
 										<td width="35">${PlayoffReboundTopten.rebound}</td>
-									</c:forEach>
-								</tr>
+									</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="regular_changjun_zhugong" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerAssistanceRank}"
-										var="AssistanceTopten">
+								<c:forEach items="${playerAssistanceRank}"
+									var="AssistanceTopten">
+									<tr class=" bg_color">
 										<td width="40" height="35">${AssistanceTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${AssistanceTopten.team}" href="/nba/teams/hawks">${AssistanceTopten.team}</a></td>
 										<td width="35">${AssistanceTopten.assistance}</td>
-									</c:forEach>
-								</tr>
+
+									</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="playoff_changjun_zhugong" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerOffAssistanceRank}"
-										var="PlayoffAssistanceTopten">
+								<c:forEach items="${playerOffAssistanceRank}"
+									var="PlayoffAssistanceTopten">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${PlayoffAssistanceTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffAssistanceTopten.team}"
 											href="/nba/teams/hawks">${PlayoffAssistanceTopten.team}</a></td>
 										<td width="35">${PlayoffAssistanceTopten.assistance}</td>
-									</c:forEach>
-								</tr>
+
+									</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="regular_changjun_qiangduan" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerGrabRank}" var="GrabTopten">
+								<c:forEach items="${playerGrabRank}" var="GrabTopten">
+									<tr class=" bg_color">
 										<td width="40" height="35">${GrabTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${GrabTopten.team}" href="/nba/teams/hawks">${GrabTopten.team}</a></td>
 										<td width="35">${GrabTopten.grab}</td>
-									</c:forEach>
-								</tr>
+
+									</tr>
+								</c:forEach>
 							</tbody>
 
-							<tbody id="playoff_changjun_qiangduan" style="display: none;">
+							<tbody id="playoff_changjun_qiangduan" style="display: none;">							
+								<c:forEach items="${playerOffGrabRank}" var="PlayoffGrabTopten">
 								<tr class=" bg_color">
-									<c:forEach items="${playerOffGrabRank}" var="PlayoffGrabTopten">
 										<td width="40" height="35">${PlayoffGrabTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffGrabTopten.team}" href="/nba/teams/hawks">${PlayoffGrabTopten.team}</a></td>
-										<td width="35">${PlayoffGrabTopten.grab}</td>
-									</c:forEach>
+										<td width="35">${PlayoffGrabTopten.grab}</td>									
 								</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="regular_changjun_sanfen" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerThreehitRank}" var="ThreehitTopten">
+								<c:forEach items="${playerThreehitRank}" var="ThreehitTopten">
+								<tr class=" bg_color">							
 										<td width="40" height="35">${ThreehitTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${ThreehitTopten.team}" href="/nba/teams/hawks">${ThreehitTopten.team}</a></td>
 										<td width="35">${ThreehitTopten.threeHit}</td>
-									</c:forEach>
+									
 								</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="playoff_changjun_sanfen" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerOffThreehitRank}"
+								<c:forEach items="${playerOffThreehitRank}"
 										var="PlayoffThreehitTopten">
+								<tr class=" bg_color">
+									
 										<td width="40" height="35">${PlayoffThreehitTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffThreehitTopten.team}" href="/nba/teams/hawks">${PlayoffThreehitTopten.team}</a></td>
 										<td width="35">${PlayoffThreehitTopten.threeHit}</td>
-									</c:forEach>
+									
 								</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="regular_changjun_gaimao" style="display: none;">
+								<c:forEach items="${playerBlockRank}" var="BlockTopten">
 								<tr class=" bg_color">
-									<c:forEach items="${playerBlockRank}" var="BlockTopten">
+									
 										<td width="40" height="35">${BlockTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${BlockTopten.team}" href="/nba/teams/hawks">${BlockTopten.team}</a></td>
 										<td width="35">${BlockTopten.block}</td>
-									</c:forEach>
+									
 								</tr>
+								</c:forEach>
 							</tbody>
 
 							<tbody id="playoff_changjun_gaimao" style="display: none;">
-								<tr class=" bg_color">
-									<c:forEach items="${playerOffBlockRank}"
+								<c:forEach items="${playerOffBlockRank}"
 										var="PlayoffBlockTopten">
+								<tr class=" bg_color">
+									
 										<td width="40" height="35">${PlayoffBlockTopten.player}</td>
 										<td width="35"><a target="_blank"
-											title="${PlayoffBlockTopten.team}" href="/nba/teams/hawks">${BlockTopten.team}</a></td>
+											title="${PlayoffBlockTopten.team}" href="/nba/teams/hawks">${PlayoffBlockTopten.team}</a></td>
 										<td width="35">${PlayoffBlockTopten.block}</td>
-									</c:forEach>
+									
 								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
 
+ 				<div class="gamecenter_content_r" id="danchang">
+					<div class="region_box">
+						<h4>球员赛季效率值</h4>
+						<div class="tiltle" conference="W">
+							<span class="tiltle_c on" id="danchang_defen"
+								style="background: #fbfbfb; width:68px" >真实命中率</span><span class="tiltle_c"
+								id="danchang_zhugong" style="width:43px">篮板率</span><span class="tiltle_c"
+								id="danchang_qiangduan" style="width:43px">助攻率</span><span class="tiltle_c"
+								id="danchang_sanfen" style="width:43px">抢断率</span><span class="tiltle_d"
+								id="danchang_gaimao" style="width:43px">盖帽率</span>
+						</div>
+						<div class="tiltle" conference="W">
+							<span class="tiltle_a" style="width: 240px;"><div
+									class="btn-group">
+									<button type="button"
+										class="btn btn-link btn-xs dropdown-toggle"
+										data-toggle="dropdown" aria-expanded="false"
+										style="margin-top: -8px; font-size: 14px; color: #000000;"
+										id="danchang_season_type">
+										常规赛 <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="javascript:void(0);">常规赛</a></li>
+										<li><a href="javascript:void(0);">季后赛</a></li>
+									</ul>
+								</div></span>
+						</div>
+						<table class="itinerary_table">
+							<tbody>
+								<tr>
+									<td width="40" height="35">姓名</td>
+									<td width="35">球队</td>
+									<td width="35">场均数据</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="border_red"></div>
+						<table class="itinerary_table itinerary_table_show">
+							<tbody id="regular_danchang_defen">
+								<c:forEach items="${playerTruePercentRank}"
+										var="playerTruePercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerTruePercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerTruePercent.team}" href="/nba/teams/hawks">${playerTruePercent.team}</a></td>
+										<td width="35">${playerTruePercent.truePercentage}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							<tbody id="playoff_danchang_defen" style="display: none;">
+								<c:forEach items="${playerOffTruePercentRank}"
+										var="playerOffTruePercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerOffTruePercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerOffTruePercent.team}" href="/nba/teams/hawks">${playerOffTruePercent.team}</a></td>
+										<td width="35">${playerOffTruePercent.truePercentage}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							
+
+							<tbody id="regular_danchang_zhugong" style="display: none;">
+								<c:forEach items="${playerReboundPercentRank}"
+										var="playerReboundPercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerReboundPercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerReboundPercent.team}" href="/nba/teams/hawks">${playerReboundPercent.team}</a></td>
+										<td width="35">${playerReboundPercent.reboundPercent}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							<tbody id="playoff_danchang_zhugong" style="display: none;">
+								<c:forEach items="${playerOffReboundPercentRank}"
+										var="playerOffReboundPercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerOffReboundPercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerOffReboundPercent.team}" href="/nba/teams/hawks">${playerReboundPercent.team}</a></td>
+										<td width="35">${playerOffReboundPercent.reboundPercent}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							<tbody id="regular_danchang_qiangduan" style="display: none;">
+								<c:forEach items="${playerAssistancePercentRank}"
+										var="playerAssistancePercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerAssistancePercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerAssistancePercent.team}" href="/nba/teams/hawks">${playerAssistancePercent.team}</a></td>
+										<td width="35">${playerAssistancePercent.assistancePercent}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							<tbody id="playoff_danchang_qiangduan" style="display: none;">
+								<c:forEach items="${playerOffAssistancePercent}"
+										var="playerOffAssistancePercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerOffAssistancePercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerOffAssistancePercent.team}" href="/nba/teams/hawks">${playerAssistancePercent.team}</a></td>
+										<td width="35">${playerOffAssistancePercent.assistancePercent}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							<tbody id="regular_danchang_sanfen" style="display: none;">
+								<c:forEach items="${playerGrabPercentRank}"
+										var="playerGrabPercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerGrabPercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerGrabPercent.team}" href="/nba/teams/hawks">${playerGrabPercent.team}</a></td>
+										<td width="35">${playerGrabPercent.grabPercent}</td>
+									
+								</tr>
+								</c:forEach>
+							</tbody>
+
+							<tbody id="playoff_danchang_sanfen" style="display: none;">
+								<c:forEach items="${playerOffGrabPercentRank}"
+										var="playerOffGrabPercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerOffGrabPercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerOffGrabPercent.team}" href="/nba/teams/hawks">${playerOffGrabPercent.team}</a></td>
+										<td width="35">${playerOffGrabPercent.grabPercent}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							<tbody id="regular_danchang_gaimao" style="display: none;">
+								<c:forEach items="${playerBlockPercentRank}"
+										var="playerBlockPercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerBlockPercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerBlockPercent.team}" href="/nba/teams/hawks">${playerBlockPercent.team}</a></td>
+										<td width="35">${playerBlockPercent.blockPercent}</td>
+									
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+
+							<tbody id="playoff_danchang_gaimao" style="display: none;">
+								<c:forEach items="${playerOffBlockPercentRank}"
+										var="playerOffBlockPercent">
+								<tr class=" bg_color">
+									
+										<td width="40" height="35">${playerOffBlockPercent.player}</td>
+										<td width="35"><a target="_blank"
+											title="${playerOffBlockPercent.team}" href="/nba/teams/hawks">${playerOffBlockPercent.team}</a></td>
+										<td width="35">${playerOffBlockPercent.blockPercent}</td>
+									
+								</tr>
+								</c:forEach>
+							
+							</tbody>
+						</table>
+					</div>
+				</div> 
+
+
 			</div>
 		</div>
 	</div>
-	</div>
+
 
 	<script type="text/javascript">
 		$(document)

@@ -1,7 +1,6 @@
 package edu.nju.nba.controller;
 
 import java.text.ParseException;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.nju.nba.bean.Game;
+import edu.nju.nba.bean.PlayerDataAnalysis;
 import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.bean.PlayerSingleGame;
 import edu.nju.nba.bean.TeamGameRecord;
@@ -55,14 +55,21 @@ public class GameController {
 		
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.DATE, -1);
+		calendar.add(Calendar.MONTH, -1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(calendar.getTime());
 		List<Game> gameSchedule = gameService.listGameSchedule("14-15", today);
-		System.out.println(records.size());
+		List<TeamGameRecord> regularEastRankGameRecords =gameService.getRegularEastRank("14-15");
+		List<PlayerDataStatistics> playerScoreRank= playerService.getPlayerScoreRankingList("14-15");
+		List<PlayerDataAnalysis> playerTruePercentRank=playerService.getPlayerTruePercentRanking("14-15");
+
 		// add into view
 		view.addObject("records", records);
 		//添加比赛列表
 		view.addObject("gameSchedule", gameSchedule);
+		view.addObject("regularEastRankGameRecords",regularEastRankGameRecords);
+		view.addObject("playerScoreRank", playerScoreRank);
+		view.addObject("playerTruePercentRank", playerTruePercentRank);
 		// set view name
 		view.setViewName("game");
 
@@ -103,6 +110,13 @@ public class GameController {
 		List<PlayerDataStatistics> playerGrabRank= playerService.getPlayerGrabRankingList(seasonId);
 		List<PlayerDataStatistics> playerThreehitRank= playerService.getPlayerThreehitRankingList(seasonId);
 		List<PlayerDataStatistics> playerBlockRank= playerService.getPlayerBlockRankingList(seasonId);
+		
+		List<PlayerDataAnalysis> playerTruePercentRank=playerService.getPlayerTruePercentRanking(seasonId);
+		List<PlayerDataAnalysis> playerShootEfficiencyRank=playerService.getPlayerShootEfficiencyRanking(seasonId);
+		List<PlayerDataAnalysis> playerReboundPercentRank=playerService.getPlayerReboundPercentRanking(seasonId);
+		List<PlayerDataAnalysis> playerAssistancePercentRank=playerService.getPlayerAssistancePercentRanking(seasonId);
+		List<PlayerDataAnalysis> playerGrabPercentRank=playerService.getPlayerGrabPercentRanking(seasonId);
+		List<PlayerDataAnalysis> playerBlockPercentRank=playerService.getPlayerBlockPercentRanking(seasonId);
 		//球员季后赛数据榜
 		List<PlayerDataStatistics> playerOffScoreRank= playerService.getPlayerScoreRankingOffList(seasonId);
 		List<PlayerDataStatistics> playerOffReboundRank= playerService.getPlayerReboundRankingOffList(seasonId);
@@ -110,6 +124,12 @@ public class GameController {
 		List<PlayerDataStatistics> playerOffGrabRank= playerService.getPlayerGrabRankingOffList(seasonId);
 		List<PlayerDataStatistics> playerOffThreehitRank= playerService.getPlayerThreehitRankingOffList(seasonId);
 		List<PlayerDataStatistics> playerOffBlockRank= playerService.getPlayerBlockRankingOffList(seasonId);
+		List<PlayerDataAnalysis> playerOffTruePercentRank=playerService.getPlayerTruePercentOffRanking(seasonId);
+		List<PlayerDataAnalysis> playerOffShootEfficiencyRank=playerService.getPlayerShootEfficiencyOffRanking(seasonId);
+		List<PlayerDataAnalysis> playerOffReboundPercentRank=playerService.getPlayerReboundPercentOffRanking(seasonId);
+		List<PlayerDataAnalysis> playerOffAssistancePercentRank=playerService.getPlayerAssistancePercentOffRanking(seasonId);
+		List<PlayerDataAnalysis> playerOffGrabPercentRank=playerService.getPlayerGrabPercentOffRanking(seasonId);
+		List<PlayerDataAnalysis> playerOffBlockPercentRank=playerService.getPlayerBlockPercentOffRanking(seasonId);
 		
 		// add into view
 		//添加联盟排名
@@ -128,6 +148,13 @@ public class GameController {
 		view.addObject("playerGrabRank", playerGrabRank);
 		view.addObject("playerThreehitRank", playerThreehitRank);
 		view.addObject("playerBlockRank", playerBlockRank);
+		view.addObject("playerTruePercentRank", playerTruePercentRank);
+		view.addObject("playerShootEfficiencyRank", playerShootEfficiencyRank);
+		view.addObject("playerReboundPercentRank", playerReboundPercentRank);
+		view.addObject("playerAssistancePercentRank", playerAssistancePercentRank);
+		view.addObject("playerGrabPercentRank", playerGrabPercentRank);
+		view.addObject("playerBlockPercentRank", playerBlockPercentRank);
+
 		//添加季后赛球员赛季数据榜
 		view.addObject("playerOffScoreRank", playerOffScoreRank);
 		view.addObject("playerOffReboundRank", playerOffReboundRank);
@@ -135,6 +162,12 @@ public class GameController {
 		view.addObject("playerOffGrabRank", playerOffGrabRank);
 		view.addObject("playerOffThreehitRank", playerOffThreehitRank);
 		view.addObject("playerOffBlockRank", playerOffBlockRank);
+		view.addObject("playerOffTruePercentRank", playerOffTruePercentRank);
+		view.addObject("playerOffShootEfficiencyRank", playerOffShootEfficiencyRank);
+		view.addObject("playerOffReboundPercentRank", playerOffReboundPercentRank);
+		view.addObject("playerOffAssistancePercentRank", playerOffAssistancePercentRank);
+		view.addObject("playerOffGrabPercentRank", playerOffGrabPercentRank);
+		view.addObject("playerOffBlockPercentRank", playerOffBlockPercentRank);
 		
 		view.setViewName("game");
 
