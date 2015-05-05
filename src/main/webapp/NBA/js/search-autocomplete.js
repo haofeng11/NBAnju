@@ -19,16 +19,17 @@ $(function() {
      source: function( request, response ) {
        $.ajax({
          url: "http://localhost:8080/NBADataAnalysis/team/search",
-         dataType: "jsonp",
+         dataType: "json",
          data: {
            cName: request.term 
          },
          success: function( data ) {
-		   alert(data);
            response( data );
          },
-		 error: function( data ){
-           alert("An error occurred!");
+		 error: function(XMLHttpRequest, textStatus, errorThrown){
+		   console.error("textStatus: "+textStatus);
+           console.error("XMLHttpRequest.status: "+XMLHttpRequest.status);
+           console.error("XMLHttpRequest.readyState: "+XMLHttpRequest.readyState);
          },
        });
      },
@@ -54,6 +55,12 @@ $(function() {
     //         { label: "火箭", category: "球员" }],
     select: function( event, ui ) {
       //选择一个选项后的事件
+	  if(ui.item.category=="球员"){
+	      window.location="http://localhost:8080/NBADataAnalysis/player/"+ui.item.label;
+	  }
+	  if(ui.item.category=="球队"){
+	      window.location="http://localhost:8080/NBADataAnalysis/team/"+ui.item.label;
+	  }
     },
     open: function() {
       $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );

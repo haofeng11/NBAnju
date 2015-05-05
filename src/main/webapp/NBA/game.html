@@ -89,7 +89,7 @@
 							  <option>13-14 赛季</option>
 							  <option>14-15 赛季</option>
 							</select> -->
-							<input type="text" name="date" class="form-control" id="datepicker" placeholder="点击选择日期" style="text-align: center;float:left;" size="50">
+							<input type="text" name="date" class="form-control" id="datepicker" placeholder="点击选择日期" style="text-align: center;float:left;" size="40">
 						  </div>
 						  <button type="submit" class="btn btn-default" style="float:right;">查看数据</button>
 						</form>
@@ -648,7 +648,7 @@
     						<tr>
 					            <td width="165">北京时间</td>
 					            <td width="280">主队 VS 客队</td>
-					            <td width="150"></td>
+					            <td width="150"><a id="start" href="#" data-toggle="modal" data-target="#myModal">季后赛对阵图</a></td>
 				        	</tr>
 				        	<tr>
 			                    <td width="135">11:00</td>
@@ -1237,7 +1237,194 @@
     		</div>
     	</div>
     </div>
-
+	<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="width:80%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">季后赛对阵图</h4>
+      </div>
+      <canvas id="myCanvas" style="position:absolute;" width="1100px;" height="400px">你的浏览器不支持canvas</canvas>
+      <div class="modal-body">
+        <div style="height:100%;width:12.5%;float: left;">
+          <div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team1">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:10px;">
+              <button type="button" class="btn btn-success">篮网</button>
+              <button type="button" class="btn btn-success" id="team2">2</button>
+            </div>
+          </div>
+          <div style="margin-top:20px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team3">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:10px;">
+              <button type="button" class="btn btn-success">篮网</button>
+              <button type="button" class="btn btn-success" id="team4">2</button>
+            </div>
+          </div>
+          <div style="margin-top:20px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team5">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:10px;">
+              <button type="button" class="btn btn-success">篮网</button>
+              <button type="button" class="btn btn-success" id="team6">2</button>
+            </div>
+          </div>
+          <div style="margin-top:20px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team7">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:10px;">
+              <button type="button" class="btn btn-success">篮网</button>
+              <button type="button" class="btn btn-success" id="team8">2</button>
+            </div>
+          </div>
+        </div>
+        <div style="float: left;width:12.5%;">
+          <div style="margin-top:22px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team9">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:64px;">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team10">4</button>
+            </div>
+          </div>
+          <div style="margin-top:64px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team11">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:64px;">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team12">4</button>
+            </div>
+          </div>
+        </div>
+        <div style="float: left;width:12.5%;">
+          <div style="margin-top:72px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team13">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:162px;">
+              <button type="button" class="btn btn-success">老鹰</button>
+              <button type="button" class="btn btn-success" id="team14">4</button>
+            </div>
+          </div>
+        </div>
+        <div style="float: left;width:12.5%;">
+          <div style="margin-top:162px;">
+            <div class="btn-group">
+              <button type="button" class="btn btn-success btn-lg">老鹰</button>
+              <button type="button" class="btn btn-success btn-lg" id="team15">4</button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="playoffs_right">
+          <div style="height:100%;width:12.5%;float: right;">
+            <div style="left:20px;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team16">4</button>
+              </div>
+              <div class="btn-group" style="margin-top:10px;">
+                <button type="button" class="btn btn-success">篮网</button>
+                <button type="button" class="btn btn-success" id="team17">2</button>
+              </div>
+            </div>
+            <div style="margin-top:20px;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team18">4</button>
+              </div>
+              <div class="btn-group" style="margin-top:10px;">
+                <button type="button" class="btn btn-success">篮网</button>
+                <button type="button" class="btn btn-success" id="team19">2</button>
+              </div>
+            </div>
+            <div style="margin-top:20px;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team20">4</button>
+              </div>
+              <div class="btn-group" style="margin-top:10px;">
+                <button type="button" class="btn btn-success">篮网</button>
+                <button type="button" class="btn btn-success" id="team21">2</button>
+              </div>
+            </div>
+            <div style="margin-top:20px;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team22">4</button>
+              </div>
+              <div class="btn-group" style="margin-top:10px;">
+                <button type="button" class="btn btn-success">篮网</button>
+                <button type="button" class="btn btn-success" id="team23">2</button>
+              </div>
+            </div>
+          </div>
+          <div style="float: right;width:12.5%;">
+            <div style="margin-top:22px;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team24">4</button>
+              </div>
+              <div class="btn-group" style="margin-top:64px;">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team25">4</button>
+              </div>
+            </div>
+            <div style="margin-top:64px;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team26">4</button>
+              </div>
+              <div class="btn-group" style="margin-top:64px;">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team27">4</button>
+              </div>
+            </div>
+          </div>
+          <div style="float: right;width:12.5%;">
+            <div style="margin-top:72px;">
+              <div class="btn-group">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team28">4</button>
+              </div>
+              <div class="btn-group" style="margin-top:162px;">
+                <button type="button" class="btn btn-success">老鹰</button>
+                <button type="button" class="btn btn-success" id="team29">4</button>
+              </div>
+            </div>
+          </div>
+          <div style="float: right;width:12.5%;">
+            <div style="margin-top:162px;">
+              <div class="btn-group" style="left:20px;">
+                <button type="button" class="btn btn-success btn-lg">老鹰</button>
+                <button type="button" class="btn btn-success btn-lg" id="team30">4</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="border-top: 0px solid #e5e5e5;">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var west = document.getElementById("west");
@@ -1546,7 +1733,152 @@
     <!-- 导航栏搜索匹配 -->
     <script src="js/jquery-ui/jquery-ui.js"></script>
     <script src="js/search-autocomplete.js"></script>
-	
+	  <script>
+  $('#start').click(function()
+  {
+    $('#myModal').on('shown.bs.modal', function (e) {
+      // alert($("#team1").offset().left);
+      console.log($("#team1").offset().left+" "+$("#team1").offset().top);
+      var myCanvas = document.getElementById("myCanvas");
+      var context = myCanvas.getContext("2d");
+      context.lineWidth = 2;
+      context.beginPath();
+      context.strokeStyle = "grey";
+      var x = 110,y=70,x_x=89;
+      var interval = 25;
+      context.moveTo($("#team1").offset().left-x,$("#team1").offset().top-y);
+      context.lineTo($("#team1").offset().left-x+interval,$("#team1").offset().top-y);
+      context.lineTo($("#team1").offset().left-x+interval,$("#team9").offset().top-y);
+      context.lineTo($("#team9").offset().left-x-x_x,$("#team9").offset().top-y);
+      context.moveTo($("#team2").offset().left-x,$("#team2").offset().top-y);
+      context.lineTo($("#team2").offset().left-x+interval,$("#team2").offset().top-y);
+      context.lineTo($("#team2").offset().left-x+interval,$("#team9").offset().top-y);
+      context.lineTo($("#team9").offset().left-x-x_x,$("#team9").offset().top-y);
+
+      context.moveTo($("#team3").offset().left-x,$("#team3").offset().top-y);
+      context.lineTo($("#team3").offset().left-x+interval,$("#team3").offset().top-y);
+      context.lineTo($("#team3").offset().left-x+interval,$("#team10").offset().top-y);
+      context.lineTo($("#team10").offset().left-x-x_x,$("#team10").offset().top-y);
+      context.moveTo($("#team4").offset().left-x,$("#team4").offset().top-y);
+      context.lineTo($("#team4").offset().left-x+interval,$("#team4").offset().top-y);
+      context.lineTo($("#team4").offset().left-x+interval,$("#team10").offset().top-y);
+      context.lineTo($("#team10").offset().left-x-x_x,$("#team10").offset().top-y);
+
+      context.moveTo($("#team5").offset().left-x,$("#team5").offset().top-y);
+      context.lineTo($("#team5").offset().left-x+interval,$("#team5").offset().top-y);
+      context.lineTo($("#team5").offset().left-x+interval,$("#team11").offset().top-y);
+      context.lineTo($("#team11").offset().left-x-x_x,$("#team11").offset().top-y);
+      context.moveTo($("#team6").offset().left-x,$("#team6").offset().top-y);
+      context.lineTo($("#team6").offset().left-x+interval,$("#team6").offset().top-y);
+      context.lineTo($("#team6").offset().left-x+interval,$("#team11").offset().top-y);
+      context.lineTo($("#team11").offset().left-x-x_x,$("#team11").offset().top-y);
+
+      context.moveTo($("#team7").offset().left-x,$("#team7").offset().top-y);
+      context.lineTo($("#team7").offset().left-x+interval,$("#team7").offset().top-y);
+      context.lineTo($("#team7").offset().left-x+interval,$("#team12").offset().top-y);
+      context.lineTo($("#team12").offset().left-x-x_x,$("#team12").offset().top-y);
+      context.moveTo($("#team8").offset().left-x,$("#team8").offset().top-y);
+      context.lineTo($("#team8").offset().left-x+interval,$("#team8").offset().top-y);
+      context.lineTo($("#team8").offset().left-x+interval,$("#team12").offset().top-y);
+      context.lineTo($("#team12").offset().left-x-x_x,$("#team12").offset().top-y);
+
+      context.moveTo($("#team9").offset().left-x,$("#team9").offset().top-y);
+      context.lineTo($("#team9").offset().left-x+interval,$("#team9").offset().top-y);
+      context.lineTo($("#team9").offset().left-x+interval,$("#team13").offset().top-y);
+      context.lineTo($("#team13").offset().left-x-x_x,$("#team13").offset().top-y);
+      context.moveTo($("#team10").offset().left-x,$("#team10").offset().top-y);
+      context.lineTo($("#team10").offset().left-x+interval,$("#team10").offset().top-y);
+      context.lineTo($("#team10").offset().left-x+interval,$("#team13").offset().top-y);
+      context.lineTo($("#team13").offset().left-x-x_x,$("#team13").offset().top-y);
+
+      context.moveTo($("#team11").offset().left-x,$("#team11").offset().top-y);
+      context.lineTo($("#team11").offset().left-x+interval,$("#team11").offset().top-y);
+      context.lineTo($("#team11").offset().left-x+interval,$("#team14").offset().top-y);
+      context.lineTo($("#team14").offset().left-x-x_x,$("#team14").offset().top-y);
+      context.moveTo($("#team12").offset().left-x,$("#team12").offset().top-y);
+      context.lineTo($("#team12").offset().left-x+interval,$("#team12").offset().top-y);
+      context.lineTo($("#team12").offset().left-x+interval,$("#team14").offset().top-y);
+      context.lineTo($("#team14").offset().left-x-x_x,$("#team14").offset().top-y);
+
+      context.moveTo($("#team13").offset().left-x,$("#team13").offset().top-y);
+      context.lineTo($("#team13").offset().left-x+interval,$("#team13").offset().top-y);
+      context.lineTo($("#team13").offset().left-x+interval,$("#team15").offset().top-y+8);
+      context.lineTo($("#team15").offset().left-x-x_x,$("#team15").offset().top-y+8);
+      context.moveTo($("#team14").offset().left-x,$("#team14").offset().top-y);
+      context.lineTo($("#team14").offset().left-x+interval,$("#team14").offset().top-y);
+      context.lineTo($("#team14").offset().left-x+interval,$("#team15").offset().top-y+8);
+      context.lineTo($("#team15").offset().left-x-x_x,$("#team15").offset().top-y+8);
+
+      //西部
+      context.moveTo($("#team16").offset().left-x-x_x,$("#team16").offset().top-y);
+      context.lineTo($("#team16").offset().left-x-x_x-interval,$("#team16").offset().top-y);
+      context.lineTo($("#team16").offset().left-x-x_x-interval,$("#team24").offset().top-y);
+      context.lineTo($("#team24").offset().left-x,$("#team24").offset().top-y);
+      context.moveTo($("#team17").offset().left-x-x_x,$("#team17").offset().top-y);
+      context.lineTo($("#team17").offset().left-x-x_x-interval,$("#team17").offset().top-y);
+      context.lineTo($("#team17").offset().left-x-x_x-interval,$("#team24").offset().top-y);
+      context.lineTo($("#team24").offset().left-x,$("#team24").offset().top-y);
+
+      context.moveTo($("#team18").offset().left-x-x_x,$("#team18").offset().top-y);
+      context.lineTo($("#team18").offset().left-x-x_x-interval,$("#team18").offset().top-y);
+      context.lineTo($("#team18").offset().left-x-x_x-interval,$("#team25").offset().top-y);
+      context.lineTo($("#team25").offset().left-x,$("#team25").offset().top-y);
+      context.moveTo($("#team19").offset().left-x-x_x,$("#team19").offset().top-y);
+      context.lineTo($("#team19").offset().left-x-x_x-interval,$("#team19").offset().top-y);
+      context.lineTo($("#team19").offset().left-x-x_x-interval,$("#team25").offset().top-y);
+      context.lineTo($("#team25").offset().left-x,$("#team25").offset().top-y);
+
+      context.moveTo($("#team20").offset().left-x-x_x,$("#team20").offset().top-y);
+      context.lineTo($("#team20").offset().left-x-x_x-interval,$("#team20").offset().top-y);
+      context.lineTo($("#team20").offset().left-x-x_x-interval,$("#team26").offset().top-y);
+      context.lineTo($("#team26").offset().left-x,$("#team26").offset().top-y);
+      context.moveTo($("#team21").offset().left-x-x_x,$("#team21").offset().top-y);
+      context.lineTo($("#team21").offset().left-x-x_x-interval,$("#team21").offset().top-y);
+      context.lineTo($("#team21").offset().left-x-x_x-interval,$("#team26").offset().top-y);
+      context.lineTo($("#team26").offset().left-x,$("#team26").offset().top-y);
+
+      context.moveTo($("#team22").offset().left-x-x_x,$("#team22").offset().top-y);
+      context.lineTo($("#team22").offset().left-x-x_x-interval,$("#team22").offset().top-y);
+      context.lineTo($("#team22").offset().left-x-x_x-interval,$("#team27").offset().top-y);
+      context.lineTo($("#team27").offset().left-x,$("#team27").offset().top-y);
+      context.moveTo($("#team23").offset().left-x-x_x,$("#team23").offset().top-y);
+      context.lineTo($("#team23").offset().left-x-x_x-interval,$("#team23").offset().top-y);
+      context.lineTo($("#team23").offset().left-x-x_x-interval,$("#team27").offset().top-y);
+      context.lineTo($("#team27").offset().left-x,$("#team27").offset().top-y);
+
+      context.moveTo($("#team24").offset().left-x-x_x,$("#team24").offset().top-y);
+      context.lineTo($("#team24").offset().left-x-x_x-interval,$("#team24").offset().top-y);
+      context.lineTo($("#team24").offset().left-x-x_x-interval,$("#team28").offset().top-y);
+      context.lineTo($("#team28").offset().left-x,$("#team28").offset().top-y);
+      context.moveTo($("#team25").offset().left-x-x_x,$("#team25").offset().top-y);
+      context.lineTo($("#team25").offset().left-x-x_x-interval,$("#team25").offset().top-y);
+      context.lineTo($("#team25").offset().left-x-x_x-interval,$("#team28").offset().top-y);
+      context.lineTo($("#team28").offset().left-x,$("#team28").offset().top-y);
+
+      context.moveTo($("#team26").offset().left-x-x_x,$("#team26").offset().top-y);
+      context.lineTo($("#team26").offset().left-x-x_x-interval,$("#team26").offset().top-y);
+      context.lineTo($("#team26").offset().left-x-x_x-interval,$("#team29").offset().top-y);
+      context.lineTo($("#team29").offset().left-x,$("#team29").offset().top-y);
+      context.moveTo($("#team27").offset().left-x-x_x,$("#team27").offset().top-y);
+      context.lineTo($("#team27").offset().left-x-x_x-interval,$("#team27").offset().top-y);
+      context.lineTo($("#team27").offset().left-x-x_x-interval,$("#team29").offset().top-y);
+      context.lineTo($("#team29").offset().left-x,$("#team29").offset().top-y);
+
+      context.moveTo($("#team28").offset().left-x-x_x,$("#team28").offset().top-y);
+      context.lineTo($("#team28").offset().left-x-x_x-interval,$("#team28").offset().top-y);
+      context.lineTo($("#team28").offset().left-x-x_x-interval,$("#team30").offset().top-y+8);
+      context.lineTo($("#team30").offset().left-x,$("#team30").offset().top-y+8);
+      context.moveTo($("#team29").offset().left-x-x_x,$("#team29").offset().top-y);
+      context.lineTo($("#team29").offset().left-x-x_x-interval,$("#team29").offset().top-y);
+      context.lineTo($("#team29").offset().left-x-x_x-interval,$("#team30").offset().top-y+8);
+      context.lineTo($("#team30").offset().left-x,$("#team30").offset().top-y+8);
+
+      context.moveTo($("#team15").offset().left-x-x_x,$("#team15").offset().top-y+8);
+      context.lineTo($("#team30").offset().left-x-x_x,$("#team30").offset().top-y+8);
+      context.stroke();
+    });
+  });
+</script>
 	
 </body>
 </html>

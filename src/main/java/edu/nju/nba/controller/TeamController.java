@@ -174,31 +174,12 @@ public class TeamController {
 	// 搜索球队或者球员
 //	@RequestMapping("/search")
 //	@ResponseBody
-//	public Map<String, Object> search(@ModelAttribute Team team,
+//	public String search(@ModelAttribute Team team,
 //			HttpServletRequest request, HttpServletResponse response) {
-//
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		List<SearchObject> dataList=new ArrayList<SearchObject>();
-//		List<Team> teamList = teamService.searchTeam(team.getcName());
-//		List<Player> playerList = playerService.searchPlayer(team.getcName());
-//		if (teamList.size() != 0) {
-//			for (Team t : teamList) {
-//				System.out.println(t.toString());
-//				dataList.add(new SearchObject(t.getcName(), "球队"));
-//			}
-//		} else {
-//			System.out.println("not found team!");
-//		}
-//		if (playerList.size() != 0) {
-//			for (Player p : playerList) {
-//				System.out.println(p.toString());
-//				dataList.add(new SearchObject(p.getcName(), "球员"));
-//			}
-//		} else {
-//			System.out.println("not found player!");
-//		}
-//        map.put("data", dataList);
-//		return map;
+//        String type="球员";
+//		String result =
+//		        "{label:\""+team.getcName()+"\",category:\""+type+"\"}";
+//		return result;
 //	}
 	
 	@RequestMapping("/search")

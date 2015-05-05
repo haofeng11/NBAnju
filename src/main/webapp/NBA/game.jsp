@@ -51,7 +51,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand hidden-sm" href="main.html">NBA数据分析网</a>
+				<a class="navbar-brand hidden-sm"
+					href="${path.concat('/NBA/main.jsp')}">NBA数据分析网</a>
 			</div>
 			<div class="navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
@@ -251,7 +252,8 @@
 							<tr>
 								<td width="165">比赛时间</td>
 								<td width="280">主队 VS 客队</td>
-								<td width="150"></td>
+								<td width="150"><a id="start" href="#" data-toggle="modal"
+									data-target="#myModal">季后赛对阵图</a></td>
 							</tr>
 
 							<c:forEach items="${gameSchedule}" var="game">
@@ -450,83 +452,83 @@
 								</c:forEach>
 							</tbody>
 
-							<tbody id="playoff_changjun_qiangduan" style="display: none;">							
+							<tbody id="playoff_changjun_qiangduan" style="display: none;">
 								<c:forEach items="${playerOffGrabRank}" var="PlayoffGrabTopten">
-								<tr class=" bg_color">
+									<tr class=" bg_color">
 										<td width="40" height="35">${PlayoffGrabTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffGrabTopten.team}" href="/nba/teams/hawks">${PlayoffGrabTopten.team}</a></td>
-										<td width="35">${PlayoffGrabTopten.grab}</td>									
-								</tr>
+										<td width="35">${PlayoffGrabTopten.grab}</td>
+									</tr>
 								</c:forEach>
 							</tbody>
 
 							<tbody id="regular_changjun_sanfen" style="display: none;">
 								<c:forEach items="${playerThreehitRank}" var="ThreehitTopten">
-								<tr class=" bg_color">							
+									<tr class=" bg_color">
 										<td width="40" height="35">${ThreehitTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${ThreehitTopten.team}" href="/nba/teams/hawks">${ThreehitTopten.team}</a></td>
 										<td width="35">${ThreehitTopten.threeHit}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
 							</tbody>
 
 							<tbody id="playoff_changjun_sanfen" style="display: none;">
 								<c:forEach items="${playerOffThreehitRank}"
-										var="PlayoffThreehitTopten">
-								<tr class=" bg_color">
-									
+									var="PlayoffThreehitTopten">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${PlayoffThreehitTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffThreehitTopten.team}" href="/nba/teams/hawks">${PlayoffThreehitTopten.team}</a></td>
 										<td width="35">${PlayoffThreehitTopten.threeHit}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
 							</tbody>
 
 							<tbody id="regular_changjun_gaimao" style="display: none;">
 								<c:forEach items="${playerBlockRank}" var="BlockTopten">
-								<tr class=" bg_color">
-									
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${BlockTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${BlockTopten.team}" href="/nba/teams/hawks">${BlockTopten.team}</a></td>
 										<td width="35">${BlockTopten.block}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
 							</tbody>
 
 							<tbody id="playoff_changjun_gaimao" style="display: none;">
 								<c:forEach items="${playerOffBlockRank}"
-										var="PlayoffBlockTopten">
-								<tr class=" bg_color">
-									
+									var="PlayoffBlockTopten">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${PlayoffBlockTopten.player}</td>
 										<td width="35"><a target="_blank"
 											title="${PlayoffBlockTopten.team}" href="/nba/teams/hawks">${PlayoffBlockTopten.team}</a></td>
 										<td width="35">${PlayoffBlockTopten.block}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
 
- 				<div class="gamecenter_content_r" id="danchang">
+				<div class="gamecenter_content_r" id="danchang">
 					<div class="region_box">
 						<h4>球员赛季效率值</h4>
 						<div class="tiltle" conference="W">
 							<span class="tiltle_c on" id="danchang_defen"
-								style="background: #fbfbfb; width:68px" >真实命中率</span><span class="tiltle_c"
-								id="danchang_zhugong" style="width:43px">篮板率</span><span class="tiltle_c"
-								id="danchang_qiangduan" style="width:43px">助攻率</span><span class="tiltle_c"
-								id="danchang_sanfen" style="width:43px">抢断率</span><span class="tiltle_d"
-								id="danchang_gaimao" style="width:43px">盖帽率</span>
+								style="background: #fbfbfb; width: 68px">真实命中率</span><span
+								class="tiltle_c" id="danchang_zhugong" style="width: 43px">篮板率</span><span
+								class="tiltle_c" id="danchang_qiangduan" style="width: 43px">助攻率</span><span
+								class="tiltle_c" id="danchang_sanfen" style="width: 43px">抢断率</span><span
+								class="tiltle_d" id="danchang_gaimao" style="width: 43px">盖帽率</span>
 						</div>
 						<div class="tiltle" conference="W">
 							<span class="tiltle_a" style="width: 240px;"><div
@@ -557,163 +559,449 @@
 						<table class="itinerary_table itinerary_table_show">
 							<tbody id="regular_danchang_defen">
 								<c:forEach items="${playerTruePercentRank}"
-										var="playerTruePercent">
-								<tr class=" bg_color">
-									
+									var="playerTruePercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerTruePercent.player}</td>
 										<td width="35"><a target="_blank"
 											title="${playerTruePercent.team}" href="/nba/teams/hawks">${playerTruePercent.team}</a></td>
 										<td width="35">${playerTruePercent.truePercentage}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
 							<tbody id="playoff_danchang_defen" style="display: none;">
 								<c:forEach items="${playerOffTruePercentRank}"
-										var="playerOffTruePercent">
-								<tr class=" bg_color">
-									
+									var="playerOffTruePercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerOffTruePercent.player}</td>
 										<td width="35"><a target="_blank"
 											title="${playerOffTruePercent.team}" href="/nba/teams/hawks">${playerOffTruePercent.team}</a></td>
 										<td width="35">${playerOffTruePercent.truePercentage}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
-							
+
 
 							<tbody id="regular_danchang_zhugong" style="display: none;">
 								<c:forEach items="${playerReboundPercentRank}"
-										var="playerReboundPercent">
-								<tr class=" bg_color">
-									
+									var="playerReboundPercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerReboundPercent.player}</td>
 										<td width="35"><a target="_blank"
 											title="${playerReboundPercent.team}" href="/nba/teams/hawks">${playerReboundPercent.team}</a></td>
 										<td width="35">${playerReboundPercent.reboundPercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
 							<tbody id="playoff_danchang_zhugong" style="display: none;">
 								<c:forEach items="${playerOffReboundPercentRank}"
-										var="playerOffReboundPercent">
-								<tr class=" bg_color">
-									
+									var="playerOffReboundPercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerOffReboundPercent.player}</td>
 										<td width="35"><a target="_blank"
-											title="${playerOffReboundPercent.team}" href="/nba/teams/hawks">${playerReboundPercent.team}</a></td>
+											title="${playerOffReboundPercent.team}"
+											href="/nba/teams/hawks">${playerReboundPercent.team}</a></td>
 										<td width="35">${playerOffReboundPercent.reboundPercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
 							<tbody id="regular_danchang_qiangduan" style="display: none;">
 								<c:forEach items="${playerAssistancePercentRank}"
-										var="playerAssistancePercent">
-								<tr class=" bg_color">
-									
+									var="playerAssistancePercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerAssistancePercent.player}</td>
 										<td width="35"><a target="_blank"
-											title="${playerAssistancePercent.team}" href="/nba/teams/hawks">${playerAssistancePercent.team}</a></td>
+											title="${playerAssistancePercent.team}"
+											href="/nba/teams/hawks">${playerAssistancePercent.team}</a></td>
 										<td width="35">${playerAssistancePercent.assistancePercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
 							<tbody id="playoff_danchang_qiangduan" style="display: none;">
 								<c:forEach items="${playerOffAssistancePercent}"
-										var="playerOffAssistancePercent">
-								<tr class=" bg_color">
-									
+									var="playerOffAssistancePercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerOffAssistancePercent.player}</td>
 										<td width="35"><a target="_blank"
-											title="${playerOffAssistancePercent.team}" href="/nba/teams/hawks">${playerAssistancePercent.team}</a></td>
+											title="${playerOffAssistancePercent.team}"
+											href="/nba/teams/hawks">${playerAssistancePercent.team}</a></td>
 										<td width="35">${playerOffAssistancePercent.assistancePercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
 							<tbody id="regular_danchang_sanfen" style="display: none;">
 								<c:forEach items="${playerGrabPercentRank}"
-										var="playerGrabPercent">
-								<tr class=" bg_color">
-									
+									var="playerGrabPercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerGrabPercent.player}</td>
 										<td width="35"><a target="_blank"
 											title="${playerGrabPercent.team}" href="/nba/teams/hawks">${playerGrabPercent.team}</a></td>
 										<td width="35">${playerGrabPercent.grabPercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
 							</tbody>
 
 							<tbody id="playoff_danchang_sanfen" style="display: none;">
 								<c:forEach items="${playerOffGrabPercentRank}"
-										var="playerOffGrabPercent">
-								<tr class=" bg_color">
-									
+									var="playerOffGrabPercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerOffGrabPercent.player}</td>
 										<td width="35"><a target="_blank"
 											title="${playerOffGrabPercent.team}" href="/nba/teams/hawks">${playerOffGrabPercent.team}</a></td>
 										<td width="35">${playerOffGrabPercent.grabPercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
 							<tbody id="regular_danchang_gaimao" style="display: none;">
 								<c:forEach items="${playerBlockPercentRank}"
-										var="playerBlockPercent">
-								<tr class=" bg_color">
-									
+									var="playerBlockPercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerBlockPercent.player}</td>
 										<td width="35"><a target="_blank"
 											title="${playerBlockPercent.team}" href="/nba/teams/hawks">${playerBlockPercent.team}</a></td>
 										<td width="35">${playerBlockPercent.blockPercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-								
+
 							</tbody>
 
 							<tbody id="playoff_danchang_gaimao" style="display: none;">
 								<c:forEach items="${playerOffBlockPercentRank}"
-										var="playerOffBlockPercent">
-								<tr class=" bg_color">
-									
+									var="playerOffBlockPercent">
+									<tr class=" bg_color">
+
 										<td width="40" height="35">${playerOffBlockPercent.player}</td>
 										<td width="35"><a target="_blank"
 											title="${playerOffBlockPercent.team}" href="/nba/teams/hawks">${playerOffBlockPercent.team}</a></td>
 										<td width="35">${playerOffBlockPercent.blockPercent}</td>
-									
-								</tr>
+
+									</tr>
 								</c:forEach>
-							
+
 							</tbody>
 						</table>
 					</div>
-				</div> 
+				</div>
 
 
 			</div>
 		</div>
 	</div>
 
+	<!-- Modal -->
+	<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" style="width: 80%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">季后赛对阵图</h4>
+				</div>
+				<canvas id="myCanvas" style="position: absolute;" width="1100px;"
+					height="400px">你的浏览器不支持canvas</canvas>
+				<div class="modal-body">
+					<div style="height: 100%; width: 12.5%; float: left;">
+						<div>
+							<div class="btn-group">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('金州勇士队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">勇 士</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team1">4</button>
+							</div>
+							<div class="btn-group" style="margin-top: 10px;">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('新奥尔良鹈鹕队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">鹈 鹕</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team2">0</button>
+							</div>
+						</div>
+						<div style="margin-top: 20px;">
+							<div class="btn-group">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('波特兰开拓者队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">开拓者</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team3">1</button>
+							</div>
+							<div class="btn-group" style="margin-top: 10px;">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('孟菲斯灰熊队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">灰 熊</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team4">4</button>
+							</div>
+						</div>
+						<div style="margin-top: 20px;">
+							<div class="btn-group">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('洛杉矶快船队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">快 船</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team5">4</button>
+							</div>
+							<div class="btn-group" style="margin-top: 10px;">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('圣安东尼奥马刺队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">马 刺</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team6">3</button>
+							</div>
+						</div>
+						<div style="margin-top: 20px;">
+							<div class="btn-group">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('休斯顿火箭队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">火 箭</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team7">4</button>
+							</div>
+							<div class="btn-group" style="margin-top: 10px;">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('达拉斯小牛队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">小 牛</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team8">1</button>
+							</div>
+						</div>
+					</div>
+					<div style="float: left; width: 12.5%;">
+						<div style="margin-top: 22px;">
+							<div class="btn-group">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('金州勇士队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">勇士</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team9">1</button>
+							</div>
+							<div class="btn-group" style="margin-top: 64px;">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('孟菲斯灰熊队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">灰熊</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team10">0</button>
+							</div>
+						</div>
+						<div style="margin-top: 64px;">
+							<div class="btn-group">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('洛杉矶快船队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">快船</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team11">1</button>
+							</div>
+							<div class="btn-group" style="margin-top: 64px;">
+								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('休斯顿火箭队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">火箭</a></button>
+								<button type="button" class="btn btn-success" id="team12">0</button>
+							</div>
+						</div>
+					</div>
+					<div style="float: left; width: 12.5%;">
+						<div style="margin-top: 72px;">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success">待定</button>
+								<button type="button" class="btn btn-success" id="team13">0</button>
+							</div>
+							<div class="btn-group" style="margin-top: 162px;">
+								<button type="button" class="btn btn-success">待定</button>
+								<button type="button" class="btn btn-success" id="team14">0</button>
+							</div>
+						</div>
+					</div>
+					<div style="float: left; width: 12.5%;">
+						<div style="margin-top: 162px;">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-lg">待定</button>
+								<button type="button" class="btn btn-success btn-lg" id="team15">0</button>
+							</div>
+						</div>
+					</div>
+
+					<div id="playoffs_right">
+						<div style="height: 100%; width: 12.5%; float: right;">
+							<div style="left: 20px;">
+								<div class="btn-group">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('亚特兰大老鹰队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">老鹰</a>
+									</button>
+									<button type="button" class="btn btn-success" id="team16">4</button>
+								</div>
+								<div class="btn-group" style="margin-top: 10px;">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('布鲁克林篮网队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">篮网</a>
+									</button>
+									<button type="button" class="btn btn-success" id="team17">2</button>
+								</div>
+							</div>
+							<div style="margin-top: 20px;">
+								<div class="btn-group">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('多伦多猛龙队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">猛龙</a>
+									</button>
+									<button type="button" class="btn btn-success" id="team18">0</button>
+								</div>
+								<div class="btn-group" style="margin-top: 10px;">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('华盛顿奇才队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">奇才</a>
+									</button>
+									<button type="button" class="btn btn-success" id="team19">4</button>
+								</div>
+							</div>
+							<div style="margin-top: 20px;">
+								<div class="btn-group">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('芝加哥公牛队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">公牛</a>
+									</button>
+									<button type="button" class="btn btn-success" id="team20">4</button>
+								</div>
+								<div class="btn-group" style="margin-top: 10px;">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('密尔沃基雄鹿队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">雄鹿</a>
+									</button>
+									<button type="button" class="btn btn-success" id="team21">2</button>
+								</div>
+							</div>
+							<div style="margin-top: 20px;">
+								<div class="btn-group">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('克里夫兰骑士队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">骑士</a></button>
+									<button type="button" class="btn btn-success" id="team22">4</button>
+								</div>
+								<div class="btn-group" style="margin-top: 10px;">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('波士顿凯尔特人队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">凯尔特人</a></button>
+									<button type="button" class="btn btn-success" id="team23">0</button>
+								</div>
+							</div>
+						</div>
+						<div style="float: right; width: 12.5%;">
+							<div style="margin-top: 22px;">
+								<div class="btn-group">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('亚特兰大老鹰队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">老鹰</a></button>
+									<button type="button" class="btn btn-success" id="team24">0</button>
+								</div>
+								<div class="btn-group" style="margin-top: 64px;">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('华盛顿奇才队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">奇才</a></button>
+									<button type="button" class="btn btn-success" id="team25">1</button>
+								</div>
+							</div>
+							<div style="margin-top: 64px;">
+								<div class="btn-group">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('芝加哥公牛队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">公牛</a></button>
+									<button type="button" class="btn btn-success" id="team26">1</button>
+								</div>
+								<div class="btn-group" style="margin-top: 64px;">
+									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('克里夫兰骑士队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">骑士</a></button>
+									<button type="button" class="btn btn-success" id="team27">0</button>
+								</div>
+							</div>
+						</div>
+						<div style="float: right; width: 12.5%;">
+							<div style="margin-top: 72px;">
+								<div class="btn-group">
+									<button type="button" class="btn btn-success">待定</button>
+									<button type="button" class="btn btn-success" id="team28">0</button>
+								</div>
+								<div class="btn-group" style="margin-top: 162px;">
+									<button type="button" class="btn btn-success">待定</button>
+									<button type="button" class="btn btn-success" id="team29">0</button>
+								</div>
+							</div>
+						</div>
+						<div style="float: right; width: 12.5%;">
+							<div style="margin-top: 162px;">
+								<div class="btn-group" style="left: 20px;">
+									<button type="button" class="btn btn-success btn-lg">待定</button>
+									<button type="button" class="btn btn-success btn-lg"
+										id="team30">0</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer" style="border-top: 0px solid #e5e5e5;">
+					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		$(document)
@@ -1393,5 +1681,329 @@
 	<!-- 导航栏搜索匹配 -->
 	<script src="../NBA/js/jquery-ui/jquery-ui.js"></script>
 	<script src="../NBA/js/search-autocomplete.js"></script>
+	<script>
+		$('#start').click(
+				function() {
+					$('#myModal').on(
+							'shown.bs.modal',
+							function(e) {
+								// alert($("#team1").offset().left);
+								console.log($("#team1").offset().left + " "
+										+ $("#team1").offset().top);
+								var myCanvas = document
+										.getElementById("myCanvas");
+								var context = myCanvas.getContext("2d");
+								context.lineWidth = 2;
+								context.beginPath();
+								context.strokeStyle = "grey";
+								var x = 110, y = 70, x_x = 89;
+								var interval = 25;
+								context.moveTo($("#team1").offset().left - x,
+										$("#team1").offset().top - y);
+								context.lineTo($("#team1").offset().left - x
+										+ interval, $("#team1").offset().top
+										- y);
+								context.lineTo($("#team1").offset().left - x
+										+ interval, $("#team9").offset().top
+										- y);
+								context.lineTo($("#team9").offset().left - x
+										- x_x, $("#team9").offset().top - y);
+								context.moveTo($("#team2").offset().left - x,
+										$("#team2").offset().top - y);
+								context.lineTo($("#team2").offset().left - x
+										+ interval, $("#team2").offset().top
+										- y);
+								context.lineTo($("#team2").offset().left - x
+										+ interval, $("#team9").offset().top
+										- y);
+								context.lineTo($("#team9").offset().left - x
+										- x_x, $("#team9").offset().top - y);
+
+								context.moveTo($("#team3").offset().left - x,
+										$("#team3").offset().top - y);
+								context.lineTo($("#team3").offset().left - x
+										+ interval, $("#team3").offset().top
+										- y);
+								context.lineTo($("#team3").offset().left - x
+										+ interval, $("#team10").offset().top
+										- y);
+								context.lineTo($("#team10").offset().left - x
+										- x_x, $("#team10").offset().top - y);
+								context.moveTo($("#team4").offset().left - x,
+										$("#team4").offset().top - y);
+								context.lineTo($("#team4").offset().left - x
+										+ interval, $("#team4").offset().top
+										- y);
+								context.lineTo($("#team4").offset().left - x
+										+ interval, $("#team10").offset().top
+										- y);
+								context.lineTo($("#team10").offset().left - x
+										- x_x, $("#team10").offset().top - y);
+
+								context.moveTo($("#team5").offset().left - x,
+										$("#team5").offset().top - y);
+								context.lineTo($("#team5").offset().left - x
+										+ interval, $("#team5").offset().top
+										- y);
+								context.lineTo($("#team5").offset().left - x
+										+ interval, $("#team11").offset().top
+										- y);
+								context.lineTo($("#team11").offset().left - x
+										- x_x, $("#team11").offset().top - y);
+								context.moveTo($("#team6").offset().left - x,
+										$("#team6").offset().top - y);
+								context.lineTo($("#team6").offset().left - x
+										+ interval, $("#team6").offset().top
+										- y);
+								context.lineTo($("#team6").offset().left - x
+										+ interval, $("#team11").offset().top
+										- y);
+								context.lineTo($("#team11").offset().left - x
+										- x_x, $("#team11").offset().top - y);
+
+								context.moveTo($("#team7").offset().left - x,
+										$("#team7").offset().top - y);
+								context.lineTo($("#team7").offset().left - x
+										+ interval, $("#team7").offset().top
+										- y);
+								context.lineTo($("#team7").offset().left - x
+										+ interval, $("#team12").offset().top
+										- y);
+								context.lineTo($("#team12").offset().left - x
+										- x_x, $("#team12").offset().top - y);
+								context.moveTo($("#team8").offset().left - x,
+										$("#team8").offset().top - y);
+								context.lineTo($("#team8").offset().left - x
+										+ interval, $("#team8").offset().top
+										- y);
+								context.lineTo($("#team8").offset().left - x
+										+ interval, $("#team12").offset().top
+										- y);
+								context.lineTo($("#team12").offset().left - x
+										- x_x, $("#team12").offset().top - y);
+
+								context.moveTo($("#team9").offset().left - x,
+										$("#team9").offset().top - y);
+								context.lineTo($("#team9").offset().left - x
+										+ interval, $("#team9").offset().top
+										- y);
+								context.lineTo($("#team9").offset().left - x
+										+ interval, $("#team13").offset().top
+										- y);
+								context.lineTo($("#team13").offset().left - x
+										- x_x, $("#team13").offset().top - y);
+								context.moveTo($("#team10").offset().left - x,
+										$("#team10").offset().top - y);
+								context.lineTo($("#team10").offset().left - x
+										+ interval, $("#team10").offset().top
+										- y);
+								context.lineTo($("#team10").offset().left - x
+										+ interval, $("#team13").offset().top
+										- y);
+								context.lineTo($("#team13").offset().left - x
+										- x_x, $("#team13").offset().top - y);
+
+								context.moveTo($("#team11").offset().left - x,
+										$("#team11").offset().top - y);
+								context.lineTo($("#team11").offset().left - x
+										+ interval, $("#team11").offset().top
+										- y);
+								context.lineTo($("#team11").offset().left - x
+										+ interval, $("#team14").offset().top
+										- y);
+								context.lineTo($("#team14").offset().left - x
+										- x_x, $("#team14").offset().top - y);
+								context.moveTo($("#team12").offset().left - x,
+										$("#team12").offset().top - y);
+								context.lineTo($("#team12").offset().left - x
+										+ interval, $("#team12").offset().top
+										- y);
+								context.lineTo($("#team12").offset().left - x
+										+ interval, $("#team14").offset().top
+										- y);
+								context.lineTo($("#team14").offset().left - x
+										- x_x, $("#team14").offset().top - y);
+
+								context.moveTo($("#team13").offset().left - x,
+										$("#team13").offset().top - y);
+								context.lineTo($("#team13").offset().left - x
+										+ interval, $("#team13").offset().top
+										- y);
+								context.lineTo($("#team13").offset().left - x
+										+ interval, $("#team15").offset().top
+										- y + 8);
+								context.lineTo($("#team15").offset().left - x
+										- x_x, $("#team15").offset().top - y
+										+ 8);
+								context.moveTo($("#team14").offset().left - x,
+										$("#team14").offset().top - y);
+								context.lineTo($("#team14").offset().left - x
+										+ interval, $("#team14").offset().top
+										- y);
+								context.lineTo($("#team14").offset().left - x
+										+ interval, $("#team15").offset().top
+										- y + 8);
+								context.lineTo($("#team15").offset().left - x
+										- x_x, $("#team15").offset().top - y
+										+ 8);
+
+								//西部
+								context.moveTo($("#team16").offset().left - x
+										- x_x, $("#team16").offset().top - y);
+								context.lineTo($("#team16").offset().left - x
+										- x_x - interval,
+										$("#team16").offset().top - y);
+								context.lineTo($("#team16").offset().left - x
+										- x_x - interval,
+										$("#team24").offset().top - y);
+								context.lineTo($("#team24").offset().left - x,
+										$("#team24").offset().top - y);
+								context.moveTo($("#team17").offset().left - x
+										- x_x, $("#team17").offset().top - y);
+								context.lineTo($("#team17").offset().left - x
+										- x_x - interval,
+										$("#team17").offset().top - y);
+								context.lineTo($("#team17").offset().left - x
+										- x_x - interval,
+										$("#team24").offset().top - y);
+								context.lineTo($("#team24").offset().left - x,
+										$("#team24").offset().top - y);
+
+								context.moveTo($("#team18").offset().left - x
+										- x_x, $("#team18").offset().top - y);
+								context.lineTo($("#team18").offset().left - x
+										- x_x - interval,
+										$("#team18").offset().top - y);
+								context.lineTo($("#team18").offset().left - x
+										- x_x - interval,
+										$("#team25").offset().top - y);
+								context.lineTo($("#team25").offset().left - x,
+										$("#team25").offset().top - y);
+								context.moveTo($("#team19").offset().left - x
+										- x_x, $("#team19").offset().top - y);
+								context.lineTo($("#team19").offset().left - x
+										- x_x - interval,
+										$("#team19").offset().top - y);
+								context.lineTo($("#team19").offset().left - x
+										- x_x - interval,
+										$("#team25").offset().top - y);
+								context.lineTo($("#team25").offset().left - x,
+										$("#team25").offset().top - y);
+
+								context.moveTo($("#team20").offset().left - x
+										- x_x, $("#team20").offset().top - y);
+								context.lineTo($("#team20").offset().left - x
+										- x_x - interval,
+										$("#team20").offset().top - y);
+								context.lineTo($("#team20").offset().left - x
+										- x_x - interval,
+										$("#team26").offset().top - y);
+								context.lineTo($("#team26").offset().left - x,
+										$("#team26").offset().top - y);
+								context.moveTo($("#team21").offset().left - x
+										- x_x, $("#team21").offset().top - y);
+								context.lineTo($("#team21").offset().left - x
+										- x_x - interval,
+										$("#team21").offset().top - y);
+								context.lineTo($("#team21").offset().left - x
+										- x_x - interval,
+										$("#team26").offset().top - y);
+								context.lineTo($("#team26").offset().left - x,
+										$("#team26").offset().top - y);
+
+								context.moveTo($("#team22").offset().left - x
+										- x_x, $("#team22").offset().top - y);
+								context.lineTo($("#team22").offset().left - x
+										- x_x - interval,
+										$("#team22").offset().top - y);
+								context.lineTo($("#team22").offset().left - x
+										- x_x - interval,
+										$("#team27").offset().top - y);
+								context.lineTo($("#team27").offset().left - x,
+										$("#team27").offset().top - y);
+								context.moveTo($("#team23").offset().left - x
+										- x_x, $("#team23").offset().top - y);
+								context.lineTo($("#team23").offset().left - x
+										- x_x - interval,
+										$("#team23").offset().top - y);
+								context.lineTo($("#team23").offset().left - x
+										- x_x - interval,
+										$("#team27").offset().top - y);
+								context.lineTo($("#team27").offset().left - x,
+										$("#team27").offset().top - y);
+
+								context.moveTo($("#team24").offset().left - x
+										- x_x, $("#team24").offset().top - y);
+								context.lineTo($("#team24").offset().left - x
+										- x_x - interval,
+										$("#team24").offset().top - y);
+								context.lineTo($("#team24").offset().left - x
+										- x_x - interval,
+										$("#team28").offset().top - y);
+								context.lineTo($("#team28").offset().left - x,
+										$("#team28").offset().top - y);
+								context.moveTo($("#team25").offset().left - x
+										- x_x, $("#team25").offset().top - y);
+								context.lineTo($("#team25").offset().left - x
+										- x_x - interval,
+										$("#team25").offset().top - y);
+								context.lineTo($("#team25").offset().left - x
+										- x_x - interval,
+										$("#team28").offset().top - y);
+								context.lineTo($("#team28").offset().left - x,
+										$("#team28").offset().top - y);
+
+								context.moveTo($("#team26").offset().left - x
+										- x_x, $("#team26").offset().top - y);
+								context.lineTo($("#team26").offset().left - x
+										- x_x - interval,
+										$("#team26").offset().top - y);
+								context.lineTo($("#team26").offset().left - x
+										- x_x - interval,
+										$("#team29").offset().top - y);
+								context.lineTo($("#team29").offset().left - x,
+										$("#team29").offset().top - y);
+								context.moveTo($("#team27").offset().left - x
+										- x_x, $("#team27").offset().top - y);
+								context.lineTo($("#team27").offset().left - x
+										- x_x - interval,
+										$("#team27").offset().top - y);
+								context.lineTo($("#team27").offset().left - x
+										- x_x - interval,
+										$("#team29").offset().top - y);
+								context.lineTo($("#team29").offset().left - x,
+										$("#team29").offset().top - y);
+
+								context.moveTo($("#team28").offset().left - x
+										- x_x, $("#team28").offset().top - y);
+								context.lineTo($("#team28").offset().left - x
+										- x_x - interval,
+										$("#team28").offset().top - y);
+								context.lineTo($("#team28").offset().left - x
+										- x_x - interval,
+										$("#team30").offset().top - y + 8);
+								context.lineTo($("#team30").offset().left - x,
+										$("#team30").offset().top - y + 8);
+								context.moveTo($("#team29").offset().left - x
+										- x_x, $("#team29").offset().top - y);
+								context.lineTo($("#team29").offset().left - x
+										- x_x - interval,
+										$("#team29").offset().top - y);
+								context.lineTo($("#team29").offset().left - x
+										- x_x - interval,
+										$("#team30").offset().top - y + 8);
+								context.lineTo($("#team30").offset().left - x,
+										$("#team30").offset().top - y + 8);
+
+								context.moveTo($("#team15").offset().left - x
+										- x_x, $("#team15").offset().top - y
+										+ 8);
+								context.lineTo($("#team30").offset().left - x
+										- x_x, $("#team30").offset().top - y
+										+ 8);
+								context.stroke();
+							});
+				});
+	</script>
 </body>
 </html>
