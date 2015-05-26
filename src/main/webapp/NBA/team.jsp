@@ -9,6 +9,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>球队信息介绍</title>
+<!-- 加载动画 -->
+    <link rel="stylesheet" href=${path.concat("/NBA/css/fakeLoader.css")}>
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
 <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.css">
@@ -397,5 +401,7 @@
 </script>
     <!-- 导航栏搜索匹配 -->
     <script src="js/search-autocomplete.js"></script>
+	<!-- 加载动画 -->
+    <script src="../NBA/js/fakeLoader.min.js"></script>
 </body>
 </html>

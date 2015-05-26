@@ -11,6 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>首页</title>
+    <!-- 加载动画 -->
+    <link rel="stylesheet" href="css/fakeLoader.css">
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -429,5 +433,8 @@
     <!-- 导航栏搜索匹配 -->
     <script src="js/jquery-ui/jquery-ui.js"></script>
     <script src="js/search-autocomplete.js"></script>
+	<!-- 加载动画 -->
+    <script src="js/fakeLoader.min.js"></script>
+
   </body>
 </html>

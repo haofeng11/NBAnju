@@ -1,6 +1,7 @@
 package edu.nju.nba.bean;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,6 +28,8 @@ public class Team implements Serializable {
 	private String cName;
 	// 英文名
 	private String eName;
+	//球队别名
+	private String bName;
 	// 区域
 	private String teamDistrict;
 	// 成立时间
@@ -50,16 +53,16 @@ public class Team implements Serializable {
 
 	public Team() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Team(String cName, String eName, String teamDistrict,
+	public Team(String cName, String eName, String bName, String teamDistrict,
 			String foundedTime, String teamLocation, String mainStadium,
 			String boss, String coach, String teamStar, String champion,
 			String topWinningStreak, String picture) {
 		super();
 		this.cName = cName;
 		this.eName = eName;
+		this.bName = bName;
 		this.teamDistrict = teamDistrict;
 		this.foundedTime = foundedTime;
 		this.teamLocation = teamLocation;
@@ -71,6 +74,8 @@ public class Team implements Serializable {
 		this.topWinningStreak = topWinningStreak;
 		this.picture = picture;
 	}
+
+
 
 	@Id
 	@GeneratedValue
@@ -172,6 +177,14 @@ public class Team implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public String getbName() {
+		return bName;
+	}
+
+	public void setbName(String bName) {
+		this.bName = bName;
 	}
 
 	public String toString() {

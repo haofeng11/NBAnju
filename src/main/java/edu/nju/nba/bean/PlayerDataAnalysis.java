@@ -16,7 +16,7 @@ public class PlayerDataAnalysis implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private String id;
 	// 球员name
 	private String player;
 	// 赛季ID
@@ -85,7 +85,7 @@ public class PlayerDataAnalysis implements Serializable {
 		super();
 	}
 
-	public PlayerDataAnalysis(Integer id, String player, String seasonID,
+	public PlayerDataAnalysis(String id, String player, String seasonID,
 			String team, String reboundPercent, String offenReboundPercent,
 			String defenReboundPercent, String assistancePercent,
 			String grabPercent, String blockPercent, String mistakePercent,
@@ -147,11 +147,11 @@ public class PlayerDataAnalysis implements Serializable {
 
 	@GeneratedValue
 	@Id
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

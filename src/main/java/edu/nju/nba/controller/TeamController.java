@@ -152,6 +152,10 @@ public class TeamController {
 
 		// 得到球队薪水排名前11的球员作为球队阵容的一员
 		List<Player> playerList = team(teamName);
+		System.out.println("球队人数：   "+playerList.size());
+		for (Player p:playerList) {
+			System.out.println(p.toString());
+		}
 		Collections.sort(playerList, new sortBySalary());
 		for (Player player : playerList) {
 			if (player.getPosition().split("-")[0].equals("中锋")) {
@@ -162,7 +166,7 @@ public class TeamController {
 				player.setPosition("2");
 			}
 		}
-
+		
 		for (Player player : playerList) {
 			System.out.println(player.toString());
 		}
@@ -171,16 +175,6 @@ public class TeamController {
 		return "TeamInfo";
 	}
 
-	// 搜索球队或者球员
-//	@RequestMapping("/search")
-//	@ResponseBody
-//	public String search(@ModelAttribute Team team,
-//			HttpServletRequest request, HttpServletResponse response) {
-//        String type="球员";
-//		String result =
-//		        "{label:\""+team.getcName()+"\",category:\""+type+"\"}";
-//		return result;
-//	}
 	
 	@RequestMapping("/search")
 	@ResponseBody
@@ -217,13 +211,11 @@ public class TeamController {
 		List<Player> playerList = new ArrayList<Player>();
 
 		for (PlayerDataStatistics p : PD) {
-			playerList.add(playerService.show(p.getPlayer()));
+			if(playerService.show(p.getPlayer())!=null){
+				playerList.add(playerService.show(p.getPlayer()));
+			}		
 		}
-
-		for (Player player : playerList) {
-			System.out.println(player.toString());
-		}
-
+		
 		return playerList;
 	}
 
@@ -630,15 +622,16 @@ public class TeamController {
 		public int compare(Object o1, Object o2) {
 			Player t1 = (Player) o1;
 			Player t2 = (Player) o2;
-			if (Double.parseDouble(t1.getSalary().split("万美元")[0]) < Double
-					.parseDouble(t2.getSalary().split("万美元")[0])) {
-				return 1;
-			} else if (Double.parseDouble(t1.getSalary().split("万美元")[0]) == Double
-					.parseDouble(t2.getSalary().split("万美元")[0])) {
-				return 0;
-			}
-			return -1;
+				if (Double.parseDouble(t1.getSalary().split("万美元")[0]) < Double
+						.parseDouble(t2.getSalary().split("万美元")[0])) {
+					return 1;
+				} else if (Double.parseDouble(t1.getSalary().split("万美元")[0]) == Double
+						.parseDouble(t2.getSalary().split("万美元")[0])) {
+					return 0;
+				}
+				return -1;
 		}
+			
 
 	}
 

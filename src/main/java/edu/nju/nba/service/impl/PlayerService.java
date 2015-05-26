@@ -8,43 +8,6 @@ import java.util.List;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,8 +27,9 @@ public class PlayerService implements IPlayerService {
 
 
 	// 根据球员姓名查找球员，返回球员信息
-	public Player show(String playerName) {		
-		return (Player)generalDao.find("from edu.nju.nba.bean.Player p where p.cName=?", playerName);
+	public Player show(String playerName) {	
+		playerName="%"+playerName+"%";
+		return (Player)generalDao.find("from edu.nju.nba.bean.Player p where p.cName like ?", playerName);
 	}
 
 	// 查找所有球员基本信息
@@ -75,55 +39,78 @@ public class PlayerService implements IPlayerService {
 
 	public PlayerSingleGame getPlayerSingleGame(String playerName,
 			String seasonID, String gameDate) {
-		
-		return (PlayerSingleGame)generalDao.find3("from edu.nju.nba.bean.PlayerSingleGame p where p.player=? and p.seasonID=? and p.gameDate=?", playerName, seasonID, gameDate);
+		playerName="%"+playerName+"%";
+		seasonID="%"+seasonID+"%";
+		gameDate="%"+gameDate+"%";
+		return (PlayerSingleGame)generalDao.find3("from edu.nju.nba.bean.PlayerSingleGame p where p.player like ? and p.seasonID like ? and p.gameDate like ?", playerName, seasonID, gameDate);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<PlayerSingleGame> getPlayerSingleGames(String teamName,
 			String seasonID, String gameDate) {
-		return (List<PlayerSingleGame>)generalDao.findList3("from edu.nju.nba.bean.PlayerSingleGame p where p.team=? and p.seasonID=? and p.gameDate=?", teamName, seasonID, gameDate);
+		teamName="%"+teamName+"%";
+		seasonID="%"+seasonID+"%";
+		gameDate="%"+gameDate+"%";
+		return (List<PlayerSingleGame>)generalDao.findList3("from edu.nju.nba.bean.PlayerSingleGame p where p.team like ? and p.seasonID like ? and p.gameDate like ?", teamName, seasonID, gameDate);
 	}
 
 	public PlayerDataStatistics getDataStatistics(String seasonID,
 			String playerName,String tag) {
-		return (PlayerDataStatistics)generalDao.find3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.player=? and p.tag=?", seasonID, playerName, tag);
+		playerName="%"+playerName+"%";
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
+		return (PlayerDataStatistics)generalDao.find3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID like ? and p.player like ? and p.tag like ?", seasonID, playerName, tag);
 	}
 
 	public PlayerDataAnalysis getDataAnalysis(String seasonID, String playerName,String tag) {
-		return (PlayerDataAnalysis)generalDao.find3("from edu.nju.nba.bean.getDataAnalysis p where p.seasonID=? and p.player=? and p.tag=?", seasonID, playerName, tag);
+		playerName="%"+playerName+"%";
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
+		return (PlayerDataAnalysis)generalDao.find3("from edu.nju.nba.bean.getDataAnalysis p where p.seasonID like ? and p.player like ? and p.tag like ?", seasonID, playerName, tag);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<PlayerDataStatistics> getAllDataStatistics(String seasonID,String tag) {
-		return (List<PlayerDataStatistics>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.tag=?", seasonID, tag);
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
+		return (List<PlayerDataStatistics>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID like ? and p.tag like ?", seasonID, tag);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<PlayerDataAnalysis> getAllDataAnalysis(String seasonID,String tag) {
-		return (List<PlayerDataAnalysis>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataAnalysis p where p.seasonID=? and p.tag=?", seasonID, tag);
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
+		return (List<PlayerDataAnalysis>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataAnalysis p where p.seasonID like ? and p.tag like ?", seasonID, tag);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<PlayerDataStatistics> getDataStatisticsByName(
-			String playerName, String tag) {	
-		return (List<PlayerDataStatistics>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataStatistics p where p.player=? and p.tag=?", playerName, tag);
+			String playerName, String tag) {
+		playerName="%"+playerName+"%";
+		tag="%"+tag+"%";
+		return (List<PlayerDataStatistics>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataStatistics p where p.player like ? and p.tag like ?", playerName, tag);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<PlayerDataAnalysis> getDataAnalysisByName(String playerName,
 			String tag) {
-		return (List<PlayerDataAnalysis>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataAnalysis p where p.player=? and p.tag=?", playerName, tag);
+		playerName="%"+playerName+"%";
+		tag="%"+tag+"%";
+		return (List<PlayerDataAnalysis>)generalDao.findList2("from edu.nju.nba.bean.PlayerDataAnalysis p where p.player like ? and p.tag like ?", playerName, tag);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<PlayerDataStatistics> findTeam(String teamName, String seasonID, String tag) {
-		return (List<PlayerDataStatistics>)generalDao.findList3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID=? and p.team=? and p.tag=?", seasonID, teamName, tag);
+		teamName="%"+teamName+"%";
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
+		return (List<PlayerDataStatistics>)generalDao.findList3("from edu.nju.nba.bean.PlayerDataStatistics p where p.seasonID like ? and p.team like ? and p.tag like ?", seasonID, teamName, tag);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<PlayerSingleGame> getPlayerSingleGameByID(String gameID) {
-		return (List<PlayerSingleGame>)generalDao.findList("from edu.nju.nba.bean.PlayerSingleGame p where p.gameID=?", gameID);
+		gameID="%"+gameID+"%";
+		return (List<PlayerSingleGame>)generalDao.findList("from edu.nju.nba.bean.PlayerSingleGame p where p.gameID like ?", gameID);
 	}
 
 
@@ -407,8 +394,9 @@ public class PlayerService implements IPlayerService {
 
 	@SuppressWarnings("unchecked")
 	public List<PlayerCareerHigh> getPlayerCareerHighList(String playerName) {	
-		String value="%"+playerName+"%";
-		return (List<PlayerCareerHigh>)generalDao.findList("from edu.nju.nba.bean.PlayerCareerHigh p where p.playerName like ?", value);
+		playerName="%"+playerName+"%";
+		List<PlayerCareerHigh> list=(List<PlayerCareerHigh>)generalDao.findList("from edu.nju.nba.bean.PlayerCareerHigh p where p.player like ?", playerName);	
+		return list;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -416,6 +404,7 @@ public class PlayerService implements IPlayerService {
 	public List<PlayerDataAnalysis> getPlayerTruePercentRanking(String seasonId) {
 		List<PlayerDataAnalysis> TruePercentageList = getAllDataAnalysis(seasonId,"0");
 		Collections.sort(TruePercentageList,new sortByTruePercent());
+		System.out.println(TruePercentageList.toString()+"--------------TruePercentageList----------------");
 		List<PlayerDataAnalysis> TopThreee = new ArrayList<PlayerDataAnalysis>(); 
 		for (int i = 0; i < 3; i++) {
 			TopThreee.add(TruePercentageList.get(i));

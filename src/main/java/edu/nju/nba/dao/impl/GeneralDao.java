@@ -74,8 +74,9 @@ public class GeneralDao implements IGeneralDao {
 	}
 
 	public Object find(String queryString, Object value) {
-//		System.out.println("[[[[[" + queryString + "----");
-//		System.out.println("[[[[[" + value + "===");
+        if (hibernateTemplate.find(queryString, value.toString()).toString().equals("[]")) {
+        	return null;
+		}	
 		return hibernateTemplate.find(queryString, value).get(0);
 	}
 

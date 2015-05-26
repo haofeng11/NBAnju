@@ -11,6 +11,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>比赛</title>
+
+    <!-- 加载动画 -->
+    <link rel="stylesheet" href=${path.concat("/NBA/css/fakeLoader.css")}>
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
 <!-- Bootstrap -->
 <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
@@ -1681,6 +1686,8 @@
 	<!-- 导航栏搜索匹配 -->
 	<script src="../NBA/js/jquery-ui/jquery-ui.js"></script>
 	<script src="../NBA/js/search-autocomplete.js"></script>
+	<!-- 加载动画 -->
+    <script src="../NBA/js/fakeLoader.min.js"></script>
 	<script>
 		$('#start').click(
 				function() {
@@ -2005,5 +2012,6 @@
 							});
 				});
 	</script>
+	
 </body>
 </html>

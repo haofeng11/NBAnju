@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "player_career_high")
+@Table(name = "player_greatest")
 public class PlayerCareerHigh implements Serializable {
 
 	/**
@@ -16,55 +16,53 @@ public class PlayerCareerHigh implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// ID
-	private String ID;
+	//id
+	private int id;
 	// 球员姓名
-	private String playerName;
+	private String player;
 	// 球员生涯之最数据
-	private String careerHighData;
+	private String event;
 	// 获得生涯之最数据时的年份
 	private String year;
 	// 辅助数据
-	private int yAxis;
+	private int eventNum;
 	
 	public PlayerCareerHigh() {
 		super();
 	}
-
-	public PlayerCareerHigh(String iD, String playerName,
-			String careerHighData, String year, int yAxis) {
-		super();
-		ID = iD;
-		this.playerName = playerName;
-		this.careerHighData = careerHighData;
+	
+	public PlayerCareerHigh(String player, String event,
+			String year, int eventNum) {
+		this.player = player;
+		this.event = event;
 		this.year = year;
-		this.yAxis = yAxis;
+		this.eventNum = eventNum;
 	}
 
 	@Id
 	@GeneratedValue
-	public String getID() {
-		return ID;
+	public int getId() {
+		return id;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getPlayer() {
+		return player;
 	}
 
-	public String getPlayerName() {
-		return playerName;
+	public void setPlayer(String player) {
+		this.player = player;
 	}
 
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
+	public String getEvent() {
+		return event;
 	}
 
-	public String getCareerHighData() {
-		return careerHighData;
-	}
-
-	public void setCareerHighData(String careerHighData) {
-		this.careerHighData = careerHighData;
+	public void setEvent(String event) {
+		this.event = event;
 	}
 
 	public String getYear() {
@@ -75,16 +73,16 @@ public class PlayerCareerHigh implements Serializable {
 		this.year = year;
 	}
 
-	public int getyAxis() {
-		return yAxis;
+	public int getEventNum() {
+		return eventNum;
 	}
 
-	public void setyAxis(int yAxis) {
-		this.yAxis = yAxis;
+	public void setEventNum(int eventNum) {
+		this.eventNum = eventNum;
 	}
-	
+
 	public String toString() {
-		return "name: "+playerName+" data: "+careerHighData+" year: "+year;
+		return "name: "+player+" event: "+event+" year: "+year;
 	}
 
 }

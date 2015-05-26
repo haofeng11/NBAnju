@@ -10,7 +10,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>比赛</title>
+<title>分区对比</title>
+    <!-- 加载动画 -->
+    <link rel="stylesheet" href=${path.concat("/NBA/css/fakeLoader.css")}>
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
 
 <!-- Bootstrap -->
     <link href=${path.concat("/NBA/css/bootstrap.min.css")} rel="stylesheet">
@@ -226,6 +230,8 @@
 	<!-- 导航栏搜索匹配 -->
 	<script src=${path.concat("/NBA/js/jquery-ui/jquery-ui.js")}></script>
 	<script src=${path.concat("/NBA/js/search-autocomplete.js")}></script>
+	<!-- 加载动画 -->
+    <script src=${path.concat("/NBA/js/fakeLoader.min.js")}></script>
 
 </body>
 </html>

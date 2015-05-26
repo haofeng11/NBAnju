@@ -9,6 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>球员信息介绍</title>
+
+    <!-- 加载动画 -->
+    <link rel="stylesheet" href=${path.concat("/NBA/css/fakeLoader.css")}>
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
     <!-- Bootstrap -->
     <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
@@ -665,7 +670,7 @@
                       formatter: function() {
 					     <c:forEach items="${playerCareerHighList}" var="p">
 						    if(this.x == ${p.year })
-                               return '<b>${p.careerHighData }</b>';
+                               return '<b>${p.event }</b>';
 						 </c:forEach>
                       },
                           enabled: true
@@ -676,7 +681,7 @@
               series: [{
                   name: '${player.cName }',
                   data: [<c:forEach items="${playerCareerHighList}" var="p">
-								${p.yAxis},
+								${p.eventNum},
 						 </c:forEach>
 				        ]
               }]
@@ -689,6 +694,8 @@
 	<!-- 导航栏搜索匹配 -->
 	<script src="../NBA/js/jquery-ui/jquery-ui.js"></script>
 	<script src="../NBA/js/search-autocomplete.js"></script>
+	<!-- 加载动画 -->
+    <script src="../NBA/js/fakeLoader.min.js"></script>
 
 </body>
 </html>

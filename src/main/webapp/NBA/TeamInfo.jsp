@@ -10,7 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>球队信息介绍</title>
-
+    <!-- 加载动画 -->
+    <link rel="stylesheet" href=${path.concat("/NBA/css/fakeLoader.css")}>
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
     
     <!-- Bootstrap -->
     <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
@@ -75,7 +78,7 @@
 				<div class="col-md-3">
 					<div class="rounded" style="text-align: center;">
 						<!-- 球队头像大小选择180*120 -->
-						<img src="${team.picture }" alt="湖人">
+						<img src="../NBA/${team.picture }" alt="湖人">
 					</div>
 					<table class="table table-hover statistics">
 						<tr>
@@ -300,6 +303,8 @@
 	<!-- 导航栏搜索匹配 -->
 	<script src="../NBA/js/jquery-ui/jquery-ui.js"></script>
 	<script src="../NBA/js/search-autocomplete.js"></script>
+	<!-- 加载动画 -->
+    <script src="../NBA/js/fakeLoader.min.js"></script>
 
 
 	<!-- 球队阵容.ECharts单文件引入 -->
