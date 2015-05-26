@@ -1,5 +1,6 @@
 package edu.nju.nba.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,13 +14,20 @@ import java.util.List;
 
 
 
+
+
+
+
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.nju.nba.bean.Game;
 import edu.nju.nba.bean.GameSchedule;
 import edu.nju.nba.bean.PlayerSingleGame;
+import edu.nju.nba.bean.Team;
 import edu.nju.nba.bean.TeamGameRecord;
+import edu.nju.nba.bean.TeamGameRecordVO;
 import edu.nju.nba.bean.TeamSingleGame;
 import edu.nju.nba.dao.IGeneralDao;
 import edu.nju.nba.service.IGameService;
@@ -91,14 +99,36 @@ public class GameService implements IGameService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TeamGameRecord> getRegularEastRank(String seasonId) {
-		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='东部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+	public List<TeamGameRecordVO> getRegularEastRank(String seasonId) {
+		List<Team> teams = (List<Team>)generalDao.findAll(Team.class);
+		List<TeamGameRecord> eastTeamGameRecords = (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='东部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+		List<TeamGameRecordVO> vos = new ArrayList<TeamGameRecordVO>();
+		for (TeamGameRecord teamGameRecord : eastTeamGameRecords) {
+			for (Team team : teams) {
+				if(team.getcName().equals(teamGameRecord.getTeam())){
+					TeamGameRecordVO vo = new TeamGameRecordVO(teamGameRecord, team.getbName());
+					vos.add(vo);
+				}
+			}
+		}
+		return vos;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TeamGameRecord> getRegularWestRank(String seasonId) {
-		return (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='西部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+	public List<TeamGameRecordVO> getRegularWestRank(String seasonId) {
+		List<Team> teams = (List<Team>)generalDao.findAll(Team.class);
+		List<TeamGameRecord> eastTeamGameRecords = (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='西部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+		List<TeamGameRecordVO> vos = new ArrayList<TeamGameRecordVO>();
+		for (TeamGameRecord teamGameRecord : eastTeamGameRecords) {
+			for (Team team : teams) {
+				if(team.getcName().equals(teamGameRecord.getTeam())){
+					TeamGameRecordVO vo = new TeamGameRecordVO(teamGameRecord, team.getbName());
+					vos.add(vo);
+				}
+			}
+		}
+		return vos;
 
 	}
 

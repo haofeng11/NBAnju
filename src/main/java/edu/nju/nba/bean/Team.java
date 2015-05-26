@@ -47,6 +47,15 @@ public class Team implements Serializable {
 	private String topWinningStreak;
 	// 球队图片地址
 	private String picture;
+	// alias of a team
+	private String bName;
+	public String getbName() {
+		return bName;
+	}
+
+	public void setbName(String bName) {
+		this.bName = bName;
+	}
 
 	public Team() {
 		super();
@@ -56,7 +65,7 @@ public class Team implements Serializable {
 	public Team(String cName, String eName, String teamDistrict,
 			String foundedTime, String teamLocation, String mainStadium,
 			String boss, String coach, String teamStar, String champion,
-			String topWinningStreak, String picture) {
+			String topWinningStreak, String picture,String bName) {
 		super();
 		this.cName = cName;
 		this.eName = eName;
@@ -70,6 +79,7 @@ public class Team implements Serializable {
 		this.champion = champion;
 		this.topWinningStreak = topWinningStreak;
 		this.picture = picture;
+		this.bName = bName;
 	}
 
 	@Id
