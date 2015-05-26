@@ -86,7 +86,7 @@ public class GameService implements IGameService {
 	@Override
 	public List<TeamGameRecordVO> getRegularEastRank(String seasonId) {
 		List<Team> teams = (List<Team>)generalDao.findAll(Team.class);
-		List<TeamGameRecord> eastTeamGameRecords = (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='东部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+		List<TeamGameRecord> eastTeamGameRecords = (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='东部' and tgr.seasonID=? ", seasonId);
 		List<TeamGameRecordVO> vos = new ArrayList<TeamGameRecordVO>();
 		for (TeamGameRecord teamGameRecord : eastTeamGameRecords) {
 			for (Team team : teams) {
@@ -103,7 +103,7 @@ public class GameService implements IGameService {
 	@Override
 	public List<TeamGameRecordVO> getRegularWestRank(String seasonId) {
 		List<Team> teams = (List<Team>)generalDao.findAll(Team.class);
-		List<TeamGameRecord> eastTeamGameRecords = (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='西部' and tgr.tag='0' and tgr.seasonID=? ", seasonId);
+		List<TeamGameRecord> eastTeamGameRecords = (List<TeamGameRecord>)generalDao.findList("From edu.nju.nba.bean.TeamGameRecord tgr where tgr.district='西部' and tgr.seasonID=? ", seasonId);
 		List<TeamGameRecordVO> vos = new ArrayList<TeamGameRecordVO>();
 		for (TeamGameRecord teamGameRecord : eastTeamGameRecords) {
 			for (Team team : teams) {

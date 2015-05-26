@@ -129,29 +129,16 @@
 								<span class="tiltle_a" id="east">东部</span><span class="tiltle_b"
 									id="west">西部</span>
 							</div>
-							<div class="tiltle" conference="W">
-								<span class="tiltle_a" style="width: 248px;"><div
-										class="btn-group">
-										<button type="button"
-											class="btn btn-link btn-xs dropdown-toggle"
-											data-toggle="dropdown" aria-expanded="false"
-											style="margin-top: -8px; font-size: 16px; color: #000000;"
-											id="zhanji_season_type">
-											常规赛 <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" id="zhanji" role="menu">
-											<li><a href="javascript:void(0);">常规赛</a></li>
-											<li><a href="javascript:void(0);">季后赛</a></li>
-										</ul>
-									</div></span>
-							</div>
+
+						
+							
 							<table class="itinerary_table">
 								<tbody>
 									<tr>
 										<td width="35" height="40">排名</td>
 										<td width="40">球队</td>
 										<td width="25">胜</td>
-										<td width="25">负</td>
+										<td width="25">负</td>	
 										<td width="35">胜差</td>
 										<td>胜率</td>
 									</tr>
@@ -1033,56 +1020,21 @@
 											function() {
 												east.style.background = "#fbfbfb";
 												west.style.background = "#e2dede";
-												if ($("#zhanji_season_type")[0].childNodes[0].nodeValue
-														.replace(/\s+/g, "") == "常规赛") {
+												
 													eastdata_regular.style.display = "table";
-													westdata_regular.style.display = "none";
-												} else {
-													eastdata_playoff.style.display = "table";
-													westdata_playoff.style.display = "none";
-												}
-												isEast = true;
+													westdata_regular.style.display = "none";											
+											
 											});
 							$(west)
 									.click(
 											function() {
 												west.style.background = "#fbfbfb";
 												east.style.background = "#e2dede";
-												if ($("#zhanji_season_type")[0].childNodes[0].nodeValue
-														.replace(/\s+/g, "") == "常规赛") {
+											
 													eastdata_regular.style.display = "none";
-													westdata_regular.style.display = "table";
-												} else {
-													eastdata_playoff.style.display = "none";
-													westdata_playoff.style.display = "table";
-												}
-												isEast = false;
+													westdata_regular.style.display = "table";											
 											});
-							$("#zhanji a")
-									.click(
-											function() {
-												$("#zhanji_season_type")[0].childNodes[0].nodeValue = $(
-														this).text()
-														+ " ";
-												if ($(this).text().replace(
-														/\s+/g, "") == "常规赛") {
-													if (isEast) {
-														eastdata_regular.style.display = "table";
-														eastdata_playoff.style.display = "none";
-													} else {
-														westdata_regular.style.display = "table";
-														westdata_playoff.style.display = "none";
-													}
-												} else {
-													if (isEast) {
-														eastdata_regular.style.display = "none";
-														eastdata_playoff.style.display = "table";
-													} else {
-														westdata_regular.style.display = "none";
-														westdata_playoff.style.display = "table";
-													}
-												}
-											});
+							
 							$(
 									'#changjun_defen,#changjun_lanban,#changjun_zhugong,#changjun_qiangduan,#changjun_sanfen,#changjun_gaimao,#danchang_defen,#danchang_lanban,#danchang_zhugong,#danchang_qiangduan,#danchang_sanfen,#danchang_gaimao')
 									.click(
