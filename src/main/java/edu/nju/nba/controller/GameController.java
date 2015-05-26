@@ -55,8 +55,8 @@ public class GameController {
 		List<TeamGameRecord> records = gameService.listFederalBoard("14-15");
 		
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DATE, -1);
-		calendar.add(Calendar.MONTH, -1);
+		calendar.add(Calendar.DATE,0);
+		calendar.add(Calendar.MONTH, -3);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(calendar.getTime());
 		List<Game> gameSchedule = gameService.listGameSchedule("14-15", today);
