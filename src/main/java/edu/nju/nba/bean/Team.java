@@ -2,6 +2,7 @@ package edu.nju.nba.bean;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -74,8 +75,6 @@ public class Team implements Serializable {
 		this.topWinningStreak = topWinningStreak;
 		this.picture = picture;
 	}
-
-
 
 	@Id
 	@GeneratedValue

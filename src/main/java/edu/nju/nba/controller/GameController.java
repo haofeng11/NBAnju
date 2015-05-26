@@ -21,6 +21,7 @@ import edu.nju.nba.bean.PlayerDataAnalysis;
 import edu.nju.nba.bean.PlayerDataStatistics;
 import edu.nju.nba.bean.PlayerSingleGame;
 import edu.nju.nba.bean.TeamGameRecord;
+import edu.nju.nba.bean.TeamGameRecordVO;
 import edu.nju.nba.bean.TeamSingleGame;
 import edu.nju.nba.service.IGameService;
 import edu.nju.nba.service.IPlayerService;
@@ -59,7 +60,7 @@ public class GameController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(calendar.getTime());
 		List<Game> gameSchedule = gameService.listGameSchedule("14-15", today);
-		List<TeamGameRecord> regularEastRankGameRecords =gameService.getRegularEastRank("14-15");
+		List<TeamGameRecordVO> regularEastRankGameRecords =gameService.getRegularEastRank("14-15");
 		List<PlayerDataStatistics> playerScoreRank= playerService.getPlayerScoreRankingList("14-15");
 		List<PlayerDataAnalysis> playerTruePercentRank=playerService.getPlayerTruePercentRanking("14-15");
 
@@ -97,8 +98,8 @@ public class GameController {
 		// get data
 		List<TeamGameRecord> records = gameService.listFederalBoard(seasonId);
 		//球队排名
-		List<TeamGameRecord> regularEastRankGameRecords =gameService.getRegularEastRank(seasonId);
-		List<TeamGameRecord> regularWestRankGameRecords =gameService.getRegularWestRank(seasonId);
+		List<TeamGameRecordVO> regularEastRankGameRecords =gameService.getRegularEastRank(seasonId);
+		List<TeamGameRecordVO> regularWestRankGameRecords =gameService.getRegularWestRank(seasonId);
 		List<TeamGameRecord> playoffEastRankGameRecords =gameService.getPlayoffEastRank(seasonId);
 		List<TeamGameRecord> playoffWestRankGameRecords =gameService.getPlayoffWestRank(seasonId);
 

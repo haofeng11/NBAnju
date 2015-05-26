@@ -88,9 +88,7 @@ public class TeamService implements ITeamService {
 				.findList(
 						"from edu.nju.nba.bean.TeamSeasonAverage tsa where tsa.tag='0' and tsa.seasonID=?",
 						seasonID);
-		
-		System.out.println(teamSeasonAverages.get(0).getAssistance()+"-------zhugong-----");
-		
+				
 		for (int i = 0; i < teamSeasonAverages.size(); i++) {
 			String teamName = teamSeasonAverages.get(i).getTeam();
 			System.out.println(teamName+"-------teamName-----");

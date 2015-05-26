@@ -6,6 +6,7 @@ import edu.nju.nba.bean.Game;
 import edu.nju.nba.bean.GameSchedule;
 import edu.nju.nba.bean.PlayerSingleGame;
 import edu.nju.nba.bean.TeamGameRecord;
+import edu.nju.nba.bean.TeamGameRecordVO;
 import edu.nju.nba.bean.TeamSingleGame;
 
 public interface IGameService {
@@ -41,8 +42,8 @@ public interface IGameService {
 
 	//查询某赛季联盟排名
 	public List<TeamGameRecord> listFederalBoard(String seasonId);
-	public List<TeamGameRecord> getRegularEastRank(String seasonId);
-	public List<TeamGameRecord> getRegularWestRank(String seasonId);
+	public List<TeamGameRecordVO> getRegularEastRank(String seasonId);
+	public List<TeamGameRecordVO> getRegularWestRank(String seasonId);
 	public List<TeamGameRecord> getPlayoffEastRank(String seasonId);
 	public List<TeamGameRecord> getPlayoffWestRank(String seasonId);
 

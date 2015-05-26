@@ -1,8 +1,13 @@
+<%@page import="edu.nju.nba.bean.TeamGameRecord"%>
+<%@page import="edu.nju.nba.service.impl.TeamService"%>
+<%@page import="edu.nju.nba.service.ITeamService"%>
+<%@page import="edu.nju.nba.bean.Team"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.util.*"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html >
 <html lang="zh-cn">
@@ -108,7 +113,7 @@
 									<option>14-15 赛季</option>
 								</select> <input type="text" class="form-control" name="date"
 									id="datepicker" placeholder="点击选择日期"
-									style="text-align: center;" size="45">
+									style="text-align: center;" size="38">
 							</div>
 							<button type="submit" class="btn btn-default"
 								style="float: right;">查看数据</button>
@@ -159,14 +164,14 @@
 									<c:forEach items="${regularEastRankGameRecords}"
 										var="regularEast">
 										<tr class=" bg_color">
-											<td width="25" height="35">${regularEast.rank}</td>
+											<td width="25" height="35">${regularEast.record.rank}</td>
 											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
-											<c:set var="temp2" value="${temp.concat(regularEast.team)}"></c:set>
-											<td width="55"><a target="_blank" href="${temp2}">${regularEast.team}</a></td>
-											<td width="20">${regularEast.winGame}</td>
-											<td width="25">${regularEast.loseGame}</td>
-											<td width="25">${regularEast.winGap}</td>
-											<td>${regularEast.victory}</td>
+											<c:set var="temp2" value="${temp.concat(regularEast.record.team)}"></c:set>
+											<td width="55"><a target="_blank" href="${temp2}">${regularEast.bName}</a></td>
+											<td width="20">${regularEast.record.winGame}</td>
+											<td width="25">${regularEast.record.loseGame}</td>
+											<td width="25">${regularEast.record.winGap}</td>
+											<td>${regularEast.record.victory}</td>
 										</tr>
 									</c:forEach>
 
@@ -201,14 +206,14 @@
 									<c:forEach items="${regularWestRankGameRecords}"
 										var="regularWest">
 										<tr class=" bg_color">
-											<td width="25" height="35">${regularWest.rank}</td>
+											<td width="25" height="35">${regularWest.record.rank}</td>
 											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
-											<c:set var="temp2" value="${temp.concat(regularWest.team)}"></c:set>
-											<td width="55"><a target="_blank" href="${temp2}">${regularWest.team}</a></td>
-											<td width="20">${regularWest.winGame}</td>
-											<td width="25">${regularWest.loseGame}</td>
-											<td width="25">${regularWest.winGap}</td>
-											<td>${regularWest.victory}</td>
+											<c:set var="temp2" value="${temp.concat(regularWest.record.team)}"></c:set>
+											<td width="55"><a target="_blank" href="${temp2}">${regularWest.bName}</a></td>
+											<td width="20">${regularWest.record.winGame}</td>
+											<td width="25">${regularWest.record.loseGame}</td>
+											<td width="25">${regularWest.record.winGap}</td>
+											<td>${regularWest.record.victory}</td>
 										</tr>
 									</c:forEach>
 									</tr>
