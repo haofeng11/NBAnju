@@ -94,9 +94,9 @@
 					<!-- 选择场次 -->
 					<div class="col-md-6">
 						<form class="form-inline" style="margin-top: 10px;"
-							action="./gameSchedule">
+							action="./gameSchedule" onsubmit="return validate_form()">
 							<div class="form-group">
-								<select class="form-control" style="" name="seasonId">
+								<select class="form-control" style="" name="seasonId" id="seasonpicker">
 									<option>请选择赛季</option>
 									<option>02-03 赛季</option>
 									<option>03-04 赛季</option>
@@ -1001,6 +1001,16 @@
 	</div>
 
 	<script type="text/javascript">
+	//验证表单
+	function validate_form()
+	{
+		if($('#datepicker').val() == '' || $('#seasonpicker').val() == '请选择赛季'){
+			alert("请选择赛季和日期！");
+			return false;
+		}
+		return true;
+	}
+
 		$(document)
 				.ready(
 						function() {
