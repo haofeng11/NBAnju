@@ -9,6 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>球员对比</title>
+
+    <!-- 加载动画 -->
+   <link rel="stylesheet" href=${path.concat("/NBA/css/fakeLoader.css")}>
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
     <!-- Bootstrap -->
     <link href="../NBA/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../NBA/js/jquery-ui/jquery-ui.css">
@@ -227,7 +232,7 @@
 					  </button>
 					  <ul class="dropdown-menu" role="menu">
 					  	<c:forEach items="${gameList }" var="g" >
-						    <li><a href="./singleGame?gameID=${g.gameID }">${g.seasonID } 常规赛 ${g.homeTeam }${g.homeScore }-${g.guestTeam }${g.guestScore }</a></li>     
+						    <li><a href="./singleGame?gameID=${g.gameID }">${g.seasonID } ${g.homeTeam }${g.homeScore }-${g.guestTeam }${g.guestScore }</a></li>     
 						 </c:forEach>
 					  <!--
 					    <li><a href="#">96-97 常规赛 公牛129-123湖人</a></li>
@@ -242,7 +247,7 @@
 					<table class="table table-bordered table-striped table-hover" style="width: 100%;">
 						<thead>
 							<tr>
-								<th>${game.homeTeam }${game.homeScore }-${game.guestTeam }${game.guestScore }</th>
+								<th>球员</th>
 								<th>球队</th>
 								<th>时间</th>
 								<th>投篮</th>
@@ -433,5 +438,7 @@
 	<!-- 导航栏搜索匹配 -->
 	<script src="../NBA/js/jquery-ui/jquery-ui.js"></script>
 	<script src="../NBA/js/search-autocomplete.js"></script>
+	<!-- 加载动画 -->
+    <script src="../NBA/js/fakeLoader.min.js"></script>
 </body>
 </html>

@@ -9,6 +9,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>赛后数据</title>
+
+    <!-- 加载动画 -->
+    <link rel="stylesheet" href=${path.concat("/NBA/css/fakeLoader.css")}>
+    <!-- 加载动画 -->
+    <div class="fakeloader"></div>
 <!-- Bootstrap -->
 <link
 	href="http://localhost:8080/NBADataAnalysis/NBA/css/bootstrap.min.css"
@@ -308,6 +313,8 @@
 		src="http://localhost:8080/NBADataAnalysis/NBA/js/jquery-ui/jquery-ui.js"></script>
 	<script
 		src="http://localhost:8080/NBADataAnalysis/NBA/js/search-autocomplete.js"></script>
+		<!-- 加载动画 -->
+    <script src="http://localhost:8080/NBADataAnalysis/NBA/js/fakeLoader.min.js"></script>
 
 </body>
 </html>

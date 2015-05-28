@@ -75,6 +75,9 @@ public class PlayerController {
 		// 球员基本信息
 		// 根据球员的中文名字
 		Player player = playerService.show(playerName);
+		if (player==null) {
+			return "notfound";
+		}
 		model.addAttribute("player", player);
 
 		// 球员赛季常规赛场均基本数据
@@ -236,16 +239,16 @@ public class PlayerController {
 		// 球员生涯之最数据
 		List<PlayerCareerHigh> playerCareerHighList = playerService
 				.getPlayerCareerHighList(playerName);
-
+		
 		for (int i = 0; i < playerCareerHighList.size(); i++) {
 			for (int j = i + 1; j < playerCareerHighList.size(); j++) {
 				if (playerCareerHighList.get(i).getYear()
 						.equals(playerCareerHighList.get(j).getYear())) {
-					playerCareerHighList.get(i).setCareerHighData(
-							playerCareerHighList.get(i).getCareerHighData()
+					playerCareerHighList.get(i).setEvent(
+							playerCareerHighList.get(i).getEvent()
 									+ " "
 									+ playerCareerHighList.get(j)
-											.getCareerHighData());
+											.getEvent());
 					playerCareerHighList.remove(j);
 				}
 			}
@@ -263,8 +266,10 @@ public class PlayerController {
 	// 跳转到球员对比界面
 	@RequestMapping(value = "/comparison", method = RequestMethod.GET)
 	public String showCompare(HttpSession session) {
-		session.setAttribute("picture1", "PlayersBigAvatar/jordon.jpg");
-		session.setAttribute("picture2", "PlayersBigAvatar/kobe.jpg");
+		session.setAttribute("firstName", "科比");
+		session.setAttribute("secondName", "乔丹");
+		session.setAttribute("picture2", "PlayersBigAvatar/jordon.jpg");
+		session.setAttribute("picture1", "PlayersBigAvatar/kobe.jpg");
 
 		// 初始界面
 		session.setAttribute("scoreAverageP1", 100);
@@ -288,7 +293,7 @@ public class PlayerController {
 		List<PlayerSingleGame> playerSingleGames1 = playerService
 				.getPlayerSingleGameByName("科比-布莱恩特");
 		List<PlayerSingleGame> playerSingleGames2 = playerService
-				.getPlayerSingleGameByName("凯文-加内特");
+				.getPlayerSingleGameByName("勒布朗-詹姆斯");
 		List<PlayerSingleGame> PSGP1 = new ArrayList<PlayerSingleGame>();
 		List<PlayerSingleGame> PSGP2 = new ArrayList<PlayerSingleGame>();
 		for (PlayerSingleGame P1 : playerSingleGames1) {
@@ -302,17 +307,20 @@ public class PlayerController {
 		}
 		PlayerSingleGame playerSingleGamesAverageP1 = calculateComparison(PSGP1);
 		PlayerSingleGame playerSingleGamesAverageP2 = calculateComparison(PSGP2);
-
+		
 		session.setAttribute("playerSingleGamesAverageP1",
 				playerSingleGamesAverageP1);
 		session.setAttribute("playerSingleGamesAverageP2",
 				playerSingleGamesAverageP2);
 
-		session.setAttribute("P1Win", 29);
-		session.setAttribute("P2Win", 24);
-
+		session.setAttribute("P1Win", 10);
+		session.setAttribute("P2Win", 10);
+		PSGP2.get(0).setPlayer("迈克尔-乔丹");
+		PSGP2.get(0).setTeam("芝加哥公牛");
 		session.setAttribute("P1", PSGP1.get(0));
 		session.setAttribute("P2", PSGP2.get(0));
+		
+		session.setAttribute("number", 20);
 
 		return "comparison";
 	}
@@ -857,6 +865,7 @@ public class PlayerController {
 		 * 生涯平均进阶数据 转换成统一的评分
 		 */
 		int length = dataAnalysis.size();
+		System.out.println("truePercentageSum: "+truePercentageSum);
 		// 真实命中率一般70%算100分
 		String truePercentageAverage = String.valueOf(new BigDecimal(
 				((truePercentageSum / length) / 70) * 100).setScale(0,

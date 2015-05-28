@@ -23,8 +23,9 @@ public class TeamService implements ITeamService {
 	
 	
 	public Team show(String teamName) {
+		teamName="%"+teamName+"%";
 		return (Team) generalDao.find(
-				"from edu.nju.nba.bean.Team t where t.cName=?", teamName);
+				"from edu.nju.nba.bean.Team t where t.cName like ?", teamName);
 	}
 
 	public List<Team> list() {
@@ -33,35 +34,44 @@ public class TeamService implements ITeamService {
 
 	public TeamSeasonAverage getSeasonAverage(String teamName, String seasonID,
 			String tag) {
+		teamName="%"+teamName+"%";
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
 		return (TeamSeasonAverage) generalDao
-				.find3("from edu.nju.nba.bean.TeamSeasonAverage t where t.team=? and t.seasonID=? and tag=?",
+				.find3("from edu.nju.nba.bean.TeamSeasonAverage t where t.team like ? and t.seasonID like ? and tag like ?",
 						teamName, seasonID, tag);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<TeamSeasonAverage> getSeasonAverageList(String seasonID,
 			String tag) {
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
 		return (List<TeamSeasonAverage>) generalDao
 				.findList2(
-						"from edu.nju.nba.bean.TeamSeasonAverage t where t.seasonID=? and tag=?",
+						"from edu.nju.nba.bean.TeamSeasonAverage t where t.seasonID like ? and tag like ?",
 						seasonID, tag);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<TeamSingleGame> getTeamSingleGames(String teamName,
 			String seasonID, String tag) {
-
+		teamName="%"+teamName+"%";
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
 		return (List<TeamSingleGame>) generalDao
 				.findList3(
-						"from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=? and tag=?",
+						"from edu.nju.nba.bean.TeamSingleGame t where t.team like ? and t.seasonID like ? and tag like ?",
 						teamName, seasonID, tag);
 	}
 
 	public TeamSingleGame getTeamSingleGame(String teamName, String seasonID,
 			String gameDate, String tag) {
-
+		teamName="%"+teamName+"%";
+		seasonID="%"+seasonID+"%";
+		tag="%"+tag+"%";
 		return (TeamSingleGame) generalDao
-				.find4("from edu.nju.nba.bean.TeamSingleGame t where t.team=? and t.seasonID=? and t.gameDate=? and tag=?",
+				.find4("from edu.nju.nba.bean.TeamSingleGame t where t.team like ? and t.seasonID like ? and t.gameDate like ? and tag like ?",
 						teamName, seasonID, gameDate, tag);
 	}
 
@@ -81,8 +91,10 @@ public class TeamService implements ITeamService {
 				
 		for (int i = 0; i < teamSeasonAverages.size(); i++) {
 			String teamName = teamSeasonAverages.get(i).getTeam();
+			System.out.println(teamName+"-------teamName-----");
+			String value="%"+teamName+"%";
 			Team team = (Team) generalDao.find(
-					"from edu.nju.nba.bean.Team t where t.cName=?", teamName);
+					"from edu.nju.nba.bean.Team t where t.cName like ?", value);
 			String tempTeamDistrict = team.getTeamDistrict().substring(0, 2);
 			
 			if (tempTeamDistrict.equals(district)) {
