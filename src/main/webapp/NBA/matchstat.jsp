@@ -52,8 +52,8 @@
 			</div>
 			<div class="navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
-					<li><a href="../NBA/main.html">球员</a></li>
-					<li><a href="../NBA/team.html">球队</a></li>
+					<li><a href="${path.concat('/NBA/main.jsp')}">球员</a></li>
+					<li><a href="${path.concat('/NBA/team.jsp')}">球队</a></li>
 					<li><a href="${path.concat('/game/game')}">比赛</a></li>
 					<li><a href="${path.concat('/player/comparison')}">球员对比</a></li>
 					<li><a href="${path.concat('/comparisonArea')}">分区对比</a></li>
@@ -82,7 +82,7 @@
 				<div class="col-md-12">
 					<div class="col-md-2">
 						<!-- 球队头像高100px -->
-						<img src="${homeTeamPicture }" style="float: right" alt="${game.homeTeam}">
+						<img src="http://localhost:8080/NBADataAnalysis/NBA/${homeTeamPicture }" style="float: right" alt="${game.homeTeam}">
 					</div>
 					<div class="col-md-8">
 						<div class="col-md-2 homegoal">
@@ -125,7 +125,7 @@
 					</div>
 					<div class="col-md-2">
 						<!-- 球队头像大小选择100px -->
-						<img src="${guestTeamPicture }" style="float: left" alt="${game.guestTeam}">
+						<img src="http://localhost:8080/NBADataAnalysis/NBA/${guestTeamPicture }" style="float: left" alt="${game.guestTeam}">
 					</div>
 				</div>
 				<!-- <div class="col-md-1"></div> -->

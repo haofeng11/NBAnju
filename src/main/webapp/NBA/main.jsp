@@ -114,291 +114,214 @@
               </div>
             </a>
               <span class="glyphicon-class">Kobe Bryant</span>
-              <span class="glyphicon-class">科比·布莱恩特</span>
+              <span class="glyphicon-class">科比-布莱恩特</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/勒布朗-詹姆斯')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
                 <img src="playersImage/P0000094.jpg" alt="詹姆斯">
               </div>
             </a>
             <span class="glyphicon-class">LeBron Raymone James</span>
-            <span class="glyphicon-class">勒布朗·詹姆斯</span>
+            <span class="glyphicon-class">勒布朗-詹姆斯</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/詹姆斯-哈登')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Harden.jpg" alt="哈登">
+                <img src="playersImage/P0000462.jpg" alt="哈登">
               </div>
             </a>
             <span class="glyphicon-class">James Harden</span>
-            <span class="glyphicon-class">詹姆斯·哈登</span>
+            <span class="glyphicon-class">詹姆斯-哈登</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/斯蒂芬-库里')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Curry.jpg" alt="库里">
+                <img src="playersImage/P0000311.jpg" alt="库里">
               </div>
             </a>
             <span class="glyphicon-class">Stephen·Curry</span>
-            <span class="glyphicon-class">斯蒂芬·库里</span>
+            <span class="glyphicon-class">斯蒂芬-库里</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/凯文-杜兰特')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Durant.jpg" alt="杜兰特">
+                <img src="playersImage/P0000346.jpg" alt="杜兰特">
               </div>
             </a>
             <span class="glyphicon-class">Kevin Durant</span>
-            <span class="glyphicon-class">凯文·杜兰特</span>
+            <span class="glyphicon-class">凯文-杜兰特</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/德维恩-韦德')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Wade.jpg" alt="韦德">
+                <img src="playersImage/P0000462.jpg" alt="韦德">
               </div>
             </a>
             <span class="glyphicon-class">Dwyane Tyrone Wade</span>
-            <span class="glyphicon-class">德怀恩·韦德</span>
+            <span class="glyphicon-class">德维恩-韦德</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/蒂姆-邓肯')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Duncan.jpg" alt="邓肯">
+                <img src="playersImage/P0000476.jpg" alt="邓肯">
               </div>
             </a>
             <span class="glyphicon-class">Tim Duncan</span>
-            <span class="glyphicon-class">蒂姆·邓肯</span>
+            <span class="glyphicon-class">蒂姆-邓肯</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/拉塞尔-威斯布鲁克')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Westbrook.jpg" alt="邓肯">
+                <img src="playersImage/P0000345.jpg" alt="维斯布鲁克">
               </div>
             </a>
             <span class="glyphicon-class">Russell Westbrook</span>
-            <span class="glyphicon-class">拉塞尔·威斯布鲁克</span>
+            <span class="glyphicon-class">拉塞尔-威斯布鲁克</span>
           </li>
-
-
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/克里斯-保罗')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Paul.jpg" alt="保罗">
+                <img src="playersImage/P0000357.jpg" alt="保罗">
               </div>
             </a>
               <span class="glyphicon-class">Chris Paul</span>
-              <span class="glyphicon-class">克里斯·保罗</span>
+              <span class="glyphicon-class">克里斯-保罗</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/布雷克-格里芬')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Griffin.jpg" alt="格里芬">
+                <img src="playersImage/P0000356.jpg" alt="格里芬">
               </div>
             </a>
             <span class="glyphicon-class">Blake Griffin</span>
-            <span class="glyphicon-class">布雷克·格里芬</span>
+            <span class="glyphicon-class">布雷克-格里芬</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/德克-诺维茨基')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Nowitzki.jpg" alt="诺维斯基">
+                <img src="playersImage/P0000419.jpg" alt="诺维斯基">
               </div>
             </a>
             <span class="glyphicon-class">Dirk Werner Nowitzki</span>
-            <span class="glyphicon-class">德克·维尔纳·诺维茨基</span>
+            <span class="glyphicon-class">德克-诺维茨基</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/德里克-罗斯')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Rose.jpg" alt="罗斯">
+                <img src="playersImage/P0000115.jpg" alt="罗斯">
               </div>
             </a>
             <span class="glyphicon-class">Derrick Martell Rose</span>
-            <span class="glyphicon-class">德里克·马特尔·罗斯</span>
+            <span class="glyphicon-class">德里克-罗斯</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/艾尔-霍福德')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Nash.jpg" alt="纳什">
+                <img src="playersImage/P0000217.jpg" alt="霍福德">
               </div>
             </a>
             <span class="glyphicon-class">Steve Nash</span>
-            <span class="glyphicon-class">史蒂夫·纳什</span>
+            <span class="glyphicon-class">艾尔-霍福德</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/托尼-帕克')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Parker.jpg" alt="帕克">
+                <img src="playersImage/P0000475.jpg" alt="帕克">
               </div>
             </a>
             <span class="glyphicon-class">Tony Parker</span>
-            <span class="glyphicon-class">托尼·帕克</span>
+            <span class="glyphicon-class">托尼-帕克</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/卡梅罗-安东尼')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Anthony.jpg" alt="安东尼">
+                <img src="playersImage/P0000127.jpg" alt="安东尼">
               </div>
             </a>
             <span class="glyphicon-class">Carmelo Anthony</span>
-            <span class="glyphicon-class">卡梅隆·安东尼</span>
+            <span class="glyphicon-class">卡梅罗-安东尼</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/保罗-加索尔')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Gasol.jpg" alt="加索尔">
+                <img src="playersImage/P0000114.jpg" alt="加索尔">
               </div>
             </a>
             <span class="glyphicon-class">Pau Gasol</span>
-            <span class="glyphicon-class">保罗·加索尔</span>
+            <span class="glyphicon-class">保罗-加索尔</span>
           </li>
-
-          <li>
-            <a href="PlayerInfo.html">
+		  <li>
+            <a href="${path.concat('/player/安德鲁-威金斯')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="playersImage/P0000386.jpg" alt="科比">
-              </div>
-            </a>
-              <span class="glyphicon-class">Kobe Bryant</span>
-              <span class="glyphicon-class">科比·布莱恩特</span>
-          </li>
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Lebron.jpg" alt="詹姆斯">
-              </div>
-            </a>
-            <span class="glyphicon-class">LeBron Raymone James</span>
-            <span class="glyphicon-class">勒布朗·詹姆斯</span>
-          </li>
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Harden.jpg" alt="哈登">
-              </div>
-            </a>
-            <span class="glyphicon-class">James Harden</span>
-            <span class="glyphicon-class">詹姆斯·哈登</span>
-          </li>
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Curry.jpg" alt="库里">
-              </div>
-            </a>
-            <span class="glyphicon-class">Stephen·Curry</span>
-            <span class="glyphicon-class">斯蒂芬·库里</span>
-          </li>
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Durant.jpg" alt="杜兰特">
-              </div>
-            </a>
-            <span class="glyphicon-class">Kevin Durant</span>
-            <span class="glyphicon-class">凯文·杜兰特</span>
-          </li>
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Wade.jpg" alt="韦德">
-              </div>
-            </a>
-            <span class="glyphicon-class">Dwyane Tyrone Wade</span>
-            <span class="glyphicon-class">德怀恩·韦德</span>
-          </li>
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Duncan.jpg" alt="邓肯">
-              </div>
-            </a>
-            <span class="glyphicon-class">Tim Duncan</span>
-            <span class="glyphicon-class">蒂姆·邓肯</span>
-          </li>
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Westbrook.jpg" alt="邓肯">
-              </div>
-            </a>
-            <span class="glyphicon-class">Russell Westbrook</span>
-            <span class="glyphicon-class">拉塞尔·威斯布鲁克</span>
-          </li>
-
-
-          <li>
-            <a href="PlayerInfo.html">
-              <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Paul.jpg" alt="保罗">
+                <img src="playersImage/P0000283.jpg" alt="威金斯">
               </div>
             </a>
               <span class="glyphicon-class">Chris Paul</span>
-              <span class="glyphicon-class">克里斯·保罗</span>
+              <span class="glyphicon-class">安德鲁-威金斯</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/马克-加索尔')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Griffin.jpg" alt="格里芬">
+                <img src="playersImage/P0000447.jpg" alt="马克-加索尔">
               </div>
             </a>
             <span class="glyphicon-class">Blake Griffin</span>
-            <span class="glyphicon-class">布雷克·格里芬</span>
+            <span class="glyphicon-class">马克-加索尔</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/扎克-兰多夫')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Nowitzki.jpg" alt="诺维斯基">
+                <img src="playersImage/P0000448.jpg" alt="扎克-兰多夫">
               </div>
             </a>
             <span class="glyphicon-class">Dirk Werner Nowitzki</span>
-            <span class="glyphicon-class">德克·维尔纳·诺维茨基</span>
+            <span class="glyphicon-class">扎克-兰多夫</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/鲁迪-盖伊')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Rose.jpg" alt="罗斯">
+                <img src="playersImage/P0000404.jpg" alt="鲁迪-盖伊">
               </div>
             </a>
             <span class="glyphicon-class">Derrick Martell Rose</span>
-            <span class="glyphicon-class">德里克·马特尔·罗斯</span>
+            <span class="glyphicon-class">鲁迪-盖伊</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/迈克-康利')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Nash.jpg" alt="纳什">
+                <img src="playersImage/P0000449.jpg" alt="迈克-康利">
               </div>
             </a>
             <span class="glyphicon-class">Steve Nash</span>
-            <span class="glyphicon-class">史蒂夫·纳什</span>
+            <span class="glyphicon-class">迈克-康利</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/凯尔-洛瑞')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Parker.jpg" alt="帕克">
+                <img src="playersImage/P0000201.jpg" alt="凯尔-洛瑞">
               </div>
             </a>
             <span class="glyphicon-class">Tony Parker</span>
-            <span class="glyphicon-class">托尼·帕克</span>
+            <span class="glyphicon-class">凯尔-洛瑞</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/约翰-沃尔')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Anthony.jpg" alt="安东尼">
+                <img src="playersImage/P0000248.jpg" alt="约翰-沃尔">
               </div>
             </a>
             <span class="glyphicon-class">Carmelo Anthony</span>
-            <span class="glyphicon-class">卡梅隆·安东尼</span>
+            <span class="glyphicon-class">约翰-沃尔</span>
           </li>
           <li>
-            <a href="PlayerInfo.html">
+            <a href="${path.concat('/player/蒙塔-艾利斯')}">
               <div class="thumbnail"><!--头像大小选择120*100-->
-                <img src="PlayersAvatar/Gasol.jpg" alt="加索尔">
+                <img src="playersImage/P0000418.jpg" alt="蒙塔-艾利斯">
               </div>
             </a>
             <span class="glyphicon-class">Pau Gasol</span>
-            <span class="glyphicon-class">保罗·加索尔</span>
+            <span class="glyphicon-class">蒙塔-艾利斯</span>
           </li>
         </ul>
       </div>

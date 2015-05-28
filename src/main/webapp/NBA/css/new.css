@@ -8,7 +8,7 @@
 /*球员列表*/
 .bs-glyphicons{margin:0 -10px 20px;overflow:hidden}
 .bs-glyphicons-list{padding-left:0;list-style:none}
-.bs-glyphicons li{float:left;width:12.5%;height:165px;padding:10px;font-size:12px;line-height:1.4;text-align:center;background-color:#edebeb;border:1px solid #fff}
+.bs-glyphicons li{float:left;width:12.5%;height:215px;padding:10px;font-size:12px;line-height:1.4;text-align:center;background-color:#edebeb;border:1px solid #fff}
 .bs-glyphicons .glyphicon{margin-top:5px;margin-bottom:10px;font-size:24px}
 .bs-glyphicons .glyphicon-class{display:block;text-align:center;word-wrap:break-word}
 .bs-glyphicons li:hover{color:#fff;background-color:#563d7c}@media (min-width:768px){.bs-glyphicons{margin-right:0;margin-left:0}
@@ -35,6 +35,8 @@
 /*球队地图*/
 #map-container {height: 760px; min-width: 310px;  margin: 50px 0 0 0px;background-image: url('../images/dark-wood-panels-pr.jpg');}
 /*球队数据*/
+#teamintroduce {padding-left:40px;padding-top:20px;}
+#teamintroduce p{margin-bottom:10px;}
 .data-select {}
 .data-select a{float:left;width:16.5%;text-decoration:none;height:45px;font-size:12px;line-height:45px;text-align:center;background-color:#edebeb;margin:1px 1px 0 0;display:inline}
 .data-select a:hover,.data-select a.on{color:#fff;background-color:#563d7c;text-decoration:none;font-weight:bold;}@media (min-width:768px){.bs-glyphicons{margin-right:0;margin-left:0}

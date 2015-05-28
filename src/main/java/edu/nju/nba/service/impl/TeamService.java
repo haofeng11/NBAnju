@@ -67,11 +67,8 @@ public class TeamService implements ITeamService {
 
 	public TeamSingleGame getTeamSingleGame(String teamName, String seasonID,
 			String gameDate, String tag) {
-		teamName="%"+teamName+"%";
-		seasonID="%"+seasonID+"%";
-		tag="%"+tag+"%";
 		return (TeamSingleGame) generalDao
-				.find4("from edu.nju.nba.bean.TeamSingleGame t where t.team like ? and t.seasonID like ? and t.gameDate like ? and tag like ?",
+				.find4("from edu.nju.nba.bean.TeamSingleGame t where t.team =? and t.seasonID =? and t.gameDate =? and tag =?",
 						teamName, seasonID, gameDate, tag);
 	}
 

@@ -118,7 +118,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-5" id="teamintroduce">
 					<p>区域: ${team.teamDistrict }</p>
 					<p>成立时间: ${team.foundedTime }</p>
 					<p>所在地: ${team.teamLocation }</p>
@@ -126,7 +126,7 @@
 					<p>球队老板: ${team.boss }</p>
 					<p>现任教练: ${team.coach }</p>
 					<p>
-						历任球星: <c:forEach items="${teamStars }" var="star" >
+						现役球星: <c:forEach items="${teamStars }" var="star" >
 						           <a href="../player/${star }">${star }</a>
 						        </c:forEach>	
 					</p>
@@ -649,6 +649,10 @@
             for (var i = 0; i < data_array.length; i++) {
               average += parseInt(data_array[i]);
             };
+			if(isNaN(average)) {
+				alert("无季后赛数据");
+				return false;
+			}
             average = (average / (data_array.length)).toFixed(1);
             title += "季后" + $(this).attr('tit') + average + measure;
           }
@@ -735,6 +739,10 @@
           for (var i = 0; i < data_array.length; i++) {
             average += parseInt(data_array[i]);
           };
+		  if(isNaN(average)) {
+			alert("无季后赛数据");
+			return false;
+		  }
           average = (average / data_array.length).toFixed(1);
           title += "季后" +  $("a.on").attr('tit') + average + measure;
           options.title.text = title;

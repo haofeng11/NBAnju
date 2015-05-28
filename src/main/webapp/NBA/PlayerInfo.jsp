@@ -115,16 +115,6 @@
                 <th>${shootPercentageRanking }</th>
               </tr>
               <tr>
-                <td>三分命中率</td>
-                <th>${playerDataStatistics14.threePercentage }</th>
-                <th>${threePercentageRanking }</th>
-              </tr>
-              <tr>
-                <td>罚球命中率</td>
-                <th>${playerDataStatistics14.freeThrowPercentage }</th>
-                <th>${freeThrowPercentageRanking }</th>
-              </tr>
-              <tr>
                 <td>场均盖帽</td>
                 <th>${playerDataStatistics14.block }</th>
                 <th>${blockRanking }</th>

@@ -94,9 +94,9 @@
 					<!-- 选择场次 -->
 					<div class="col-md-6">
 						<form class="form-inline" style="margin-top: 10px;"
-							action="./gameSchedule">
+							action="./gameSchedule" onsubmit="return validate_form()">
 							<div class="form-group">
-								<select class="form-control" style="" name="seasonId">
+								<select class="form-control" style="" name="seasonId" id="seasonpicker">
 									<option>请选择赛季</option>
 									<option>02-03 赛季</option>
 									<option>03-04 赛季</option>
@@ -129,29 +129,16 @@
 								<span class="tiltle_a" id="east">东部</span><span class="tiltle_b"
 									id="west">西部</span>
 							</div>
-							<div class="tiltle" conference="W">
-								<span class="tiltle_a" style="width: 248px;"><div
-										class="btn-group">
-										<button type="button"
-											class="btn btn-link btn-xs dropdown-toggle"
-											data-toggle="dropdown" aria-expanded="false"
-											style="margin-top: -8px; font-size: 16px; color: #000000;"
-											id="zhanji_season_type">
-											常规赛 <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" id="zhanji" role="menu">
-											<li><a href="javascript:void(0);">常规赛</a></li>
-											<li><a href="javascript:void(0);">季后赛</a></li>
-										</ul>
-									</div></span>
-							</div>
+
+						
+							
 							<table class="itinerary_table">
 								<tbody>
 									<tr>
 										<td width="35" height="40">排名</td>
 										<td width="40">球队</td>
 										<td width="25">胜</td>
-										<td width="25">负</td>
+										<td width="25">负</td>	
 										<td width="35">胜差</td>
 										<td>胜率</td>
 									</tr>
@@ -179,26 +166,7 @@
 							</table>
 
 
-							<table class="itinerary_table itinerary_table_show"
-								id="eastdata_playoff" style="display: none">
-								<tbody>
-									<c:forEach items="${playoffEastRankGameRecords}"
-										var="playoffEast">
-										<tr class=" bg_color">
-											<td width="25" height="35">${playoffEast.rank}</td>
-											<c:set var="temp" value="${path.concat('/team/')}"></c:set>
-											<c:set var="temp2" value="${temp.concat(playoffEast.team)}"></c:set>
-											<td width="55"><a target="_blank" href="${temp2}">${playoffEast.team}</a></td>
-											<td width="20">${playoffEast.winGame}</td>
-											<td width="25">${playoffEast.loseGame}</td>
-											<td width="25">${playoffEast.winGap}</td>
-											<td>${playoffEast.victory}</td>
-										</tr>
-									</c:forEach>
-									</tr>
-
-								</tbody>
-							</table>
+	
 
 							<table class="itinerary_table itinerary_table_show"
 								id="westdata_regular" style="display: none">
@@ -221,27 +189,7 @@
 								</tbody>
 							</table>
 
-							<table class="itinerary_table itinerary_table_show"
-								id="westdata_playoff" style="display: none">
-								<tbody>
-									<tr class=" bg_color">
-										<c:forEach items="${playoffWestRankGameRecords}"
-											var="playoffWest">
-											<tr class=" bg_color">
-												<td width="25" height="35">${playoffWest.rank}</td>
-												<c:set var="temp" value="${path.concat('/team/')}"></c:set>
-												<c:set var="temp2" value="${temp.concat(playoffWest.team)}"></c:set>
-												<td width="55"><a target="_blank" href="${temp2}">${playoffWest.team}</a></td>
-												<td width="20">${playoffWest.winGame}</td>
-												<td width="25">${playoffWest.loseGame}</td>
-												<td width="25">${playoffWest.winGap}</td>
-												<td>${playoffWest.victory}</td>
-											</tr>
-										</c:forEach>
-									</tr>
-
-								</tbody>
-							</table>
+	
 
 						</div>
 					</div>
@@ -826,7 +774,7 @@
 								<button type="button" class="btn btn-success">
 									<a target="_blank" href="${temp2}">勇士</a>
 								</button>
-								<button type="button" class="btn btn-success" id="team9">1</button>
+								<button type="button" class="btn btn-success" id="team9">4</button>
 							</div>
 							<div class="btn-group" style="margin-top: 64px;">
 								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
@@ -834,7 +782,7 @@
 								<button type="button" class="btn btn-success">
 									<a target="_blank" href="${temp2}">灰熊</a>
 								</button>
-								<button type="button" class="btn btn-success" id="team10">0</button>
+								<button type="button" class="btn btn-success" id="team10">2</button>
 							</div>
 						</div>
 						<div style="margin-top: 64px;">
@@ -844,37 +792,48 @@
 								<button type="button" class="btn btn-success">
 									<a target="_blank" href="${temp2}">快船</a>
 								</button>
-								<button type="button" class="btn btn-success" id="team11">1</button>
+								<button type="button" class="btn btn-success" id="team11">3</button>
 							</div>
 							<div class="btn-group" style="margin-top: 64px;">
 								<c:set var="temp" value="${path.concat('/team/')}"></c:set>
 								<c:set var="temp2" value="${temp.concat('休斯顿火箭队')}"></c:set>
 								<button type="button" class="btn btn-success">
 									<a target="_blank" href="${temp2}">火箭</a></button>
-								<button type="button" class="btn btn-success" id="team12">0</button>
+								<button type="button" class="btn btn-success" id="team12">4</button>
 							</div>
 						</div>
 					</div>
-					<div style="float: left; width: 12.5%;">
-						<div style="margin-top: 72px;">
-							<div class="btn-group">
-								<button type="button" class="btn btn-success">待定</button>
+					<div style="float: left;width:12.5%;">
+          <div style="margin-top:72px;">
+            <div class="btn-group">
+             <c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('金州勇士队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">勇士</a>
+								</button>
+								<button type="button" class="btn btn-success" id="team13">4</button>
+            </div>
+            <div class="btn-group" style="margin-top:162px;">
+              <c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('休斯顿火箭队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">火箭</a></button>
+								<button type="button" class="btn btn-success" id="team14">1</button>
+            </div>
+          </div>
+        </div>
+        <div style="float: left;width:12.5%;">
+          <div style="margin-top:162px;">
+            <div class="btn-group">
+             <c:set var="temp" value="${path.concat('/team/')}"></c:set>
+								<c:set var="temp2" value="${temp.concat('金州勇士队')}"></c:set>
+								<button type="button" class="btn btn-success">
+									<a target="_blank" href="${temp2}">勇士</a>
+								</button>
 								<button type="button" class="btn btn-success" id="team13">0</button>
-							</div>
-							<div class="btn-group" style="margin-top: 162px;">
-								<button type="button" class="btn btn-success">待定</button>
-								<button type="button" class="btn btn-success" id="team14">0</button>
-							</div>
-						</div>
-					</div>
-					<div style="float: left; width: 12.5%;">
-						<div style="margin-top: 162px;">
-							<div class="btn-group">
-								<button type="button" class="btn btn-success btn-lg">待定</button>
-								<button type="button" class="btn btn-success btn-lg" id="team15">0</button>
-							</div>
-						</div>
-					</div>
+            </div>
+          </div>
+        </div>
 
 					<div id="playoffs_right">
 						<div style="height: 100%; width: 12.5%; float: right;">
@@ -956,14 +915,14 @@
 									<c:set var="temp2" value="${temp.concat('亚特兰大老鹰队')}"></c:set>
 									<button type="button" class="btn btn-success">
 										<a target="_blank" href="${temp2}">老鹰</a></button>
-									<button type="button" class="btn btn-success" id="team24">0</button>
+									<button type="button" class="btn btn-success" id="team24">4</button>
 								</div>
 								<div class="btn-group" style="margin-top: 64px;">
 									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
 									<c:set var="temp2" value="${temp.concat('华盛顿奇才队')}"></c:set>
 									<button type="button" class="btn btn-success">
 										<a target="_blank" href="${temp2}">奇才</a></button>
-									<button type="button" class="btn btn-success" id="team25">1</button>
+									<button type="button" class="btn btn-success" id="team25">2</button>
 								</div>
 							</div>
 							<div style="margin-top: 64px;">
@@ -972,40 +931,48 @@
 									<c:set var="temp2" value="${temp.concat('芝加哥公牛队')}"></c:set>
 									<button type="button" class="btn btn-success">
 										<a target="_blank" href="${temp2}">公牛</a></button>
-									<button type="button" class="btn btn-success" id="team26">1</button>
+									<button type="button" class="btn btn-success" id="team26">2</button>
 								</div>
 								<div class="btn-group" style="margin-top: 64px;">
 									<c:set var="temp" value="${path.concat('/team/')}"></c:set>
 									<c:set var="temp2" value="${temp.concat('克里夫兰骑士队')}"></c:set>
 									<button type="button" class="btn btn-success">
 										<a target="_blank" href="${temp2}">骑士</a></button>
-									<button type="button" class="btn btn-success" id="team27">0</button>
+									<button type="button" class="btn btn-success" id="team27">4</button>
 								</div>
 							</div>
 						</div>
-						<div style="float: right; width: 12.5%;">
-							<div style="margin-top: 72px;">
-								<div class="btn-group">
-									<button type="button" class="btn btn-success">待定</button>
+						 <div style="float: right;width:12.5%;">
+            <div style="margin-top:72px;">
+              <div class="btn-group">
+                <c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('亚特兰大老鹰队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">老鹰</a></button>
 									<button type="button" class="btn btn-success" id="team28">0</button>
-								</div>
-								<div class="btn-group" style="margin-top: 162px;">
-									<button type="button" class="btn btn-success">待定</button>
-									<button type="button" class="btn btn-success" id="team29">0</button>
-								</div>
-							</div>
-						</div>
-						<div style="float: right; width: 12.5%;">
-							<div style="margin-top: 162px;">
-								<div class="btn-group" style="left: 20px;">
-									<button type="button" class="btn btn-success btn-lg">待定</button>
-									<button type="button" class="btn btn-success btn-lg"
-										id="team30">0</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+              </div>
+              <div class="btn-group" style="margin-top:162px;">
+                <c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('克里夫兰骑士队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">骑士</a></button>
+									<button type="button" class="btn btn-success" id="team29">4</button>
+              </div>
+            </div>
+          </div>
+          <div style="float: right;width:12.5%;">
+            <div style="margin-top:162px;">
+              <div class="btn-group" style="left:20px;">
+               <c:set var="temp" value="${path.concat('/team/')}"></c:set>
+									<c:set var="temp2" value="${temp.concat('克里夫兰骑士队')}"></c:set>
+									<button type="button" class="btn btn-success">
+										<a target="_blank" href="${temp2}">骑士</a></button>
+									<button type="button" class="btn btn-success" id="team30">0</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 				<div class="modal-footer" style="border-top: 0px solid #e5e5e5;">
 					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
 				</div>
@@ -1014,6 +981,16 @@
 	</div>
 
 	<script type="text/javascript">
+	//验证表单
+	function validate_form()
+	{
+		if($('#datepicker').val() == '' || $('#seasonpicker').val() == '请选择赛季'){
+			alert("请选择赛季和日期！");
+			return false;
+		}
+		return true;
+	}
+
 		$(document)
 				.ready(
 						function() {
@@ -1033,56 +1010,21 @@
 											function() {
 												east.style.background = "#fbfbfb";
 												west.style.background = "#e2dede";
-												if ($("#zhanji_season_type")[0].childNodes[0].nodeValue
-														.replace(/\s+/g, "") == "常规赛") {
+												
 													eastdata_regular.style.display = "table";
-													westdata_regular.style.display = "none";
-												} else {
-													eastdata_playoff.style.display = "table";
-													westdata_playoff.style.display = "none";
-												}
-												isEast = true;
+													westdata_regular.style.display = "none";											
+											
 											});
 							$(west)
 									.click(
 											function() {
 												west.style.background = "#fbfbfb";
 												east.style.background = "#e2dede";
-												if ($("#zhanji_season_type")[0].childNodes[0].nodeValue
-														.replace(/\s+/g, "") == "常规赛") {
+											
 													eastdata_regular.style.display = "none";
-													westdata_regular.style.display = "table";
-												} else {
-													eastdata_playoff.style.display = "none";
-													westdata_playoff.style.display = "table";
-												}
-												isEast = false;
+													westdata_regular.style.display = "table";											
 											});
-							$("#zhanji a")
-									.click(
-											function() {
-												$("#zhanji_season_type")[0].childNodes[0].nodeValue = $(
-														this).text()
-														+ " ";
-												if ($(this).text().replace(
-														/\s+/g, "") == "常规赛") {
-													if (isEast) {
-														eastdata_regular.style.display = "table";
-														eastdata_playoff.style.display = "none";
-													} else {
-														westdata_regular.style.display = "table";
-														westdata_playoff.style.display = "none";
-													}
-												} else {
-													if (isEast) {
-														eastdata_regular.style.display = "none";
-														eastdata_playoff.style.display = "table";
-													} else {
-														westdata_regular.style.display = "none";
-														westdata_playoff.style.display = "table";
-													}
-												}
-											});
+							
 							$(
 									'#changjun_defen,#changjun_lanban,#changjun_zhugong,#changjun_qiangduan,#changjun_sanfen,#changjun_gaimao,#danchang_defen,#danchang_lanban,#danchang_zhugong,#danchang_qiangduan,#danchang_sanfen,#danchang_gaimao')
 									.click(
