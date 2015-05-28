@@ -830,7 +830,7 @@
 								<button type="button" class="btn btn-success">
 									<a target="_blank" href="${temp2}">勇士</a>
 								</button>
-								<button type="button" class="btn btn-success" id="team13">0</button>
+								<button type="button" class="btn btn-success" id="team15">0</button>
             </div>
           </div>
         </div>
